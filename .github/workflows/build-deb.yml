@@ -1,0 +1,34 @@
+name: Deb
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      THEOS: ${{ github.workspace }}/.theos
+      CI: true
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup
+        run: bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+
+      - name: Test
+        run: python3 -m unittest discover -s Tests -v
+
+      - name: Build
+        run: make clean package FINALPACKAGE=1
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: YTKACE-deb
+          path: packages/*.deb
+          if-no-files-found: error

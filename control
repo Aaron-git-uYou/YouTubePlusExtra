@@ -1,0 +1,9 @@
+Package: com.itzzace.ytkace
+Name: YTKACE
+Version: 0.8.0
+Architecture: iphoneos-arm64
+Description: YTKACE
+Maintainer: itzzace
+Author: itzzace
+Section: Tweaks
+Depends: firmware (>= 16.0)

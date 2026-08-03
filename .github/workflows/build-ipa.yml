@@ -1,0 +1,79 @@
+name: IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      ipa_url:
+        description: YouTube IPA URL
+        required: true
+        default: "https://files.catbox.moe/ru0l7i.ipa"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-deb.yml
+
+  package:
+    needs: build
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: YTKACE-deb
+          path: packages
+
+      - uses: levibostian/action-hide-sensitive-inputs@v1
+
+      - name: Setup
+        run: brew install ldid dpkg
+
+      - name: YouTube
+        env:
+          IPA_URL: ${{ inputs.ipa_url }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [[ "$IPA_URL" == "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/assets/"* ]]; then
+            curl --fail --location \
+              --header "Accept: application/octet-stream" \
+              --header "Authorization: Bearer $GH_TOKEN" \
+              "$IPA_URL" --output YouTube.ipa
+          else
+            curl --fail --location "$IPA_URL" --output YouTube.ipa
+          fi
+          file_type=$(file --mime-type -b YouTube.ipa)
+          if [[ "$file_type" != "application/x-ios-app" && "$file_type" != "application/zip" ]]; then
+            exit 1
+          fi
+
+      - name: Inject
+        id: inject
+        run: |
+          mkdir deb-root
+          dpkg-deb -x packages/*.deb deb-root
+          export LDID="$(brew --prefix)/bin/ldid"
+          tweak_version="$(awk '/^Version:/ {print $2}' control)"
+          youtube_version="$(python3 - <<'PY'
+          import plistlib
+          import zipfile
+
+          with zipfile.ZipFile('YouTube.ipa') as archive:
+              info = next(name for name in archive.namelist()
+                          if name.startswith('Payload/') and name.endswith('.app/Info.plist'))
+              print(plistlib.loads(archive.read(info))['CFBundleShortVersionString'])
+          PY
+          )"
+          output="YTKACE_${tweak_version}_YouTube_${youtube_version}.ipa"
+          bash Scripts/sideload-repack.sh YouTube.ipa deb-root/Applications/YouTube.app/Frameworks/YTKACE.dylib "$output"
+          bash Tools/verify-artifacts.sh deb-root/Applications/YouTube.app/Frameworks/YTKACE.dylib "$output"
+          echo "ipa=$output" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: YTKACE-IPA
+          path: ${{ steps.inject.outputs.ipa }}
+          if-no-files-found: error
