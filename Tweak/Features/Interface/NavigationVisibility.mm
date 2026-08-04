@@ -8,6 +8,9 @@
 
 static IMP OriginalHeaderLogoLayout;
 static IMP OriginalLogoViewLayout;
+static IMP OriginalHeaderLogoSetHidden;
+static IMP OriginalLogoViewSetHidden;
+static IMP OriginalYTImageSetHidden;
 static IMP OriginalQTMButtonLayout;
 static IMP OriginalQTMButtonSetTint;
 static IMP OriginalQTMButtonSetImage;
@@ -386,6 +389,67 @@ static void YTKACELogoViewLayout(UIView *receiver, SEL selector) {
     );
 }
 
+static void YTKACEHeaderLogoSetHidden(UIView *receiver,
+                                      SEL selector,
+                                      BOOL hidden) {
+    if (hidden || !YTKACEFeatureEnabled(
+            @"YTKACE.Preference.Navigation.LogoHidden")) {
+        if (OriginalHeaderLogoSetHidden != NULL) {
+            ((void (*)(id, SEL, BOOL))OriginalHeaderLogoSetHidden)(
+                receiver, selector, hidden);
+        }
+        return;
+    }
+    if (OriginalHeaderLogoSetHidden != NULL) {
+        ((void (*)(id, SEL, BOOL))OriginalHeaderLogoSetHidden)(
+            receiver, selector, YES);
+    }
+}
+
+static void YTKACELogoViewSetHidden(UIView *receiver,
+                                    SEL selector,
+                                    BOOL hidden) {
+    if (hidden || !YTKACEFeatureEnabled(
+            @"YTKACE.Preference.Navigation.LogoHidden")) {
+        if (OriginalLogoViewSetHidden != NULL) {
+            ((void (*)(id, SEL, BOOL))OriginalLogoViewSetHidden)(
+                receiver, selector, hidden);
+        }
+        return;
+    }
+    if (OriginalLogoViewSetHidden != NULL) {
+        ((void (*)(id, SEL, BOOL))OriginalLogoViewSetHidden)(
+            receiver, selector, YES);
+    }
+}
+
+static void YTKACEYTImageSetHidden(UIView *receiver,
+                                   SEL selector,
+                                   BOOL hidden) {
+    if (hidden || !YTKACEFeatureEnabled(
+            @"YTKACE.Preference.Navigation.LogoHidden")) {
+        if (OriginalYTImageSetHidden != NULL) {
+            ((void (*)(id, SEL, BOOL))OriginalYTImageSetHidden)(
+                receiver, selector, hidden);
+        }
+        return;
+    }
+    NSString *label = receiver.accessibilityLabel;
+    if (![receiver.accessibilityIdentifier isEqualToString:@"id.youtube.logo"] &&
+        !(label.length != 0 &&
+          [label caseInsensitiveCompare:@"YouTube"] == NSOrderedSame)) {
+        if (OriginalYTImageSetHidden != NULL) {
+            ((void (*)(id, SEL, BOOL))OriginalYTImageSetHidden)(
+                receiver, selector, hidden);
+        }
+        return;
+    }
+    if (OriginalYTImageSetHidden != NULL) {
+        ((void (*)(id, SEL, BOOL))OriginalYTImageSetHidden)(
+            receiver, selector, YES);
+    }
+}
+
 static void YTKACEQTMButtonLayout(UIView *receiver, SEL selector) {
     if (OriginalQTMButtonLayout != NULL) {
         ((void (*)(id, SEL))OriginalQTMButtonLayout)(receiver, selector);
@@ -530,10 +594,18 @@ void YTKACEInstallNavigationVisibilityHooks(void) {
                               @"layoutSubviews",
                               (IMP)YTKACEHeaderLogoLayout,
                               &OriginalHeaderLogoLayout);
+    YTKACEInstallInstanceHook(@"YTHeaderLogoView",
+                              @"setHidden:",
+                              (IMP)YTKACEHeaderLogoSetHidden,
+                              &OriginalHeaderLogoSetHidden);
     YTKACEInstallInstanceHook(@"YTLogoView",
                               @"layoutSubviews",
                               (IMP)YTKACELogoViewLayout,
                               &OriginalLogoViewLayout);
+    YTKACEInstallInstanceHook(@"YTLogoView",
+                              @"setHidden:",
+                              (IMP)YTKACELogoViewSetHidden,
+                              &OriginalLogoViewSetHidden);
     YTKACEInstallInstanceHook(@"YTQTMButton",
                               @"layoutSubviews",
                               (IMP)YTKACEQTMButtonLayout,
@@ -558,6 +630,10 @@ void YTKACEInstallNavigationVisibilityHooks(void) {
                               @"layoutSubviews",
                               (IMP)YTKACEYTImageViewLayout,
                               &OriginalYTImageViewLayout);
+    YTKACEInstallInstanceHook(@"YTImageView",
+                              @"setHidden:",
+                              (IMP)YTKACEYTImageSetHidden,
+                              &OriginalYTImageSetHidden);
     YTKACEInstallInstanceHook(@"YTMainWindow",
                               @"traitCollectionDidChange:",
                               (IMP)YTKACEMainWindowTraitChanged,
