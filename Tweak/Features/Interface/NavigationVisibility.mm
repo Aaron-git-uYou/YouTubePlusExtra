@@ -426,18 +426,12 @@ static void YTKACELogoViewSetHidden(UIView *receiver,
 static void YTKACEYTImageSetHidden(UIView *receiver,
                                    SEL selector,
                                    BOOL hidden) {
-    if (hidden || !YTKACEFeatureEnabled(
-            @"YTKACE.Preference.Navigation.LogoHidden")) {
-        if (OriginalYTImageSetHidden != NULL) {
-            ((void (*)(id, SEL, BOOL))OriginalYTImageSetHidden)(
-                receiver, selector, hidden);
-        }
-        return;
-    }
     NSString *label = receiver.accessibilityLabel;
-    if (![receiver.accessibilityIdentifier isEqualToString:@"id.youtube.logo"] &&
-        !(label.length != 0 &&
-          [label caseInsensitiveCompare:@"YouTube"] == NSOrderedSame)) {
+    if (hidden ||
+        (![receiver.accessibilityIdentifier isEqualToString:@"id.youtube.logo"] &&
+         !(label.length != 0 &&
+           [label caseInsensitiveCompare:@"YouTube"] == NSOrderedSame)) ||
+        !YTKACEFeatureEnabled(@"YTKACE.Preference.Navigation.LogoHidden")) {
         if (OriginalYTImageSetHidden != NULL) {
             ((void (*)(id, SEL, BOOL))OriginalYTImageSetHidden)(
                 receiver, selector, hidden);

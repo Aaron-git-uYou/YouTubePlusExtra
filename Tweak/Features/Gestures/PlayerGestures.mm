@@ -188,9 +188,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)other 
             ? ([key isEqualToString:@"YTKACE.Preference.Gestures.VolumeSide"] ? 0 : 1)
             : [value integerValue];
         CGFloat edge = CGRectGetWidth(view.bounds) * 0.15;
-        BOOL inEdge = side == 0
-            ? location.x > CGRectGetWidth(view.bounds) - edge
-            : location.x < edge;
+        BOOL nearRight = location.x > CGRectGetWidth(view.bounds) - edge;
+        BOOL nearLeft = location.x < edge;
+        BOOL inEdge = side == 3
+            ? (nearLeft || nearRight)
+            : (side == 0 ? nearRight : nearLeft);
         return side != 2 && inEdge;
     }
     if (![gestureRecognizer isKindOfClass:UILongPressGestureRecognizer.class]) {

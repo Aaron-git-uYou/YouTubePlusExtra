@@ -158,7 +158,7 @@ static UIColor *YTKACEColorFromHex(NSString *hex) {
 static NSDictionary *YTKACEText(NSString *text) {
     return @{
         @"type": @"text",
-        @"title": text
+        @"title": YTKACELocalized(text)
     };
 }
 
@@ -209,7 +209,7 @@ void YTKACEShowRestartNotice(UIViewController *controller) {
     [old removeFromSuperview];
     UILabel *notice = [UILabel new];
     notice.tag = 0x594B524E;
-    notice.text = @"Restart YouTube to apply changes.";
+    notice.text = YTKACELocalized(@"Restart YouTube to apply changes.");
     notice.textColor = UIColor.labelColor;
     notice.backgroundColor = [UIColor colorWithWhite:0.72 alpha:0.96];
     notice.font = [UIFont systemFontOfSize:13.0];
@@ -332,10 +332,14 @@ void YTKACEPresentChoiceMenu(UIViewController *presenter,
                 NSInteger otherSide = otherValue == nil
                     ? ([otherKey isEqualToString:@"YTKACE.Preference.Gestures.BrightnessSide"] ? 1 : 0)
                     : [otherValue integerValue];
-                if (otherSide == [values[index] integerValue]) {
+                if (otherSide == [values[index] integerValue] || otherSide == 3) {
                     YTKACEStorePickerValue(otherKey, @([values[index] integerValue] == 0),
                                            [values[index] integerValue] == 0 ? 1 : 0);
                 }
+            }
+            if ([key isEqualToString:@"YTKACE.Preference.Gestures.VolumeSide"] &&
+                [values[index] integerValue] == 3) {
+                YTKACEStorePickerValue(@"YTKACE.Preference.Gestures.BrightnessSide", @2, 2);
             }
             if (handler != nil) handler(index);
         });
@@ -573,7 +577,7 @@ willDisplayHeaderView:(UIView *)view
     if ([type isEqualToString:@"toggle"]) {
         UISwitch *toggle = [UISwitch new];
         toggle.transform = CGAffineTransformMakeScale(0.95, 0.95);
-        toggle.onTintColor = [UIColor colorWithRed:0.749 green:0.0 blue:0.075 alpha:1.0];
+        toggle.onTintColor = YTKACEAccentColor();
         id stored = YTKACEPreferenceObject(item[@"key"]);
         toggle.on = [stored respondsToSelector:@selector(boolValue)] && [stored boolValue];
         objc_setAssociatedObject(toggle,
@@ -635,6 +639,7 @@ willDisplayHeaderView:(UIView *)view
         double value = stored > 0.0 ? stored : [item[@"fallback"] doubleValue];
         cell.textLabel.text = [NSString stringWithFormat:@"Seconds: %.0f", value];
         UIStepper *stepper = [UIStepper new];
+        stepper.tintColor = YTKACEAccentColor();
         stepper.minimumValue = [item[@"minimum"] doubleValue];
         stepper.maximumValue = [item[@"maximum"] doubleValue];
         stepper.stepValue = [item[@"step"] doubleValue];
@@ -657,6 +662,7 @@ willDisplayHeaderView:(UIView *)view
         double value = stored > 0.0 ? stored : [item[@"fallback"] doubleValue];
         UIView *accessory = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 158.0, 46.0)];
         UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0.0, 0.0, 158.0, 30.0)];
+        slider.minimumTrackTintColor = YTKACEAccentColor();
         slider.minimumValue = [item[@"minimum"] floatValue];
         slider.maximumValue = [item[@"maximum"] floatValue];
         slider.value = (float)value;
@@ -679,7 +685,7 @@ willDisplayHeaderView:(UIView *)view
             item[@"values"],
             [item[@"default"] unsignedIntegerValue]
         );
-        cell.detailTextLabel.textColor = UIColor.systemBlueColor;
+        cell.detailTextLabel.textColor = YTKACEAccentColor();
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else if ([type isEqualToString:@"color"]) {
         NSString *stored = YTKACEPreferenceObject(item[@"key"]);
@@ -1038,9 +1044,9 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
 static YTKACEOptionsController *YTKACEPage(NSString *title,
                                            NSArray *sections,
                                            NSArray *sectionTitles) {
-    return [[YTKACEOptionsController alloc] initWithTitle:title
+    return [[YTKACEOptionsController alloc] initWithTitle:YTKACELocalized(title)
                                                  sections:sections
-                                           sectionTitles:sectionTitles];
+                                           sectionTitles:YTKACELocalizedList(sectionTitles)];
 }
 
 static NSArray<NSString *> *YTKACEQualityTitles(void) {
@@ -1308,11 +1314,13 @@ UIViewController *YTKACEMakeMiscOptionsController(void) {
 UIViewController *YTKACEMakeGestureOptionsController(void) {
     NSArray *sideTitles = @[@"Right", @"Left", @"Disabled"];
     NSArray *sideValues = @[@0, @1, @2];
+    NSArray *volumeSideTitles = @[@"Right", @"Left", @"Both", @"Disabled"];
+    NSArray *volumeSideValues = @[@0, @1, @3, @2];
     return YTKACEPage(@"Gestures", @[
         @[
             YTKACEPicker(@"Brightness", @"YTKACE.Preference.Gestures.BrightnessSide", sideTitles, sideValues, 1, @"", @""),
-            YTKACEPicker(@"Volume", @"YTKACE.Preference.Gestures.VolumeSide", sideTitles, sideValues, 0, @"", @""),
-            YTKACEText(@"Choose a side for brightness and volume. Swipe vertically on that side of the player.")
+            YTKACEPicker(@"Volume", @"YTKACE.Preference.Gestures.VolumeSide", volumeSideTitles, volumeSideValues, 0, @"", @""),
+            YTKACEText(@"Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off.")
         ],
         @[
             YTKACEToggle(@"Hold to Seek", @"YTKACE.Preference.Gestures.HoldToSeek", @"", @""),

@@ -184,7 +184,7 @@ willDisplayHeaderView:(UIView *)view
         cell.textLabel.text = titles[(NSUInteger)indexPath.row];
         UISwitch *toggle = [UISwitch new];
         toggle.transform = CGAffineTransformMakeScale(0.95, 0.95);
-        toggle.onTintColor = [UIColor colorWithRed:0.749 green:0.0 blue:0.075 alpha:1.0];
+        toggle.onTintColor = YTKACEAccentColor();
         NSString *key = keys[(NSUInteger)indexPath.row];
         toggle.on = [YTKACEPreferenceObject(key) boolValue];
         objc_setAssociatedObject(toggle, YTKACETabSwitchKey, key, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -198,7 +198,7 @@ willDisplayHeaderView:(UIView *)view
     if (indexPath.section == 1) {
         cell.textLabel.text = YTKACELocalized(@"Default Startup Tab");
         cell.detailTextLabel.text = YTKACEPickerSummary(@"YTKACE.Preference.Tabs.Startup", @[@"Home", @"Explore", @"Subscriptions", @"Shorts", @"You"], @[@0, @1, @2, @3, @4], 0);
-        cell.detailTextLabel.textColor = UIColor.systemBlueColor;
+        cell.detailTextLabel.textColor = YTKACEAccentColor();
         return cell;
     }
 
