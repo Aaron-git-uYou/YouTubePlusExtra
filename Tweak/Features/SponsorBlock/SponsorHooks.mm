@@ -5,6 +5,7 @@
 #import "../../Runtime/Preferences.h"
 #import "../../Runtime/Localization.h"
 #import "../Downloads/DownloadLog.h"
+#import "../../UI/Assets.h"
 
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -155,7 +156,7 @@ static void YTKACEShowSponsorSkippedHUD(id controller, double start, NSString *c
         label.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
         UIButton *undo = [UIButton buttonWithType:UIButtonTypeSystem];
         [undo setTitle:YTKACELocalized(@"Unskip") forState:UIControlStateNormal];
-        [undo setTitleColor:UIColor.systemBlueColor forState:UIControlStateNormal];
+        [undo setTitleColor:YTKACEAccentColor() forState:UIControlStateNormal];
         undo.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
         [undo addTarget:target action:@selector(unskip)
             forControlEvents:UIControlEventTouchUpInside];
@@ -251,7 +252,7 @@ static void YTKACEAskToSkipSponsor(id controller, double start, double end,
         label.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
         UIButton *skip = [UIButton buttonWithType:UIButtonTypeSystem];
         [skip setTitle:YTKACELocalized(@"Skip") forState:UIControlStateNormal];
-        [skip setTitleColor:UIColor.systemBlueColor forState:UIControlStateNormal];
+        [skip setTitleColor:YTKACEAccentColor() forState:UIControlStateNormal];
         skip.titleLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
         [skip addTarget:target action:@selector(skip)
             forControlEvents:UIControlEventTouchUpInside];

@@ -1242,7 +1242,7 @@ static NSData *YTKACESABRClientInfo(void) {
         else if (type == 58) {
             protectionStatus = (NSInteger)YTKACEPBIntegerField(part, 1, 0);
             protectionRetries = (NSInteger)YTKACEPBIntegerField(part, 2, 0);
-            attestation = protectionStatus >= 2;
+            attestation = protectionStatus >= 3;
             YTKACEDownloadLog(self.identifier,
                 @"protection status=%ld retries=%ld data=%@", (long)protectionStatus,
                 (long)protectionRetries, YTKACESABRHex(part, 64));
@@ -1290,6 +1290,9 @@ static NSData *YTKACESABRClientInfo(void) {
             [strongSelf sendRequest];
             });
         return;
+    }
+    if (protectionStatus == 2 && [partCounts[@21] unsignedIntegerValue] == 0) {
+        attestation = YES;
     }
     if (attestation || rejected) {
         NSString *message = attestation
@@ -1357,6 +1360,7 @@ static NSData *YTKACESABRClientInfo(void) {
         self.retryCount = 0;
         self.stallRecoveryCount = 0;
         self.nativeRefreshAttempts = 0;
+        self.attestationRetries = 0;
     }
     YTKACEDownloadLog(self.identifier,
         @"progress audio=%.3f/%lld video=%.3f/%lld bytes=%lld+%lld stalled=%ld",

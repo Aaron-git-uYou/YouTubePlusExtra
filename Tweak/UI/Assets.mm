@@ -61,3 +61,7 @@ UIImage *YTKACEDownloadTabImage(BOOL selected) {
     return [UIImage systemImageNamed:selected
         ? @"arrow.down.square.fill" : @"arrow.down.square"];
 }
+
+UIColor *YTKACEAccentColor(void) {
+    return [UIColor colorWithRed:0.749 green:0.0 blue:0.075 alpha:1.0];
+}

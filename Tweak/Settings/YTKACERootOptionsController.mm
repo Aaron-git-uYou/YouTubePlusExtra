@@ -443,7 +443,7 @@ void YTKACEApplyAppearance(UIViewController *controller) {
             value.text = YTKACEPickerSummary(key, options, values, 0);
             value.textAlignment = NSTextAlignmentRight;
             value.font = [UIFont systemFontOfSize:15.0];
-            value.textColor = UIColor.systemBlueColor;
+            value.textColor = YTKACEAccentColor();
             cell.accessoryView = value;
         }
         return cell;

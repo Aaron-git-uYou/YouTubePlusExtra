@@ -106,13 +106,15 @@ static id YTKACENativeSettingsItem(NSString *title,
         @"itemWithTitle:titleDescription:accessibilityIdentifier:detailTextBlock:"
          "selectBlock:");
     NSString *subtitle = YTKACENativeSettingsSubtitle(title);
+    NSString *localizedTitle = YTKACELocalized(title);
     if (subtitle.length != 0 && [itemClass respondsToSelector:described]) {
         return ((id (*)(id, SEL, id, id, id, id, id))objc_msgSend)(
-            itemClass, described, title, subtitle, @"YTKACENativeSettingsItem",
-            detail, select);
+            itemClass, described, localizedTitle, subtitle,
+            @"YTKACENativeSettingsItem", detail, select);
     }
     return ((id (*)(id, SEL, id, id, id, id))objc_msgSend)(
-        itemClass, selector, title, @"YTKACENativeSettingsItem", detail, select);
+        itemClass, selector, localizedTitle, @"YTKACENativeSettingsItem",
+        detail, select);
 }
 
 static void YTKACEUpdateNativeSettingsSection(id receiver, SEL selector,
