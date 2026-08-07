@@ -37,6 +37,7 @@ static BOOL YTKACEContentContains(NSString *token,
                                   NSArray<NSString *> *needles);
 static id YTKACEContentValue(id object, NSString *key);
 static BOOL YTKACESectionIsShortsShelf(id section);
+static BOOL YTKACESectionIsProductsShelf(id section);
 static BOOL YTKACEHideTopics(void);
 
 static id YTKACEContentValue(id object, NSString *key) {
@@ -111,14 +112,70 @@ static BOOL YTKACESectionIsShortsShelf(id section) {
     return NO;
 }
 
+static BOOL YTKACESectionIsProductsShelf(id section) {
+    if (section == nil) {
+        return NO;
+    }
+    NSArray *markers = @[
+        @"merchandise_shelf", @"merchandise_item",
+        @"product_shelf", @"products_shelf", @"shopping_shelf",
+        @"promoted_sparkles_text_product_watch",
+        @"products_in_video"
+    ];
+
+    NSArray *entries = YTKACEContentValue(section, @"contentsArray");
+    if ([entries isKindOfClass:NSArray.class] && entries.count != 0) {
+        for (id entry in entries) {
+            if (YTKACEContentContains(
+                    [[[entry description] lowercaseString]
+                        stringByReplacingOccurrencesOfString:@"."
+                                                  withString:@"_"],
+                    markers)) {
+                return YES;
+            }
+        }
+        return NO;
+    }
+
+    NSString *description = [[[section description] lowercaseString]
+        stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    if (YTKACEContentContains(description, markers)) {
+        return YES;
+    }
+    NSString *className = NSStringFromClass([section class]).lowercaseString;
+    if (![className containsString:@"shelfrenderer"] &&
+        ![className containsString:@"richsectionrenderer"]) {
+        return NO;
+    }
+    id content = YTKACEContentValue(section, @"content");
+    id list = YTKACEContentValue(content, @"horizontalListRenderer") ?:
+        YTKACEContentValue(content, @"richShelfRenderer") ?:
+        YTKACEContentValue(content, @"shelfRenderer") ?:
+        content;
+    NSArray *items = YTKACEContentValue(list, @"itemsArray") ?:
+        YTKACEContentValue(list, @"contentsArray");
+    for (id item in items) {
+        if (YTKACEContentContains(
+                [[[item description] lowercaseString]
+                    stringByReplacingOccurrencesOfString:@"."
+                                              withString:@"_"],
+                markers)) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 static NSArray *YTKACEFilteredFeedSections(NSArray *sections) {
     BOOL hideShorts = YTKACEFeatureEnabled(@"YTKACE.Preference.Shorts.FeedHidden");
-    if (!hideShorts || ![sections isKindOfClass:NSArray.class]) {
+    BOOL hideProducts = YTKACEFeatureEnabled(@"YTKACE.Preference.Watch.ProductsHidden");
+    if ((!hideShorts && !hideProducts) || ![sections isKindOfClass:NSArray.class]) {
         return sections;
     }
     NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:sections.count];
     for (id section in sections) {
         if (hideShorts && YTKACESectionIsShortsShelf(section)) continue;
+        if (hideProducts && YTKACESectionIsProductsShelf(section)) continue;
         [filtered addObject:section];
     }
     return filtered;
@@ -248,6 +305,15 @@ static BOOL YTKACEContentShouldHide(UIView *view, BOOL *hideSuperview) {
         YTKACEContentContains(token, @[
             @"brand_link_sticker", @"product_sticker", @"promoted_sticker",
             @"sponsored_sticker", @"shorts_ads_shopping"
+        ])) {
+        return YES;
+    }
+    if (YTKACEFeatureEnabled(@"YTKACE.Preference.Watch.ProductsHidden") &&
+        YTKACEContentContains(token, @[
+            @"merchandise_shelf", @"merchandise_item",
+            @"product_shelf", @"products_shelf", @"shopping_shelf",
+            @"promoted_sparkles_text_product_watch",
+            @"product_in_video"
         ])) {
         return YES;
     }
@@ -446,6 +512,10 @@ static void YTKACEDidInsertPlayerOverlay(id receiver, SEL selector,
     NSString *identifier = YTKACEContentValue(overlay, @"overlayIdentifier");
     if (YTKACEFeatureEnabled(@"YTKACE.Preference.Overlay.PaidPromotionHidden") &&
         [identifier isEqualToString:@"player_overlay_paid_content"]) {
+        return;
+    }
+    if (YTKACEFeatureEnabled(@"YTKACE.Preference.Watch.ProductsHidden") &&
+        [identifier isEqualToString:@"player_overlay_product_in_video"]) {
         return;
     }
     if (OriginalDidInsertPlayerOverlay != NULL) {
