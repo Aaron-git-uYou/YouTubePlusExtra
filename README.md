@@ -12,13 +12,14 @@ An open-source YouTube enhancement for iOS.
 | Interface | OLED mode, overlay controls, navigation cleanup and native share sheets |
 | Tabs | Hide, reorder and add YouTube destinations |
 | Library | Downloaded video, Shorts and audio players with resume support |
+| Settings | Searchable settings, 14 languages and a native YouTube settings section |
 
 ## Compatibility
 
 - **iOS:** 16.0 and newer
 - **Architecture:** arm64
 - **Latest confirmed YouTube:** 21.31.3
-- **YTKACE:** 0.8.0
+- **YTKACE:** 0.8.1
 
 The same injected IPA can be installed with TrollStore or a developer-certificate sideloader.
 
@@ -29,6 +30,7 @@ Fork the repository, enable Actions, open the **IPA** workflow and provide a dir
 ## Settings
 
 Open the YTKACE tab and tap the gear, or open YouTube Settings and choose YTKACE.
+Both pages carry the same options, and the YouTube Settings section has a search bar.
 
 ## Screenshots
 
@@ -67,7 +69,7 @@ YTKACE has no activation service, analytics, telemetry or updater.
 
 ## A note to iKarwan
 
-YTKACE 0.8.0 contains zero YTKPlus code. It was independently written with its own UI, assets, and structure, and copyright does not cover features or general similarities alone. I would have preferred to discuss this privately, but I was blocked on Telegram before the claims were made publicly through tweets and a DMCA notice. If you believe any copyrighted material remains, please show me exactly where and I will review it.
+YTKACE 0.8.1 contains zero YTKPlus code. It was independently written with its own UI, assets, and structure, and copyright does not cover features or general similarities alone. I would have preferred to discuss this privately, but I was blocked on Telegram before the claims were made publicly through tweets and a DMCA notice. If you believe any copyrighted material remains, please show me exactly where and I will review it.
 
 ## License
 
