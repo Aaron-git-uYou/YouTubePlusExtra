@@ -61,6 +61,7 @@ YTKACE_FILES = \
 	Tweak/Settings/NativeSettingsEntry.mm \
 	Tweak/Settings/YTKACERootOptionsController.mm \
 	Tweak/Settings/YTKACESettingsPages.mm \
+	Tweak/Settings/YTKACESettingsSearch.mm \
 	Tweak/Settings/YTKACETabEditorController.mm \
 	Tweak/Settings/YTKACEDownloadsController.mm
 

@@ -159,6 +159,22 @@ void YTKACEApplyAppearance(UIViewController *controller) {
 
 @end
 
+NSString *YTKACEDeviceInformationText(void) {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *model = [NSString stringWithUTF8String:systemInfo.machine] ?: @"iOS Device";
+    NSDictionary *info = NSBundle.mainBundle.infoDictionary;
+    NSString *youtubeVersion = info[@"CFBundleShortVersionString"] ?: @"Unknown";
+    NSString *bundleID = NSBundle.mainBundle.bundleIdentifier ?: @"com.google.ios.youtube";
+    return [NSString stringWithFormat:@"YTKACE %@  •  YouTube %@\n%@\n%@  •  iOS %@",
+        YTKACEVersion, youtubeVersion, bundleID, model,
+        UIDevice.currentDevice.systemVersion];
+}
+
+UIViewController *YTKACEMakeDownloadLogController(void) {
+    return [YTKACEDownloadLogController new];
+}
+
 @interface YTKACERootOptionsController ()
 @property(nonatomic, strong) UIView *settingsHeader;
 @end
