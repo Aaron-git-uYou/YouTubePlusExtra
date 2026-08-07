@@ -131,11 +131,9 @@ static BOOL YTKACESectionIsProductsShelf(id section) {
     NSArray *entries = YTKACEContentValue(section, @"contentsArray");
     if ([entries isKindOfClass:NSArray.class] && entries.count != 0) {
         for (id entry in entries) {
-            if (YTKACEContentContains(
-                    [[[entry description] lowercaseString]
-                        stringByReplacingOccurrencesOfString:@"."
-                                                  withString:@"_"],
-                    markers)) {
+            NSString *entryDescription = [[[entry description] lowercaseString]
+                stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+            if (YTKACEContentContains(entryDescription, markers)) {
                 return YES;
             }
         }
@@ -160,11 +158,9 @@ static BOOL YTKACESectionIsProductsShelf(id section) {
     NSArray *items = YTKACEContentValue(list, @"itemsArray") ?:
         YTKACEContentValue(list, @"contentsArray");
     for (id item in items) {
-        if (YTKACEContentContains(
-                [[[item description] lowercaseString]
-                    stringByReplacingOccurrencesOfString:@"."
-                                              withString:@"_"],
-                markers)) {
+        NSString *itemDescription = [[[item description] lowercaseString]
+            stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+        if (YTKACEContentContains(itemDescription, markers)) {
             return YES;
         }
     }
