@@ -173,7 +173,7 @@ static BOOL YTKACESectionIsProductsShelf(id section) {
 
 static NSArray *YTKACEFilteredFeedSections(NSArray *sections) {
     BOOL hideShorts = YTKACEFeatureEnabled(@"YTKACE.Preference.Shorts.FeedHidden");
-    BOOL hideProducts = YTKACEFeatureEnabled(@"YTKACE.Preference.Watch.ProductsHidden");
+    BOOL hideProducts = YTKACEFeatureEnabled(@"YTKACE.Preference.Overlay.ProductsHidden");
     if ((!hideShorts && !hideProducts) || ![sections isKindOfClass:NSArray.class]) {
         return sections;
     }
@@ -313,7 +313,7 @@ static BOOL YTKACEContentShouldHide(UIView *view, BOOL *hideSuperview) {
         ])) {
         return YES;
     }
-    if (YTKACEFeatureEnabled(@"YTKACE.Preference.Watch.ProductsHidden") &&
+    if (YTKACEFeatureEnabled(@"YTKACE.Preference.Overlay.ProductsHidden") &&
         YTKACEContentContains(token, YTKACEProductsMarkers())) {
         return YES;
     }
@@ -514,7 +514,7 @@ static void YTKACEDidInsertPlayerOverlay(id receiver, SEL selector,
         [identifier isEqualToString:@"player_overlay_paid_content"]) {
         return;
     }
-    if (YTKACEFeatureEnabled(@"YTKACE.Preference.Watch.ProductsHidden") &&
+    if (YTKACEFeatureEnabled(@"YTKACE.Preference.Overlay.ProductsHidden") &&
         [identifier isEqualToString:@"player_overlay_product_in_video"]) {
         return;
     }
