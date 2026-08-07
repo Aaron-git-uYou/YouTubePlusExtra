@@ -37,4 +37,6 @@ FOUNDATION_EXPORT void YTKACEPresentChoiceMenu(UIViewController *presenter,
                                                NSUInteger defaultIndex,
                                                YTKACEChoiceHandler handler);
 
+FOUNDATION_EXPORT NSArray<NSDictionary *> *YTKACEAllPageDefinitions(void);
+
 NS_ASSUME_NONNULL_END

@@ -1058,6 +1058,24 @@ static NSArray *YTKACEQualityValues(void) {
     return @[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12];
 }
 
+static NSDictionary *YTKACEPageDefinition(NSString *pageID,
+                                          NSString *title,
+                                          NSArray *sections,
+                                          NSArray *headers) {
+    return @{
+        @"id": pageID,
+        @"title": title,
+        @"sections": sections,
+        @"headers": headers
+    };
+}
+
+static YTKACEOptionsController *YTKACEPageFromDefinition(NSDictionary *definition) {
+    return YTKACEPage(definition[@"title"],
+                      definition[@"sections"],
+                      definition[@"headers"]);
+}
+
 UIViewController *YTKACEMakeStartupPickerController(void) {
     return [[YTKACEPickerController alloc]
         initWithTitle:@"Startup Page"
@@ -1083,7 +1101,7 @@ UIViewController *YTKACEMakeCellularQualityController(void) {
                                            defaultIndex:0];
 }
 
-UIViewController *YTKACEMakeSponsorBlockController(void) {
+static NSDictionary *YTKACESponsorBlockDefinition(void) {
     NSMutableArray *sections = [NSMutableArray arrayWithObject:@[
         YTKACEToggle(@"Enable", YTKACESponsorBlockKey, @"", @""),
         YTKACEPicker(@"Skip Alerts", @"YTKACE.Preference.SponsorBlock.NotificationMode",
@@ -1125,10 +1143,10 @@ UIViewController *YTKACEMakeSponsorBlockController(void) {
         ]];
         [titles addObject:[definition[@"title"] uppercaseString]];
     }
-    return YTKACEPage(YTKACELocalized(@"SponsorBlock"), sections, titles);
+    return YTKACEPageDefinition(@"sponsorblock", @"SponsorBlock", sections, titles);
 }
 
-UIViewController *YTKACEMakePlayerControlsController(void) {
+static NSDictionary *YTKACEPlayerControlsDefinition(void) {
     YTKACEAction backup = ^(UIViewController *controller) {
         [(YTKACEOptionsController *)controller beginBackup];
     };
@@ -1152,7 +1170,7 @@ UIViewController *YTKACEMakePlayerControlsController(void) {
         YTKACEColor(@"Gradient highlight", @"YTKACE.Preference.Progress.HighlightColor", @"#8E8EFF"),
         YTKACEColor(@"Scrubber color", @"YTKACE.Preference.Progress.ScrubberColor", @"#FF0000")
     ];
-    return YTKACEPage(@"Player", @[
+    return YTKACEPageDefinition(@"player", @"Player", @[
         @[
             YTKACEToggle(@"Download Button", YTKACEDownloadKey, @"", @""),
             YTKACEToggle(@"PiP Button", YTKACEPiPKey, @"", @""),
@@ -1183,8 +1201,8 @@ UIViewController *YTKACEMakeTabBarOptionsController(void) {
     return [YTKACETabEditorController new];
 }
 
-UIViewController *YTKACEMakeOverlayOptionsController(void) {
-    return YTKACEPage(YTKACELocalized(@"Overlay"), @[
+static NSDictionary *YTKACEOverlayOptionsDefinition(void) {
+    return YTKACEPageDefinition(@"overlay", @"Overlay", @[
         @[
             YTKACEToggle(@"Remove Suggested Videos", @"YTKACE.Preference.Overlay.SuggestedVideosHidden", @"", @""),
             YTKACEToggle(@"Remove Comments", @"YTKACE.Preference.Overlay.CommentsHidden", @"", @""),
@@ -1224,8 +1242,8 @@ UIViewController *YTKACEMakeOverlayOptionsController(void) {
     ], @[@"WATCH PAGE", @"GESTURES", @"ALWAYS VISIBLE", @"PREVIOUS & NEXT", @"HIDE FROM PLAYER"]);
 }
 
-UIViewController *YTKACEMakeStreamingOptionsController(void) {
-    return YTKACEPage(@"Playback", @[
+static NSDictionary *YTKACEStreamingOptionsDefinition(void) {
+    return YTKACEPageDefinition(@"playback", @"Playback", @[
         @[YTKACEToggle(@"Old Quality Menu", @"YTKACE.Preference.Playback.LegacyQualityMenu", @"", @"")],
         @[
             YTKACEToggle(@"Custom Double-Tap Time", @"YTKACE.Preference.Playback.CustomDoubleTap", @"", @""),
@@ -1238,8 +1256,8 @@ UIViewController *YTKACEMakeStreamingOptionsController(void) {
     ], @[@"QUALITY", @"DOUBLE TAP", @"AUTOPLAY & DATA"]);
 }
 
-UIViewController *YTKACEMakeNavigationOptionsController(void) {
-    return YTKACEPage(@"Navigation", @[
+static NSDictionary *YTKACENavigationOptionsDefinition(void) {
+    return YTKACEPageDefinition(@"navigation", @"Navigation", @[
         @[
             YTKACEToggle(@"Premium Logo", @"YTKACE.Preference.Navigation.PremiumLogo", @"", @""),
             YTKACEToggle(@"Confirm Before Casting", @"YTKACE.Preference.Navigation.CastConfirmation", @"", @"")
@@ -1258,8 +1276,8 @@ UIViewController *YTKACEMakeNavigationOptionsController(void) {
     ], @[@"BRAND & CAST", @"TOP BUTTONS", @"PAGE CHROME"]);
 }
 
-UIViewController *YTKACEMakeShortsOptionsController(void) {
-    return YTKACEPage(YTKACELocalized(@"Shorts"), @[
+static NSDictionary *YTKACEShortsOptionsDefinition(void) {
+    return YTKACEPageDefinition(@"shorts", @"Shorts", @[
         @[
             YTKACEToggle(@"Progress Bar", @"shortsProgress", @"", @""),
             YTKACEToggle(@"Auto Advance", @"autoSkipShorts", @"", @""),
@@ -1283,8 +1301,8 @@ UIViewController *YTKACEMakeShortsOptionsController(void) {
     ], @[@"PLAYBACK", @"FEED", @"ACTION BUTTONS"]);
 }
 
-UIViewController *YTKACEMakeMiscOptionsController(void) {
-    return YTKACEPage(@"Other", @[
+static NSDictionary *YTKACEMiscOptionsDefinition(void) {
+    return YTKACEPageDefinition(@"other", @"Other", @[
         @[
             YTKACEToggle(@"OLED Black", YTKACEOLEDKey, @"", @""),
             YTKACEToggle(@"Skip Launch Animation", @"YTKACE.Preference.Appearance.LaunchAnimationDisabled",
@@ -1311,12 +1329,12 @@ UIViewController *YTKACEMakeMiscOptionsController(void) {
     ], @[@"APPEARANCE", @"LAYOUT", @"SYSTEM", @"PRIVACY & PROMPTS"]);
 }
 
-UIViewController *YTKACEMakeGestureOptionsController(void) {
+static NSDictionary *YTKACEGestureOptionsDefinition(void) {
     NSArray *sideTitles = @[@"Right", @"Left", @"Disabled"];
     NSArray *sideValues = @[@0, @1, @2];
     NSArray *volumeSideTitles = @[@"Right", @"Left", @"Both", @"Disabled"];
     NSArray *volumeSideValues = @[@0, @1, @3, @2];
-    return YTKACEPage(@"Gestures", @[
+    return YTKACEPageDefinition(@"gestures", @"Gestures", @[
         @[
             YTKACEPicker(@"Brightness", @"YTKACE.Preference.Gestures.BrightnessSide", sideTitles, sideValues, 1, @"", @""),
             YTKACEPicker(@"Volume", @"YTKACE.Preference.Gestures.VolumeSide", volumeSideTitles, volumeSideValues, 0, @"", @""),
@@ -1328,6 +1346,51 @@ UIViewController *YTKACEMakeGestureOptionsController(void) {
             YTKACEToggle(@"Tap to Seek", @"YTKACE.Preference.Playback.TapToSeek", @"", @"")
         ]
     ], @[@"BRIGHTNESS & VOLUME", @"SEEK"]);
+}
+
+UIViewController *YTKACEMakeSponsorBlockController(void) {
+    return YTKACEPageFromDefinition(YTKACESponsorBlockDefinition());
+}
+
+UIViewController *YTKACEMakePlayerControlsController(void) {
+    return YTKACEPageFromDefinition(YTKACEPlayerControlsDefinition());
+}
+
+UIViewController *YTKACEMakeOverlayOptionsController(void) {
+    return YTKACEPageFromDefinition(YTKACEOverlayOptionsDefinition());
+}
+
+UIViewController *YTKACEMakeStreamingOptionsController(void) {
+    return YTKACEPageFromDefinition(YTKACEStreamingOptionsDefinition());
+}
+
+UIViewController *YTKACEMakeNavigationOptionsController(void) {
+    return YTKACEPageFromDefinition(YTKACENavigationOptionsDefinition());
+}
+
+UIViewController *YTKACEMakeShortsOptionsController(void) {
+    return YTKACEPageFromDefinition(YTKACEShortsOptionsDefinition());
+}
+
+UIViewController *YTKACEMakeMiscOptionsController(void) {
+    return YTKACEPageFromDefinition(YTKACEMiscOptionsDefinition());
+}
+
+UIViewController *YTKACEMakeGestureOptionsController(void) {
+    return YTKACEPageFromDefinition(YTKACEGestureOptionsDefinition());
+}
+
+NSArray<NSDictionary *> *YTKACEAllPageDefinitions(void) {
+    return @[
+        YTKACESponsorBlockDefinition(),
+        YTKACEPlayerControlsDefinition(),
+        YTKACEOverlayOptionsDefinition(),
+        YTKACEStreamingOptionsDefinition(),
+        YTKACENavigationOptionsDefinition(),
+        YTKACEShortsOptionsDefinition(),
+        YTKACEMiscOptionsDefinition(),
+        YTKACEGestureOptionsDefinition()
+    ];
 }
 
 UIViewController *YTKACEMakeCreditsController(void) {
