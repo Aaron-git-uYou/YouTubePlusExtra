@@ -115,6 +115,9 @@ static BOOL YTKACESectionIsShortsShelf(id section) {
 
 static NSArray<NSString *> *YTKACEProductsMarkers(void) {
     return @[
+        @"merchandise_shelf", @"merchandise_item",
+        @"product_shelf", @"products_shelf", @"shopping_shelf",
+        @"promoted_sparkles_text_product_watch",
         @"product_in_video", @"products_in_video"
     ];
 }
