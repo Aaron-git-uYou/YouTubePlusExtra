@@ -38,6 +38,7 @@ static BOOL YTKACEContentContains(NSString *token,
 static id YTKACEContentValue(id object, NSString *key);
 static BOOL YTKACESectionIsShortsShelf(id section);
 static BOOL YTKACESectionIsProductsShelf(id section);
+static NSArray<NSString *> *YTKACEProductsMarkers(void);
 static BOOL YTKACEHideTopics(void);
 
 static id YTKACEContentValue(id object, NSString *key) {
@@ -112,16 +113,20 @@ static BOOL YTKACESectionIsShortsShelf(id section) {
     return NO;
 }
 
+static NSArray<NSString *> *YTKACEProductsMarkers(void) {
+    return @[
+        @"merchandise_shelf", @"merchandise_item",
+        @"product_shelf", @"products_shelf", @"shopping_shelf",
+        @"promoted_sparkles_text_product_watch",
+        @"product_in_video", @"products_in_video"
+    ];
+}
+
 static BOOL YTKACESectionIsProductsShelf(id section) {
     if (section == nil) {
         return NO;
     }
-    NSArray *markers = @[
-        @"merchandise_shelf", @"merchandise_item",
-        @"product_shelf", @"products_shelf", @"shopping_shelf",
-        @"promoted_sparkles_text_product_watch",
-        @"products_in_video"
-    ];
+    NSArray *markers = YTKACEProductsMarkers();
 
     NSArray *entries = YTKACEContentValue(section, @"contentsArray");
     if ([entries isKindOfClass:NSArray.class] && entries.count != 0) {
@@ -309,12 +314,7 @@ static BOOL YTKACEContentShouldHide(UIView *view, BOOL *hideSuperview) {
         return YES;
     }
     if (YTKACEFeatureEnabled(@"YTKACE.Preference.Watch.ProductsHidden") &&
-        YTKACEContentContains(token, @[
-            @"merchandise_shelf", @"merchandise_item",
-            @"product_shelf", @"products_shelf", @"shopping_shelf",
-            @"promoted_sparkles_text_product_watch",
-            @"product_in_video"
-        ])) {
+        YTKACEContentContains(token, YTKACEProductsMarkers())) {
         return YES;
     }
     return NO;
