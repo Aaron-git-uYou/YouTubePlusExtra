@@ -1,5 +1,6 @@
 ARCHS = arm64
 TARGET = iphone:clang:latest:16.0
+THEOS_PACKAGE_SCHEME = rootless
 
 include $(THEOS)/makefiles/common.mk
 
@@ -76,7 +77,7 @@ YTKACE_LDFLAGS = -Wl,-install_name,@rpath/YTKACE.dylib
 YTKACE_LDFLAGS += $(THEOS_PROJECT_DIR)/Vendor/FFmpeg/lib/libavformat.a
 YTKACE_LDFLAGS += $(THEOS_PROJECT_DIR)/Vendor/FFmpeg/lib/libavcodec.a
 YTKACE_LDFLAGS += $(THEOS_PROJECT_DIR)/Vendor/FFmpeg/lib/libavutil.a
-YTKACE_INSTALL_PATH = /Applications/YouTube.app/Frameworks
+YTKACE_INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries
 
 include $(THEOS_MAKE_PATH)/library.mk
 
@@ -85,5 +86,6 @@ after-all::
 	@cp "$(THEOS_OBJ_DIR)/YTKACE.dylib" "$(THEOS_PROJECT_DIR)/dist/YTKACE.dylib"
 
 after-stage::
-	@mkdir -p "$(THEOS_STAGING_DIR)/Applications/YouTube.app"
-	@cp -R "$(THEOS_PROJECT_DIR)/Resources/YTKACE.bundle" "$(THEOS_STAGING_DIR)/Applications/YouTube.app/YTKACE.bundle"
+	@mkdir -p "$(THEOS_STAGING_DIR)/Library/MobileSubstrate/DynamicLibraries"
+	@cp -R "$(THEOS_PROJECT_DIR)/Resources/YTKACE.bundle" "$(THEOS_STAGING_DIR)/Library/MobileSubstrate/DynamicLibraries/YTKACE.bundle"
+	@cp "$(THEOS_PROJECT_DIR)/YTKACE.plist" "$(THEOS_STAGING_DIR)/Library/MobileSubstrate/DynamicLibraries/YTKACE.plist"
