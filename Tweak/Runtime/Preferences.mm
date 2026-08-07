@@ -56,7 +56,7 @@ void YTKACERegisterDefaults(void) {
         @"YTKACE.Preference.Shorts.LikeHidden": @NO,
         @"YTKACE.Preference.Shorts.SoundHidden": @NO,
         @"YTKACE.Preference.Shorts.DownloadPosition": @0,
-        @"YTKACE.Preference.Watch.ProductsHidden": @NO,
+        @"YTKACE.Preference.Overlay.ProductsHidden": @NO,
         @"YTKACE.Preference.Profiles.Preview": @YES,
         @"YTKACE.Preference.Appearance.LaunchAnimationDisabled": @NO,
         @"YTKACE.Preference.Playback.DoubleTapSeconds": @10.0,
