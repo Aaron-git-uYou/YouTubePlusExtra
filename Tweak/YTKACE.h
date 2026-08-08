@@ -35,6 +35,7 @@ void YTKACEInstallSideloadCompatibilityHooks(void);
 void YTKACEInstallCastCompatibilityHooks(void);
 void YTKACEStartCastDiscovery(void);
 void YTKACEInstallTabBarHooks(void);
+void YTKACERefreshPivotBarBackground(void);
 void YTKACEInstallNavigationBehaviorHooks(void);
 void YTKACEInstallPlayerGestureHooks(void);
 void YTKACEInstallSettingsEntryHooks(void);

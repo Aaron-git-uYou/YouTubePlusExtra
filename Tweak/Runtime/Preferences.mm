@@ -65,6 +65,7 @@ void YTKACERegisterDefaults(void) {
         @"YTKACE.Preference.Gestures.VolumeSide": @2,
         @"YTKACE.Preference.Gestures.BrightnessSide": @2,
         @"YTKACE.Preference.Tabs.Startup": @0,
+        @"YTKACE.Preference.Tabs.FrostedHidden": @NO,
         @"YTKACE.Preference.Playback.WiFiQuality": @0,
         @"YTKACE.Preference.Playback.CellularQuality": @0,
         @"YTKACE.Preference.SponsorBlock.Mode": @0,
