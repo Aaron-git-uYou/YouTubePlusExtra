@@ -1,5 +1,6 @@
 #import "DownloadProgressView.h"
 #import "../../Runtime/Preferences.h"
+#import "../../Runtime/Localization.h"
 
 #import <UIKit/UIKit.h>
 #import <math.h>
@@ -207,18 +208,18 @@
     self.percentLabel.text = [NSString stringWithFormat:@"%.0f%%", progress * 100.0];
     [self.progressView setProgress:(float)progress animated:YES];
     self.thumbnailView.image = item.thumbnail;
-    self.cancelButton.hidden = [item.stage isEqualToString:@"Merging"] ||
-        [item.stage isEqualToString:@"Complete"] ||
-        [item.stage isEqualToString:@"Failed"] || [item.stage isEqualToString:@"Cancelled"];
-    if ([item.stage isEqualToString:@"Downloading audio"]) {
+    self.cancelButton.hidden = [item.stage isEqualToString:YTKACELocalized(@"Merging")] ||
+        [item.stage isEqualToString:YTKACELocalized(@"Complete")] ||
+        [item.stage isEqualToString:YTKACELocalized(@"Failed")] || [item.stage isEqualToString:YTKACELocalized(@"Cancelled")];
+    if ([item.stage isEqualToString:YTKACELocalized(@"Downloading audio")]) {
         self.progressView.progressTintColor = UIColor.systemPurpleColor;
-    } else if ([item.stage isEqualToString:@"Downloading video"]) {
+    } else if ([item.stage isEqualToString:YTKACELocalized(@"Downloading video")]) {
         self.progressView.progressTintColor = UIColor.systemBlueColor;
-    } else if ([item.stage isEqualToString:@"Merging"]) {
+    } else if ([item.stage isEqualToString:YTKACELocalized(@"Merging")]) {
         self.progressView.progressTintColor = UIColor.systemOrangeColor;
-    } else if ([item.stage isEqualToString:@"Complete"]) {
+    } else if ([item.stage isEqualToString:YTKACELocalized(@"Complete")]) {
         self.progressView.progressTintColor = UIColor.systemGreenColor;
-    } else if ([item.stage isEqualToString:@"Failed"]) {
+    } else if ([item.stage isEqualToString:YTKACELocalized(@"Failed")]) {
         self.progressView.progressTintColor = UIColor.systemRedColor;
     }
 }
@@ -248,8 +249,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         YTKACEDownloadProgressItem *item = [YTKACEDownloadProgressItem new];
         item.identifier = identifier;
-        item.title = title.length != 0 ? title : @"YouTube Download";
-        item.stage = @"Preparing";
+        item.title = title.length != 0 ? title : YTKACELocalized(@"YouTube Download");
+        item.stage = YTKACELocalized(@"Preparing");
         item.thumbnailURL = thumbnailURL;
         self.items[identifier] = item;
         [self.activeIdentifiers removeObject:identifier];
@@ -286,8 +287,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         YTKACEDownloadProgressItem *item = self.items[identifier];
         if (item == nil) return;
-        item.stage = success ? @"Complete" : (message.length != 0 ? message : @"Failed");
-        if (!success && ![item.stage isEqualToString:@"Cancelled"]) item.stage = @"Failed";
+        item.stage = success ? YTKACELocalized(@"Complete") : (message.length != 0 ? message : YTKACELocalized(@"Failed"));
+        if (!success && ![item.stage isEqualToString:YTKACELocalized(@"Cancelled")]) item.stage = YTKACELocalized(@"Failed");
         item.progress = success ? 1.0 : item.progress;
         if ([self.visibleIdentifier isEqualToString:identifier]) [self renderItem:item];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC),

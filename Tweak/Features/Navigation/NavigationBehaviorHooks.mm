@@ -1,4 +1,5 @@
 #import "../../YTKACE.h"
+#import "../../Runtime/Localization.h"
 #import "../../Runtime/Hooking.h"
 #import "../../Runtime/Preferences.h"
 #import "../../UI/Notice.h"
@@ -48,9 +49,9 @@ static void YTKACEControlSendAction(UIControl *receiver,
     __weak UIControl *weakReceiver = receiver;
     __weak id weakTarget = target;
     BOOL shown = YTKACEShowYouTubeConfirmation(
-        @"Connect to a device?",
-        @"YouTube is about to open the Cast menu.",
-        @"Continue",
+        YTKACELocalized(@"Connect to a device?"),
+        YTKACELocalized(@"YouTube is about to open the Cast menu."),
+        YTKACELocalized(@"Continue"),
         ^{
             UIControl *strongReceiver = weakReceiver;
             if (strongReceiver == nil) {
