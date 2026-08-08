@@ -1,13 +1,42 @@
 #import "Assets.h"
 
+#import <dlfcn.h>
+
+static NSBundle *YTKACEBundleNextToDylib(void) {
+    Dl_info info;
+    if (dladdr((const void *)&YTKACEAssetsBundle, &info) == 0 || info.dli_fname == NULL) {
+        return nil;
+    }
+    NSString *dylibDir = [@(info.dli_fname) stringByDeletingLastPathComponent];
+
+    // New MobileSubstrate/ElleKit layout: bundle installed alongside the dylib
+    // (e.g. .../DynamicLibraries/YTKACE.bundle next to .../DynamicLibraries/YTKACE.dylib).
+    NSString *siblingPath = [dylibDir stringByAppendingPathComponent:@"YTKACE.bundle"];
+    if ([NSFileManager.defaultManager fileExistsAtPath:siblingPath]) {
+        return [NSBundle bundleWithPath:siblingPath];
+    }
+
+    // Repacked-IPA layout: dylib lives in APP/Frameworks/, bundle lives in APP/.
+    NSString *parentPath = [[dylibDir stringByDeletingLastPathComponent]
+        stringByAppendingPathComponent:@"YTKACE.bundle"];
+    if ([NSFileManager.defaultManager fileExistsAtPath:parentPath]) {
+        return [NSBundle bundleWithPath:parentPath];
+    }
+
+    return nil;
+}
+
 NSBundle *YTKACEAssetsBundle(void) {
     static NSBundle *bundle;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *path = [NSBundle.mainBundle pathForResource:@"YTKACE"
-                                                       ofType:@"bundle"];
-        if (path.length != 0) {
-            bundle = [NSBundle bundleWithPath:path];
+        bundle = YTKACEBundleNextToDylib();
+        if (bundle == nil) {
+            NSString *path = [NSBundle.mainBundle pathForResource:@"YTKACE"
+                                                           ofType:@"bundle"];
+            if (path.length != 0) {
+                bundle = [NSBundle bundleWithPath:path];
+            }
         }
     });
     return bundle;
