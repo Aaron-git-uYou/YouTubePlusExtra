@@ -1208,7 +1208,8 @@ static NSDictionary *YTKACEOverlayOptionsDefinition(void) {
             YTKACEToggle(@"Remove Comments", @"YTKACE.Preference.Overlay.CommentsHidden", @"", @""),
             YTKACEToggle(@"Remove Comment Preview", @"YTKACE.Preference.Overlay.CommentPreviewsHidden", @"", @""),
             YTKACEToggle(@"Remove Comment Guidelines", @"YTKACE.Preference.Overlay.CommentGuidelinesHidden", @"", @""),
-            YTKACEToggle(@"Remove Paid Promotion Label", @"YTKACE.Preference.Overlay.PaidPromotionHidden", @"", @"")
+            YTKACEToggle(@"Remove Paid Promotion Label", @"YTKACE.Preference.Overlay.PaidPromotionHidden", @"", @""),
+            YTKACEToggle(@"Remove Products", @"YTKACE.Preference.Overlay.ProductsHidden", @"", @"")
         ],
         @[
             YTKACEToggle(@"Status Bar", @"YTKACE.Preference.Overlay.StatusBarVisible", @"", @""),
