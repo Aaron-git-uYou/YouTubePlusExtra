@@ -900,17 +900,17 @@ static void YTKACEStoreCompleted(NSURL *URL, NSTimeInterval duration,
     rows.translatesAutoresizingMaskIntoConstraints = NO;
     [card addSubview:rows];
     [rows addArrangedSubview:[self optionRow:@"speedometer"
-        title:@"Playback Speed" selector:@selector(selectSpeed) detail:&_speedDetail]];
+        title:YTKACELocalized(@"Playback Speed") selector:@selector(selectSpeed) detail:&_speedDetail]];
     [rows addArrangedSubview:[self optionRow:@"moon.zzz.fill"
-        title:@"Sleep Timer" selector:@selector(selectSleepTimer) detail:&_sleepDetail]];
+        title:YTKACELocalized(@"Sleep Timer") selector:@selector(selectSleepTimer) detail:&_sleepDetail]];
     [rows addArrangedSubview:[self optionRow:@"hand.draw"
-        title:@"Gestures" selector:@selector(toggleGestures) detail:&_gesturesDetail]];
+        title:YTKACELocalized(@"Gestures") selector:@selector(toggleGestures) detail:&_gesturesDetail]];
     [rows addArrangedSubview:[self optionRow:@"forward.end.fill"
-        title:@"AutoPlay" selector:@selector(toggleAutoplay) detail:&_autoplayDetail]];
+        title:YTKACELocalized(@"AutoPlay") selector:@selector(toggleAutoplay) detail:&_autoplayDetail]];
     [rows addArrangedSubview:[self optionRow:@"text.line.first.and.arrowtriangle.forward"
-        title:@"Play Next" selector:@selector(nextItem) detail:NULL]];
+        title:YTKACELocalized(@"Play Next") selector:@selector(nextItem) detail:NULL]];
     [rows addArrangedSubview:[self optionRow:@"xmark"
-        title:@"Close" selector:@selector(hideOptions) detail:NULL]];
+        title:YTKACELocalized(@"Close") selector:@selector(hideOptions) detail:NULL]];
     [NSLayoutConstraint activateConstraints:@[
         [self.optionsView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
         [self.optionsView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
@@ -1020,8 +1020,8 @@ static void YTKACEStoreCompleted(NSURL *URL, NSTimeInterval duration,
     } else {
         self.sleepDetail.text = YTKACELocalized(@"· Off");
     }
-    self.gesturesDetail.text = self.session.gesturesEnabled ? @"· On" : @"· Off";
-    self.autoplayDetail.text = self.session.autoplayEnabled ? @"· On" : @"· Off";
+    self.gesturesDetail.text = self.session.gesturesEnabled ? YTKACELocalized(@"· On") : YTKACELocalized(@"· Off");
+    self.autoplayDetail.text = self.session.autoplayEnabled ? YTKACELocalized(@"· On") : YTKACELocalized(@"· Off");
     YTKACESubtitleCue *activeCue = nil;
     for (YTKACESubtitleCue *cue in self.subtitleCues) {
         if (elapsed >= cue.start && elapsed <= cue.end) {
@@ -1126,7 +1126,7 @@ static void YTKACEStoreCompleted(NSURL *URL, NSTimeInterval duration,
             selected = index;
         }
     }
-    YTKACEPresentSelectionMenu(self, self.optionsCard, @"Playback Speed", titles,
+    YTKACEPresentSelectionMenu(self, self.optionsCard, YTKACELocalized(@"Playback Speed"), titles,
         selected, ^(NSUInteger index) {
             self.session.playbackRate = speeds[index].floatValue;
             [self refreshControls];
@@ -1135,8 +1135,9 @@ static void YTKACEStoreCompleted(NSURL *URL, NSTimeInterval duration,
 
 - (void)selectSleepTimer {
     NSArray<NSString *> *titles = @[
-        @"Off", @"End of track", @"15 Minutes", @"30 Minutes",
-        @"45 Minutes", @"60 Minutes"
+        YTKACELocalized(@"Off"), YTKACELocalized(@"End of track"),
+        YTKACELocalized(@"15 Minutes"), YTKACELocalized(@"30 Minutes"),
+        YTKACELocalized(@"45 Minutes"), YTKACELocalized(@"60 Minutes")
     ];
     NSArray<NSNumber *> *minutes = @[@0, @0, @15, @30, @45, @60];
     NSUInteger selected = self.session.pauseAtEnd ? 1 : 0;
@@ -1144,7 +1145,7 @@ static void YTKACEStoreCompleted(NSURL *URL, NSTimeInterval duration,
         NSUInteger match = [minutes indexOfObject:@(self.sleepMinutes)];
         if (match != NSNotFound) selected = match;
     }
-    YTKACEPresentSelectionMenu(self, self.optionsCard, @"Sleep Timer", titles,
+    YTKACEPresentSelectionMenu(self, self.optionsCard, YTKACELocalized(@"Sleep Timer"), titles,
         selected, ^(NSUInteger index) {
             [self.sleepTimer invalidate];
             self.sleepTimer = nil;

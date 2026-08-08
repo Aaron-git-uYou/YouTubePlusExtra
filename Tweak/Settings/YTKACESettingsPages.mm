@@ -305,7 +305,7 @@ void YTKACEPresentSelectionMenu(UIViewController *presenter,
         }
         return;
     }
-    YTKACEShowNotice(@"YouTube menu unavailable");
+    YTKACEShowNotice(YTKACELocalized(@"YouTube menu unavailable"));
 }
 
 void YTKACEPresentChoiceMenu(UIViewController *presenter,
@@ -637,7 +637,7 @@ willDisplayHeaderView:(UIView *)view
     } else if ([type isEqualToString:@"stepper"]) {
         double stored = [YTKACEPreferenceObject(item[@"key"]) doubleValue];
         double value = stored > 0.0 ? stored : [item[@"fallback"] doubleValue];
-        cell.textLabel.text = [NSString stringWithFormat:@"Seconds: %.0f", value];
+        cell.textLabel.text = [NSString stringWithFormat:YTKACELocalized(@"Seconds: %@"), [NSString stringWithFormat:@"%.0f", value]];
         UIStepper *stepper = [UIStepper new];
         stepper.tintColor = YTKACEAccentColor();
         stepper.minimumValue = [item[@"minimum"] doubleValue];
@@ -670,7 +670,7 @@ willDisplayHeaderView:(UIView *)view
         valueLabel.font = [UIFont systemFontOfSize:10.0];
         valueLabel.textColor = UIColor.tertiaryLabelColor;
         valueLabel.textAlignment = NSTextAlignmentRight;
-        valueLabel.text = [NSString stringWithFormat:@"%.0f seconds", value];
+        valueLabel.text = [NSString stringWithFormat:YTKACELocalized(@"%@ seconds"), [NSString stringWithFormat:@"%.0f", value]];
         objc_setAssociatedObject(slider, YTKACEItemAssociation, item, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         objc_setAssociatedObject(slider, YTKACEValueLabelAssociation, valueLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [slider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
@@ -724,12 +724,12 @@ willDisplayHeaderView:(UIView *)view
     NSString *key = item[@"key"];
     YTKACESetPreference(key, sender.isOn);
     if ([key isEqualToString:@"YTKACE.Preference.Playback.Recovery"] && sender.isOn) {
-        NSString *message = @"✅ Playback recovery hooks will install on next launch.\n\n"
+        NSString *message = YTKACELocalized(@"✅ Playback recovery hooks will install on next launch.\n\n"
             @"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n"
             @"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n"
-            @"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues.";
-        if (!YTKACEShowYouTubeDialog(@"Fix Playback & Account Recovery", message)) {
-            YTKACEShowNotice(@"Playback recovery guidance unavailable");
+            @"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues.");
+        if (!YTKACEShowYouTubeDialog(YTKACELocalized(@"Fix Playback & Account Recovery"), message)) {
+            YTKACEShowNotice(YTKACELocalized(@"Playback recovery guidance unavailable"));
         }
     }
     if ([key isEqualToString:YTKACEOLEDKey]) {
@@ -746,7 +746,7 @@ willDisplayHeaderView:(UIView *)view
     NSDictionary *item = objc_getAssociatedObject(sender, YTKACEItemAssociation);
     UITableViewCell *cell = objc_getAssociatedObject(sender, YTKACEValueLabelAssociation);
     YTKACESetPreferenceObject(item[@"key"], @(sender.value));
-    cell.textLabel.text = [NSString stringWithFormat:@"Seconds: %.0f", sender.value];
+    cell.textLabel.text = [NSString stringWithFormat:YTKACELocalized(@"Seconds: %@"), [NSString stringWithFormat:@"%.0f", sender.value]];
 }
 
 - (void)sliderChanged:(UISlider *)sender {
@@ -755,7 +755,7 @@ willDisplayHeaderView:(UIView *)view
     double step = MAX(0.1, [item[@"step"] doubleValue]);
     double value = round(sender.value / step) * step;
     YTKACESetPreferenceObject(item[@"key"], @(value));
-    label.text = [NSString stringWithFormat:@"%.0f seconds", value];
+    label.text = [NSString stringWithFormat:YTKACELocalized(@"%@ seconds"), [NSString stringWithFormat:@"%.0f", value]];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -821,26 +821,26 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
     }
     if (_pickerMode == 1) {
         _restoreRunning = YES;
-        [self setBackupProgressVisible:YES message:@"Restoring Backup..."];
+        [self setBackupProgressVisible:YES message:YTKACELocalized(@"Restoring Backup...")];
         [YTKACEBackupManager restoreBackupFromURL:urls.firstObject
             completion:^(NSError *error) {
                 for (NSURL *URL in scoped) [URL stopAccessingSecurityScopedResource];
                 self->_restoreRunning = NO;
                 [self setBackupProgressVisible:NO message:nil];
-                [self showResult:error == nil ? @"Backup Restored" : @"Restore Failed"
+                [self showResult:error == nil ? YTKACELocalized(@"Backup Restored") : YTKACELocalized(@"Restore Failed")
                           message:error.localizedDescription];
             }];
         _pickerMode = 0;
         return;
     }
-    NSString *category = _importCategory ?: @"Video";
+    NSString *category = _importCategory ?: YTKACELocalized(@"Video");
     [YTKACEMediaImporter importURLs:urls category:category
         completion:^(NSUInteger count, NSError *error) {
             for (NSURL *URL in scoped) [URL stopAccessingSecurityScopedResource];
             NSString *message = error.localizedDescription ?: [NSString
-                stringWithFormat:@"%lu item%@ added to %@.",
-                (unsigned long)count, count == 1 ? @"" : @"s", category];
-            [self showResult:error == nil ? @"Import Complete" : @"Import Failed"
+                stringWithFormat:YTKACELocalized(@"%lu items added to %@."),
+                (unsigned long)count, category];
+            [self showResult:error == nil ? YTKACELocalized(@"Import Complete") : YTKACELocalized(@"Import Failed")
                       message:message];
         }];
 }
@@ -878,11 +878,11 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
             [NSFileManager.defaultManager removeItemAtURL:_pendingBackupURL error:nil];
         }
         _pendingBackupURL = nil;
-        NSString *message = @"The backup was not saved to the Files app.";
+        NSString *message = YTKACELocalized(@"The backup was not saved to the Files app.");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)),
             dispatch_get_main_queue(), ^{
-                if (!YTKACEShowYouTubeDialog(@"Backup Not Saved", message)) {
-                    YTKACEShowNotice(@"Warning: Backup was not saved to Files app.");
+                if (!YTKACEShowYouTubeDialog(YTKACELocalized(@"Backup Not Saved"), message)) {
+                    YTKACEShowNotice(YTKACELocalized(@"Warning: Backup was not saved to Files app."));
                 }
             });
     }
@@ -901,7 +901,7 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
         return;
     }
     if (_backupOverlay != nil) {
-        _backupOverlayLabel.text = message.length == 0 ? @"Please Wait..." : message;
+        _backupOverlayLabel.text = message.length == 0 ? YTKACELocalized(@"Please Wait...") : message;
         return;
     }
     UIView *host = self.navigationController.view ?: self.view;
@@ -923,7 +923,7 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
     [spinner startAnimating];
 
     UILabel *label = [UILabel new];
-    label.text = message.length == 0 ? @"Please Wait..." : message;
+    label.text = message.length == 0 ? YTKACELocalized(@"Please Wait...") : message;
     label.textColor = UIColor.labelColor;
     label.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold];
     label.textAlignment = NSTextAlignmentCenter;
@@ -956,7 +956,7 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
 - (void)performBackup {
     if (_backupRunning) return;
     _backupRunning = YES;
-    [self setBackupProgressVisible:YES message:@"Preparing Backup..."];
+    [self setBackupProgressVisible:YES message:YTKACELocalized(@"Preparing Backup...")];
     __weak YTKACEOptionsController *weakSelf = self;
     [YTKACEBackupManager createBackupWithCompletion:^(NSURL *URL, NSError *error) {
         YTKACEOptionsController *controller = weakSelf;
@@ -964,9 +964,9 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
         controller->_backupRunning = NO;
         [controller setBackupProgressVisible:NO message:nil];
         if (URL == nil || error != nil) {
-            NSString *message = error.localizedDescription ?: @"The backup could not be created.";
-            if (!YTKACEShowYouTubeDialog(@"Backup Failed", message)) {
-                [controller showResult:@"Backup Failed" message:message];
+            NSString *message = error.localizedDescription ?: YTKACELocalized(@"The backup could not be created.");
+            if (!YTKACEShowYouTubeDialog(YTKACELocalized(@"Backup Failed"), message)) {
+                [controller showResult:YTKACELocalized(@"Backup Failed") message:message];
             }
             return;
         }
@@ -984,8 +984,8 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
     __weak YTKACEOptionsController *weakSelf = self;
     BOOL shown = YTKACEShowYouTubeConfirmation(
         @"YTKACE",
-        @"Do you want to create a backup?",
-        @"Create",
+        YTKACELocalized(@"Do you want to create a backup?"),
+        YTKACELocalized(@"Create"),
         ^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf performBackup];
@@ -993,7 +993,7 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
         }
     );
     if (!shown) {
-        YTKACEShowNotice(@"Backup confirmation unavailable");
+        YTKACEShowNotice(YTKACELocalized(@"Backup confirmation unavailable"));
     }
 }
 
@@ -1024,8 +1024,8 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
 }
 
 - (void)chooseImportCategory {
-    YTKACEPresentChoiceMenu(self, self.view, @"Import Media",
-        @[@"Video", @"Audio", @"Shorts"],
+    YTKACEPresentChoiceMenu(self, self.view, YTKACELocalized(@"Import Media"),
+        @[YTKACELocalized(@"Video"), YTKACELocalized(@"Audio"), YTKACELocalized(@"Shorts")],
         @[@"Video", @"Audio", @"Shorts"],
         @"YTKACEImportMediaType", 0, ^(NSUInteger index) {
             NSArray *categories = @[@"Video", @"Audio", @"Shorts"];
@@ -1050,7 +1050,7 @@ static YTKACEOptionsController *YTKACEPage(NSString *title,
 }
 
 static NSArray<NSString *> *YTKACEQualityTitles(void) {
-    return @[@"Auto", @"2160p60", @"2160p", @"1440p60", @"1440p", @"1080p60",
+    return @[YTKACELocalized(@"Auto"), @"2160p60", @"2160p", @"1440p60", @"1440p", @"1080p60",
              @"1080p", @"720p60", @"720p", @"480p", @"360p", @"240p", @"144p"];
 }
 
@@ -1078,15 +1078,15 @@ static YTKACEOptionsController *YTKACEPageFromDefinition(NSDictionary *definitio
 
 UIViewController *YTKACEMakeStartupPickerController(void) {
     return [[YTKACEPickerController alloc]
-        initWithTitle:@"Startup Page"
+        initWithTitle:YTKACELocalized(@"Startup Page")
                    key:@"YTKACE.Preference.Tabs.Startup"
-                titles:@[@"Home", @"Explore", @"Subscriptions", @"Shorts", @"You"]
+                titles:@[YTKACELocalized(@"Home"), YTKACELocalized(@"Explore"), YTKACELocalized(@"Subscriptions"), YTKACELocalized(@"Shorts"), YTKACELocalized(@"You")]
                 values:@[@0, @1, @2, @3, @4]
           defaultIndex:0];
 }
 
 UIViewController *YTKACEMakeWiFiQualityController(void) {
-    return [[YTKACEPickerController alloc] initWithTitle:@"Wi-Fi Quality"
+    return [[YTKACEPickerController alloc] initWithTitle:YTKACELocalized(@"Wi-Fi Quality")
                                                     key:@"YTKACE.Preference.Playback.WiFiQuality"
                                                  titles:YTKACEQualityTitles()
                                                  values:YTKACEQualityValues()
@@ -1094,7 +1094,7 @@ UIViewController *YTKACEMakeWiFiQualityController(void) {
 }
 
 UIViewController *YTKACEMakeCellularQualityController(void) {
-    return [[YTKACEPickerController alloc] initWithTitle:@"Cellular Quality"
+    return [[YTKACEPickerController alloc] initWithTitle:YTKACELocalized(@"Cellular Quality")
                                                     key:@"YTKACE.Preference.Playback.CellularQuality"
                                                  titles:YTKACEQualityTitles()
                                                  values:YTKACEQualityValues()
@@ -1113,7 +1113,7 @@ static NSDictionary *YTKACESponsorBlockDefinition(void) {
         YTKACESlider(@"Unskip Alert Duration", @"YTKACE.Preference.SponsorBlock.UnskipAlertSeconds",
                      1.0, 10.0, 1.0, 4.0)
     ]];
-    NSMutableArray<NSString *> *titles = [NSMutableArray arrayWithObject:@"MAIN"];
+    NSMutableArray<NSString *> *titles = [NSMutableArray arrayWithObject:YTKACELocalized(@"MAIN")];
 
     [sections addObject:@[
         YTKACEToggleDetail(@"Thumbnails",
@@ -1127,7 +1127,7 @@ static NSDictionary *YTKACESponsorBlockDefinition(void) {
                             "original title.",
                            YTKACEDeArrowTitlesKey)
     ]];
-    [titles addObject:@"DEARROW"];
+    [titles addObject:YTKACELocalized(@"DEARROW")];
 
     for (NSDictionary<NSString *, NSString *> *definition in
          YTKACESponsorCategoryDefinitions()) {
@@ -1141,7 +1141,7 @@ static NSDictionary *YTKACESponsorBlockDefinition(void) {
             YTKACEColor(@"Segment Color", YTKACESponsorColorKey(category),
                         definition[@"color"])
         ]];
-        [titles addObject:[definition[@"title"] uppercaseString]];
+        [titles addObject:YTKACELocalized([definition[@"title"] uppercaseString])];
     }
     return YTKACEPageDefinition(@"sponsorblock", @"SponsorBlock", sections, titles);
 }
@@ -1161,7 +1161,7 @@ static NSDictionary *YTKACEPlayerControlsDefinition(void) {
             URLByAppendingPathComponent:@"Cache"
                             isDirectory:YES];
         [NSFileManager.defaultManager removeItemAtURL:cache error:nil];
-        [(YTKACEOptionsController *)controller showResult:@"Cache Cleared" message:nil];
+        [(YTKACEOptionsController *)controller showResult:YTKACELocalized(@"Cache Cleared") message:nil];
     };
     NSArray *progressSection = @[
         YTKACESegmentedStacked(@"Progress bar style", @"YTKACE.Preference.Progress.Style",
@@ -1195,7 +1195,7 @@ static NSDictionary *YTKACEPlayerControlsDefinition(void) {
             YTKACEPicker(@"Clear Cache at Launch", @"YTKACE.Preference.Downloads.ClearOnStartup", @[@"Off", @"On"], @[@NO, @YES], 0, @"", @""),
             YTKACEActionDetail(@"Clear Cache Now", @"Delete temporary download files.", clearCache)
         ]
-    ], @[@"BUTTONS", @"PLAYBACK", @"PROGRESS BAR", @"FILES", @"STORAGE"]);
+    ], @[YTKACELocalized(@"BUTTONS"), YTKACELocalized(@"PLAYBACK"), YTKACELocalized(@"PROGRESS BAR"), YTKACELocalized(@"FILES"), YTKACELocalized(@"STORAGE")]);
 }
 
 UIViewController *YTKACEMakeTabBarOptionsController(void) {
@@ -1241,7 +1241,7 @@ static NSDictionary *YTKACEOverlayOptionsDefinition(void) {
             YTKACEToggle(@"Remove End Screen", @"YTKACE.Preference.Overlay.EndScreenHidden", @"", @""),
             YTKACEToggle(@"Remove Related Videos", @"YTKACE.Preference.Overlay.RelatedVideosHidden", @"", @"")
         ]
-    ], @[@"WATCH PAGE", @"GESTURES", @"ALWAYS VISIBLE", @"PREVIOUS & NEXT", @"HIDE FROM PLAYER"]);
+    ], @[YTKACELocalized(@"WATCH PAGE"), YTKACELocalized(@"GESTURES"), YTKACELocalized(@"ALWAYS VISIBLE"), YTKACELocalized(@"PREVIOUS & NEXT"), YTKACELocalized(@"HIDE FROM PLAYER")]);
 }
 
 static NSDictionary *YTKACEStreamingOptionsDefinition(void) {
@@ -1255,7 +1255,7 @@ static NSDictionary *YTKACEStreamingOptionsDefinition(void) {
             YTKACEToggle(@"Stop Autoplay", @"YTKACE.Preference.Playback.AutoplayDisabled", @"", @""),
             YTKACEToggle(@"HD on Mobile Data", @"YTKACE.Preference.Playback.HDOnCellular", @"", @"")
         ]
-    ], @[@"QUALITY", @"DOUBLE TAP", @"AUTOPLAY & DATA"]);
+    ], @[YTKACELocalized(@"QUALITY"), YTKACELocalized(@"DOUBLE TAP"), YTKACELocalized(@"AUTOPLAY & DATA")]);
 }
 
 static NSDictionary *YTKACENavigationOptionsDefinition(void) {
@@ -1275,7 +1275,7 @@ static NSDictionary *YTKACENavigationOptionsDefinition(void) {
             YTKACEToggle(@"Hide Status Bar", @"YTKACE.Preference.Navigation.StatusBarHidden", @"", @""),
             YTKACEToggle(@"Remove Topic Chips", @"YTKACE.Preference.Navigation.TopicsHidden", @"", @"")
         ]
-    ], @[@"BRAND & CAST", @"TOP BUTTONS", @"PAGE CHROME"]);
+    ], @[YTKACELocalized(@"BRAND & CAST"), YTKACELocalized(@"TOP BUTTONS"), YTKACELocalized(@"PAGE CHROME")]);
 }
 
 static NSDictionary *YTKACEShortsOptionsDefinition(void) {
@@ -1284,7 +1284,7 @@ static NSDictionary *YTKACEShortsOptionsDefinition(void) {
             YTKACEToggle(@"Progress Bar", @"shortsProgress", @"", @""),
             YTKACEToggle(@"Auto Advance", @"autoSkipShorts", @"", @""),
             YTKACEPicker(@"Download Button Position", @"YTKACE.Preference.Shorts.DownloadPosition",
-                         @[@"Top Corner", @"Action Buttons"],
+                         @[YTKACELocalized(@"Top Corner"), YTKACELocalized(@"Action Buttons")],
                          @[@0, @1], 0, @"", @"")
         ],
         @[
@@ -1299,7 +1299,7 @@ static NSDictionary *YTKACEShortsOptionsDefinition(void) {
             YTKACEToggle(@"Remove Remix", @"YTKACE.Preference.Shorts.RemixHidden", @"", @""),
             YTKACEToggle(@"Remove Sound", @"YTKACE.Preference.Shorts.SoundHidden", @"", @"")
         ]
-    ], @[@"PLAYBACK", @"FEED", @"ACTION BUTTONS"]);
+    ], @[YTKACELocalized(@"PLAYBACK"), YTKACELocalized(@"FEED"), YTKACELocalized(@"ACTION BUTTONS")]);
 }
 
 static NSDictionary *YTKACEMiscOptionsDefinition(void) {
@@ -1327,7 +1327,7 @@ static NSDictionary *YTKACEMiscOptionsDefinition(void) {
             YTKACEToggle(@"Skip Age Gate", @"YTKACE.Preference.Content.AgeGateBypass", @"", @""),
             YTKACEToggle(@"Captions Off", @"YTKACE.Preference.Playback.CaptionsDisabled", @"", @"")
         ]
-    ], @[@"APPEARANCE", @"LAYOUT", @"SYSTEM", @"PRIVACY & PROMPTS"]);
+    ], @[YTKACELocalized(@"APPEARANCE"), YTKACELocalized(@"LAYOUT"), YTKACELocalized(@"SYSTEM"), YTKACELocalized(@"PRIVACY & PROMPTS")]);
 }
 
 static NSDictionary *YTKACEGestureOptionsDefinition(void) {
@@ -1346,7 +1346,7 @@ static NSDictionary *YTKACEGestureOptionsDefinition(void) {
             YTKACESlider(@"Seek Speed", @"YTKACE.Preference.Gestures.HoldSeekSeconds", 1.0, 60.0, 1.0, 10.0),
             YTKACEToggle(@"Tap to Seek", @"YTKACE.Preference.Playback.TapToSeek", @"", @"")
         ]
-    ], @[@"BRIGHTNESS & VOLUME", @"SEEK"]);
+    ], @[YTKACELocalized(@"BRIGHTNESS & VOLUME"), YTKACELocalized(@"SEEK")]);
 }
 
 UIViewController *YTKACEMakeSponsorBlockController(void) {
@@ -1396,12 +1396,12 @@ NSArray<NSDictionary *> *YTKACEAllPageDefinitions(void) {
 
 UIViewController *YTKACEMakeCreditsController(void) {
     UILabel *label = [UILabel new];
-    label.text = @"YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic";
+    label.text = YTKACELocalized(@"YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic");
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = UIColor.secondaryLabelColor;
     UIViewController *controller = [UIViewController new];
-    controller.title = @"Credits";
+    controller.title = YTKACELocalized(@"Credits");
     controller.view.backgroundColor = YTKACESettingsBackground();
     label.translatesAutoresizingMaskIntoConstraints = NO;
     [controller.view addSubview:label];

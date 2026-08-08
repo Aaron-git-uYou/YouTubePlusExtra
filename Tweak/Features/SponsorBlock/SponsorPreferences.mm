@@ -1,20 +1,21 @@
 #import "SponsorPreferences.h"
 #import "../../Runtime/Preferences.h"
+#import "../../Runtime/Localization.h"
 
 NSArray<NSDictionary<NSString *, NSString *> *> *YTKACESponsorCategoryDefinitions(void) {
     static NSArray *definitions;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         definitions = @[
-            @{@"id": @"sponsor", @"title": @"Sponsor", @"color": @"#00D400"},
-            @{@"id": @"selfpromo", @"title": @"Self Promotion", @"color": @"#FFFF00"},
-            @{@"id": @"interaction", @"title": @"Interaction Reminder", @"color": @"#CC00FF"},
-            @{@"id": @"intro", @"title": @"Intermission / Intro", @"color": @"#00FFFF"},
-            @{@"id": @"outro", @"title": @"Endcards / Credits", @"color": @"#0202ED"},
-            @{@"id": @"preview", @"title": @"Preview / Recap", @"color": @"#008FD6"},
-            @{@"id": @"music_offtopic", @"title": @"Non-Music Section", @"color": @"#FF9900"},
-            @{@"id": @"filler", @"title": @"Filler", @"color": @"#7300FF"},
-            @{@"id": @"poi_highlight", @"title": @"Highlight", @"color": @"#FF1684"}
+            @{@"id": @"sponsor", @"title": YTKACELocalized(@"Sponsor"), @"color": @"#00D400"},
+            @{@"id": @"selfpromo", @"title": YTKACELocalized(@"Self Promotion"), @"color": @"#FFFF00"},
+            @{@"id": @"interaction", @"title": YTKACELocalized(@"Interaction Reminder"), @"color": @"#CC00FF"},
+            @{@"id": @"intro", @"title": YTKACELocalized(@"Intermission / Intro"), @"color": @"#00FFFF"},
+            @{@"id": @"outro", @"title": YTKACELocalized(@"Endcards / Credits"), @"color": @"#0202ED"},
+            @{@"id": @"preview", @"title": YTKACELocalized(@"Preview / Recap"), @"color": @"#008FD6"},
+            @{@"id": @"music_offtopic", @"title": YTKACELocalized(@"Non-Music Section"), @"color": @"#FF9900"},
+            @{@"id": @"filler", @"title": YTKACELocalized(@"Filler"), @"color": @"#7300FF"},
+            @{@"id": @"poi_highlight", @"title": YTKACELocalized(@"Highlight"), @"color": @"#FF1684"}
         ];
     });
     return definitions;

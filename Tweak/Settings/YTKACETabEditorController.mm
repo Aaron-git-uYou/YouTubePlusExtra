@@ -44,7 +44,7 @@ static UIImage *YTKACETabEditorIcon(NSString *token, NSString *fallback) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Tabs";
+    self.title = YTKACELocalized(@"Tabs");
     self.tableView.cellLayoutMarginsFollowReadableWidth = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 48.0;
@@ -79,23 +79,23 @@ static UIImage *YTKACETabEditorIcon(NSString *token, NSString *fallback) {
 
 - (void)loadTabs {
     NSArray *defaults = @[
-        [self tab:@"home" title:@"Home" symbol:@"house" key:@"YTKACE.Preference.Tabs.Hidden.Home"],
-        [self tab:@"shorts" title:@"Shorts" symbol:@"play.rectangle" key:@"YTKACE.Preference.Tabs.Hidden.Shorts"],
-        [self tab:@"subscriptions" title:@"Subscriptions" symbol:@"rectangle.stack" key:@"YTKACE.Preference.Tabs.Hidden.Subscriptions"],
-        [self tab:@"library" title:@"Library" symbol:@"person.circle" key:@"YTKACE.Preference.Tabs.Hidden.Library"],
+        [self tab:@"home" title:YTKACELocalized(@"Home") symbol:@"house" key:@"YTKACE.Preference.Tabs.Hidden.Home"],
+        [self tab:@"shorts" title:YTKACELocalized(@"Shorts") symbol:@"play.rectangle" key:@"YTKACE.Preference.Tabs.Hidden.Shorts"],
+        [self tab:@"subscriptions" title:YTKACELocalized(@"Subscriptions") symbol:@"rectangle.stack" key:@"YTKACE.Preference.Tabs.Hidden.Subscriptions"],
+        [self tab:@"library" title:YTKACELocalized(@"Library") symbol:@"person.circle" key:@"YTKACE.Preference.Tabs.Hidden.Library"],
         [self tab:@"ytkace" title:@"YTKACE" symbol:@"arrow.down.circle" key:@"YTKACE.Preference.Tabs.Hidden.YTKACETab"],
-        [self tab:@"create" title:@"Create" symbol:@"plus.circle" key:@"YTKACE.Preference.Tabs.Hidden.Create"],
-        [self tab:@"music" title:@"Music" symbol:@"music.note" key:@"YTKACE.Preference.Tabs.Hidden.Music"],
-        [self tab:@"live" title:@"Live" symbol:@"dot.radiowaves.left.and.right" key:@"YTKACE.Preference.Tabs.Hidden.Live"],
-        [self tab:@"gaming" title:@"Gaming" symbol:@"gamecontroller" key:@"YTKACE.Preference.Tabs.Hidden.Gaming"],
-        [self tab:@"news" title:@"News" symbol:@"newspaper" key:@"YTKACE.Preference.Tabs.Hidden.News"],
-        [self tab:@"sports" title:@"Sports" symbol:@"trophy" key:@"YTKACE.Preference.Tabs.Hidden.Sports"],
-        [self tab:@"learning" title:@"Learning" symbol:@"graduationcap" key:@"YTKACE.Preference.Tabs.Hidden.Learning"],
-        [self tab:@"fashion" title:@"Fashion" symbol:@"tshirt" key:@"YTKACE.Preference.Tabs.Hidden.Fashion"],
-        [self tab:@"playlists" title:@"Playlists" symbol:@"music.note.list" key:@"YTKACE.Preference.Tabs.Hidden.Playlists"],
-        [self tab:@"history" title:@"History" symbol:@"clock.arrow.circlepath" key:@"YTKACE.Preference.Tabs.Hidden.History"],
-        [self tab:@"notifications" title:@"Notifs" symbol:@"bell" key:@"YTKACE.Preference.Tabs.Hidden.Notifs"],
-        [self tab:@"watchlater" title:@"WLater" symbol:@"clock" key:@"YTKACE.Preference.Tabs.Hidden.WatchLater"]
+        [self tab:@"create" title:YTKACELocalized(@"Create") symbol:@"plus.circle" key:@"YTKACE.Preference.Tabs.Hidden.Create"],
+        [self tab:@"music" title:YTKACELocalized(@"Music") symbol:@"music.note" key:@"YTKACE.Preference.Tabs.Hidden.Music"],
+        [self tab:@"live" title:YTKACELocalized(@"Live") symbol:@"dot.radiowaves.left.and.right" key:@"YTKACE.Preference.Tabs.Hidden.Live"],
+        [self tab:@"gaming" title:YTKACELocalized(@"Gaming") symbol:@"gamecontroller" key:@"YTKACE.Preference.Tabs.Hidden.Gaming"],
+        [self tab:@"news" title:YTKACELocalized(@"News") symbol:@"newspaper" key:@"YTKACE.Preference.Tabs.Hidden.News"],
+        [self tab:@"sports" title:YTKACELocalized(@"Sports") symbol:@"trophy" key:@"YTKACE.Preference.Tabs.Hidden.Sports"],
+        [self tab:@"learning" title:YTKACELocalized(@"Learning") symbol:@"graduationcap" key:@"YTKACE.Preference.Tabs.Hidden.Learning"],
+        [self tab:@"fashion" title:YTKACELocalized(@"Fashion") symbol:@"tshirt" key:@"YTKACE.Preference.Tabs.Hidden.Fashion"],
+        [self tab:@"playlists" title:YTKACELocalized(@"Playlists") symbol:@"music.note.list" key:@"YTKACE.Preference.Tabs.Hidden.Playlists"],
+        [self tab:@"history" title:YTKACELocalized(@"History") symbol:@"clock.arrow.circlepath" key:@"YTKACE.Preference.Tabs.Hidden.History"],
+        [self tab:@"notifications" title:YTKACELocalized(@"Notifs") symbol:@"bell" key:@"YTKACE.Preference.Tabs.Hidden.Notifs"],
+        [self tab:@"watchlater" title:YTKACELocalized(@"WLater") symbol:@"clock" key:@"YTKACE.Preference.Tabs.Hidden.WatchLater"]
     ];
     self.activeTabs = [NSMutableArray array];
     self.inactiveTabs = [NSMutableArray array];
@@ -137,9 +137,9 @@ static UIImage *YTKACETabEditorIcon(NSString *token, NSString *fallback) {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     (void)tableView;
-    if (section == 0) return @"MAIN";
-    if (section == 2) return @"ACTIVE TABS";
-    if (section == 3) return @"INACTIVE TABS";
+    if (section == 0) return YTKACELocalized(@"MAIN");
+    if (section == 2) return YTKACELocalized(@"ACTIVE TABS");
+    if (section == 3) return YTKACELocalized(@"INACTIVE TABS");
     return nil;
 }
 
@@ -180,8 +180,9 @@ willDisplayHeaderView:(UIView *)view
     cell.indentationWidth = 0.0;
 
     if (indexPath.section == 0) {
-        NSArray *titles = @[@"Hide Tab Labels", @"Prevent Open in Shorts",
-                            @"Remove Frosted Tab Bar"];
+        NSArray *titles = @[YTKACELocalized(@"Hide Tab Labels"),
+                            YTKACELocalized(@"Prevent Open in Shorts"),
+                            YTKACELocalized(@"Remove Frosted Tab Bar")];
         NSArray *keys = @[@"YTKACE.Preference.Tabs.LabelsHidden",
                           @"YTKACE.Preference.Shorts.PreventAutoOpen",
                           @"YTKACE.Preference.Tabs.FrostedHidden"];
@@ -201,7 +202,7 @@ willDisplayHeaderView:(UIView *)view
 
     if (indexPath.section == 1) {
         cell.textLabel.text = YTKACELocalized(@"Default Startup Tab");
-        cell.detailTextLabel.text = YTKACEPickerSummary(@"YTKACE.Preference.Tabs.Startup", @[@"Home", @"Explore", @"Subscriptions", @"Shorts", @"You"], @[@0, @1, @2, @3, @4], 0);
+        cell.detailTextLabel.text = YTKACEPickerSummary(@"YTKACE.Preference.Tabs.Startup", @[YTKACELocalized(@"Home"), YTKACELocalized(@"Explore"), YTKACELocalized(@"Subscriptions"), YTKACELocalized(@"Shorts"), YTKACELocalized(@"You")], @[@0, @1, @2, @3, @4], 0);
         cell.detailTextLabel.textColor = YTKACEAccentColor();
         return cell;
     }
@@ -307,7 +308,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
-        NSArray *titles = @[@"Home", @"Explore", @"Subscriptions", @"Shorts", @"You"];
+        NSArray *titles = @[YTKACELocalized(@"Home"), YTKACELocalized(@"Explore"), YTKACELocalized(@"Subscriptions"), YTKACELocalized(@"Shorts"), YTKACELocalized(@"You")];
         NSArray *values = @[@0, @1, @2, @3, @4];
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         YTKACEPresentChoiceMenu(self, cell, @"Default Startup Tab", titles, values,

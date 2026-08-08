@@ -1,4 +1,5 @@
 #import "../../YTKACE.h"
+#import "../../Runtime/Localization.h"
 #import "../../Runtime/Hooking.h"
 #import "../../Runtime/Preferences.h"
 #import "../Downloads/DownloadCoordinator.h"
@@ -547,7 +548,7 @@ static void YTKACEConfigureReelView(UIView *receiver, BOOL showDownload) {
         download = [UIButton buttonWithType:UIButtonTypeSystem];
         download.tag = YTKACEShortsDownloadTag;
         download.accessibilityIdentifier = @"YTKACE Shorts Download";
-        download.accessibilityLabel = @"Download Short";
+        download.accessibilityLabel = YTKACELocalized(@"Download Short");
         download.tintColor = UIColor.whiteColor;
         [download setImage:YTKACEDownloadGlyphImage()
                   forState:UIControlStateNormal];

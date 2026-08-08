@@ -1,4 +1,5 @@
 #import "../../YTKACE.h"
+#import "../../Runtime/Localization.h"
 #import "../../Runtime/Preferences.h"
 #import "../Downloads/DownloadCoordinator.h"
 #import "../Downloads/StreamResolver.h"
@@ -188,7 +189,7 @@
     spinner.frame = CGRectMake(57.0, 12.0, 40.0, 40.0);
     [spinner startAnimating];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8.0, 56.0, 138.0, 24.0)];
-    label.text = @"Loading PiP";
+    label.text = YTKACELocalized(@"Loading PiP");
     label.textColor = UIColor.whiteColor;
     label.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
     label.textAlignment = NSTextAlignmentCenter;

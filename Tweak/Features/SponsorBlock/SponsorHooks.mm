@@ -73,7 +73,7 @@ static NSString *YTKACESponsorCategoryTitle(NSString *category) {
     for (NSDictionary *definition in YTKACESponsorCategoryDefinitions()) {
         if ([definition[@"id"] isEqualToString:category]) return definition[@"title"];
     }
-    return @"Sponsor";
+    return YTKACELocalized(@"Sponsor");
 }
 
 static UIViewController *YTKACETopController(void) {
@@ -150,8 +150,9 @@ static void YTKACEShowSponsorSkippedHUD(id controller, double start, NSString *c
         banner.layer.cornerRadius = 12.0;
         banner.translatesAutoresizingMaskIntoConstraints = NO;
         UILabel *label = [UILabel new];
-        label.text = [NSString stringWithFormat:@"%@ segment skipped",
-                      YTKACESponsorCategoryTitle(category)];
+        label.text = [NSString stringWithFormat:@"%@ %@",
+                      YTKACESponsorCategoryTitle(category),
+                      YTKACELocalized(@"segment skipped")];
         label.textColor = UIColor.whiteColor;
         label.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightSemibold];
         UIButton *undo = [UIButton buttonWithType:UIButtonTypeSystem];

@@ -5,6 +5,7 @@
 #import "SABRDownloader.h"
 #import "StreamResolver.h"
 #import "../../Runtime/Preferences.h"
+#import "../../Runtime/Localization.h"
 #import "../../Settings/YTKACEDownloadsController.h"
 #import "../../Settings/YTKACERootOptionsController.h"
 #import "../../UI/Assets.h"
@@ -170,41 +171,41 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
 
 - (NSString *)failureMessageForError:(NSError *)error
                                   job:(YTKACEDownloadJob *)job {
-    NSString *detail = error.localizedDescription ?: @"The download did not complete.";
-    if (error.code == NSURLErrorCancelled) return @"The download was cancelled.";
+    NSString *detail = error.localizedDescription ?: YTKACELocalized(@"The download did not complete.");
+    if (error.code == NSURLErrorCancelled) return YTKACELocalized(@"The download was cancelled.");
     if ([error.domain isEqualToString:@"YTKACESABR"]) {
         switch (error.code) {
             case 1:
             case 2:
-                return @"YouTube did not provide a usable download session. Play the video briefly, then retry.";
+                return YTKACELocalized(@"YouTube did not provide a usable download session. Play the video briefly, then retry.");
             case 4:
-                return @"YouTube rejected the stream request. Reopen the video, play it briefly, and retry.";
+                return YTKACELocalized(@"YouTube rejected the stream request. Reopen the video, play it briefly, and retry.");
             case 5:
             case 8:
-                return @"The stream stopped before it was complete. Retry once, or choose a lower quality.";
+                return YTKACELocalized(@"The stream stopped before it was complete. Retry once, or choose a lower quality.");
             case 6:
-                return @"YouTube did not authorize this format for the current device. Choose another quality.";
+                return YTKACELocalized(@"YouTube did not authorize this format for the current device. Choose another quality.");
             case 9:
-                return @"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry.";
+                return YTKACELocalized(@"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry.");
             case 10:
-                return @"YouTube has not prepared this video yet. Tap Play for a moment, then retry.";
+                return YTKACELocalized(@"YouTube has not prepared this video yet. Tap Play for a moment, then retry.");
             default:
                 break;
         }
     }
     if ([error.domain isEqualToString:@"YTKACEFFmpeg"]) {
         NSString *quality = job.videoOption.qualityLabel.length != 0
-            ? job.videoOption.qualityLabel : @"selected quality";
+            ? job.videoOption.qualityLabel : YTKACELocalized(@"selected quality");
         return [NSString stringWithFormat:
-            @"%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@",
+            YTKACELocalized(@"%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@"),
             quality, quality, detail];
     }
     if ([error.domain isEqualToString:NSURLErrorDomain]) {
         if (error.code == NSURLErrorNotConnectedToInternet) {
-            return @"The network connection is offline. Reconnect and retry.";
+            return YTKACELocalized(@"The network connection is offline. Reconnect and retry.");
         }
         if (error.code == NSURLErrorTimedOut) {
-            return @"The download timed out. Retry on a stable connection.";
+            return YTKACELocalized(@"The download timed out. Retry on a stable connection.");
         }
     }
     return detail;
@@ -395,7 +396,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         }
         return;
     }
-    [self showCompactNotice:@"YouTube menu unavailable"];
+    [self showCompactNotice:YTKACELocalized(@"YouTube menu unavailable")];
 }
 
 - (NSDictionary *)sheetAction:(NSString *)title
@@ -426,7 +427,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         self.playerResponse = currentResponse;
     }
     if (self.playerResponse == nil) {
-        [self showAlertWithTitle:@"YTKACE" message:@"No active video was found."];
+        [self showAlertWithTitle:@"YTKACE" message:YTKACELocalized(@"No active video was found.")];
         return;
     }
     self.downloadSourceView = button;
@@ -434,15 +435,15 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
     __weak YTKACEDownloadCoordinator *weakSelf = self;
     UIImage *chevron = [self menuIcon:@"chevron.right"];
     NSArray *actions = @[
-        [self sheetAction:@"Download Video" icon:@"play"
+        [self sheetAction:YTKACELocalized(@"Download Video") icon:@"play"
             secondary:chevron handler:^{ [weakSelf startVideoDownloadForCategory:@"Video"]; }],
-        [self sheetAction:@"Download Audio" icon:@"music.note"
+        [self sheetAction:YTKACELocalized(@"Download Audio") icon:@"music.note"
             secondary:chevron handler:^{ [weakSelf startAudioDownload]; }],
-        [self sheetAction:@"Play in External Player" icon:@"play.circle"
+        [self sheetAction:YTKACELocalized(@"Play in External Player") icon:@"play.circle"
             secondary:chevron handler:^{ [weakSelf showExternalPlayerMenuFromView:button]; }],
-        [self sheetAction:@"Save Image" icon:@"photo"
+        [self sheetAction:YTKACELocalized(@"Save Image") icon:@"photo"
             secondary:nil handler:^{ [weakSelf saveThumbnail]; }],
-        [self sheetAction:@"Copy Information" icon:@"doc.on.doc"
+        [self sheetAction:YTKACELocalized(@"Copy Information") icon:@"doc.on.doc"
             secondary:chevron handler:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
                     (int64_t)(0.12 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -463,21 +464,21 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
 - (void)showCopyInformationMenuFromView:(UIView *)sourceView {
     __weak YTKACEDownloadCoordinator *weakSelf = self;
     NSArray *actions = @[
-        [self sheetAction:@"Copy Title" icon:@"textformat"
+        [self sheetAction:YTKACELocalized(@"Copy Title") icon:@"textformat"
             secondary:nil handler:^{
                 UIPasteboard.generalPasteboard.string =
                     [YTKACEStreamResolver titleFromPlayerResponse:weakSelf.playerResponse];
-                [weakSelf showCompactNotice:@"Title copied"];
+                [weakSelf showCompactNotice:YTKACELocalized(@"Title copied")];
             }],
-        [self sheetAction:@"Copy Description" icon:@"line.3.horizontal"
+        [self sheetAction:YTKACELocalized(@"Copy Description") icon:@"line.3.horizontal"
             secondary:nil handler:^{
                 NSString *description = [YTKACEStreamResolver
                     descriptionFromPlayerResponse:weakSelf.playerResponse];
                 if (description.length == 0) {
-                    [weakSelf showCompactNotice:@"No description found"];
+                    [weakSelf showCompactNotice:YTKACELocalized(@"No description found")];
                 } else {
                     UIPasteboard.generalPasteboard.string = description;
-                    [weakSelf showCompactNotice:@"Description copied"];
+                    [weakSelf showCompactNotice:YTKACELocalized(@"Description copied")];
                 }
             }]
     ];
@@ -489,8 +490,8 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
     YTKACEStreamOption *option =
         [YTKACEStreamResolver bestPiPVideoFromPlayerResponse:self.playerResponse];
     if (option.URL == nil) {
-        [self showAlertWithTitle:@"External Player"
-                         message:@"No playable stream is available."];
+        [self showAlertWithTitle:YTKACELocalized(@"External Player")
+                         message:YTKACELocalized(@"No playable stream is available.")];
         return;
     }
     __weak YTKACEDownloadCoordinator *weakSelf = self;
@@ -498,14 +499,14 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         stringByAddingPercentEncodingWithAllowedCharacters:
             NSCharacterSet.URLQueryAllowedCharacterSet];
     NSArray *actions = @[
-        [self sheetAction:@"System Player" icon:@"ytkace.system"
+        [self sheetAction:YTKACELocalized(@"System Player") icon:@"ytkace.system"
             secondary:nil handler:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
                     (int64_t)(0.18 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [weakSelf playInSystemPlayer:option.URL sourceView:sourceView];
                     });
             }],
-        [self sheetAction:@"Infuse" icon:@"ytkace.infuse"
+        [self sheetAction:YTKACELocalized(@"Infuse") icon:@"ytkace.infuse"
             secondary:nil handler:^{
                 NSURL *url = [NSURL URLWithString:[NSString
                     stringWithFormat:@"infuse://x-callback-url/play?url=%@",
@@ -513,12 +514,12 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
                 [UIApplication.sharedApplication openURL:url options:@{}
                     completionHandler:^(BOOL success) {
                         if (!success) {
-                            [weakSelf showAlertWithTitle:@"Infuse"
-                                message:@"Infuse is not installed."];
+                            [weakSelf showAlertWithTitle:YTKACELocalized(@"Infuse")
+                                message:YTKACELocalized(@"Infuse is not installed.")];
                         }
                     }];
             }],
-        [self sheetAction:@"VLC" icon:@"ytkace.vlc"
+        [self sheetAction:YTKACELocalized(@"VLC") icon:@"ytkace.vlc"
             secondary:nil handler:^{
                 NSURL *url = [NSURL URLWithString:[NSString
                     stringWithFormat:@"vlc-x-callback://x-callback-url/stream?url=%@",
@@ -526,13 +527,13 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
                 [UIApplication.sharedApplication openURL:url options:@{}
                     completionHandler:^(BOOL success) {
                         if (!success) {
-                            [weakSelf showAlertWithTitle:@"VLC"
-                                message:@"VLC is not installed."];
+                            [weakSelf showAlertWithTitle:YTKACELocalized(@"VLC")
+                                message:YTKACELocalized(@"VLC is not installed.")];
                         }
                     }];
             }]
     ];
-    [self presentNativeSheetWithTitle:@"External Player" subtitle:nil
+    [self presentNativeSheetWithTitle:YTKACELocalized(@"External Player") subtitle:nil
         sourceView:sourceView actions:actions];
 }
 
@@ -613,7 +614,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
 - (void)saveThumbnail {
     NSURL *url = [YTKACEStreamResolver thumbnailURLFromPlayerResponse:self.playerResponse];
     if (url == nil) {
-        [self showAlertWithTitle:@"Save Image" message:@"No thumbnail is available."];
+        [self showAlertWithTitle:YTKACELocalized(@"Save Image") message:YTKACELocalized(@"No thumbnail is available.")];
         return;
     }
     __weak YTKACEDownloadCoordinator *weakSelf = self;
@@ -622,19 +623,19 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
             (void)response;
             UIImage *image = error == nil ? [UIImage imageWithData:data] : nil;
             if (image == nil) {
-                [weakSelf showAlertWithTitle:@"Save Image"
-                    message:error.localizedDescription ?: @"The image could not be loaded."];
+                [weakSelf showAlertWithTitle:YTKACELocalized(@"Save Image")
+                    message:error.localizedDescription ?: YTKACELocalized(@"The image could not be loaded.")];
                 return;
             }
             [PHPhotoLibrary.sharedPhotoLibrary performChanges:^{
                 [PHAssetChangeRequest creationRequestForAssetFromImage:image];
             } completionHandler:^(BOOL success, NSError *saveError) {
                 if (success) {
-                    [weakSelf showCompactNotice:@"Image saved"];
+                    [weakSelf showCompactNotice:YTKACELocalized(@"Image saved")];
                 } else {
-                    [weakSelf showAlertWithTitle:@"Save Image"
+                    [weakSelf showAlertWithTitle:YTKACELocalized(@"Save Image")
                         message:saveError.localizedDescription ?:
-                            @"The image could not be saved."];
+                            YTKACELocalized(@"The image could not be saved.")];
                 }
             }];
         }];
@@ -702,7 +703,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         self.playerResponse = currentResponse;
     }
     if (!YTKACEFeatureEnabled(YTKACEDownloadKey) || self.playerResponse == nil) {
-        [self showAlertWithTitle:@"YTKACE" message:@"No active Short was found."];
+        [self showAlertWithTitle:@"YTKACE" message:YTKACELocalized(@"No active Short was found.")];
         return;
     }
     self.downloadSourceView = sourceView;
@@ -712,20 +713,20 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
     UIViewController *shortsController = [self shortsControllerFromView:sourceView];
     BOOL fullscreen = [objc_getAssociatedObject(
         shortsController, YTKACEShortsFullscreenKey) boolValue];
-    NSString *fullscreenTitle = fullscreen ? @"Exit Fullscreen" : @"Fullscreen";
+    NSString *fullscreenTitle = fullscreen ? YTKACELocalized(@"Exit Fullscreen") : YTKACELocalized(@"Fullscreen");
     NSString *fullscreenIcon = fullscreen
         ? @"arrow.down.right.and.arrow.up.left"
         : @"arrow.up.left.and.arrow.down.right";
     NSArray *actions = @[
-        [self sheetAction:@"Download Video" icon:@"play"
+        [self sheetAction:YTKACELocalized(@"Download Video") icon:@"play"
             secondary:chevron handler:^{ [weakSelf startVideoDownloadForCategory:@"Shorts"]; }],
-        [self sheetAction:@"Download Audio" icon:@"music.note"
+        [self sheetAction:YTKACELocalized(@"Download Audio") icon:@"music.note"
             secondary:chevron handler:^{ [weakSelf startAudioDownload]; }],
         [self sheetAction:fullscreenTitle icon:fullscreenIcon
             secondary:chevron handler:^{
                 [weakSelf toggleShortsFullscreenFromView:sourceView];
             }],
-        [self sheetAction:@"Auto-Skip" icon:@"forward.end.fill"
+        [self sheetAction:YTKACELocalized(@"Auto-Skip") icon:@"forward.end.fill"
             secondary:[self menuIcon:autoSkip ? @"checkmark.square" : @"square"]
             handler:^{ YTKACESetPreference(@"autoSkipShorts", !autoSkip); }]
     ];
@@ -741,8 +742,8 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
     YTKACEDownloadLog(@"resolver", @"video menu count=%lu category=%@",
         (unsigned long)options.count, category);
     if (options.count == 0) {
-        [self showAlertWithTitle:@"Download unavailable"
-                         message:@"No compatible video formats were found."];
+        [self showAlertWithTitle:YTKACELocalized(@"Download unavailable")
+                         message:YTKACELocalized(@"No compatible video formats were found.")];
         return;
     }
     __weak YTKACEDownloadCoordinator *weakSelf = self;
@@ -750,9 +751,9 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
     for (YTKACEStreamOption *option in options) {
         NSString *size = option.contentLength > 0
             ? [NSByteCountFormatter stringFromByteCount:option.contentLength
-                countStyle:NSByteCountFormatterCountStyleFile] : @"Unknown size";
+                countStyle:NSByteCountFormatterCountStyleFile] : YTKACELocalized(@"Unknown size");
         NSString *title = [NSString stringWithFormat:@"%@ (mp4) · %@",
-            option.qualityLabel.length != 0 ? option.qualityLabel : @"Video", size];
+            option.qualityLabel.length != 0 ? option.qualityLabel : YTKACELocalized(@"Video"), size];
         [actions addObject:[self sheetAction:title icon:@"play"
             secondary:nil handler:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
@@ -762,7 +763,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
                     });
             }]];
     }
-    [self presentNativeSheetWithTitle:@"Video Quality"
+    [self presentNativeSheetWithTitle:YTKACELocalized(@"Video Quality")
         subtitle:[YTKACEStreamResolver titleFromPlayerResponse:self.playerResponse]
         sourceView:self.downloadSourceView actions:actions];
 }
@@ -777,8 +778,8 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
     NSArray<YTKACEStreamOption *> *options =
         [YTKACEStreamResolver audioOptionsFromPlayerResponse:self.playerResponse];
     if (options.count == 0) {
-        [self showAlertWithTitle:@"Download unavailable"
-                         message:@"No compatible audio formats were found."];
+        [self showAlertWithTitle:YTKACELocalized(@"Download unavailable")
+                         message:YTKACELocalized(@"No compatible audio formats were found.")];
         return;
     }
     __weak YTKACEDownloadCoordinator *weakSelf = self;
@@ -786,8 +787,8 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
     for (YTKACEStreamOption *option in options) {
         NSString *size = option.contentLength > 0
             ? [NSByteCountFormatter stringFromByteCount:option.contentLength
-                countStyle:NSByteCountFormatterCountStyleFile] : @"Unknown size";
-        NSString *defaultText = option.isDefaultAudio ? @" (Default)" : @"";
+                countStyle:NSByteCountFormatterCountStyleFile] : YTKACELocalized(@"Unknown size");
+        NSString *defaultText = option.isDefaultAudio ? YTKACELocalized(@" (Default)") : @"";
         NSString *title = [NSString stringWithFormat:@"%@%@ · %@",
             option.languageLabel, defaultText, size];
         [actions addObject:[self sheetAction:title icon:@"music.note"
@@ -796,7 +797,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
                     audio:option audioOnly:audioOnly category:category];
             }]];
     }
-    [self presentNativeSheetWithTitle:@"Audio Language"
+    [self presentNativeSheetWithTitle:YTKACELocalized(@"Audio Language")
         subtitle:[YTKACEStreamResolver titleFromPlayerResponse:self.playerResponse]
         sourceView:self.downloadSourceView actions:actions];
 }
@@ -810,8 +811,8 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
             videoOptionsFromPlayerResponse:self.playerResponse].firstObject;
     }
     if (videoOption == nil || audioOption == nil) {
-        [self showAlertWithTitle:@"Download unavailable"
-                         message:@"The selected formats are unavailable."];
+        [self showAlertWithTitle:YTKACELocalized(@"Download unavailable")
+                         message:YTKACELocalized(@"The selected formats are unavailable.")];
         return;
     }
     id response = self.playerResponse;
@@ -835,7 +836,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         job.title, job.author, job.category, job.audioOnly,
         (unsigned long)self.activeJobs.count);
     [YTKACEDownloadProgressView.sharedView updateJob:job.identifier
-        stage:@"Preparing download" progress:0.0 downloadedBytes:0 totalBytes:0];
+        stage:YTKACELocalized(@"Preparing download") progress:0.0 downloadedBytes:0 totalBytes:0];
     [self startSABRJob:job];
 }
 
@@ -885,7 +886,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
             }
             transferProgress = MIN(MAX(transferProgress, 0.0), 1.0);
             NSString *stage = job.audioOnly || mediaPhase == 1
-                ? @"Downloading audio" : @"Downloading video";
+                ? YTKACELocalized(@"Downloading audio") : YTKACELocalized(@"Downloading video");
             [YTKACEDownloadProgressView.sharedView updateJob:job.identifier
                 stage:stage progress:transferProgress * 0.95
                 downloadedBytes:downloaded totalBytes:total];
@@ -906,7 +907,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
                         (long)previous, (long)fallback.itag,
                         (long)job.fallbackCount);
                     [YTKACEDownloadProgressView.sharedView updateJob:job.identifier
-                        stage:@"Retrying lower quality" progress:0.0
+                        stage:YTKACELocalized(@"Retrying lower quality") progress:0.0
                         downloadedBytes:0 totalBytes:job.audioOption.contentLength +
                             (job.audioOnly ? 0 : job.videoOption.contentLength)];
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
@@ -916,13 +917,13 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
                     return;
                 }
                 NSString *message = error.code == NSURLErrorCancelled
-                    ? @"Cancelled" : @"Failed";
+                    ? YTKACELocalized(@"Cancelled") : YTKACELocalized(@"Failed");
                 [YTKACEDownloadProgressView.sharedView finishJob:job.identifier
                     success:NO message:message];
                 YTKACEDownloadLog(job.identifier, @"job failed error=%@",
                     error.localizedDescription ?: @"incomplete stream");
                 if (error.code != NSURLErrorCancelled) {
-                    [weakSelf showAlertWithTitle:@"Download failed"
+                    [weakSelf showAlertWithTitle:YTKACELocalized(@"Download failed")
                         message:[weakSelf failureMessageForError:error job:job]];
                 }
                 [weakSelf.activeJobs removeObjectForKey:job.identifier];
@@ -933,7 +934,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
                     [NSFileManager.defaultManager removeItemAtURL:videoURL error:nil];
                 }
                 [YTKACEDownloadProgressView.sharedView updateJob:job.identifier
-                    stage:@"Finalizing" progress:0.96
+                    stage:YTKACELocalized(@"Finalizing") progress:0.96
                     downloadedBytes:job.audioBytes totalBytes:job.audioBytes];
                 NSURL *output = [audioURL.URLByDeletingLastPathComponent
                     URLByAppendingPathComponent:@"final.m4a"];
@@ -942,14 +943,14 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
                     completion:^(NSError *remuxError) {
                         if (remuxError != nil) {
                             [YTKACEDownloadProgressView.sharedView
-                                finishJob:job.identifier success:NO message:@"Failed"];
+                                finishJob:job.identifier success:NO message:YTKACELocalized(@"Failed")];
                             YTKACEDownloadLog(job.identifier,
                                 @"audio remux failed error=%@",
                                 remuxError.localizedDescription);
                             [NSFileManager.defaultManager
                                 removeItemAtURL:audioURL.URLByDeletingLastPathComponent
                                 error:nil];
-                            [weakSelf showAlertWithTitle:@"Download failed"
+                            [weakSelf showAlertWithTitle:YTKACELocalized(@"Download failed")
                                 message:[weakSelf failureMessageForError:remuxError
                                     job:job]];
                             [weakSelf.activeJobs removeObjectForKey:job.identifier];
@@ -962,7 +963,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
                 return;
             }
             [YTKACEDownloadProgressView.sharedView updateJob:job.identifier
-                stage:@"Merging" progress:0.96
+                stage:YTKACELocalized(@"Merging") progress:0.96
                 downloadedBytes:job.audioBytes + job.videoBytes
                 totalBytes:job.audioBytes + job.videoBytes];
             [weakSelf mergeVideoURL:videoURL audioURL:audioURL job:job];
@@ -977,7 +978,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
     if (safe.length > 120) {
         safe = [safe substringToIndex:120];
     }
-    return safe.length == 0 ? @"YouTube Video" : safe;
+    return safe.length == 0 ? YTKACELocalized(@"YouTube Video") : safe;
 }
 
 - (NSURL *)destinationForTitle:(NSString *)title
@@ -1045,15 +1046,15 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
     [NSFileManager.defaultManager removeItemAtURL:temporaryDirectory error:nil];
     if (error != nil) {
         [YTKACEDownloadProgressView.sharedView finishJob:job.identifier
-            success:NO message:@"Failed"];
+            success:NO message:YTKACELocalized(@"Failed")];
         YTKACEDownloadLog(job.identifier, @"save failed error=%@",
             error.localizedDescription);
-        [self showAlertWithTitle:@"Save failed"
+        [self showAlertWithTitle:YTKACELocalized(@"Save failed")
             message:[self failureMessageForError:error job:job]];
     } else {
         [self writeMetadataForJob:job destination:destination];
         [YTKACEDownloadProgressView.sharedView finishJob:job.identifier
-            success:YES message:@"Complete"];
+            success:YES message:YTKACELocalized(@"Complete")];
         YTKACEDownloadLog(job.identifier, @"saved path=%@", destination.path);
         [NSNotificationCenter.defaultCenter
             postNotificationName:@"YTKACEDownloadLibraryChanged" object:nil];
@@ -1073,10 +1074,10 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         outputURL:output completion:^(NSError *error) {
             if (error != nil) {
                 [YTKACEDownloadProgressView.sharedView finishJob:job.identifier
-                    success:NO message:@"Failed"];
+                    success:NO message:YTKACELocalized(@"Failed")];
                 YTKACEDownloadLog(job.identifier, @"merge failed error=%@",
                     error.localizedDescription);
-                [weakSelf showAlertWithTitle:@"Merge failed"
+                [weakSelf showAlertWithTitle:YTKACELocalized(@"Merge failed")
                     message:[weakSelf failureMessageForError:error job:job]];
                 [NSFileManager.defaultManager removeItemAtURL:output error:nil];
                 [NSFileManager.defaultManager
@@ -1105,7 +1106,7 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         self.jobs[@(task.taskIdentifier)] = job;
     }
 
-    [self showCompactNotice:@"Download started"];
+    [self showCompactNotice:YTKACELocalized(@"Download started")];
     [task resume];
 }
 
@@ -1186,15 +1187,15 @@ didCompleteWithError:(NSError *)error {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (error != nil) {
             if (error.code != NSURLErrorCancelled) {
-                [self showAlertWithTitle:@"Download failed"
-                                 message:error.localizedDescription ?: @"Unknown error"];
+                [self showAlertWithTitle:YTKACELocalized(@"Download failed")
+                                 message:error.localizedDescription ?: YTKACELocalized(@"Unknown error")];
             }
         } else if (job.savedURL != nil) {
-            [self showAlertWithTitle:@"Download complete"
+            [self showAlertWithTitle:YTKACELocalized(@"Download complete")
                              message:job.savedURL.lastPathComponent];
         } else {
-            [self showAlertWithTitle:@"Download failed"
-                             message:@"The file could not be saved."];
+            [self showAlertWithTitle:YTKACELocalized(@"Download failed")
+                             message:YTKACELocalized(@"The file could not be saved.")];
         }
     });
 }
