@@ -19,9 +19,23 @@ An open-source YouTube enhancement for iOS.
 - **iOS:** 16.0 and newer
 - **Architecture:** arm64
 - **Latest confirmed YouTube:** 21.31.3
-- **YTKACE:** 0.8.1
+- **YTKACE:** 0.8.2
 
 The same injected IPA can be installed with TrollStore or a developer-certificate sideloader.
+
+## Install
+
+**Jailbroken.** Add the repository in Sileo, Zebra or Cydia:
+
+```
+https://itzzace.github.io/ytkace/
+```
+
+Rootless and roothide packages are both published. The repository page also has an
+[Add to Sileo](https://itzzace.github.io/ytkace/) button.
+
+**Sideloaded.** Download the IPA from the [latest release](https://github.com/itzzace/ytkace/releases/latest)
+and install it with TrollStore, AltStore, SideStore or LiveContainer.
 
 ## Build
 
@@ -69,7 +83,7 @@ YTKACE has no activation service, analytics, telemetry or updater.
 
 ## A note to iKarwan
 
-YTKACE 0.8.1 contains zero YTKPlus code. It was independently written with its own UI, assets, and structure, and copyright does not cover features or general similarities alone. I would have preferred to discuss this privately, but I was blocked on Telegram before the claims were made publicly through tweets and a DMCA notice. If you believe any copyrighted material remains, please show me exactly where and I will review it.
+YTKACE 0.8.2 contains zero YTKPlus code. It was independently written with its own UI, assets, and structure, and copyright does not cover features or general similarities alone. I would have preferred to discuss this privately, but I was blocked on Telegram before the claims were made publicly through tweets and a DMCA notice. If you believe any copyrighted material remains, please show me exactly where and I will review it.
 
 ## License
 
