@@ -18,6 +18,8 @@ static IMP OriginalPivotLabelSetHidden;
 static IMP OriginalPivotLabelSetAlpha;
 static IMP OriginalPivotButtonLayout;
 static IMP OriginalPivotBarLayout;
+static IMP OriginalPivotBarStyleColors;
+static IMP OriginalPivotBarSetBackgroundStyle;
 static IMP OriginalAppViewDidLoad;
 static IMP OriginalBrowseViewDidLoad;
 static IMP OriginalBrowseResponseViewDidLoad;
@@ -1160,11 +1162,84 @@ static void YTKACEHideCreateViews(UIView *view) {
     }
 }
 
+static const void *YTKACEPivotBarSolidAssociation = &YTKACEPivotBarSolidAssociation;
+
+static void YTKACEApplyPivotBarBackground(UIView *receiver) {
+    SEL blurSelector = NSSelectorFromString(@"blurView");
+    UIView *blur = [receiver respondsToSelector:blurSelector]
+        ? ((id (*)(id, SEL))objc_msgSend)(receiver, blurSelector)
+        : nil;
+    BOOL applied = [objc_getAssociatedObject(
+        receiver, YTKACEPivotBarSolidAssociation) boolValue];
+    if (!YTKACEFeatureEnabled(@"YTKACE.Preference.Tabs.FrostedHidden")) {
+        if (!applied) return;
+        blur.hidden = NO;
+        receiver.backgroundColor = UIColor.clearColor;
+        receiver.opaque = NO;
+        objc_setAssociatedObject(receiver, YTKACEPivotBarSolidAssociation,
+                                 nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return;
+    }
+    UIUserInterfaceStyle style = receiver.traitCollection.userInterfaceStyle;
+    if (style == UIUserInterfaceStyleUnspecified) {
+        style = receiver.window.traitCollection.userInterfaceStyle;
+    }
+    UIColor *solid = style == UIUserInterfaceStyleDark
+        ? UIColor.blackColor
+        : UIColor.whiteColor;
+    blur.hidden = YES;
+    for (UIView *sibling in receiver.subviews) {
+        if (sibling != blur && [sibling isKindOfClass:UIVisualEffectView.class]) {
+            sibling.hidden = YES;
+        }
+    }
+    receiver.backgroundColor = solid;
+    receiver.opaque = YES;
+    objc_setAssociatedObject(receiver, YTKACEPivotBarSolidAssociation,
+                             @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+static void YTKACERefreshPivotBarsInView(UIView *view) {
+    if ([NSStringFromClass(view.class) isEqualToString:@"YTPivotBarView"]) {
+        YTKACEApplyPivotBarBackground(view);
+        return;
+    }
+    for (UIView *subview in view.subviews) {
+        YTKACERefreshPivotBarsInView(subview);
+    }
+}
+
+void YTKACERefreshPivotBarBackground(void) {
+    for (UIScene *scene in UIApplication.sharedApplication.connectedScenes) {
+        if (![scene isKindOfClass:UIWindowScene.class]) continue;
+        for (UIWindow *window in ((UIWindowScene *)scene).windows) {
+            if (!window.hidden) YTKACERefreshPivotBarsInView(window);
+        }
+    }
+}
+
+static void YTKACEPivotBarStyleColors(UIView *receiver, SEL selector) {
+    if (OriginalPivotBarStyleColors != NULL) {
+        ((void (*)(id, SEL))OriginalPivotBarStyleColors)(receiver, selector);
+    }
+    YTKACEApplyPivotBarBackground(receiver);
+}
+
+static void YTKACEPivotBarSetBackgroundStyle(UIView *receiver, SEL selector,
+                                             int style) {
+    if (OriginalPivotBarSetBackgroundStyle != NULL) {
+        ((void (*)(id, SEL, int))OriginalPivotBarSetBackgroundStyle)(
+            receiver, selector, style);
+    }
+    YTKACEApplyPivotBarBackground(receiver);
+}
+
 static void YTKACEPivotBarLayout(UIView *receiver, SEL selector) {
     if (OriginalPivotBarLayout != NULL) {
         ((void (*)(id, SEL))OriginalPivotBarLayout)(receiver, selector);
     }
     YTKACEHideCreateViews(receiver);
+    YTKACEApplyPivotBarBackground(receiver);
     NSInteger startup = [NSUserDefaults.standardUserDefaults
         integerForKey:@"YTKACE.Preference.Tabs.Startup"];
     SEL select = NSSelectorFromString(@"selectItemWithPivotIdentifier:");
@@ -1266,6 +1341,14 @@ void YTKACEInstallTabBarHooks(void) {
                               @"layoutSubviews",
                               (IMP)YTKACEPivotBarLayout,
                               &OriginalPivotBarLayout);
+    YTKACEInstallInstanceHook(@"YTPivotBarView",
+                              @"styleBackgroundColors",
+                              (IMP)YTKACEPivotBarStyleColors,
+                              &OriginalPivotBarStyleColors);
+    YTKACEInstallInstanceHook(@"YTPivotBarView",
+                              @"setBackgroundStyle:",
+                              (IMP)YTKACEPivotBarSetBackgroundStyle,
+                              &OriginalPivotBarSetBackgroundStyle);
     YTKACEInstallInstanceHook(@"YTAppViewController",
                               @"viewDidLoad",
                               (IMP)YTKACEAppViewDidLoad,

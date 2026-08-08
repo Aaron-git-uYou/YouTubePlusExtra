@@ -1,6 +1,7 @@
 #import "YTKACETabEditorController.h"
 #import "YTKACERootOptionsController.h"
 #import "YTKACESettingsPages.h"
+#import "../YTKACE.h"
 #import "../Runtime/Preferences.h"
 #import "../Runtime/Localization.h"
 #import "../UI/Assets.h"
@@ -128,7 +129,7 @@ static UIImage *YTKACETabEditorIcon(NSString *token, NSString *fallback) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     (void)tableView;
-    if (section == 0) return 2;
+    if (section == 0) return 3;
     if (section == 1) return 1;
     if (section == 2) return (NSInteger)self.activeTabs.count;
     return (NSInteger)self.inactiveTabs.count;
@@ -179,8 +180,11 @@ willDisplayHeaderView:(UIView *)view
     cell.indentationWidth = 0.0;
 
     if (indexPath.section == 0) {
-        NSArray *titles = @[@"Hide Tab Labels", @"Prevent Open in Shorts"];
-        NSArray *keys = @[@"YTKACE.Preference.Tabs.LabelsHidden", @"YTKACE.Preference.Shorts.PreventAutoOpen"];
+        NSArray *titles = @[@"Hide Tab Labels", @"Prevent Open in Shorts",
+                            @"Remove Frosted Tab Bar"];
+        NSArray *keys = @[@"YTKACE.Preference.Tabs.LabelsHidden",
+                          @"YTKACE.Preference.Shorts.PreventAutoOpen",
+                          @"YTKACE.Preference.Tabs.FrostedHidden"];
         cell.textLabel.text = titles[(NSUInteger)indexPath.row];
         UISwitch *toggle = [UISwitch new];
         toggle.transform = CGAffineTransformMakeScale(0.95, 0.95);
@@ -224,6 +228,10 @@ willDisplayHeaderView:(UIView *)view
 - (void)toggleChanged:(UISwitch *)sender {
     NSString *key = objc_getAssociatedObject(sender, YTKACETabSwitchKey);
     YTKACESetPreference(key, sender.isOn);
+    if ([key isEqualToString:@"YTKACE.Preference.Tabs.FrostedHidden"]) {
+        YTKACERefreshPivotBarBackground();
+        return;
+    }
     YTKACEShowRestartNotice(self);
 }
 
