@@ -12,6 +12,7 @@ NSString * const YTKACEBackgroundPlaybackKey = @"YTKACE.Preference.Playback.Back
 NSString * const YTKACEPiPKey = @"YTKACE.Preference.Player.PiP";
 NSString * const YTKACESpeedKey = @"YTKACE.Preference.Player.SpeedControls";
 NSString * const YTKACELoopKey = @"YTKACE.Preference.Player.Loop";
+NSString * const YTKACESleepTimerKey = @"YTKACE.Preference.Player.SleepTimer";
 NSString * const YTKACEPreferencesDidChangeNotification =
     @"YTKACEPreferencesDidChangeNotification";
 

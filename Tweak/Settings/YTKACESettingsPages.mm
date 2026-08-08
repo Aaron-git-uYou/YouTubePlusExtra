@@ -1175,6 +1175,7 @@ static NSDictionary *YTKACEPlayerControlsDefinition(void) {
             YTKACEToggle(@"Download Button", YTKACEDownloadKey, @"", @""),
             YTKACEToggle(@"PiP Button", YTKACEPiPKey, @"", @""),
             YTKACEToggle(@"Loop Button", YTKACELoopKey, @"", @""),
+            YTKACEToggle(@"Sleep Timer Button", YTKACESleepTimerKey, @"", @""),
             YTKACEToggle(@"Background Audio", YTKACEBackgroundPlaybackKey, @"", @"")
         ],
         @[

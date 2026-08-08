@@ -17,4 +17,11 @@ FOUNDATION_EXPORT UIButton *YTKACEOverlayButton(
     SEL action
 );
 
+FOUNDATION_EXPORT void YTKACEPresentNativeSheet(
+    NSString *_Nullable title,
+    NSString *_Nullable subtitle,
+    UIView *_Nullable sourceView,
+    NSArray<NSDictionary *> *actions
+);
+
 NS_ASSUME_NONNULL_END
