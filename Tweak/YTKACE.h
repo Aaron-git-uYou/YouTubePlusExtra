@@ -21,6 +21,7 @@ void YTKACEInstallBackgroundPlaybackHooks(void);
 void YTKACEInstallPiPHooks(void);
 void YTKACEInstallSpeedHooks(void);
 void YTKACEInstallLoopHooks(void);
+void YTKACEInstallSleepTimerHooks(void);
 void YTKACEInstallDoubleTapHooks(void);
 void YTKACEConfigureTapToSeek(UIView *view);
 void YTKACEInstallFixPlaybackHooks(void);

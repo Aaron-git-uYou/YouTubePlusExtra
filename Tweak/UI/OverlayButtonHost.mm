@@ -4,6 +4,7 @@
 
 #import <math.h>
 #import <objc/runtime.h>
+#import <objc/message.h>
 
 static IMP OriginalControlsOverlayLayout;
 static IMP OriginalControlsSetOverlayVisible;
@@ -54,6 +55,28 @@ static void YTKACEFindSettingsControlInView(UIView *view,
     }
 }
 
+static BOOL YTKACEIsTopTrailingControl(UIView *view, UIView *overlay) {
+    CGRect frame = [view convertRect:view.bounds toView:overlay];
+    CGFloat width = CGRectGetWidth(overlay.bounds);
+    CGFloat height = CGRectGetHeight(overlay.bounds);
+    CGFloat centerX = CGRectGetMidX(frame);
+    CGFloat centerY = CGRectGetMidY(frame);
+    return isfinite(centerX) && isfinite(centerY) &&
+        centerX > width * 0.55 && centerY < height * 0.35 &&
+        CGRectIntersectsRect(frame, overlay.bounds);
+}
+
+static UIView *YTKACEOverflowControl(UIView *overlay) {
+    SEL selector = NSSelectorFromString(@"overflowButton");
+    if (![overlay respondsToSelector:selector]) return nil;
+    UIView *button = ((id (*)(id, SEL))objc_msgSend)(overlay, selector);
+    if (![button isKindOfClass:UIView.class] || button.hidden ||
+        button.alpha < 0.05 || CGRectIsEmpty(button.bounds)) {
+        return nil;
+    }
+    return YTKACEIsTopTrailingControl(button, overlay) ? button : nil;
+}
+
 static UIView *YTKACEFindSettingsControl(UIView *overlay, UIView *excluded) {
     UIView *best = nil;
     CGFloat bestScore = -CGFLOAT_MAX;
@@ -97,7 +120,8 @@ static BOOL YTKACEAlignOverlayStack(UIView *overlay, UIStackView *stack) {
     CGFloat constant = fillsLandscapeWindow ? -20.0 : -8.0;
     NSNumber *previous = state[@"constant"];
     BOOL hasGearAlignment = [state[@"hasGearAlignment"] boolValue];
-    UIView *gear = YTKACEFindSettingsControl(overlay, stack);
+    UIView *gear = YTKACEOverflowControl(overlay) ?:
+        YTKACEFindSettingsControl(overlay, stack);
     if (gear != nil) {
         CGRect frame = [gear.superview convertRect:gear.frame toView:overlay];
         CGFloat safeTrailing = CGRectGetMaxX(overlay.safeAreaLayoutGuide.layoutFrame);
@@ -352,4 +376,107 @@ void YTKACERegisterOverlayConfigurator(NSString *identifier,
                               @"setHidden:",
                               (IMP)YTKACEControlsSetHidden,
                               &OriginalControlsSetHidden);
+}
+
+static UIViewController *YTKACESheetPresenter(UIView *sourceView) {
+    UIResponder *responder = sourceView;
+    for (NSUInteger depth = 0; responder != nil && depth < 20; depth++) {
+        SEL eventsSelector = NSSelectorFromString(@"eventsDelegate");
+        if ([responder respondsToSelector:eventsSelector]) {
+            id events = ((id (*)(id, SEL))objc_msgSend)(responder, eventsSelector);
+            if (events != nil) return events;
+        }
+        if ([responder isKindOfClass:UIViewController.class]) {
+            return (UIViewController *)responder;
+        }
+        responder = responder.nextResponder;
+    }
+    return nil;
+}
+
+void YTKACEPresentNativeSheet(NSString *title,
+                              NSString *subtitle,
+                              UIView *sourceView,
+                              NSArray<NSDictionary *> *actions) {
+    Class sheetClass = NSClassFromString(@"YTDefaultSheetController");
+    Class actionClass = NSClassFromString(@"YTActionSheetAction");
+    SEL makeSheet = NSSelectorFromString(
+        @"sheetControllerWithMessage:subMessage:delegate:parentResponder:");
+    SEL makePlain = NSSelectorFromString(@"sheetControllerWithParentResponder:");
+    SEL makeSimple = NSSelectorFromString(@"actionWithTitle:iconImage:style:handler:");
+    SEL makeDetailed = NSSelectorFromString(
+        @"actionWithTitle:iconImage:secondaryIconImage:accessibilityIdentifier:handler:");
+    SEL makeValued = NSSelectorFromString(
+        @"actionWithTitle:currentValue:iconImage:accessibilityIdentifier:handler:");
+    SEL makeSelectable = NSSelectorFromString(
+        @"actionWithTitle:subtitle:iconImage:visiblySelected:accessibilityLabel:"
+        @"accessibilityIdentifier:handler:");
+    SEL makeSubtitled = NSSelectorFromString(
+        @"actionWithTitle:subtitle:iconImage:accessibilityIdentifier:handler:");
+    SEL addAction = NSSelectorFromString(@"addAction:");
+    if (sheetClass == Nil || actionClass == Nil ||
+        ![actionClass respondsToSelector:makeSimple]) {
+        return;
+    }
+    id sheet = nil;
+    if (title.length == 0 && subtitle.length == 0 &&
+        [sheetClass respondsToSelector:makePlain]) {
+        sheet = ((id (*)(id, SEL, id))objc_msgSend)(sheetClass, makePlain, nil);
+    } else if ([sheetClass respondsToSelector:makeSheet]) {
+        sheet = ((id (*)(id, SEL, id, id, id, id))objc_msgSend)(
+            sheetClass, makeSheet, title, subtitle, nil, nil);
+    }
+    if (sheet == nil || ![sheet respondsToSelector:addAction]) return;
+
+    for (NSDictionary *item in actions) {
+        dispatch_block_t handler = item[@"handler"];
+        UIImage *secondary = item[@"secondary"];
+        NSString *value = item[@"value"];
+        NSString *subtitle = item[@"subtitle"];
+        id action = nil;
+        if ([actionClass respondsToSelector:makeSelectable]) {
+            action = ((id (*)(id, SEL, id, id, id, BOOL, id, id, id))objc_msgSend)(
+                actionClass, makeSelectable, item[@"title"], subtitle,
+                item[@"icon"], NO, nil, nil, handler);
+        } else if (subtitle.length != 0 &&
+                   [actionClass respondsToSelector:makeSubtitled]) {
+            action = ((id (*)(id, SEL, id, id, id, id, id))objc_msgSend)(
+                actionClass, makeSubtitled, item[@"title"], subtitle,
+                item[@"icon"], nil, handler);
+        } else if (value.length != 0 && [actionClass respondsToSelector:makeValued]) {
+            action = ((id (*)(id, SEL, id, id, id, id, id))objc_msgSend)(
+                actionClass, makeValued, item[@"title"], value, item[@"icon"],
+                nil, handler);
+            SEL setSecondary = NSSelectorFromString(@"setSecondaryIconImage:");
+            if (secondary != nil && [action respondsToSelector:setSecondary]) {
+                ((void (*)(id, SEL, id))objc_msgSend)(
+                    action, setSecondary, secondary);
+            }
+        } else if (secondary != nil && [actionClass respondsToSelector:makeDetailed]) {
+            action = ((id (*)(id, SEL, id, id, id, id, id))objc_msgSend)(
+                actionClass, makeDetailed, item[@"title"], item[@"icon"],
+                secondary, nil, handler);
+        } else {
+            action = ((id (*)(id, SEL, id, id, NSInteger, id))objc_msgSend)(
+                actionClass, makeSimple, item[@"title"], item[@"icon"], 0, handler);
+        }
+        if (action != nil) {
+            ((void (*)(id, SEL, id))objc_msgSend)(sheet, addAction, action);
+        }
+    }
+
+    SEL presentFromView = NSSelectorFromString(@"presentFromView:animated:completion:");
+    SEL presentFromController =
+        NSSelectorFromString(@"presentFromViewController:animated:completion:");
+    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad &&
+        sourceView != nil && [sheet respondsToSelector:presentFromView]) {
+        ((void (*)(id, SEL, id, BOOL, id))objc_msgSend)(
+            sheet, presentFromView, sourceView, YES, nil);
+        return;
+    }
+    id presenter = YTKACESheetPresenter(sourceView);
+    if (presenter != nil && [sheet respondsToSelector:presentFromController]) {
+        ((void (*)(id, SEL, id, BOOL, id))objc_msgSend)(
+            sheet, presentFromController, presenter, YES, nil);
+    }
 }
