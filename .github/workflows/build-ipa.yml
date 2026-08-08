@@ -24,7 +24,7 @@ jobs:
 
       - uses: actions/download-artifact@v8
         with:
-          name: YTKACE-deb
+          name: YTKACE-deb-rootless
           path: packages
 
       - uses: levibostian/action-hide-sensitive-inputs@v1
