@@ -172,6 +172,18 @@ static void YTKACEDiscoverNavigationMethodHooks(void) {
     });
 }
 
+static BOOL YTKACEMatchesAncestorButton(UIView *view, NSString *accessor) {
+    SEL selector = NSSelectorFromString(accessor);
+    for (UIView *ancestor = view.superview; ancestor != nil;
+         ancestor = ancestor.superview) {
+        if (![ancestor respondsToSelector:selector]) continue;
+        UIView *button = ((id (*)(id, SEL))objc_msgSend)(ancestor, selector);
+        if (![button isKindOfClass:UIView.class]) return NO;
+        return button == view || [view isDescendantOfView:button];
+    }
+    return NO;
+}
+
 static BOOL YTKACENavigationShouldHide(UIView *view) {
     if (!YTKACEIsNavigationIcon(view)) return NO;
     NSString *token = [[NSString stringWithFormat:@"%@ %@ %@",
@@ -191,7 +203,8 @@ static BOOL YTKACENavigationShouldHide(UIView *view) {
     if (YTKACEFeatureEnabled(@"YTKACE.Preference.Navigation.CastHidden") &&
         ([token containsString:@"cast"] ||
          [token containsString:@"airplay"] ||
-         [token containsString:@"routebutton"])) {
+         [token containsString:@"routebutton"] ||
+         YTKACEMatchesAncestorButton(view, @"MDXButton"))) {
         return YES;
     }
     if (YTKACEFeatureEnabled(@"YTKACE.Preference.Navigation.NotificationsHidden") &&
@@ -343,7 +356,7 @@ static void YTKACEApplyNavigationSelectors(id owner) {
             @"notificationBellButton", @"notificationBellView"
         ],
         @"YTKACE.Preference.Navigation.SearchHidden": @[@"searchButton"],
-        @"YTKACE.Preference.Navigation.CastHidden": @[@"castButton"],
+        @"YTKACE.Preference.Navigation.CastHidden": @[@"castButton", @"MDXButton"],
         @"YTKACE.Preference.Navigation.AccountHidden": @[@"accountButton", @"avatarButton"]
     };
     for (NSString *key in groups) {
