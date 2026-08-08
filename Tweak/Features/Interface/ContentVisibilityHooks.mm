@@ -295,7 +295,7 @@ static BOOL YTKACEContentShouldHide(UIView *view, BOOL *hideSuperview) {
         ])) {
         return YES;
     }
-    if (YTKACEFeatureEnabled(@"YTKACE.Preference.Shorts.ProductsHidden") &&
+    if (YTKACEFeatureEnabled(@"YTKACE.Preference.Overlay.ProductsHidden") &&
         YTKACEContentContains(token, @[
             @"shorts_product", @"product_sticker", @"shopping_carousel",
             @"shopping_destination", @"tagged_product", @"creator_product"

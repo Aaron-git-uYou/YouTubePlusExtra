@@ -86,6 +86,13 @@ void YTKACERegisterDefaults(void) {
         @"YTKACE.Preference.Tabs.Order": @[@"home", @"shorts", @"subscriptions", @"library", @"ytkace"]
     }];
     [YTKACEDefaults() setBool:YES forKey:YTKACEMasterEnabledKey];
+    if ([YTKACEDefaults() objectForKey:@"YTKACE.Preference.Shorts.ProductsHidden"] != nil) {
+        if ([YTKACEDefaults() boolForKey:@"YTKACE.Preference.Shorts.ProductsHidden"]) {
+            [YTKACEDefaults() setBool:YES
+                               forKey:@"YTKACE.Preference.Overlay.ProductsHidden"];
+        }
+        [YTKACEDefaults() removeObjectForKey:@"YTKACE.Preference.Shorts.ProductsHidden"];
+    }
     if ([YTKACEDefaults() boolForKey:@"YTKACE.Preference.Downloads.ClearOnStartup"]) {
         NSDate *lastClear = [YTKACEDefaults() objectForKey:@"YTKACE.Preference.Downloads.LastCacheClear"];
         if (![lastClear isKindOfClass:NSDate.class] ||

@@ -657,7 +657,7 @@ static void YTKACEInteractiveStickerLayout(UIView *receiver, SEL selector) {
         NSStringFromClass(receiver.class).lowercaseString,
         receiver.accessibilityIdentifier.lowercaseString ?: @"",
         receiver.description.lowercaseString ?: @""];
-    BOOL product = YTKACEFeatureEnabled(@"YTKACE.Preference.Shorts.ProductsHidden") &&
+    BOOL product = YTKACEFeatureEnabled(@"YTKACE.Preference.Overlay.ProductsHidden") &&
         ([token containsString:@"product"] ||
          [token containsString:@"shopping"]);
     BOOL stickerAd = YTKACEFeatureEnabled(@"YTKACE.Preference.Shorts.StickerAdsHidden") &&
