@@ -1290,7 +1290,6 @@ static NSDictionary *YTKACEShortsOptionsDefinition(void) {
         @[
             YTKACEToggle(@"Remove Shorts Shelves", @"YTKACE.Preference.Shorts.FeedHidden", @"", @""),
             YTKACEToggle(@"Remove Pause Card", @"YTKACE.Preference.Shorts.PauseCardHidden", @"", @""),
-            YTKACEToggle(@"Remove Products", @"YTKACE.Preference.Shorts.ProductsHidden", @"", @""),
             YTKACEToggle(@"Remove Sticker Ads", @"YTKACE.Preference.Shorts.StickerAdsHidden", @"", @"")
         ],
         @[
