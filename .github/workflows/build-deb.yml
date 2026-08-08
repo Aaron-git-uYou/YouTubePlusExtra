@@ -28,8 +28,6 @@ jobs:
             suffix: rootless
           - scheme: roothide
             suffix: roothide
-          - scheme: ""
-            suffix: rootful
     env:
       THEOS: ${{ github.workspace }}/.theos
       CI: true
