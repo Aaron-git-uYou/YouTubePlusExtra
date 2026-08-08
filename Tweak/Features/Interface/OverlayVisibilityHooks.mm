@@ -128,6 +128,18 @@ static BOOL YTKACEIsDarkOverlayView(UIView *view) {
         isEqualToString:@"YTMainAppVideoOverlayAccessibilityGlassContainerView"];
 }
 
+static BOOL YTKACEMatchesAncestorButton(UIView *view, NSString *accessor) {
+    SEL selector = NSSelectorFromString(accessor);
+    for (UIView *ancestor = view.superview; ancestor != nil;
+         ancestor = ancestor.superview) {
+        if (![ancestor respondsToSelector:selector]) continue;
+        UIView *button = ((id (*)(id, SEL))objc_msgSend)(ancestor, selector);
+        if (![button isKindOfClass:UIView.class]) return NO;
+        return button == view || [view isDescendantOfView:button];
+    }
+    return NO;
+}
+
 static BOOL YTKACEOverlayShouldHide(UIView *view) {
     NSString *token = YTKACEOverlayToken(view);
     if (YTKACEOverlayPreference(@"YTKACE.Preference.Overlay.DimmingRemoved") &&
@@ -161,7 +173,8 @@ static BOOL YTKACEOverlayShouldHide(UIView *view) {
         return YES;
     }
     if (YTKACEFeatureEnabled(@"YTKACE.Preference.Overlay.CastHidden") &&
-        YTKACEOverlayTokenMatches(token, @[@"cast", @"airplay", @"routebutton"])) {
+        (YTKACEOverlayTokenMatches(token, @[@"cast", @"airplay", @"routebutton"]) ||
+         YTKACEMatchesAncestorButton(view, @"playbackRouteButton"))) {
         return YES;
     }
     if (YTKACEFeatureEnabled(@"YTKACE.Preference.Overlay.WatermarkHidden") &&
@@ -334,6 +347,8 @@ static void YTKACEApplyOverlaySelectors(id overlay) {
         @"captionsButton": @"YTKACE.Preference.Overlay.CaptionsButtonHidden",
         @"closedCaptionsButton": @"YTKACE.Preference.Overlay.CaptionsButtonHidden",
         @"castButton": @"YTKACE.Preference.Overlay.CastHidden",
+        @"playbackRouteButton": @"YTKACE.Preference.Overlay.CastHidden",
+        @"closedCaptionsOrSubtitlesButton": @"YTKACE.Preference.Overlay.CaptionsButtonHidden",
         @"infoCardButton": @"YTKACE.Preference.Overlay.InfoCardsHidden",
         @"watermarkView": @"YTKACE.Preference.Overlay.WatermarkHidden",
         @"endscreenView": @"YTKACE.Preference.Overlay.EndScreenHidden",
