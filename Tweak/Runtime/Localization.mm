@@ -1,20 +1,10 @@
 #import "Localization.h"
 #import "Preferences.h"
+#import "../UI/Assets.h"
 
 #import <UIKit/UIKit.h>
 
 NSString * const YTKACELanguageKey = @"YTKACE.Preference.Language";
-
-static NSBundle *YTKACEResourceBundle(void) {
-    static NSBundle *bundle;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSString *path = [NSBundle.mainBundle.resourcePath
-            stringByAppendingPathComponent:@"YTKACE.bundle"];
-        bundle = [NSBundle bundleWithPath:path];
-    });
-    return bundle;
-}
 
 NSArray<NSString *> *YTKACEAvailableLanguages(void) {
     return @[@"system", @"en", @"ar", @"ckb", @"de", @"es", @"fr", @"it",
@@ -69,7 +59,7 @@ static NSString *YTKACEPreferredLanguage(void) {
 }
 
 static NSDictionary<NSString *, NSString *> *YTKACEStringsForLanguage(NSString *code) {
-    NSBundle *bundle = YTKACEResourceBundle();
+    NSBundle *bundle = YTKACEAssetsBundle();
     if (bundle == nil) return nil;
     NSString *path = [bundle pathForResource:@"Localizable"
                                       ofType:@"strings"
