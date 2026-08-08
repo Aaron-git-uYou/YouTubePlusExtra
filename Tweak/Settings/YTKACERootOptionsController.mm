@@ -501,7 +501,7 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 4 && indexPath.row == 0) {
-        NSURL *URL = [NSURL URLWithString:@"https://github.com/itzzace/YTKACE"];
+        NSURL *URL = [NSURL URLWithString:@"https://github.com/itzzace/ytkace"];
         [UIApplication.sharedApplication openURL:URL options:@{}
                                completionHandler:nil];
         return;

@@ -427,7 +427,7 @@ static void YTKACEUpdateNativeSettingsSection(id receiver, SEL selector,
         @"Cellular Quality": [^UIViewController *{ return YTKACEMakeCellularQualityController(); } copy],
         @"Other": [^UIViewController *{ return YTKACEMakeMiscOptionsController(); } copy],
         @"itzzace": [^UIViewController *{
-            NSURL *URL = [NSURL URLWithString:@"https://github.com/itzzace/YTKACE"];
+            NSURL *URL = [NSURL URLWithString:@"https://github.com/itzzace/ytkace"];
             [UIApplication.sharedApplication openURL:URL options:@{}
                                    completionHandler:nil];
             return nil;
