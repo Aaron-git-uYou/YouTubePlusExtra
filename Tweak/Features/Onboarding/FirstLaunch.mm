@@ -1,5 +1,6 @@
 #import "../../YTKACE.h"
 #import "../../UI/Notice.h"
+#import "../../Runtime/Localization.h"
 
 #import <UIKit/UIKit.h>
 
@@ -48,13 +49,13 @@ static UIViewController *YTKACEFirstLaunchPresenter(void) {
 - (void)showSponsorBlockFrom:(UIViewController *)presenter {
     (void)presenter;
     if (YTKACEShowYouTubeDialog(
-        @"SponsorBlock",
-        @"YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0.")) {
+        YTKACELocalized(@"SponsorBlock"),
+        YTKACELocalized(@"YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0."))) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC),
             dispatch_get_main_queue(), ^{ [self startCastRequest]; });
         return;
     }
-    YTKACEShowNotice(@"SponsorBlock data: CC BY-NC-SA 4.0");
+    YTKACEShowNotice(YTKACELocalized(@"SponsorBlock data: CC BY-NC-SA 4.0"));
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 400 * NSEC_PER_MSEC),
         dispatch_get_main_queue(), ^{ [self startCastRequest]; });
 }
@@ -72,7 +73,7 @@ static UIViewController *YTKACEFirstLaunchPresenter(void) {
     [NSUserDefaults.standardUserDefaults setBool:YES forKey:YTKACEOnboardingKey];
     if (YTKACEShowYouTubeDialog(
         @"YTKACE",
-        @"To modify settings, open the YTKACE tab and tap the gear icon above.")) {
+        YTKACELocalized(@"To modify settings, open the YTKACE tab and tap the gear icon above."))) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC),
             dispatch_get_main_queue(), ^{
                 UIViewController *nextPresenter = YTKACEFirstLaunchPresenter();
@@ -80,7 +81,7 @@ static UIViewController *YTKACEFirstLaunchPresenter(void) {
             });
         return;
     }
-    YTKACEShowNotice(@"Open the YTKACE tab and tap the gear icon.");
+    YTKACEShowNotice(YTKACELocalized(@"Open the YTKACE tab and tap the gear icon."));
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 300 * NSEC_PER_MSEC),
         dispatch_get_main_queue(), ^{
             UIViewController *nextPresenter = YTKACEFirstLaunchPresenter();

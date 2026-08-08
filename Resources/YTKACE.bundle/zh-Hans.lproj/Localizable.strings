@@ -24,9 +24,9 @@
 "Back Up" = "备份";
 "Background Audio" = "后台播放";
 "Behavior" = "行为";
-"Block Drag and Drop" = "阻止拖放";
+"Block Drag and Drop" = "禁止拖拽";
 "Block Premium Prompts" = "阻止 Premium 提示";
-"Block RTL Layout" = "阻止从右到左布局";
+"Block RTL Layout" = "禁止 RTL 布局";
 "Block Update Prompts" = "阻止更新提示";
 "Both" = "两侧";
 "Brightness" = "亮度";
@@ -44,7 +44,7 @@
 "Clear Cache Now" = "立即清除缓存";
 "Clear Cache at Launch" = "启动时清除缓存";
 "Close" = "关闭";
-"Confirm Before Casting" = "投放前确认";
+"Confirm Before Casting" = "投屏前确认";
 "Custom Double-Tap Time" = "双击时长";
 "DOUBLE TAP" = "双击";
 "Default" = "默认";
@@ -128,8 +128,8 @@
 "Remove Ads" = "移除广告";
 "Remove Autoplay" = "移除自动播放";
 "Remove Captions Button" = "移除字幕按钮";
-"Remove Cast" = "移除投放";
-"Remove Cast Button" = "移除投放按钮";
+"Remove Cast" = "移除投屏";
+"Remove Cast Button" = "移除投屏按钮";
 "Remove Comment Guidelines" = "移除评论准则";
 "Remove Comment Preview" = "移除评论预览";
 "Remove Comments" = "移除评论";
@@ -145,7 +145,7 @@
 "Remove Products" = "移除商品";
 "Remove Quick Actions" = "移除快捷操作";
 "Remove Related Videos" = "移除相关视频";
-"Remove Remix" = "移除 Remix";
+"Remove Remix" = "移除混剪";
 "Remove Search" = "移除搜索";
 "Remove Settings Button" = "移除设置按钮";
 "Remove Share" = "移除分享";
@@ -220,3 +220,547 @@
 "· End of track" = "· 曲目结束";
 "· Off" = "· 关闭";
 "━" = "━";
+" (Default)" = "（默认）";
+" artwork" = " 封面";
+" thumb" = " 缩略图";
+" thumbnail" = " 缩略图";
+"%.0f seconds" = "%.0f 秒";
+"%lu item%@ added to %@." = "%lu 个项目已添加到 %@。";
+"15 Minutes" = "15 分钟";
+"30 Minutes" = "30 分钟";
+"45 Minutes" = "45 分钟";
+"60 Minutes" = "60 分钟";
+"A backup file is damaged" = "备份中的文件已损坏";
+"A backup file is larger than 4 GB" = "备份中的单个文件超过 4 GB";
+"A backup path is too long" = "备份路径过长";
+"ACTIVE TABS" = "已启用标签";
+"About" = "关于";
+"Active" = "已启用";
+"Add Loop Toggle" = "添加循环播放开关";
+"Advanced" = "高级";
+"Always Show All Controls" = "始终显示全部控件";
+"Always Show Play/Pause Button" = "始终显示播放/暂停按钮";
+"Ask" = "询问";
+"Audio Language" = "音频语言";
+"Auto" = "自动";
+"Auto Skip Shorts" = "自动跳过短视频";
+"Auto-Skip" = "自动跳过";
+"Auto-skip" = "自动跳过";
+"AutoPlay" = "自动播放";
+"BACKUP & RESTORE" = "备份与恢复";
+"Backup Failed" = "备份失败";
+"Backup Not Saved" = "备份未保存";
+"Backup Restored" = "备份已恢复";
+"Backup confirmation unavailable" = "备份确认不可用";
+"Backup failed" = "备份失败";
+"Bitrate" = "比特率";
+"Bypass Age Restriction" = "跳过年龄限制";
+"CLEAR CACHE" = "清除缓存";
+"Cache Cleared" = "缓存已清除";
+"Cancelled" = "已取消";
+"Cast Confirmation" = "投屏确认";
+"Cellular Quality" = "蜂窝画质";
+"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "选择视频、音频或短视频，然后选取媒体、封面和字幕。";
+"Choose a YTKACE ZIP backup from Files." = "从\"文件\"中选择一个 YTKACE 备份 ZIP。";
+"Choose and reorder the bottom tabs" = "选择并重新排列底部标签";
+"Clear" = "清空";
+"Clear Cache" = "清除缓存";
+"Clear on Startup" = "启动时清除";
+"Compact Previous & Next" = "紧凑的上/下集按钮";
+"Complete" = "完成";
+"Connect to a device?" = "是否连接设备？";
+"Continue" = "继续";
+"Copy" = "复制";
+"Copy Comment" = "复制评论";
+"Copy Description" = "复制描述";
+"Copy Information" = "复制信息";
+"Copy Title" = "复制标题";
+"Create" = "创建";
+"Create Backup" = "创建备份";
+"Created" = "创建时间";
+"Credits" = "鸣谢";
+"Custom Skip Duration" = "自定义跳过时长";
+"DEARROW" = "DEARROW";
+"DEVELOPER" = "开发者";
+"DOUBLE TAP OPTIONS" = "双击选项";
+"Default" = "默认";
+"Default Player" = "默认播放器";
+"Delete" = "删除";
+"Delete All" = "全部删除";
+"Delete confirmation unavailable" = "无法显示删除确认";
+"Delete every item in this section?" = "确认删除此分区的全部项目？";
+"Description copied" = "描述已复制";
+"Developer" = "开发者";
+"Dimensions" = "分辨率";
+"Disable Autoplay Videos" = "关闭自动播放";
+"Disable Captions" = "关闭字幕";
+"Disable Continue Watching" = "关闭\"继续观看\"";
+"Disable Double Tap" = "关闭双击";
+"Disable Drag & Drop" = "关闭拖拽";
+"Disable Previous & Next" = "关闭上/下集按钮";
+"Disable RTL Languages" = "关闭从右到左语言";
+"Disabled" = "已禁用";
+"Do you want to create a backup?" = "是否要创建备份？";
+"Double tap, hold to seek and pinch" = "双击、长按快进和捏合手势";
+"Download Audio" = "下载音频";
+"Download Short" = "下载短视频";
+"Download Video" = "下载视频";
+"Download complete" = "下载完成";
+"Download failed" = "下载失败";
+"Download log copied" = "下载日志已复制";
+"Download started" = "下载已开始";
+"Download unavailable" = "无法下载";
+"Downloading audio" = "正在下载音频";
+"Downloading video" = "正在下载视频";
+"Downloads, background play, and more" = "下载、后台播放等";
+"Duration" = "时长";
+"Enable Bottom Progress Bar" = "启用底部进度条";
+"Enable Download Feature" = "启用下载功能";
+"Enable Legacy Quality Mode" = "启用旧版画质选择";
+"Enable Mini Player for All Videos" = "为所有视频启用迷你播放器";
+"Enable PiP" = "启用画中画";
+"Enable iPadOS Mode" = "启用 iPadOS 模式";
+"End of track" = "曲目结束";
+"Endcards / Credits" = "片尾卡/制作名单";
+"Exit Fullscreen" = "退出全屏";
+"Explore" = "探索";
+"Export settings and all media as a ZIP file." = "将设置和所有媒体导出为 ZIP 文件。";
+"External Player" = "外部播放器";
+"Failed" = "失败";
+"Fashion" = "时尚";
+"File Size" = "文件大小";
+"Filler" = "填充内容";
+"Finalizing" = "正在完成";
+"Fix Playback & Account Recovery" = "修复播放与账号恢复";
+"Format" = "格式";
+"Frame Rate" = "帧率";
+"Fullscreen" = "全屏";
+"Gaming" = "游戏";
+"Gestures" = "手势控制";
+"Gradient" = "渐变";
+"HIDE ELEMENTS" = "隐藏元素";
+"HIDE ITEMS" = "隐藏元素";
+"Hide Account" = "隐藏账号";
+"Hide Autoplay Button" = "隐藏自动播放按钮";
+"Hide Captions Button" = "隐藏字幕按钮";
+"Hide Cast Button" = "隐藏投屏按钮";
+"Hide Comment Guidelines" = "隐藏评论指南";
+"Hide Comment Previews" = "隐藏评论预览";
+"Hide Comments" = "隐藏评论";
+"Hide Dark Overlay Background" = "隐藏深色播放界面背景";
+"Hide Endscreen Videos" = "隐藏片尾推荐";
+"Hide HUD Alerts" = "隐藏悬浮提示";
+"Hide Info Card" = "隐藏信息卡";
+"Hide More/Gear Icon" = "隐藏\"更多/齿轮\"图标";
+"Hide Notifications" = "隐藏通知";
+"Hide Paid Promotion Notice" = "隐藏付费推广提示";
+"Hide Pause Card" = "隐藏暂停卡片";
+"Hide Play/Pause" = "隐藏播放/暂停";
+"Hide Premium Popup" = "隐藏 Premium 弹窗";
+"Hide Previous & Next" = "隐藏上/下集按钮";
+"Hide Product Recommendations" = "隐藏商品推荐";
+"Hide Quick Actions" = "隐藏快捷操作";
+"Hide Related Videos" = "隐藏相关视频";
+"Hide Search" = "隐藏搜索";
+"Hide Search History" = "隐藏搜索历史";
+"Hide Shorts from Feed" = "信息流中隐藏短视频";
+"Hide Sticker Ads" = "隐藏贴纸广告";
+"Hide Suggested Videos" = "隐藏推荐视频";
+"Hide Tab Labels" = "隐藏标签文字";
+"Hide Topic Section" = "隐藏主题分区";
+"Hide Watermark" = "隐藏水印";
+"Hide YouTube Logo" = "隐藏 YouTube 标志";
+"Hide YouTube Update Popup" = "隐藏 YouTube 更新弹窗";
+"Highlight" = "重点高亮";
+"History" = "历史";
+"Home" = "首页";
+"IMPORT MEDIA" = "导入媒体";
+"INACTIVE TABS" = "未启用标签";
+"IPAD MODE" = "iPad 模式";
+"Image saved" = "图片已保存";
+"Import Complete" = "导入完成";
+"Import Failed" = "导入失败";
+"Import Media" = "导入媒体";
+"Import failed" = "导入失败";
+"Imported Media" = "已导入媒体";
+"Inactive" = "未启用";
+"Infuse" = "Infuse";
+"Infuse is not installed." = "未安装 Infuse。";
+"Interaction Reminder" = "互动提醒";
+"Intermission / Intro" = "中场/片头";
+"Invalid ZIP64 backup" = "无效的 ZIP64 备份";
+"Keep Captions On" = "保持字幕开启";
+"Keep Progress Bar Visible" = "保持进度条可见";
+"Language" = "语言";
+"Learning" = "学习";
+"Left" = "左";
+"Library" = "媒体库";
+"Live" = "直播";
+"Loading PiP" = "正在加载画中画";
+"MAIN" = "主要";
+"MISCELLANEOUS" = "杂项";
+"Merge failed" = "合并失败";
+"Merging" = "正在合并";
+"Miscellaneous" = "其他项";
+"Music" = "音乐";
+"Navigation Bar" = "导航栏";
+"News" = "新闻";
+"No active Short was found." = "未找到正在播放的短视频。";
+"No active video was found." = "未找到正在播放的视频。";
+"No compatible audio formats were found." = "未找到兼容的音频格式。";
+"No compatible video formats were found." = "未找到兼容的视频格式。";
+"No description found" = "未找到描述";
+"No matching media was selected" = "未选择任何媒体";
+"No playable stream is available." = "没有可用的播放流。";
+"No playable video stream is available." = "没有可用的视频流。";
+"No results" = "无搜索结果";
+"No thumbnail is available." = "没有可用的缩略图。";
+"Non-Music Section" = "非音乐段";
+"Not enough free space to create the backup" = "磁盘空间不足，无法创建备份";
+"Notifs" = "通知";
+"OLED Dark Mode" = "OLED 深色模式";
+"OVERLAY" = "播放界面";
+"OVERLAY CONTROLLER" = "播放界面控件";
+"OVERLAY PLAYER" = "悬浮播放器";
+"Off" = "关闭";
+"On" = "开启";
+"Open the YTKACE tab and tap the gear icon." = "打开 YTKACE 标签并点击齿轮图标。";
+"Original audio" = "原始音轨";
+"PLAYBACK" = "播放";
+"PREVIOUS & NEXT BUTTONS" = "上/下集按钮";
+"PROGRESS BAR" = "进度条";
+"PiP failed to start." = "画中画启动失败。";
+"PiP is not available for this video." = "当前视频不支持画中画。";
+"PiP is not supported on this device." = "本设备不支持画中画。";
+"PiP unavailable" = "画中画不可用";
+"Picture in Picture" = "画中画";
+"Play HD Videos over 3G/4G/5G" = "在 3G/4G/5G 下播放高清视频";
+"Play Next" = "播放下一首";
+"Play in Background" = "后台播放";
+"Play in External Player" = "在外部播放器中播放";
+"Playback Speed" = "播放速度";
+"Playback Speed toggles" = "播放速度开关";
+"Playback failed." = "播放失败。";
+"Playback recovery guidance unavailable" = "播放恢复提示不可用";
+"Player Controls" = "播放控制";
+"Playlists" = "播放列表";
+"Please Wait..." = "请稍候...";
+"Preparing" = "准备中";
+"Preparing Backup..." = "正在准备备份...";
+"Preparing download" = "正在准备下载";
+"Prevent Open in Shorts" = "阻止跳转到短视频";
+"Preview / Recap" = "预告/回顾";
+"Profile Picture Preview" = "头像预览";
+"Profile picture could not be saved" = "无法保存头像";
+"Profile picture saved" = "头像已保存";
+"Remove Advertisements" = "去除广告";
+"Remove Launch Animation" = "移除启动动画";
+"Remove downloaded cache files." = "删除已下载的缓存文件。";
+"Reset" = "重置";
+"Reset All Settings" = "重置全部设置";
+"Reset All Settings?" = "确认重置全部设置？";
+"Reset Settings" = "重置设置";
+"Respring" = "注销重启";
+"Respring Later" = "稍后再说";
+"Respring Now" = "立即注销重启";
+"Respring Required" = "需要注销重启";
+"Respring required for some changes" = "部分设置更改后需要注销重启才能生效";
+"Restart YouTube to apply changes." = "重启 YouTube 以应用更改。";
+"Restore Backup" = "恢复备份";
+"Restore Failed" = "恢复失败";
+"Restoring Backup..." = "正在恢复备份...";
+"Retrying lower quality" = "正在尝试较低画质";
+"Right" = "右";
+"SEEK SETTINGS" = "快进设置";
+"SHORTS" = "短视频";
+"STATUS BAR" = "状态栏";
+"STREAMING" = "流媒体";
+"Save Artwork" = "保存封面";
+"Save Image" = "保存图片";
+"Save failed" = "保存失败";
+"Save to Photos" = "保存到相册";
+"Saved videos, audio and Shorts" = "已保存的视频、音频和短视频";
+"Search" = "搜索";
+"Seconds" = "秒数：";
+"Seconds: 10" = "秒数：10";
+"Seek Duration" = "快进时长";
+"Self Promotion" = "自推广";
+"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "设置亮度和音量由哪一侧控制。\n\n提示：\n1. 竖屏时在播放器任意一侧下滑。\n2. 全屏时由于 YouTube 手势原因，请从底部区域上滑。";
+"Settings & Backup" = "设置与备份";
+"Settings could not be saved" = "设置无法保存";
+"Share" = "分享";
+"Show" = "显示";
+"Show Marker" = "显示标记";
+"Show Status Bar in Overlay" = "在播放界面中显示状态栏";
+"Shrink Tabs (Bottom)" = "压缩标签（底部）";
+"Shrink Tabs (Smart)" = "压缩标签（智能）";
+"Silent" = "静默";
+"Skip + Unskip" = "跳过+恢复";
+"Skip Only" = "仅跳过";
+"Skip sponsors and swap clickbait with DeArrow" = "跳过赞助商片段并用 DeArrow 替换标题党";
+"Sleep Timer" = "睡眠定时";
+"Solid color" = "纯色";
+"Speed, loop, gestures and overlay buttons" = "速度、循环、手势和覆盖层按钮";
+"Sponsor" = "赞助广告";
+"SponsorBlock data: CC BY-NC-SA 4.0" = "SponsorBlock 数据：CC BY-NC-SA 4.0";
+"Sports" = "体育";
+"Starts YouTube faster" = "让 YouTube 启动更快";
+"Startup Page" = "启动页";
+"Streaming" = "流媒体";
+"Subscriptions" = "订阅";
+"System" = "跟随系统";
+"System Player" = "系统播放器";
+"Tab Bar" = "底部标签";
+"Tap the top-right button to apply changes." = "点击右上角按钮以应用更改。";
+"The backup contains an unsafe path" = "备份包含不安全的路径";
+"The backup could not be created." = "无法创建备份。";
+"The backup file could not be written" = "备份文件无法写入";
+"The backup has too many files" = "备份中文件过多";
+"The backup is incomplete" = "备份不完整";
+"The backup is too large" = "备份过大";
+"The backup was not saved to the Files app." = "备份未保存到\"文件\"App。";
+"The download did not complete." = "下载未完成。";
+"The download timed out. Retry on a stable connection." = "下载超时，请在稳定的网络环境下重试。";
+"The download was cancelled." = "下载已取消。";
+"The file could not be saved." = "无法保存文件。";
+"The image could not be loaded." = "无法加载图片。";
+"The image could not be saved." = "无法保存图片。";
+"The network connection is offline. Reconnect and retry." = "网络连接已断开，请重新连接后重试。";
+"The selected formats are unavailable." = "所选格式不可用。";
+"The stream stopped before it was complete. Retry once, or choose a lower quality." = "流在完成前中断，请重试一次或选择较低画质。";
+"This is not a YTKACE backup" = "这不是 YTKACE 备份文件";
+"Title copied" = "标题已复制";
+"To modify settings, open the YTKACE tab and tap the gear icon above." = "要修改设置，请打开 YTKACE 标签并点击上方的齿轮图标。";
+"Unknown" = "未知";
+"Unknown error" = "未知错误";
+"Unknown size" = "未知大小";
+"Unsupported ZIP compression" = "不支持的 ZIP 压缩方式";
+"Use Premium Logo" = "使用 Premium 标志";
+"VIDEO PLAYER" = "视频播放器";
+"VLC is not installed." = "未安装 VLC。";
+"VOLUME & BRIGHTNESS GESTURES" = "音量与亮度手势";
+"Video Info" = "视频信息";
+"Video Quality" = "视频画质";
+"Video information unavailable" = "视频信息不可用";
+"WLater" = "稍后观看";
+"Warning: Backup was not saved to Files app." = "警告：备份未保存到\"文件\"App。";
+"Wi-Fi Quality" = "无线画质";
+"YTKACE" = "YTKACE";
+"YTKACE Download" = "YTKACE 下载";
+"YTKACE Faster" = "YTKACE 加速";
+"YTKACE Loop" = "YTKACE 循环";
+"YTKACE PiP" = "YTKACE 画中画";
+"YTKACE Settings" = "YTKACE 设置";
+"YTKACE Slower" = "YTKACE 减速";
+"YTKACE Speed" = "YTKACE 速度";
+"YTKACE features" = "YTKACE 功能";
+"YTKACE follows your YouTube language." = "YTKACE 跟随你的 YouTube 语言。";
+"YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACE 使用 SponsorBlock 数据。\n遵循 CC BY-NC-SA 4.0 许可。";
+"YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nClean-room 实现\nMIT 许可代码\n由 Epic 构建";
+"You" = "我";
+"YouTube Download" = "YouTube 下载";
+"YouTube Video" = "YouTube 视频";
+"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube 无法刷新此高清流，请先播放几秒再重试。";
+"YouTube did not authorize this format for the current device. Choose another quality." = "YouTube 未授权当前设备使用此格式，请选择其他画质。";
+"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTube 未提供可用的下载会话，请先播放几秒再重试。";
+"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTube 尚未准备好此视频，请先播放几秒再重试。";
+"YouTube is about to open the Cast menu." = "YouTube 即将打开投屏菜单。";
+"YouTube menu unavailable" = "YouTube 菜单不可用";
+"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTube 拒绝了本次流请求，请重新打开视频并播放几秒后重试。";
+"active" = "进行中";
+"audio remux complete" = "音频混流完成";
+"audio remux start" = "音频混流开始";
+"empty response" = "空响应";
+"iOS Device" = "iOS 设备";
+"incomplete stream" = "未完成的流";
+"merge complete" = "合并完成";
+"segment detected" = "片段已检测";
+"segment skipped" = "片段已跳过";
+"selected quality" = "所选画质";
+"thumbnail embedded" = "缩略图已嵌入";
+"v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@" = "v%@ - v%@ ✓ (兼容)\n%@\n%@ - iOS %@";
+"· On" = "· 开启";
+"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ 请重启 YouTube 使钩子生效。如果播放本身正常，请保持关闭——它会绕过服务端的停止信号，可能掩盖真实问题。";
+"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ 播放恢复钩子将在下次启动时安装。\n\n";
+"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 作用：\n• 关闭 iOS 守卫认证\n• 将心跳策略错误标记为非致命\n• 吞掉无法播放 / 错误遮罩等路径\n• 在可播放性错误时强制跳过\n\n";
+"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 何时启用：\n当视频播放中报错、显示\"发生错误\"或被心跳 / 认证失败中断时启用。\n\n";
+"🔧 Fix Playback & Account Recovery" = "🔧 修复播放与账号恢复";
+"🧰 Fixes playback guidance for sideloaded apps." = "🧰 修复自签应用中的播放引导。";
+
+/* 新增翻译 */
+"VIDEO" = "视频";
+"APP" = "应用";
+"ABOUT" = "关于";
+"Enabled" = "已启用";
+"ACTIVE" = "运行中";
+"Tap the checkmark to apply changes." = "点击对勾以应用更改。";
+"YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@";
+"Player" = "播放器";
+"Tabs" = "标签页";
+"Downloads, PiP, speed, loop, and background audio" = "下载、画中画、倍速、循环和后台音频";
+"Skip or mark sponsored segments" = "跳过或标记赞助片段";
+"Choose, reorder, and rename tabs" = "选择、排序和重命名标签页";
+"Brightness, volume, and seeking" = "亮度、音量和快进";
+"Playback" = "播放";
+"Player controls and visibility" = "播放器控件和可见性";
+"Quality, autoplay, and skip settings" = "画质、自动播放和跳过设置";
+"Buttons, downloads, and feed options" = "按钮、下载和信息流选项";
+"Preferred quality on Wi-Fi" = "Wi-Fi 下的首选画质";
+"Preferred quality on mobile data" = "移动数据下的首选画质";
+"Navigation" = "导航";
+"Other" = "其他";
+"Top bar buttons, logo, and cast" = "顶部栏按钮、图标和投屏";
+"Appearance, privacy, and compatibility" = "外观、隐私和兼容性";
+"Seconds: %@" = "秒数：%@";
+"%@ seconds" = "%@ 秒";
+"%lu items added to %@." = "已添加 %lu 个项目到 %@。";
+"BUTTONS" = "按钮";
+"FILES" = "文件";
+"STORAGE" = "存储";
+"QUALITY" = "画质";
+"DOUBLE TAP" = "双击";
+"AUTOPLAY & DATA" = "自动播放与数据";
+"BRAND & CAST" = "品牌与投屏";
+"TOP BUTTONS" = "顶部按钮";
+"PAGE CHROME" = "页面外观";
+"APPEARANCE" = "外观";
+"LAYOUT" = "布局";
+"SYSTEM" = "系统";
+"PRIVACY & PROMPTS" = "隐私与提示";
+"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "选择亮度和音量所在的一侧。在播放器的该侧垂直滑动。";
+"BRIGHTNESS & VOLUME" = "亮度与音量";
+"SEEK" = "快进";
+"YTKACE
+Clean-room implementation
+MIT licensed code
+Built by Epic" = "YTKACE
+净室实现
+MIT 许可代码
+由 Epic 构建";
+"A-Z" = "A–Z";
+"Z-A" = "Z–A";
+"Format: %@
+" = "格式：%@
+";
+"File Size: %@
+" = "文件大小：%@
+";
+"Duration: %@
+" = "时长：%@
+";
+"Dimensions: %.0f×%.0f
+" = "尺寸：%.0f×%.0f
+";
+"Bitrate: %.2f Kbps
+" = "比特率：%.2f Kbps
+";
+"Frame Rate: %.2f fps
+" = "帧率：%.2f fps
+";
+"Created: %@" = "创建时间：%@";
+"✅ Playback recovery hooks will install on next launch.
+
+📍 What this does:
+Intercepts playback failures and restores your session automatically.
+
+💡 Note:
+This requires a YouTube restart to take effect." = "✅ 播放恢复钩子将在下次启动时安装。
+
+📍 作用：
+拦截播放失败并自动恢复您的会话。
+
+💡 注意：
+需要重启 YouTube 才能生效。";
+
+/* 新增翻译 */
+"YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@";
+"YTKACE
+Clean-room implementation
+MIT licensed code
+Built by Epic" = "YTKACE
+净室实现
+MIT 许可代码
+由 Epic 构建";
+"Format: %@
+" = "格式：%@
+";
+"File Size: %@
+" = "文件大小：%@
+";
+"Duration: %@
+" = "时长：%@
+";
+"Dimensions: %.0f×%.0f
+" = "尺寸：%.0f×%.0f
+";
+"Bitrate: %.2f Kbps
+" = "比特率：%.2f Kbps
+";
+"Frame Rate: %.2f fps
+" = "帧率：%.2f fps
+";
+"✅ Playback recovery hooks will install on next launch.
+
+📍 What this does:
+Intercepts playback failures and restores your session automatically.
+
+💡 Note:
+This requires a YouTube restart to take effect." = "✅ 播放恢复钩子将在下次启动时安装。
+
+📍 作用：
+拦截播放失败并自动恢复您的会话。
+
+💡 注意：
+需要重启 YouTube 才能生效。";
+
+/* 新增翻译 */
+"YTKACE uses SponsorBlock data.
+Licensed under CC BY-NC-SA 4.0." = "YTKACE 使用 SponsorBlock 数据。
+基于 CC BY-NC-SA 4.0 许可。";
+
+/* 新增翻译 */
+"Downloads & Library" = "下载和媒体库";
+"Saved video, audio, Shorts, imports and backups" = "已保存的视频、音频、短视频、导入和备份";
+"Download, PiP, loop, speed and progress controls" = "下载、画中画、循环、倍速和进度条控制";
+"Segments, alerts, colors and DeArrow" = "片段、提醒、颜色和 DeArrow";
+"Player buttons, captions and watch-page cleanup" = "播放器按钮、字幕和观看页面清理";
+"Quality menu, autoplay and skip timing" = "画质菜单、自动播放和跳过计时";
+"Playback, feed and action buttons" = "播放、信息流和操作按钮";
+"Top buttons, branding and topic chips" = "顶部按钮、品牌和主题标签";
+"Choose and reorder bottom tabs" = "选择和重新排序底部标签页";
+"Brightness, volume, hold and tap to seek" = "亮度、音量、长按和点击快进";
+"OLED, startup, sharing, layout and prompts" = "OLED、启动、分享、布局和提示";
+
+/* SponsorBlock/Overlay/Shorts section titles and missing strings */
+"WATCH PAGE" = "观看页";
+"GESTURES" = "手势";
+"ALWAYS VISIBLE" = "常驻显示";
+"HIDE FROM PLAYER" = "隐藏播放器元素";
+"FEED" = "信息流";
+"ACTION BUTTONS" = "操作按钮";
+"%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "%@ 已下载，但视频和音频无法合并。请尝试其他 %@ 格式。\n%@";
+
+/* SponsorBlock/Overlay/Shorts section titles and missing strings */
+"PREVIOUS & NEXT" = "上一个/下一个";
+"VLC" = "VLC";
+
+/* Shorts download button position picker options */
+"Top Corner" = "顶部角落";
+"Action Buttons" = "操作按钮";
+"Remove Frosted Tab Bar" = "移除毛玻璃标签栏";
+
+/* Sleep timer */
+"Sleep Timer Button" = "睡眠定时按钮";
+"Sleep timer" = "睡眠定时";
+"Sleep timer ended. Playback has been paused." = "睡眠定时已结束。播放已暂停。";
+"1 hour" = "1小时";
+"minutes" = "分钟";
+"End of video" = "视频结束时";
