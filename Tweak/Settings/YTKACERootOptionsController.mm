@@ -130,9 +130,9 @@ void YTKACEApplyAppearance(UIViewController *controller) {
     self.textView.textContainerInset = UIEdgeInsetsMake(14.0, 14.0, 14.0, 14.0);
     [self.view addSubview:self.textView];
     self.navigationItem.rightBarButtonItems = @[
-        [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain
+        [[UIBarButtonItem alloc] initWithTitle:YTKACELocalized(@"Clear") style:UIBarButtonItemStylePlain
             target:self action:@selector(clearLog)],
-        [[UIBarButtonItem alloc] initWithTitle:@"Copy" style:UIBarButtonItemStylePlain
+        [[UIBarButtonItem alloc] initWithTitle:YTKACELocalized(@"Copy") style:UIBarButtonItemStylePlain
             target:self action:@selector(copyLog)]
     ];
 }
@@ -149,7 +149,7 @@ void YTKACEApplyAppearance(UIViewController *controller) {
 
 - (void)copyLog {
     UIPasteboard.generalPasteboard.string = self.textView.text;
-    YTKACEShowNotice(@"Download log copied");
+    YTKACEShowNotice(YTKACELocalized(@"Download log copied"));
 }
 
 - (void)clearLog {
@@ -303,7 +303,8 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     (void)tableView;
-    return @[@"", @"MAIN", @"VIDEO", @"APP", @"ABOUT"][(NSUInteger)section];
+    return @[@"", YTKACELocalized(@"MAIN"), YTKACELocalized(@"VIDEO"),
+             YTKACELocalized(@"APP"), YTKACELocalized(@"ABOUT")][(NSUInteger)section];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
@@ -315,11 +316,11 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
 - (NSString *)deviceInformationText {
     struct utsname systemInfo;
     uname(&systemInfo);
-    NSString *model = [NSString stringWithUTF8String:systemInfo.machine] ?: @"iOS Device";
+    NSString *model = [NSString stringWithUTF8String:systemInfo.machine] ?: YTKACELocalized(@"iOS Device");
     NSDictionary *info = NSBundle.mainBundle.infoDictionary;
-    NSString *youtubeVersion = info[@"CFBundleShortVersionString"] ?: @"Unknown";
+    NSString *youtubeVersion = info[@"CFBundleShortVersionString"] ?: YTKACELocalized(@"Unknown");
     NSString *bundleID = NSBundle.mainBundle.bundleIdentifier ?: @"com.google.ios.youtube";
-    return [NSString stringWithFormat:@"YTKACE %@  •  YouTube %@\n%@\n%@  •  iOS %@",
+    return [NSString stringWithFormat:YTKACELocalized(@"YTKACE %@  •  YouTube %@\n%@\n%@  •  iOS %@"),
         YTKACEVersion, youtubeVersion, bundleID, model,
         UIDevice.currentDevice.systemVersion];
 }
@@ -351,7 +352,7 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(24.0, 0.0,
         MAX(0.0, CGRectGetWidth(tableView.bounds) - 48.0), 18.0)];
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    label.text = @"Tap the checkmark to apply changes.";
+    label.text = YTKACELocalized(@"Tap the checkmark to apply changes.");
     label.font = [UIFont systemFontOfSize:13.0];
     label.textColor = UIColor.secondaryLabelColor;
     [footer addSubview:label];
@@ -390,12 +391,12 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         UITableViewCell *cell = [self baseCellForTableView:tableView style:UITableViewCellStyleSubtitle];
-        cell.textLabel.text = @"Enabled";
+        cell.textLabel.text = YTKACELocalized(@"Enabled");
         cell.textLabel.font = [UIFont systemFontOfSize:18.0 weight:UIFontWeightSemibold];
         cell.detailTextLabel.text = nil;
         [self configureImageForCell:cell asset:@"" symbol:@"power"];
         UILabel *status = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 72.0, 28.0)];
-        status.text = @"ACTIVE";
+        status.text = YTKACELocalized(@"ACTIVE");
         status.textAlignment = NSTextAlignmentCenter;
         status.font = [UIFont systemFontOfSize:11.0 weight:UIFontWeightBold];
         status.textColor = UIColor.systemGreenColor;
@@ -408,12 +409,13 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
     }
 
     if (indexPath.section == 1) {
-        NSArray *titles = @[@"Player", @"SponsorBlock", @"Tabs", @"Gestures"];
+        NSArray *titles = @[YTKACELocalized(@"Player"), YTKACELocalized(@"SponsorBlock"),
+                            YTKACELocalized(@"Tabs"), YTKACELocalized(@"Gestures")];
         NSArray *details = @[
-            @"Downloads, PiP, speed, loop, and background audio",
-            @"Skip or mark sponsored segments",
-            @"Choose, reorder, and rename tabs",
-            @"Brightness, volume, and seeking"
+            YTKACELocalized(@"Downloads, PiP, speed, loop, and background audio"),
+            YTKACELocalized(@"Skip or mark sponsored segments"),
+            YTKACELocalized(@"Choose, reorder, and rename tabs"),
+            YTKACELocalized(@"Brightness, volume, and seeking")
         ];
         NSArray *symbols = @[@"play.rectangle", @"play.shield",
                              @"rectangle.bottomthird.inset.filled", @"hand.draw"];
@@ -427,14 +429,15 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
     }
 
     if (indexPath.section == 2) {
-        NSArray *titles = @[@"Overlay", @"Playback", @"Shorts",
-                            @"Wi-Fi Quality", @"Cellular Quality"];
+        NSArray *titles = @[YTKACELocalized(@"Overlay"), YTKACELocalized(@"Playback"),
+                            YTKACELocalized(@"Shorts"), YTKACELocalized(@"Wi-Fi Quality"),
+                            YTKACELocalized(@"Cellular Quality")];
         NSArray *details = @[
-            @"Player controls and visibility",
-            @"Quality, autoplay, and skip settings",
-            @"Buttons, downloads, and feed options",
-            @"Preferred quality on Wi-Fi",
-            @"Preferred quality on mobile data"
+            YTKACELocalized(@"Player controls and visibility"),
+            YTKACELocalized(@"Quality, autoplay, and skip settings"),
+            YTKACELocalized(@"Buttons, downloads, and feed options"),
+            YTKACELocalized(@"Preferred quality on Wi-Fi"),
+            YTKACELocalized(@"Preferred quality on mobile data")
         ];
         NSArray *symbols = @[@"rectangle.on.rectangle", @"playpause",
                              @"", @"wifi", @"antenna.radiowaves.left.and.right"];
@@ -451,7 +454,7 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else {
             NSString *key = indexPath.row == 3 ? @"YTKACE.Preference.Playback.WiFiQuality" : @"YTKACE.Preference.Playback.CellularQuality";
-            NSArray *options = @[@"Auto", @"2160p60", @"2160p", @"1440p60", @"1440p",
+            NSArray *options = @[YTKACELocalized(@"Auto"), @"2160p60", @"2160p", @"1440p60", @"1440p",
                                  @"1080p60", @"1080p", @"720p60", @"720p", @"480p",
                                  @"360p", @"240p", @"144p"];
             NSArray *values = @[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12];
@@ -466,10 +469,10 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
     }
 
     if (indexPath.section == 3) {
-        NSArray *titles = @[@"Navigation", @"Other"];
+        NSArray *titles = @[YTKACELocalized(@"Navigation"), YTKACELocalized(@"Other")];
         NSArray *details = @[
-            @"Top bar buttons, logo, and cast",
-            @"Appearance, privacy, and compatibility"
+            YTKACELocalized(@"Top bar buttons, logo, and cast"),
+            YTKACELocalized(@"Appearance, privacy, and compatibility")
         ];
         NSArray *symbols = @[@"rectangle.topthird.inset.filled", @"ellipsis.circle"];
         UITableViewCell *cell = [self baseCellForTableView:tableView style:UITableViewCellStyleSubtitle];
@@ -508,9 +511,9 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
     }
     UIViewController *controller = nil;
     if (indexPath.section == 2 && (indexPath.row == 3 || indexPath.row == 4)) {
-            NSString *title = indexPath.row == 3 ? @"Wi-Fi Quality" : @"Cellular Quality";
+            NSString *title = indexPath.row == 3 ? YTKACELocalized(@"Wi-Fi Quality") : YTKACELocalized(@"Cellular Quality");
             NSString *key = indexPath.row == 3 ? @"YTKACE.Preference.Playback.WiFiQuality" : @"YTKACE.Preference.Playback.CellularQuality";
-            NSArray *titles = @[@"Auto", @"2160p60", @"2160p", @"1440p60", @"1440p",
+            NSArray *titles = @[YTKACELocalized(@"Auto"), @"2160p60", @"2160p", @"1440p60", @"1440p",
                                 @"1080p60", @"1080p", @"720p60", @"720p", @"480p",
                                 @"360p", @"240p", @"144p"];
             NSArray *values = @[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10, @11, @12];

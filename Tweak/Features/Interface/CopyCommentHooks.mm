@@ -1,4 +1,5 @@
 #import "../../YTKACE.h"
+#import "../../Runtime/Localization.h"
 #import "../../Runtime/Hooking.h"
 #import "../../Runtime/Preferences.h"
 
@@ -216,14 +217,14 @@ static NSString *YTKACECommentTextForView(UIView *view) {
     [feedback impactOccurred];
     UIAlertController *menu = [UIAlertController alertControllerWithTitle:nil
         message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    [menu addAction:[UIAlertAction actionWithTitle:@"Copy Comment"
+    [menu addAction:[UIAlertAction actionWithTitle:YTKACELocalized(@"Copy Comment")
         style:UIAlertActionStyleDefault handler:^(__unused UIAlertAction *action) {
             UIPasteboard.generalPasteboard.string = text;
             UINotificationFeedbackGenerator *confirmation =
                 [UINotificationFeedbackGenerator new];
             [confirmation notificationOccurred:UINotificationFeedbackTypeSuccess];
         }]];
-    [menu addAction:[UIAlertAction actionWithTitle:@"Cancel"
+    [menu addAction:[UIAlertAction actionWithTitle:YTKACELocalized(@"Cancel")
         style:UIAlertActionStyleCancel handler:nil]];
     menu.popoverPresentationController.sourceView = view;
     menu.popoverPresentationController.sourceRect = view.bounds;

@@ -220,3 +220,547 @@
 "· End of track" = "· Конец трека";
 "· Off" = "· Выкл.";
 "━" = "━";
+" (Default)" = " (По умолчанию)";
+" artwork" = " обложка";
+" thumb" = " миниатюра";
+" thumbnail" = " миниатюра";
+"%.0f seconds" = "%.0f секунд";
+"%lu item%@ added to %@." = "%lu элемент%@ добавлено в %@.";
+"15 Minutes" = "15 минут";
+"30 Minutes" = "30 минут";
+"45 Minutes" = "45 минут";
+"60 Minutes" = "60 минут";
+"A backup file is damaged" = "Файл резервной копии повреждён";
+"A backup file is larger than 4 GB" = "Файл резервной копии больше 4 ГБ";
+"A backup path is too long" = "Путь резервной копии слишком длинный";
+"ACTIVE TABS" = "АКТИВНЫЕ ВКЛАДКИ";
+"About" = "О приложении";
+"Active" = "Активно";
+"Add Loop Toggle" = "Добавить кнопку повтора";
+"Advanced" = "Дополнительно";
+"Always Show All Controls" = "Всегда показывать все элементы";
+"Always Show Play/Pause Button" = "Всегда показывать воспроизведение/паузу";
+"Ask" = "Спрашивать";
+"Audio Language" = "Язык аудио";
+"Auto" = "Авто";
+"Auto Skip Shorts" = "Автопропуск Shorts";
+"Auto-Skip" = "Автопропуск";
+"Auto-skip" = "Автопропуск";
+"AutoPlay" = "Автовоспроизведение";
+"BACKUP & RESTORE" = "РЕЗЕРВНОЕ КОПИРОВАНИЕ И ВОССТАНОВЛЕНИЕ";
+"Backup Failed" = "Сбой резервного копирования";
+"Backup Not Saved" = "Резервная копия не сохранена";
+"Backup Restored" = "Резервная копия восстановлена";
+"Backup confirmation unavailable" = "Подтверждение резервного копирования недоступно";
+"Backup failed" = "Сбой резервного копирования";
+"Bitrate" = "Битрейт";
+"Bypass Age Restriction" = "Обход возрастных ограничений";
+"CLEAR CACHE" = "ОЧИСТИТЬ КЭШ";
+"Cache Cleared" = "Кэш очищен";
+"Cancelled" = "Отменено";
+"Cast Confirmation" = "Подтверждение Cast";
+"Cellular Quality" = "Качество по сотовой связи";
+"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "Выберите Видео, Аудио или Shorts, затем выберите медиа, обложку и субтитры.";
+"Choose a YTKACE ZIP backup from Files." = "Выберите ZIP-резервную копию YTKACE из Файлов.";
+"Choose and reorder the bottom tabs" = "Выбор и упорядочивание нижних вкладок";
+"Clear" = "Очистить";
+"Clear Cache" = "Очистить кэш";
+"Clear on Startup" = "Очищать при запуске";
+"Compact Previous & Next" = "Компактные назад и вперёд";
+"Complete" = "Завершено";
+"Connect to a device?" = "Подключиться к устройству?";
+"Continue" = "Продолжить";
+"Copy" = "Копировать";
+"Copy Comment" = "Копировать комментарий";
+"Copy Description" = "Копировать описание";
+"Copy Information" = "Копировать информацию";
+"Copy Title" = "Копировать заголовок";
+"Create" = "Создать";
+"Create Backup" = "Создать резервную копию";
+"Created" = "Создано";
+"Credits" = "Авторы";
+"Custom Skip Duration" = "Своя длительность перемотки";
+"DEARROW" = "DEARROW";
+"DEVELOPER" = "РАЗРАБОТЧИК";
+"DOUBLE TAP OPTIONS" = "ПАРАМЕТРЫ ДВОЙНОГО НАЖАТИЯ";
+"Default" = "По умолчанию";
+"Default Player" = "Плеер по умолчанию";
+"Delete" = "Удалить";
+"Delete All" = "Удалить все";
+"Delete confirmation unavailable" = "Подтверждение удаления недоступно";
+"Delete every item in this section?" = "Удалить все элементы в этом разделе?";
+"Description copied" = "Описание скопировано";
+"Developer" = "Разработчик";
+"Dimensions" = "Размеры";
+"Disable Autoplay Videos" = "Отключить автовоспроизведение";
+"Disable Captions" = "Отключить субтитры";
+"Disable Continue Watching" = "Отключить продолжение просмотра";
+"Disable Double Tap" = "Отключить двойное касание";
+"Disable Drag & Drop" = "Отключить перетаскивание";
+"Disable Previous & Next" = "Отключить назад и вперёд";
+"Disable RTL Languages" = "Отключить языки RTL";
+"Disabled" = "Отключено";
+"Do you want to create a backup?" = "Создать резервную копию?";
+"Double tap, hold to seek and pinch" = "Двойное нажатие, удержание для поиска и щипок";
+"Download Audio" = "Скачать аудио";
+"Download Short" = "Скачать Short";
+"Download Video" = "Скачать видео";
+"Download complete" = "Загрузка завершена";
+"Download failed" = "Сбой загрузки";
+"Download log copied" = "Журнал загрузок скопирован";
+"Download started" = "Загрузка началась";
+"Download unavailable" = "Загрузка недоступна";
+"Downloading audio" = "Загрузка аудио";
+"Downloading video" = "Загрузка видео";
+"Downloads, background play, and more" = "Загрузки, фоновое воспроизведение и другое";
+"Duration" = "Длительность";
+"Enable Bottom Progress Bar" = "Включить нижнюю полосу прогресса";
+"Enable Download Feature" = "Включить загрузку";
+"Enable Legacy Quality Mode" = "Включить старый режим качества";
+"Enable Mini Player for All Videos" = "Мини-плеер для всех видео";
+"Enable PiP" = "Включить картинку в картинке";
+"Enable iPadOS Mode" = "Включить режим iPadOS";
+"End of track" = "Конец трека";
+"Endcards / Credits" = "Концевые заставки / Авторы";
+"Exit Fullscreen" = "Выйти из полноэкранного режима";
+"Explore" = "Обзор";
+"Export settings and all media as a ZIP file." = "Экспорт настроек и всех медиа в ZIP-файл.";
+"External Player" = "Внешний плеер";
+"Failed" = "Сбой";
+"Fashion" = "Мода";
+"File Size" = "Размер файла";
+"Filler" = "Заполнители";
+"Finalizing" = "Завершение";
+"Fix Playback & Account Recovery" = "Исправить воспроизведение и восстановление аккаунта";
+"Format" = "Формат";
+"Frame Rate" = "Частота кадров";
+"Fullscreen" = "Полный экран";
+"Gaming" = "Игры";
+"Gestures" = "Жесты";
+"Gradient" = "Градиент";
+"HIDE ELEMENTS" = "СКРЫТЬ ЭЛЕМЕНТЫ";
+"HIDE ITEMS" = "СКРЫТЬ ПУНКТЫ";
+"Hide Account" = "Скрыть аккаунт";
+"Hide Autoplay Button" = "Скрыть кнопку автовоспроизведения";
+"Hide Captions Button" = "Скрыть кнопку субтитров";
+"Hide Cast Button" = "Скрыть кнопку Cast";
+"Hide Comment Guidelines" = "Скрыть правила комментариев";
+"Hide Comment Previews" = "Скрыть превью комментариев";
+"Hide Comments" = "Скрыть комментарии";
+"Hide Dark Overlay Background" = "Скрыть тёмный фон наложения";
+"Hide Endscreen Videos" = "Скрыть видео на финальном экране";
+"Hide HUD Alerts" = "Скрыть уведомления HUD";
+"Hide Info Card" = "Скрыть информационную карточку";
+"Hide More/Gear Icon" = "Скрыть значок ещё/настроек";
+"Hide Notifications" = "Скрыть уведомления";
+"Hide Paid Promotion Notice" = "Скрыть уведомление о рекламе";
+"Hide Pause Card" = "Скрыть карточку паузы";
+"Hide Play/Pause" = "Скрыть воспроизведение/паузу";
+"Hide Premium Popup" = "Скрыть окно Premium";
+"Hide Previous & Next" = "Скрыть назад и вперёд";
+"Hide Product Recommendations" = "Скрыть рекомендации товаров";
+"Hide Quick Actions" = "Скрыть быстрые действия";
+"Hide Related Videos" = "Скрыть похожие видео";
+"Hide Search" = "Скрыть поиск";
+"Hide Search History" = "Скрыть историю поиска";
+"Hide Shorts from Feed" = "Скрыть Shorts из ленты";
+"Hide Sticker Ads" = "Скрыть рекламные стикеры";
+"Hide Suggested Videos" = "Скрыть рекомендуемые видео";
+"Hide Tab Labels" = "Скрыть подписи вкладок";
+"Hide Topic Section" = "Скрыть раздел тем";
+"Hide Watermark" = "Скрыть водяной знак";
+"Hide YouTube Logo" = "Скрыть логотип YouTube";
+"Hide YouTube Update Popup" = "Скрыть окно обновления";
+"Highlight" = "Выделение";
+"History" = "История";
+"Home" = "Главная";
+"IMPORT MEDIA" = "ИМПОРТ МЕДИА";
+"INACTIVE TABS" = "НЕАКТИВНЫЕ ВКЛАДКИ";
+"IPAD MODE" = "РЕЖИМ IPAD";
+"Image saved" = "Изображение сохранено";
+"Import Complete" = "Импорт завершён";
+"Import Failed" = "Сбой импорта";
+"Import Media" = "Импорт медиа";
+"Import failed" = "Сбой импорта";
+"Imported Media" = "Импортированные медиа";
+"Inactive" = "Неактивно";
+"Infuse" = "Infuse";
+"Infuse is not installed." = "Infuse не установлен.";
+"Interaction Reminder" = "Напоминание о взаимодействии";
+"Intermission / Intro" = "Антракт / Вступление";
+"Invalid ZIP64 backup" = "Недействительная ZIP64 резервная копия";
+"Keep Captions On" = "Не выключать субтитры";
+"Keep Progress Bar Visible" = "Всегда показывать полосу прогресса";
+"Language" = "Язык";
+"Learning" = "Обучение";
+"Left" = "Слева";
+"Library" = "Библиотека";
+"Live" = "Прямой эфир";
+"Loading PiP" = "Загрузка PiP";
+"MAIN" = "ОСНОВНОЕ";
+"MISCELLANEOUS" = "РАЗНОЕ";
+"Merge failed" = "Сбой объединения";
+"Merging" = "Объединение";
+"Miscellaneous" = "Разное";
+"Music" = "Музыка";
+"Navigation Bar" = "Панель навигации";
+"News" = "Новости";
+"No active Short was found." = "Активный Short не найден.";
+"No active video was found." = "Активное видео не найдено.";
+"No compatible audio formats were found." = "Совместимые форматы аудио не найдены.";
+"No compatible video formats were found." = "Совместимые форматы видео не найдены.";
+"No description found" = "Описание не найдено";
+"No matching media was selected" = "Соответствующие медиа не выбраны";
+"No playable stream is available." = "Нет доступного воспроизводимого потока.";
+"No playable video stream is available." = "Нет доступного воспроизводимого видеопотока.";
+"No thumbnail is available." = "Миниатюра недоступна.";
+"Non-Music Section" = "Немузыкальный раздел";
+"Not enough free space to create the backup" = "Недостаточно свободного места для создания резервной копии";
+"Notifs" = "Уведомления";
+"OLED Dark Mode" = "Тёмная тема OLED";
+"OVERLAY" = "ОВЕРЛЕЙ";
+"OVERLAY CONTROLLER" = "КОНТРОЛЛЕР ОВЕРЛЕЯ";
+"OVERLAY PLAYER" = "ОВЕРЛЕЙ-ПЛЕЕР";
+"Off" = "Выключено";
+"On" = "Вкл";
+"Open the YTKACE tab and tap the gear icon." = "Откройте вкладку YTKACE и нажмите значок шестерёнки.";
+"Original audio" = "Оригинальное аудио";
+"PLAYBACK" = "ВОСПРОИЗВЕДЕНИЕ";
+"PREVIOUS & NEXT BUTTONS" = "КНОПКИ ПРЕДЫДУЩИЙ И СЛЕДУЮЩИЙ";
+"PROGRESS BAR" = "ПОЛОСА ПРОГРЕССА";
+"PiP failed to start." = "Не удалось запустить PiP.";
+"PiP is not available for this video." = "PiP недоступно для этого видео.";
+"PiP is not supported on this device." = "PiP не поддерживается на этом устройстве.";
+"Picture in Picture" = "Картинка в картинке";
+"Play HD Videos over 3G/4G/5G" = "HD-видео через 3G/4G/5G";
+"Play Next" = "Играть далее";
+"Play in Background" = "Воспроизводить в фоне";
+"Play in External Player" = "Воспроизвести во внешнем плеере";
+"Playback Speed" = "Скорость воспроизведения";
+"Playback Speed toggles" = "Кнопки скорости";
+"Playback failed." = "Сбой воспроизведения.";
+"Playback recovery guidance unavailable" = "Руководство по восстановлению воспроизведения недоступно";
+"Player Controls" = "Управление плеером";
+"Playlists" = "Плейлисты";
+"Please Wait..." = "Пожалуйста, подождите...";
+"Preparing" = "Подготовка";
+"Preparing Backup..." = "Подготовка резервной копии...";
+"Preparing download" = "Подготовка загрузки";
+"Prevent Open in Shorts" = "Запретить открытие в Shorts";
+"Preview / Recap" = "Превью / Повтор";
+"Profile Picture Preview" = "Просмотр фото профиля";
+"Profile picture could not be saved" = "Не удалось сохранить фото профиля";
+"Profile picture saved" = "Фото профиля сохранено";
+"Remove Advertisements" = "Удалить рекламу";
+"Remove Launch Animation" = "Убрать анимацию запуска";
+"Remove downloaded cache files." = "Удалить загруженные файлы кэша.";
+"Restart YouTube to apply changes." = "Перезапустите YouTube, чтобы применить изменения.";
+"Restore Backup" = "Восстановить копию";
+"Restore Failed" = "Сбой восстановления";
+"Restoring Backup..." = "Восстановление резервной копии...";
+"Retrying lower quality" = "Повтор с более низким качеством";
+"Right" = "Справа";
+"SEEK SETTINGS" = "ПАРАМЕТРЫ ПЕРЕМОТКИ";
+"SHORTS" = "SHORTS";
+"STATUS BAR" = "СТАТУС-БАР";
+"STREAMING" = "СТРИМИНГ";
+"Save Artwork" = "Сохранить обложку";
+"Save Image" = "Сохранить изображение";
+"Save failed" = "Сбой сохранения";
+"Save to Photos" = "Сохранить в Фото";
+"Saved videos, audio and Shorts" = "Сохранённые видео, аудио и Shorts";
+"Seconds" = "Секунды: ";
+"Seconds: 10" = "Секунды: 10";
+"Seek Duration" = "Длительность перемотки";
+"Self Promotion" = "Самореклама";
+"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "Выберите, какая сторона управляет яркостью и громкостью.\n\nСоветы:\n1. В портретном режиме проведите вниз с любой стороны плеера.\n2. В полноэкранном режиме проводите снизу из-за жестов YouTube.";
+"Settings & Backup" = "Настройки и резервное копирование";
+"Settings could not be saved" = "Не удалось сохранить настройки";
+"Share" = "Поделиться";
+"Show" = "Показывать";
+"Show Marker" = "Показать маркер";
+"Show Status Bar in Overlay" = "Показывать строку состояния поверх";
+"Shrink Tabs (Bottom)" = "Уменьшить вкладки (снизу)";
+"Shrink Tabs (Smart)" = "Уменьшить вкладки (умно)";
+"Silent" = "Тихо";
+"Skip + Unskip" = "Пропустить + Вернуть";
+"Skip Only" = "Только пропустить";
+"Skip sponsors and swap clickbait with DeArrow" = "Пропуск спонсоров и замена кликбейта с помощью DeArrow";
+"Sleep Timer" = "Таймер сна";
+"Solid color" = "Сплошной цвет";
+"Speed, loop, gestures and overlay buttons" = "Скорость, цикл, жесты и кнопки наложения";
+"Sponsor" = "Спонсор";
+"SponsorBlock data: CC BY-NC-SA 4.0" = "Данные SponsorBlock: CC BY-NC-SA 4.0";
+"Sports" = "Спорт";
+"Starts YouTube faster" = "Запускает YouTube быстрее";
+"Startup Page" = "Стартовая страница";
+"Streaming" = "Стриминг";
+"Subscriptions" = "Подписки";
+"System" = "Системный";
+"System Player" = "Системный плеер";
+"Tab Bar" = "Панель вкладок";
+"Tap the top-right button to apply changes." = "Нажмите верхнюю правую кнопку, чтобы применить изменения.";
+"The backup contains an unsafe path" = "Резервная копия содержит небезопасный путь";
+"The backup could not be created." = "Не удалось создать резервную копию.";
+"The backup file could not be written" = "Не удалось записать файл резервной копии";
+"The backup has too many files" = "В резервной копии слишком много файлов";
+"The backup is incomplete" = "Резервная копия неполная";
+"The backup is too large" = "Резервная копия слишком большая";
+"The backup was not saved to the Files app." = "Резервная копия не была сохранена в приложении Файлы.";
+"The download did not complete." = "Загрузка не завершилась.";
+"The download timed out. Retry on a stable connection." = "Время загрузки истекло. Повторите при стабильном подключении.";
+"The download was cancelled." = "Загрузка отменена.";
+"The file could not be saved." = "Не удалось сохранить файл.";
+"The image could not be loaded." = "Не удалось загрузить изображение.";
+"The image could not be saved." = "Не удалось сохранить изображение.";
+"The network connection is offline. Reconnect and retry." = "Сетевое соединение недоступно. Переподключитесь и повторите.";
+"The selected formats are unavailable." = "Выбранные форматы недоступны.";
+"The stream stopped before it was complete. Retry once, or choose a lower quality." = "Поток остановился до завершения. Повторите один раз или выберите более низкое качество.";
+"This is not a YTKACE backup" = "Это не резервная копия YTKACE";
+"Title copied" = "Заголовок скопирован";
+"To modify settings, open the YTKACE tab and tap the gear icon above." = "Чтобы изменить настройки, откройте вкладку YTKACE и нажмите значок шестерёнки выше.";
+"Unknown" = "Неизвестно";
+"Unknown error" = "Неизвестная ошибка";
+"Unknown size" = "Неизвестный размер";
+"Unsupported ZIP compression" = "Неподдерживаемое ZIP-сжатие";
+"Use Premium Logo" = "Использовать логотип Premium";
+"VIDEO PLAYER" = "ВИДЕОПЛЕЕР";
+"VLC is not installed." = "VLC не установлен.";
+"VOLUME & BRIGHTNESS GESTURES" = "ЖЕСТЫ ГРОМКОСТИ И ЯРКОСТИ";
+"Video Info" = "Информация о видео";
+"Video Quality" = "Качество видео";
+"Video information unavailable" = "Информация о видео недоступна";
+"WLater" = "WLater";
+"Warning: Backup was not saved to Files app." = "Предупреждение: резервная копия не сохранена в приложении Файлы.";
+"Wi-Fi Quality" = "Качество по Wi-Fi";
+"YTKACE" = "YTKACE";
+"YTKACE Download" = "Загрузка YTKACE";
+"YTKACE Faster" = "YTKACE Быстрее";
+"YTKACE Loop" = "YTKACE Повтор";
+"YTKACE PiP" = "YTKACE PiP";
+"YTKACE Settings" = "Настройки YTKACE";
+"YTKACE Slower" = "YTKACE Медленнее";
+"YTKACE Speed" = "YTKACE Скорость";
+"YTKACE features" = "Функции YTKACE";
+"YTKACE follows your YouTube language." = "YTKACE следует языку вашего YouTube.";
+"YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACE использует данные SponsorBlock.\nЛицензировано под CC BY-NC-SA 4.0.";
+"YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nЧистая реализация\nКод под лицензией MIT\nСоздано Epic";
+"You" = "Вы";
+"YouTube Download" = "Загрузка YouTube";
+"YouTube Video" = "Видео YouTube";
+"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube не смог обновить этот поток в высоком разрешении. Воспроизведите видео кратко и повторите.";
+"YouTube did not authorize this format for the current device. Choose another quality." = "YouTube не авторизовал этот формат для текущего устройства. Выберите другое качество.";
+"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTube не предоставил пригодную сессию загрузки. Воспроизведите видео кратко и повторите.";
+"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTube ещё не подготовил это видео. Нажмите Воспроизвести на мгновение и повторите.";
+"YouTube is about to open the Cast menu." = "YouTube собирается открыть меню Cast.";
+"YouTube menu unavailable" = "Меню YouTube недоступно";
+"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTube отклонил запрос потока. Откройте видео заново, воспроизведите кратко и повторите.";
+"active" = "активно";
+"empty response" = "пустой ответ";
+"iOS Device" = "Устройство iOS";
+"incomplete stream" = "неполный поток";
+"segment detected" = "сегмент обнаружен";
+"segment skipped" = "сегмент пропущен";
+"selected quality" = "выбранное качество";
+"v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@" = "v%@ - v%@ ✓ (Совместимо)\n%@\n%@ - iOS %@";
+"· On" = "· Вкл";
+"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ Перезапустите YouTube, чтобы хуки вступили в силу. Оставьте выключенным, если воспроизведение уже работает — это обходит серверные сигналы остановки и может скрывать реальные проблемы.";
+"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ Хуки восстановления воспроизведения будут установлены при следующем запуске.\n\n";
+"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 Что это делает:\n• Принудительно отключает аттестацию iOS guard\n• Отмечает ошибки политики heartbeat как нефатальные\n• Перехватывает пути halt / cannot-play / error-overlay\n• Принудительно пропускает при ошибке воспроизводимости\n\n";
+"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 Когда использовать:\nВключите, если видео выдают ошибки во время воспроизведения, показывают \"произошла ошибка,\" или завершаются из-за сбоев heartbeat / аттестации.\n\n";
+"🔧 Fix Playback & Account Recovery" = "🔧 Исправить воспроизведение и восстановление аккаунта";
+"🧰 Fixes playback guidance for sideloaded apps." = "🧰 Исправляет руководство воспроизведения для sideload-приложений.";
+"No results" = "Нет результатов";
+"PiP unavailable" = "PiP недоступен";
+"Reset All Settings" = "Сбросить все настройки";
+"Reset All Settings?" = "Сбросить все настройки?";
+"Reset Settings" = "Сбросить настройки";
+"Reset" = "Сбросить";
+"Respring Later" = "Перезагрузить позже";
+"Respring Now" = "Перезагрузить сейчас";
+"Respring Required" = "Требуется перезагрузка";
+"Respring required for some changes" = "Для некоторых изменений требуется перезагрузка";
+"Respring" = "Перезагрузка";
+"Search" = "Поиск";
+"audio remux complete" = "Ремукс аудио завершён";
+"audio remux start" = "Начало ремукса аудио";
+"merge complete" = "Слияние завершено";
+"thumbnail embedded" = "Миниатюра встроена";
+
+/* 新增翻译 */
+"VIDEO" = "ВИДЕО";
+"APP" = "ПРИЛОЖЕНИЕ";
+"ABOUT" = "О ПРОГРАММЕ";
+"Enabled" = "Включено";
+"ACTIVE" = "АКТИВНО";
+"Tap the checkmark to apply changes." = "Нажмите галочку, чтобы применить изменения.";
+"YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@";
+"Player" = "Плеер";
+"Tabs" = "Вкладки";
+"Downloads, PiP, speed, loop, and background audio" = "Загрузки, PiP, скорость, цикл и фоновое аудио";
+"Skip or mark sponsored segments" = "Пропускать или отмечать спонсорские сегменты";
+"Choose, reorder, and rename tabs" = "Выбор, упорядочивание и переименование вкладок";
+"Brightness, volume, and seeking" = "Яркость, громкость и перемотка";
+"Playback" = "Воспроизведение";
+"Player controls and visibility" = "Управление плеером и видимость";
+"Quality, autoplay, and skip settings" = "Качество, автовоспроизведение и настройки пропуска";
+"Buttons, downloads, and feed options" = "Кнопки, загрузки и параметры ленты";
+"Preferred quality on Wi-Fi" = "Предпочтительное качество по Wi-Fi";
+"Preferred quality on mobile data" = "Предпочтительное качество по мобильной сети";
+"Navigation" = "Навигация";
+"Other" = "Другое";
+"Top bar buttons, logo, and cast" = "Кнопки верхней панели, логотип и трансляция";
+"Appearance, privacy, and compatibility" = "Внешний вид, конфиденциальность и совместимость";
+"Seconds: %@" = "Секунды: %@";
+"%@ seconds" = "%@ секунд";
+"%lu items added to %@." = "%lu элементов добавлено в %@.";
+"BUTTONS" = "КНОПКИ";
+"FILES" = "ФАЙЛЫ";
+"STORAGE" = "ХРАНИЛИЩЕ";
+"QUALITY" = "КАЧЕСТВО";
+"DOUBLE TAP" = "ДВОЙНОЕ НАЖАТИЕ";
+"AUTOPLAY & DATA" = "АВТОВОСПРОИЗВЕДЕНИЕ И ДАННЫЕ";
+"BRAND & CAST" = "БРЕНД И ТРАНСЛЯЦИЯ";
+"TOP BUTTONS" = "ВЕРХНИЕ КНОПКИ";
+"PAGE CHROME" = "ОФОРМЛЕНИЕ СТРАНИЦЫ";
+"APPEARANCE" = "ОФОРМЛЕНИЕ";
+"LAYOUT" = "РАСКЛАДКА";
+"SYSTEM" = "СИСТЕМА";
+"PRIVACY & PROMPTS" = "КОНФИДЕНЦИАЛЬНОСТЬ И ЗАПРОСЫ";
+"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Выберите сторону для яркости и громкости. Свайпайте вертикально по этой стороне плеера.";
+"BRIGHTNESS & VOLUME" = "ЯРКОСТЬ И ГРОМКОСТЬ";
+"SEEK" = "ПЕРЕМОТКА";
+"YTKACE
+Clean-room implementation
+MIT licensed code
+Built by Epic" = "YTKACE
+Реализация чистой комнаты
+Код под лицензией MIT
+Создано Epic";
+"A-Z" = "А–Я";
+"Z-A" = "Я–А";
+"Format: %@
+" = "Формат: %@
+";
+"File Size: %@
+" = "Размер файла: %@
+";
+"Duration: %@
+" = "Длительность: %@
+";
+"Dimensions: %.0f×%.0f
+" = "Размеры: %.0f×%.0f
+";
+"Bitrate: %.2f Kbps
+" = "Битрейт: %.2f Кбит/с
+";
+"Frame Rate: %.2f fps
+" = "Частота кадров: %.2f fps
+";
+"Created: %@" = "Создано: %@";
+"✅ Playback recovery hooks will install on next launch.
+
+📍 What this does:
+Intercepts playback failures and restores your session automatically.
+
+💡 Note:
+This requires a YouTube restart to take effect." = "✅ Хуки восстановления воспроизведения будут установлены при следующем запуске.
+
+📍 Что это делает:
+Перехватывает сбои воспроизведения и автоматически восстанавливает сеанс.
+
+💡 Примечание:
+Требуется перезапуск YouTube.";
+
+/* 新增翻译 */
+"YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@";
+"YTKACE
+Clean-room implementation
+MIT licensed code
+Built by Epic" = "YTKACE
+Реализация чистой комнаты
+Код под лицензией MIT
+Создано Epic";
+"Format: %@
+" = "Формат: %@
+";
+"File Size: %@
+" = "Размер файла: %@
+";
+"Duration: %@
+" = "Длительность: %@
+";
+"Dimensions: %.0f×%.0f
+" = "Размеры: %.0f×%.0f
+";
+"Bitrate: %.2f Kbps
+" = "Битрейт: %.2f Кбит/с
+";
+"Frame Rate: %.2f fps
+" = "Частота кадров: %.2f fps
+";
+"✅ Playback recovery hooks will install on next launch.
+
+📍 What this does:
+Intercepts playback failures and restores your session automatically.
+
+💡 Note:
+This requires a YouTube restart to take effect." = "✅ Хуки восстановления воспроизведения будут установлены при следующем запуске.
+
+📍 Что это делает:
+Перехватывает сбои воспроизведения и автоматически восстанавливает сеанс.
+
+💡 Примечание:
+Требуется перезапуск YouTube.";
+
+/* 新增翻译 */
+"YTKACE uses SponsorBlock data.
+Licensed under CC BY-NC-SA 4.0." = "YTKACE использует данные SponsorBlock.
+Лицензировано под CC BY-NC-SA 4.0.";
+
+/* 新增翻译 */
+"Downloads & Library" = "Загрузки и библиотека";
+"Saved video, audio, Shorts, imports and backups" = "Сохранённые видео, аудио, Shorts, импорты и резервные копии";
+"Download, PiP, loop, speed and progress controls" = "Загрузка, PiP, цикл, скорость и управление прогрессом";
+"Segments, alerts, colors and DeArrow" = "Сегменты, оповещения, цвета и DeArrow";
+"Player buttons, captions and watch-page cleanup" = "Кнопки плеера, субтитры и очистка страницы";
+"Quality menu, autoplay and skip timing" = "Меню качества, автовоспроизведение и таймер пропуска";
+"Playback, feed and action buttons" = "Воспроизведение, лента и кнопки действий";
+"Top buttons, branding and topic chips" = "Верхние кнопки, брендинг и чипы тем";
+"Choose and reorder bottom tabs" = "Выбор и упорядочивание нижних вкладок";
+"Brightness, volume, hold and tap to seek" = "Яркость, громкость, удержание и тап для перемотки";
+"OLED, startup, sharing, layout and prompts" = "OLED, запуск, обмен, макет и запросы";
+
+/* SponsorBlock/Overlay/Shorts section titles and missing strings */
+"WATCH PAGE" = "СТРАНИЦА ПРОСМОТРА";
+"GESTURES" = "ЖЕСТЫ";
+"ALWAYS VISIBLE" = "ВСЕГДА ВИДИМО";
+"HIDE FROM PLAYER" = "СКРЫТЬ ИЗ ПЛЕЕРА";
+"FEED" = "ЛЕНТА";
+"ACTION BUTTONS" = "КНОПКИ ДЕЙСТВИЙ";
+"%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "%@ загружено, но видео и аудио не удалось объединить. Попробуйте другой формат %@.\n%@";
+
+/* SponsorBlock/Overlay/Shorts section titles and missing strings */
+"PREVIOUS & NEXT" = "ПРЕДЫДУЩИЙ & СЛЕДУЮЩИЙ";
+"VLC" = "VLC";
+
+/* Shorts download button position picker options */
+"Top Corner" = "Верхний угол";
+"Action Buttons" = "Кнопки действий";
+"Remove Frosted Tab Bar" = "Убрать матовую панель вкладок";
+
+/* Sleep timer */
+"Sleep Timer Button" = "Кнопка таймера сна";
+"Sleep timer" = "Таймер сна";
+"Sleep timer ended. Playback has been paused." = "Таймер сна завершился. Воспроизведение приостановлено.";
+"1 hour" = "1 час";
+"minutes" = "минут";
+"End of video" = "Конец видео";

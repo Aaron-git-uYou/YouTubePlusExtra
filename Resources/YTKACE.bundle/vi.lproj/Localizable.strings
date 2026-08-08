@@ -220,3 +220,547 @@
 "· End of track" = "· Kết thúc bản nhạc";
 "· Off" = "· Tắt";
 "━" = "━";
+" (Default)" = " (Mặc định)";
+" artwork" = " ảnh bìa";
+" thumb" = " hình nhỏ";
+" thumbnail" = " hình nhỏ";
+"%.0f seconds" = "%.0f giây";
+"%lu item%@ added to %@." = "Đã thêm %lu mục%@ vào %@.";
+"15 Minutes" = "15 Phút";
+"30 Minutes" = "30 Phút";
+"45 Minutes" = "45 Phút";
+"60 Minutes" = "60 Phút";
+"A backup file is damaged" = "Tệp sao lưu bị hỏng";
+"A backup file is larger than 4 GB" = "Tệp sao lưu lớn hơn 4 GB";
+"A backup path is too long" = "Đường dẫn sao lưu quá dài";
+"ACTIVE TABS" = "TAB ĐANG HOẠT ĐỘNG";
+"About" = "Giới thiệu";
+"Active" = "Hoạt động";
+"Add Loop Toggle" = "Thêm nút lặp lại";
+"Advanced" = "Nâng cao";
+"Always Show All Controls" = "Luôn hiện tất cả điều khiển";
+"Always Show Play/Pause Button" = "Luôn hiện nút phát/tạm dừng";
+"Ask" = "Hỏi";
+"Audio Language" = "Ngôn ngữ âm thanh";
+"Auto" = "Tự động";
+"Auto Skip Shorts" = "Tự động bỏ qua Shorts";
+"Auto-Skip" = "Tự động bỏ qua";
+"Auto-skip" = "Tự động bỏ qua";
+"AutoPlay" = "Tự động phát";
+"BACKUP & RESTORE" = "SAO LƯU & KHÔI PHỤC";
+"Backup Failed" = "Sao lưu thất bại";
+"Backup Not Saved" = "Sao lưu chưa được lưu";
+"Backup Restored" = "Đã khôi phục sao lưu";
+"Backup confirmation unavailable" = "Không có xác nhận sao lưu";
+"Backup failed" = "Sao lưu thất bại";
+"Bitrate" = "Bitrate";
+"Bypass Age Restriction" = "Bỏ qua giới hạn độ tuổi";
+"CLEAR CACHE" = "XÓA BỘ NHỚ ĐỆM";
+"Cache Cleared" = "Đã xóa bộ nhớ đệm";
+"Cancelled" = "Đã hủy";
+"Cast Confirmation" = "Xác nhận Cast";
+"Cellular Quality" = "Chất lượng dữ liệu di động";
+"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "Chọn Video, Âm thanh hoặc Shorts, sau đó chọn phương tiện, ảnh bìa và phụ đề.";
+"Choose a YTKACE ZIP backup from Files." = "Chọn sao lưu ZIP YTKACE từ Tệp.";
+"Choose and reorder the bottom tabs" = "Chọn và sắp xếp lại các tab dưới cùng";
+"Clear" = "Xóa";
+"Clear Cache" = "Xóa bộ nhớ đệm";
+"Clear on Startup" = "Xóa khi khởi động";
+"Compact Previous & Next" = "Thu gọn trước và sau";
+"Complete" = "Hoàn tất";
+"Connect to a device?" = "Kết nối với thiết bị?";
+"Continue" = "Tiếp tục";
+"Copy" = "Sao chép";
+"Copy Comment" = "Sao chép bình luận";
+"Copy Description" = "Sao chép mô tả";
+"Copy Information" = "Sao chép thông tin";
+"Copy Title" = "Sao chép tiêu đề";
+"Create" = "Tạo";
+"Create Backup" = "Tạo bản sao lưu";
+"Created" = "Đã tạo";
+"Credits" = "Cảm ơn";
+"Custom Skip Duration" = "Thời lượng tua tùy chỉnh";
+"DEARROW" = "DEARROW";
+"DEVELOPER" = "NHÀ PHÁT TRIỂN";
+"DOUBLE TAP OPTIONS" = "TÙY CHỌN CHẠM HAI LẦN";
+"Default" = "Mặc định";
+"Default Player" = "Trình phát mặc định";
+"Delete" = "Xóa";
+"Delete All" = "Xóa tất cả";
+"Delete confirmation unavailable" = "Không có xác nhận xóa";
+"Delete every item in this section?" = "Xóa mọi mục trong phần này?";
+"Description copied" = "Đã sao chép mô tả";
+"Developer" = "Nhà phát triển";
+"Dimensions" = "Kích thước";
+"Disable Autoplay Videos" = "Tắt tự động phát";
+"Disable Captions" = "Tắt phụ đề";
+"Disable Continue Watching" = "Tắt xem tiếp";
+"Disable Double Tap" = "Tắt chạm hai lần";
+"Disable Drag & Drop" = "Tắt kéo và thả";
+"Disable Previous & Next" = "Tắt trước và sau";
+"Disable RTL Languages" = "Tắt ngôn ngữ RTL";
+"Disabled" = "Đã tắt";
+"Do you want to create a backup?" = "Bạn có muốn tạo sao lưu không?";
+"Double tap, hold to seek and pinch" = "Chạm đôi, giữ để tua và chụm";
+"Download Audio" = "Tải xuống âm thanh";
+"Download Short" = "Tải xuống Short";
+"Download Video" = "Tải xuống video";
+"Download complete" = "Tải xuống hoàn tất";
+"Download failed" = "Tải xuống thất bại";
+"Download log copied" = "Đã sao chép nhật ký tải xuống";
+"Download started" = "Đã bắt đầu tải xuống";
+"Download unavailable" = "Không thể tải xuống";
+"Downloading audio" = "Đang tải xuống âm thanh";
+"Downloading video" = "Đang tải xuống video";
+"Downloads, background play, and more" = "Tải xuống, phát nền và hơn thế nữa";
+"Duration" = "Thời lượng";
+"Enable Bottom Progress Bar" = "Bật thanh tiến trình dưới";
+"Enable Download Feature" = "Bật tính năng tải xuống";
+"Enable Legacy Quality Mode" = "Bật chế độ chất lượng cũ";
+"Enable Mini Player for All Videos" = "Trình phát nhỏ cho mọi video";
+"Enable PiP" = "Bật hình trong hình";
+"Enable iPadOS Mode" = "Bật chế độ iPadOS";
+"End of track" = "Kết thúc bài";
+"Endcards / Credits" = "Thẻ kết thúc / Cảm ơn";
+"Exit Fullscreen" = "Thoát toàn màn hình";
+"Explore" = "Khám phá";
+"Export settings and all media as a ZIP file." = "Xuất cài đặt và tất cả phương tiện dưới dạng tệp ZIP.";
+"External Player" = "Trình phát ngoài";
+"Failed" = "Thất bại";
+"Fashion" = "Thời trang";
+"File Size" = "Kích thước tệp";
+"Filler" = "Nội dung phụ";
+"Finalizing" = "Đang hoàn tất";
+"Fix Playback & Account Recovery" = "Sửa phát lại và khôi phục tài khoản";
+"Format" = "Định dạng";
+"Frame Rate" = "Tốc độ khung hình";
+"Fullscreen" = "Toàn màn hình";
+"Gaming" = "Trò chơi";
+"Gestures" = "Cử chỉ";
+"Gradient" = "Chuyển sắc";
+"HIDE ELEMENTS" = "ẨN PHẦN TỬ";
+"HIDE ITEMS" = "ẨN MỤC";
+"Hide Account" = "Ẩn tài khoản";
+"Hide Autoplay Button" = "Ẩn nút tự động phát";
+"Hide Captions Button" = "Ẩn nút phụ đề";
+"Hide Cast Button" = "Ẩn nút Cast";
+"Hide Comment Guidelines" = "Ẩn nguyên tắc bình luận";
+"Hide Comment Previews" = "Ẩn xem trước bình luận";
+"Hide Comments" = "Ẩn bình luận";
+"Hide Dark Overlay Background" = "Ẩn nền tối phủ";
+"Hide Endscreen Videos" = "Ẩn video màn hình kết thúc";
+"Hide HUD Alerts" = "Ẩn cảnh báo HUD";
+"Hide Info Card" = "Ẩn thẻ thông tin";
+"Hide More/Gear Icon" = "Ẩn biểu tượng thêm/cài đặt";
+"Hide Notifications" = "Ẩn thông báo";
+"Hide Paid Promotion Notice" = "Ẩn thông báo quảng cáo trả phí";
+"Hide Pause Card" = "Ẩn thẻ tạm dừng";
+"Hide Play/Pause" = "Ẩn phát/tạm dừng";
+"Hide Premium Popup" = "Ẩn cửa sổ Premium";
+"Hide Previous & Next" = "Ẩn trước và sau";
+"Hide Product Recommendations" = "Ẩn đề xuất sản phẩm";
+"Hide Quick Actions" = "Ẩn thao tác nhanh";
+"Hide Related Videos" = "Ẩn video liên quan";
+"Hide Search" = "Ẩn tìm kiếm";
+"Hide Search History" = "Ẩn lịch sử tìm kiếm";
+"Hide Shorts from Feed" = "Ẩn Shorts khỏi bảng tin";
+"Hide Sticker Ads" = "Ẩn quảng cáo nhãn dán";
+"Hide Suggested Videos" = "Ẩn video đề xuất";
+"Hide Tab Labels" = "Ẩn nhãn tab";
+"Hide Topic Section" = "Ẩn mục chủ đề";
+"Hide Watermark" = "Ẩn hình mờ";
+"Hide YouTube Logo" = "Ẩn logo YouTube";
+"Hide YouTube Update Popup" = "Ẩn cửa sổ cập nhật";
+"Highlight" = "Đánh dấu";
+"History" = "Lịch sử";
+"Home" = "Trang chủ";
+"IMPORT MEDIA" = "NHẬP PHƯƠNG TIỆN";
+"INACTIVE TABS" = "TAB KHÔNG HOẠT ĐỘNG";
+"IPAD MODE" = "CHẾ ĐỘ IPAD";
+"Image saved" = "Đã lưu hình ảnh";
+"Import Complete" = "Nhập hoàn tất";
+"Import Failed" = "Nhập thất bại";
+"Import Media" = "Nhập phương tiện";
+"Import failed" = "Nhập thất bại";
+"Imported Media" = "Phương tiện đã nhập";
+"Inactive" = "Không hoạt động";
+"Infuse" = "Infuse";
+"Infuse is not installed." = "Infuse chưa được cài đặt.";
+"Interaction Reminder" = "Nhắc nhở tương tác";
+"Intermission / Intro" = "Gián đoạn / Mở đầu";
+"Invalid ZIP64 backup" = "Sao lưu ZIP64 không hợp lệ";
+"Keep Captions On" = "Giữ phụ đề bật";
+"Keep Progress Bar Visible" = "Luôn hiện thanh tiến trình";
+"Language" = "Ngôn ngữ";
+"Learning" = "Học tập";
+"Left" = "Trái";
+"Library" = "Thư viện";
+"Live" = "Trực tiếp";
+"Loading PiP" = "Đang tải PiP";
+"MAIN" = "CHÍNH";
+"MISCELLANEOUS" = "KHÁC";
+"Merge failed" = "Ghép thất bại";
+"Merging" = "Đang ghép";
+"Miscellaneous" = "Khác";
+"Music" = "Âm nhạc";
+"Navigation Bar" = "Thanh điều hướng";
+"News" = "Tin tức";
+"No active Short was found." = "Không tìm thấy Short đang hoạt động.";
+"No active video was found." = "Không tìm thấy video đang hoạt động.";
+"No compatible audio formats were found." = "Không tìm thấy định dạng âm thanh tương thích.";
+"No compatible video formats were found." = "Không tìm thấy định dạng video tương thích.";
+"No description found" = "Không tìm thấy mô tả";
+"No matching media was selected" = "Chưa chọn phương tiện phù hợp";
+"No playable stream is available." = "Không có luồng có thể phát.";
+"No playable video stream is available." = "Không có luồng video có thể phát.";
+"No thumbnail is available." = "Không có hình nhỏ.";
+"Non-Music Section" = "Phần không phải âm nhạc";
+"Not enough free space to create the backup" = "Không đủ không gian trống để tạo sao lưu";
+"Notifs" = "Thông báo";
+"OLED Dark Mode" = "Chế độ tối OLED";
+"OVERLAY" = "LỚP PHỦ";
+"OVERLAY CONTROLLER" = "BỘ ĐIỀU KHIỂN LỚP PHỦ";
+"OVERLAY PLAYER" = "TRÌNH PHÁT LỚP PHỦ";
+"Off" = "Tắt";
+"On" = "Bật";
+"Open the YTKACE tab and tap the gear icon." = "Mở tab YTKACE và nhấn biểu tượng bánh răng.";
+"Original audio" = "Âm thanh gốc";
+"PLAYBACK" = "PHÁT LẠI";
+"PREVIOUS & NEXT BUTTONS" = "NÚT TRƯỚC & SAU";
+"PROGRESS BAR" = "THANH TIẾN TRÌNH";
+"PiP failed to start." = "Không thể bắt đầu PiP.";
+"PiP is not available for this video." = "PiP không khả dụng cho video này.";
+"PiP is not supported on this device." = "PiP không được hỗ trợ trên thiết bị này.";
+"Picture in Picture" = "Ảnh trong ảnh";
+"Play HD Videos over 3G/4G/5G" = "Phát video HD qua 3G/4G/5G";
+"Play Next" = "Phát tiếp theo";
+"Play in Background" = "Phát nền";
+"Play in External Player" = "Phát trong trình phát ngoài";
+"Playback Speed" = "Tốc độ phát";
+"Playback Speed toggles" = "Nút tốc độ phát";
+"Playback failed." = "Phát lại thất bại.";
+"Playback recovery guidance unavailable" = "Không có hướng dẫn khôi phục phát lại";
+"Player Controls" = "Điều khiển trình phát";
+"Playlists" = "Danh sách phát";
+"Please Wait..." = "Vui lòng đợi...";
+"Preparing" = "Đang chuẩn bị";
+"Preparing Backup..." = "Đang chuẩn bị sao lưu...";
+"Preparing download" = "Đang chuẩn bị tải xuống";
+"Prevent Open in Shorts" = "Ngăn mở trong Shorts";
+"Preview / Recap" = "Xem trước / Tổng kết";
+"Profile Picture Preview" = "Xem trước ảnh đại diện";
+"Profile picture could not be saved" = "Không thể lưu ảnh đại diện";
+"Profile picture saved" = "Đã lưu ảnh đại diện";
+"Remove Advertisements" = "Xóa quảng cáo";
+"Remove Launch Animation" = "Bỏ hoạt ảnh khởi động";
+"Remove downloaded cache files." = "Xóa các tệp bộ nhớ đệm đã tải xuống.";
+"Restart YouTube to apply changes." = "Khởi động lại YouTube để áp dụng thay đổi.";
+"Restore Backup" = "Khôi phục bản sao lưu";
+"Restore Failed" = "Khôi phục thất bại";
+"Restoring Backup..." = "Đang khôi phục sao lưu...";
+"Retrying lower quality" = "Đang thử lại với chất lượng thấp hơn";
+"Right" = "Phải";
+"SEEK SETTINGS" = "CÀI ĐẶT TÌM KIẾM";
+"SHORTS" = "SHORTS";
+"STATUS BAR" = "THANH TRẠNG THÁI";
+"STREAMING" = "PHÁT TRỰC TIẾP";
+"Save Artwork" = "Lưu ảnh bìa";
+"Save Image" = "Lưu hình ảnh";
+"Save failed" = "Lưu thất bại";
+"Save to Photos" = "Lưu vào Ảnh";
+"Saved videos, audio and Shorts" = "Video, âm thanh và Shorts đã lưu";
+"Seconds" = "Giây: ";
+"Seconds: 10" = "Giây: 10";
+"Seek Duration" = "Thời lượng tua";
+"Self Promotion" = "Tự quảng cáo";
+"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "Đặt bên nào điều khiển độ sáng và âm lượng.\n\nMẹo:\n1. ở chế độ dọc, vuốt xuống ở bất kỳ bên nào của trình phát.\n2. ở toàn màn hình, vuốt từ vùng dưới do cách xử lý cử chỉ của YouTube.";
+"Settings & Backup" = "Cài đặt & sao lưu";
+"Settings could not be saved" = "Không thể lưu cài đặt";
+"Share" = "Chia sẻ";
+"Show" = "Hiện";
+"Show Marker" = "Hiện đánh dấu";
+"Show Status Bar in Overlay" = "Hiện thanh trạng thái trên lớp phủ";
+"Shrink Tabs (Bottom)" = "Thu nhỏ tab (Dưới)";
+"Shrink Tabs (Smart)" = "Thu nhỏ tab (Thông minh)";
+"Silent" = "Im lặng";
+"Skip + Unskip" = "Bỏ qua + Hoàn tác";
+"Skip Only" = "Chỉ bỏ qua";
+"Skip sponsors and swap clickbait with DeArrow" = "Bỏ qua nhà tài trợ và thay thế tiêu đề giật gân bằng DeArrow";
+"Sleep Timer" = "Hẹn giờ ngủ";
+"Solid color" = "Màu đơn sắc";
+"Speed, loop, gestures and overlay buttons" = "Tốc độ, lặp, cử chỉ và nút lớp phủ";
+"Sponsor" = "Tài trợ";
+"SponsorBlock data: CC BY-NC-SA 4.0" = "Dữ liệu SponsorBlock: CC BY-NC-SA 4.0";
+"Sports" = "Thể thao";
+"Starts YouTube faster" = "Khởi động YouTube nhanh hơn";
+"Startup Page" = "Trang khởi động";
+"Streaming" = "Phát trực tuyến";
+"Subscriptions" = "Kênh đăng ký";
+"System" = "Hệ thống";
+"System Player" = "Trình phát hệ thống";
+"Tab Bar" = "Thanh tab";
+"Tap the top-right button to apply changes." = "Nhấn nút trên cùng bên phải để áp dụng thay đổi.";
+"The backup contains an unsafe path" = "Sao lưu chứa đường dẫn không an toàn";
+"The backup could not be created." = "Không thể tạo sao lưu.";
+"The backup file could not be written" = "Không thể ghi tệp sao lưu";
+"The backup has too many files" = "Sao lưu có quá nhiều tệp";
+"The backup is incomplete" = "Sao lưu không đầy đủ";
+"The backup is too large" = "Sao lưu quá lớn";
+"The backup was not saved to the Files app." = "Sao lưu chưa được lưu vào ứng dụng Tệp.";
+"The download did not complete." = "Tải xuống chưa hoàn tất.";
+"The download timed out. Retry on a stable connection." = "Tải xuống đã hết thời gian. Thử lại với kết nối ổn định.";
+"The download was cancelled." = "Tải xuống đã bị hủy.";
+"The file could not be saved." = "Không thể lưu tệp.";
+"The image could not be loaded." = "Không thể tải hình ảnh.";
+"The image could not be saved." = "Không thể lưu hình ảnh.";
+"The network connection is offline. Reconnect and retry." = "Kết nối mạng đang ngoại tuyến. Kết nối lại và thử lại.";
+"The selected formats are unavailable." = "Các định dạng đã chọn không khả dụng.";
+"The stream stopped before it was complete. Retry once, or choose a lower quality." = "Luồng đã dừng trước khi hoàn tất. Thử lại một lần, hoặc chọn chất lượng thấp hơn.";
+"This is not a YTKACE backup" = "Đây không phải là sao lưu YTKACE";
+"Title copied" = "Đã sao chép tiêu đề";
+"To modify settings, open the YTKACE tab and tap the gear icon above." = "Để chỉnh sửa cài đặt, mở tab YTKACE và nhấn biểu tượng bánh răng ở trên.";
+"Unknown" = "Không xác định";
+"Unknown error" = "Lỗi không xác định";
+"Unknown size" = "Kích thước không xác định";
+"Unsupported ZIP compression" = "Nén ZIP không được hỗ trợ";
+"Use Premium Logo" = "Dùng logo Premium";
+"VIDEO PLAYER" = "TRÌNH PHÁT VIDEO";
+"VLC is not installed." = "VLC chưa được cài đặt.";
+"VOLUME & BRIGHTNESS GESTURES" = "CỬ CHỈ ÂM LƯỢNG & ĐỘ SÁNG";
+"Video Info" = "Thông tin video";
+"Video Quality" = "Chất lượng video";
+"Video information unavailable" = "Thông tin video không khả dụng";
+"WLater" = "WLater";
+"Warning: Backup was not saved to Files app." = "Cảnh báo: Sao lưu chưa được lưu vào ứng dụng Tệp.";
+"Wi-Fi Quality" = "Chất lượng Wi-Fi";
+"YTKACE" = "YTKACE";
+"YTKACE Download" = "Tải xuống YTKACE";
+"YTKACE Faster" = "YTKACE Nhanh hơn";
+"YTKACE Loop" = "YTKACE Lặp lại";
+"YTKACE PiP" = "YTKACE PiP";
+"YTKACE Settings" = "Cài đặt YTKACE";
+"YTKACE Slower" = "YTKACE Chậm hơn";
+"YTKACE Speed" = "YTKACE Tốc độ";
+"YTKACE features" = "Tính năng YTKACE";
+"YTKACE follows your YouTube language." = "YTKACE theo ngôn ngữ YouTube của bạn.";
+"YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACE sử dụng dữ liệu SponsorBlock.\nCấp phép theo CC BY-NC-SA 4.0.";
+"YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nTriển khai clean-room\nMã được cấp phép MIT\nXây dựng bởi Epic";
+"You" = "Bạn";
+"YouTube Download" = "Tải xuống YouTube";
+"YouTube Video" = "Video YouTube";
+"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube không thể làm mới luồng độ phân giải cao này. Phát video một lát, rồi thử lại.";
+"YouTube did not authorize this format for the current device. Choose another quality." = "YouTube không cấp phép định dạng này cho thiết bị hiện tại. Chọn chất lượng khác.";
+"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTube không cung cấp phiên tải xuống có thể sử dụng. Phát video một lát, rồi thử lại.";
+"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTube chưa chuẩn bị video này. Nhấn Phát trong một lúc, rồi thử lại.";
+"YouTube is about to open the Cast menu." = "YouTube sắp mở menu Cast.";
+"YouTube menu unavailable" = "Menu YouTube không khả dụng";
+"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTube đã từ chối yêu cầu luồng. Mở lại video, phát một lát, rồi thử lại.";
+"active" = "đang hoạt động";
+"empty response" = "phản hồi trống";
+"iOS Device" = "Thiết bị iOS";
+"incomplete stream" = "luồng không đầy đủ";
+"segment detected" = "đã phát hiện phân đoạn";
+"segment skipped" = "đã bỏ qua phân đoạn";
+"selected quality" = "chất lượng đã chọn";
+"v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@" = "v%@ - v%@ ✓ (Tương thích)\n%@\n%@ - iOS %@";
+"· On" = "· Bật";
+"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ Khởi động lại YouTube để các hook có hiệu lực. Để tắt nếu phát lại đã hoạt động — nó bỏ qua tín hiệu dừng phía máy chủ và có thể che giấu các vấn đề thực sự.";
+"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ Các hook khôi phục phát lại sẽ được cài đặt ở lần khởi động tiếp theo.\n\n";
+"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 Việc này làm gì:\n• Buộc tắt xác thực iOS guard\n• Đánh dấu lỗi chính sách heartbeat là không nghiêm trọng\n• Bỏ qua các đường dẫn halt / cannot-play / error-overlay\n• Buộc bỏ qua khi có lỗi phát lại\n\n";
+"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 Khi nào sử dụng:\nBật nếu video bị lỗi giữa quá trình phát, hiển thị \"đã xảy ra lỗi,\" hoặc bị dừng do lỗi heartbeat / xác thực.\n\n";
+"🔧 Fix Playback & Account Recovery" = "🔧 Sửa phát lại và khôi phục tài khoản";
+"🧰 Fixes playback guidance for sideloaded apps." = "🧰 Sửa hướng dẫn phát lại cho các ứng dụng sideload.";
+"No results" = "Không có kết quả";
+"PiP unavailable" = "PiP không khả dụng";
+"Reset All Settings" = "Đặt lại tất cả cài đặt";
+"Reset All Settings?" = "Đặt lại tất cả cài đặt?";
+"Reset Settings" = "Đặt lại cài đặt";
+"Reset" = "Đặt lại";
+"Respring Later" = "Khởi động lại sau";
+"Respring Now" = "Khởi động lại ngay";
+"Respring Required" = "Cần khởi động lại";
+"Respring required for some changes" = "Cần khởi động lại cho một số thay đổi";
+"Respring" = "Khởi động lại";
+"Search" = "Tìm kiếm";
+"audio remux complete" = "Remux âm thanh hoàn tất";
+"audio remux start" = "Bắt đầu remux âm thanh";
+"merge complete" = "Hợp nhất hoàn tất";
+"thumbnail embedded" = "Ảnh thu nhỏ đã nhúng";
+
+/* 新增翻译 */
+"VIDEO" = "VIDEO";
+"APP" = "ỨNG DỤNG";
+"ABOUT" = "GIỚI THIỆU";
+"Enabled" = "Đã bật";
+"ACTIVE" = "HOẠT ĐỘNG";
+"Tap the checkmark to apply changes." = "Nhấn vào dấu kiểm để áp dụng các thay đổi.";
+"YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@";
+"Player" = "Trình phát";
+"Tabs" = "Thẻ";
+"Downloads, PiP, speed, loop, and background audio" = "Tải xuống, PiP, tốc độ, lặp và âm thanh nền";
+"Skip or mark sponsored segments" = "Bỏ qua hoặc đánh dấu các phân đoạn được tài trợ";
+"Choose, reorder, and rename tabs" = "Chọn, sắp xếp lại và đổi tên thẻ";
+"Brightness, volume, and seeking" = "Độ sáng, âm lượng và tua";
+"Playback" = "Phát lại";
+"Player controls and visibility" = "Điều khiển trình phát và hiển thị";
+"Quality, autoplay, and skip settings" = "Chất lượng, tự động phát và cài đặt bỏ qua";
+"Buttons, downloads, and feed options" = "Nút, tải xuống và tùy chọn nguồn cấp dữ liệu";
+"Preferred quality on Wi-Fi" = "Chất lượng ưu tiên trên Wi-Fi";
+"Preferred quality on mobile data" = "Chất lượng ưu tiên trên dữ liệu di động";
+"Navigation" = "Điều hướng";
+"Other" = "Khác";
+"Top bar buttons, logo, and cast" = "Nút thanh trên cùng, logo và truyền";
+"Appearance, privacy, and compatibility" = "Giao diện, quyền riêng tư và khả năng tương thích";
+"Seconds: %@" = "Giây: %@";
+"%@ seconds" = "%@ giây";
+"%lu items added to %@." = "Đã thêm %lu mục vào %@.";
+"BUTTONS" = "NÚT";
+"FILES" = "TỆP";
+"STORAGE" = "LƯU TRỮ";
+"QUALITY" = "CHẤT LƯỢNG";
+"DOUBLE TAP" = "CHẠM ĐÔI";
+"AUTOPLAY & DATA" = "TỰ ĐỘNG PHÁT VÀ DỮ LIỆU";
+"BRAND & CAST" = "THƯƠNG HIỆU VÀ TRUYỀN";
+"TOP BUTTONS" = "NÚT TRÊN CÙNG";
+"PAGE CHROME" = "GIAO DIỆN TRANG";
+"APPEARANCE" = "GIAO DIỆN";
+"LAYOUT" = "BỐ CỤC";
+"SYSTEM" = "HỆ THỐNG";
+"PRIVACY & PROMPTS" = "QUYỀN RIÊNG TƯ VÀ NHẮC";
+"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Chọn một bên cho độ sáng và âm lượng. Trượt dọc trên phía đó của trình phát.";
+"BRIGHTNESS & VOLUME" = "ĐỘ SÁNG VÀ ÂM LƯỢNG";
+"SEEK" = "TUA";
+"YTKACE
+Clean-room implementation
+MIT licensed code
+Built by Epic" = "YTKACE
+Triển khai phòng sạch
+Mã được cấp phép MIT
+Xây dựng bởi Epic";
+"A-Z" = "A–Z";
+"Z-A" = "Z–A";
+"Format: %@
+" = "Định dạng: %@
+";
+"File Size: %@
+" = "Kích thước tệp: %@
+";
+"Duration: %@
+" = "Thời lượng: %@
+";
+"Dimensions: %.0f×%.0f
+" = "Kích thước: %.0f×%.0f
+";
+"Bitrate: %.2f Kbps
+" = "Tốc độ bit: %.2f Kbps
+";
+"Frame Rate: %.2f fps
+" = "Tốc độ khung hình: %.2f fps
+";
+"Created: %@" = "Đã tạo: %@";
+"✅ Playback recovery hooks will install on next launch.
+
+📍 What this does:
+Intercepts playback failures and restores your session automatically.
+
+💡 Note:
+This requires a YouTube restart to take effect." = "✅ Các hook khôi phục phát lại sẽ được cài đặt ở lần khởi động tiếp theo.
+
+📍 Tác dụng:
+Chặn lỗi phát lại và tự động khôi phục phiên của bạn.
+
+💡 Lưu ý:
+Yêu cầu khởi động lại YouTube.";
+
+/* 新增翻译 */
+"YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
+%@
+%@  •  iOS %@";
+"YTKACE
+Clean-room implementation
+MIT licensed code
+Built by Epic" = "YTKACE
+Triển khai phòng sạch
+Mã được cấp phép MIT
+Xây dựng bởi Epic";
+"Format: %@
+" = "Định dạng: %@
+";
+"File Size: %@
+" = "Kích thước tệp: %@
+";
+"Duration: %@
+" = "Thời lượng: %@
+";
+"Dimensions: %.0f×%.0f
+" = "Kích thước: %.0f×%.0f
+";
+"Bitrate: %.2f Kbps
+" = "Tốc độ bit: %.2f Kbps
+";
+"Frame Rate: %.2f fps
+" = "Tốc độ khung hình: %.2f fps
+";
+"✅ Playback recovery hooks will install on next launch.
+
+📍 What this does:
+Intercepts playback failures and restores your session automatically.
+
+💡 Note:
+This requires a YouTube restart to take effect." = "✅ Các hook khôi phục phát lại sẽ được cài đặt ở lần khởi động tiếp theo.
+
+📍 Tác dụng:
+Chặn lỗi phát lại và tự động khôi phục phiên của bạn.
+
+💡 Lưu ý:
+Yêu cầu khởi động lại YouTube.";
+
+/* 新增翻译 */
+"YTKACE uses SponsorBlock data.
+Licensed under CC BY-NC-SA 4.0." = "YTKACE sử dụng dữ liệu SponsorBlock.
+Giấy phép CC BY-NC-SA 4.0.";
+
+/* 新增翻译 */
+"Downloads & Library" = "Tải xuống và thư viện";
+"Saved video, audio, Shorts, imports and backups" = "Video, âm thanh, Shorts, nội dung nhập và bản sao lưu đã lưu";
+"Download, PiP, loop, speed and progress controls" = "Tải xuống, PiP, lặp, tốc độ và điều khiển tiến trình";
+"Segments, alerts, colors and DeArrow" = "Phân đoạn, cảnh báo, màu sắc và DeArrow";
+"Player buttons, captions and watch-page cleanup" = "Nút trình phát, phụ đề và dọn dẹp trang";
+"Quality menu, autoplay and skip timing" = "Menu chất lượng, tự động phát và hẹn giờ bỏ qua";
+"Playback, feed and action buttons" = "Phát lại, nguồn cấp dữ liệu và nút hành động";
+"Top buttons, branding and topic chips" = "Nút trên cùng, thương hiệu và chip chủ đề";
+"Choose and reorder bottom tabs" = "Chọn và sắp xếp lại thẻ dưới cùng";
+"Brightness, volume, hold and tap to seek" = "Độ sáng, âm lượng, giữ và chạm để tua";
+"OLED, startup, sharing, layout and prompts" = "OLED, khởi động, chia sẻ, bố cục và nhắc nhở";
+
+/* SponsorBlock/Overlay/Shorts section titles and missing strings */
+"WATCH PAGE" = "TRANG XEM";
+"GESTURES" = "CỬ CHỈ";
+"ALWAYS VISIBLE" = "LUÔN HIỂN THỊ";
+"HIDE FROM PLAYER" = "ẨN KHỎI TRÌNH PHÁT";
+"FEED" = "BẢNG TIN";
+"ACTION BUTTONS" = "NÚT HÀNH ĐỘNG";
+"%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "Đã tải xuống %@, nhưng không thể ghép video và âm thanh. Hãy thử định dạng %@ khác.\n%@";
+
+/* SponsorBlock/Overlay/Shorts section titles and missing strings */
+"PREVIOUS & NEXT" = "TRƯỚC & SAU";
+"VLC" = "VLC";
+
+/* Shorts download button position picker options */
+"Top Corner" = "Góc trên";
+"Action Buttons" = "Nút hành động";
+"Remove Frosted Tab Bar" = "Xóa thanh tab mờ";
+
+/* Sleep timer */
+"Sleep Timer Button" = "Nút hẹn giờ ngủ";
+"Sleep timer" = "Hẹn giờ ngủ";
+"Sleep timer ended. Playback has been paused." = "Hẹn giờ ngủ đã kết thúc. Phát lại đã tạm dừng.";
+"1 hour" = "1 giờ";
+"minutes" = "phút";
+"End of video" = "Kết thúc video";

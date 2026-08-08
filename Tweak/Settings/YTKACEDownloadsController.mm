@@ -749,7 +749,7 @@ static void YTKACEStoreMode(NSString *field, NSInteger segment, NSInteger mode) 
     NSArray<NSString *> *titles = @[
         YTKACELocalized(@"Cards"), YTKACELocalized(@"List"),
         YTKACELocalized(@"Grid"), YTKACELocalized(@"Newest"),
-        YTKACELocalized(@"Oldest"), @"A\u2013Z", @"Z\u2013A"
+        YTKACELocalized(@"Oldest"), YTKACELocalized(@"A-Z"), YTKACELocalized(@"Z-A")
     ];
     NSArray<NSString *> *symbols = @[
         @"rectangle.grid.1x2", @"list.bullet", @"square.grid.2x2",
@@ -823,15 +823,22 @@ static void YTKACEStoreMode(NSString *field, NSInteger segment, NSInteger mode) 
 
     NSArray<NSString *> *sortTitles = @[
         YTKACELocalized(@"Newest"), YTKACELocalized(@"Oldest"),
-        @"A–Z", @"Z–A"
+        YTKACELocalized(@"A-Z"), YTKACELocalized(@"Z-A")
     ];
     NSArray<NSString *> *sortSymbols = @[
-        @"arrow.down", @"arrow.up", @"textformat.abc", @"textformat.abc"
+        @"arrow.down.to.line.circle", @"arrow.up.to.line.circle",
+        @"textformat.abc", @"textformat.abc"
     ];
     NSMutableArray<UIMenuElement *> *sortActions = [NSMutableArray array];
     for (NSInteger mode = 0; mode < 4; mode++) {
+        UIImage *sortImage = [UIImage systemImageNamed:sortSymbols[(NSUInteger)mode]];
+        if (mode == 3 && sortImage != nil) {
+            sortImage = [UIImage imageWithCGImage:sortImage.CGImage
+                                           scale:sortImage.scale
+                                     orientation:UIImageOrientationUpMirrored];
+        }
         UIAction *action = [UIAction actionWithTitle:sortTitles[(NSUInteger)mode]
-            image:[UIImage systemImageNamed:sortSymbols[(NSUInteger)mode]]
+            image:sortImage
             identifier:nil handler:^(__unused UIAction *selected) {
                 __typeof__(self) strongSelf = weakSelf;
                 if (strongSelf == nil) return;
@@ -995,7 +1002,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     UIImage *image = [metadata[@"image"] isKindOfClass:UIImage.class]
         ? metadata[@"image"] : nil;
     cell.durationLabel.text = duration;
-    cell.resolutionLabel.text = resolution.length != 0 ? resolution : @"Audio";
+    cell.resolutionLabel.text = resolution.length != 0 ? resolution : YTKACELocalized(@"Audio");
     NSString *sizeText = [NSByteCountFormatter stringFromByteCount:size
                                                         countStyle:NSByteCountFormatterCountStyleFile];
     cell.metadataLabel.text = cell.layoutMode == 2
@@ -1084,35 +1091,35 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     } @catch (__unused NSException *exception) {
     }
     NSArray *actions = @[
-        [self nativeActionWithTitle:@"Default Player" asset:@"ig_icon_play_outline_24_Normal"
+        [self nativeActionWithTitle:YTKACELocalized(@"Default Player") asset:@"ig_icon_play_outline_24_Normal"
                              symbol:@"play" handler:^(__unused UIAlertAction *action) {
             [self playURLWithSystemPlayer:url];
         }] ?: NSNull.null,
-        [self nativeActionWithTitle:@"Video Info" asset:@"ic_info_outline_3x_Normal"
+        [self nativeActionWithTitle:YTKACELocalized(@"Video Info") asset:@"ic_info_outline_3x_Normal"
                              symbol:@"info.circle" handler:^(__unused UIAlertAction *action) {
             [self showInfoForURL:url];
         }] ?: NSNull.null,
-        [self nativeActionWithTitle:@"Save to Photos" asset:@"ig_icon_photo_outline_24_Normal"
+        [self nativeActionWithTitle:YTKACELocalized(@"Save to Photos") asset:@"ig_icon_photo_outline_24_Normal"
                              symbol:@"photo" handler:^(__unused UIAlertAction *action) {
             UISaveVideoAtPathToSavedPhotosAlbum(url.path, nil, nil, NULL);
         }] ?: NSNull.null,
-        [self nativeActionWithTitle:@"Save Artwork" asset:@"ig_icon_photo_gallery_outline_24_Normal"
+        [self nativeActionWithTitle:YTKACELocalized(@"Save Artwork") asset:@"ig_icon_photo_gallery_outline_24_Normal"
                              symbol:@"photo.on.rectangle" handler:^(__unused UIAlertAction *action) {
             [self saveArtworkForURL:url];
         }] ?: NSNull.null,
-        [self nativeActionWithTitle:@"Share" asset:@"share_24pt_3x_Normal"
+        [self nativeActionWithTitle:YTKACELocalized(@"Share") asset:@"share_24pt_3x_Normal"
                              symbol:@"square.and.arrow.up" handler:^(__unused UIAlertAction *action) {
             [self shareURL:url sourceView:sourceView];
         }] ?: NSNull.null,
-        [self nativeActionWithTitle:@"Delete" asset:@"delete_24pt_3x_Normal"
+        [self nativeActionWithTitle:YTKACELocalized(@"Delete") asset:@"delete_24pt_3x_Normal"
                              symbol:@"trash" handler:^(__unused UIAlertAction *action) {
             [self deleteURL:url];
         }] ?: NSNull.null,
-        [self nativeActionWithTitle:@"Rename" asset:@"pencil_24pt_3x_Normal"
+        [self nativeActionWithTitle:YTKACELocalized(@"Rename") asset:@"pencil_24pt_3x_Normal"
                              symbol:@"pencil" handler:^(__unused UIAlertAction *action) {
             [self renameURL:url];
         }] ?: NSNull.null,
-        [self nativeActionWithTitle:@"Delete All" asset:@"qtm_ic_delete_3x_Normal"
+        [self nativeActionWithTitle:YTKACELocalized(@"Delete All") asset:@"qtm_ic_delete_3x_Normal"
                              symbol:@"trash.fill" handler:^(__unused UIAlertAction *action) {
             [self confirmDeleteAll];
         }] ?: NSNull.null
@@ -1151,35 +1158,35 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         alertControllerWithTitle:url.lastPathComponent.stringByDeletingPathExtension
                          message:nil
                   preferredStyle:UIAlertControllerStyleActionSheet];
-    [menu addAction:YTKACEMenuAction(@"Default Player", @"play", UIAlertActionStyleDefault,
+    [menu addAction:YTKACEMenuAction(YTKACELocalized(@"Default Player"), @"play", UIAlertActionStyleDefault,
         ^(__unused UIAlertAction *action) {
             [self playURLWithSystemPlayer:url];
         })];
-    [menu addAction:YTKACEMenuAction(@"Video Info", @"info.circle", UIAlertActionStyleDefault,
+    [menu addAction:YTKACEMenuAction(YTKACELocalized(@"Video Info"), @"info.circle", UIAlertActionStyleDefault,
         ^(__unused UIAlertAction *action) {
             [self showInfoForURL:url];
         })];
-    [menu addAction:YTKACEMenuAction(@"Save to Photos", @"photo", UIAlertActionStyleDefault,
+    [menu addAction:YTKACEMenuAction(YTKACELocalized(@"Save to Photos"), @"photo", UIAlertActionStyleDefault,
         ^(__unused UIAlertAction *action) {
             UISaveVideoAtPathToSavedPhotosAlbum(url.path, nil, nil, NULL);
         })];
-    [menu addAction:YTKACEMenuAction(@"Save Artwork", @"photo.on.rectangle", UIAlertActionStyleDefault,
+    [menu addAction:YTKACEMenuAction(YTKACELocalized(@"Save Artwork"), @"photo.on.rectangle", UIAlertActionStyleDefault,
         ^(__unused UIAlertAction *action) {
             [self saveArtworkForURL:url];
         })];
-    [menu addAction:YTKACEMenuAction(@"Share", @"square.and.arrow.up", UIAlertActionStyleDefault,
+    [menu addAction:YTKACEMenuAction(YTKACELocalized(@"Share"), @"square.and.arrow.up", UIAlertActionStyleDefault,
         ^(__unused UIAlertAction *action) {
             [self shareURL:url sourceView:sourceView];
         })];
-    [menu addAction:YTKACEMenuAction(@"Delete", @"trash", UIAlertActionStyleDestructive,
+    [menu addAction:YTKACEMenuAction(YTKACELocalized(@"Delete"), @"trash", UIAlertActionStyleDestructive,
         ^(__unused UIAlertAction *action) {
             [self deleteURL:url];
         })];
-    [menu addAction:YTKACEMenuAction(@"Rename", @"pencil", UIAlertActionStyleDefault,
+    [menu addAction:YTKACEMenuAction(YTKACELocalized(@"Rename"), @"pencil", UIAlertActionStyleDefault,
         ^(__unused UIAlertAction *action) {
             [self renameURL:url];
         })];
-    [menu addAction:YTKACEMenuAction(@"Delete All", @"trash.fill", UIAlertActionStyleDestructive,
+    [menu addAction:YTKACEMenuAction(YTKACELocalized(@"Delete All"), @"trash.fill", UIAlertActionStyleDestructive,
         ^(__unused UIAlertAction *action) {
             [self confirmDeleteAll];
         })];
@@ -1209,22 +1216,22 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         stringFromByteCount:size.longLongValue
         countStyle:NSByteCountFormatterCountStyleFile];
     NSMutableString *details = [NSMutableString string];
-    [details appendFormat:@"Format: %@\n", url.pathExtension.uppercaseString];
-    [details appendFormat:@"File Size: %@\n", fileSize];
-    [details appendFormat:@"Duration: %@\n", YTKACEDurationText(duration)];
+    [details appendFormat:YTKACELocalized(@"Format: %@\n"), url.pathExtension.uppercaseString];
+    [details appendFormat:YTKACELocalized(@"File Size: %@\n"), fileSize];
+    [details appendFormat:YTKACELocalized(@"Duration: %@\n"), YTKACEDurationText(duration)];
     if (track != nil) {
-        [details appendFormat:@"Dimensions: %.0f×%.0f\n",
+        [details appendFormat:YTKACELocalized(@"Dimensions: %.0f×%.0f\n"),
             fabs(dimensions.width), fabs(dimensions.height)];
-        [details appendFormat:@"Bitrate: %.2f Kbps\n",
+        [details appendFormat:YTKACELocalized(@"Bitrate: %.2f Kbps\n"),
             track.estimatedDataRate / 1000.0];
-        [details appendFormat:@"Frame Rate: %.2f fps\n", track.nominalFrameRate];
+        [details appendFormat:YTKACELocalized(@"Frame Rate: %.2f fps\n"), track.nominalFrameRate];
     }
     if (created != nil) {
-        [details appendFormat:@"Created: %@", [formatter stringFromDate:created]];
+        [details appendFormat:YTKACELocalized(@"Created: %@"), [formatter stringFromDate:created]];
     }
 
-    if (!YTKACEShowYouTubeDialog(@"Video Info", details)) {
-        YTKACEShowNotice(@"Video information unavailable");
+    if (!YTKACEShowYouTubeDialog(YTKACELocalized(@"Video Info"), details)) {
+        YTKACEShowNotice(YTKACELocalized(@"Video information unavailable"));
     }
 }
 
@@ -1292,9 +1299,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 - (void)confirmDeleteAll {
     __weak __typeof__(self) weakSelf = self;
     BOOL shown = YTKACEShowYouTubeConfirmation(
-        @"Delete All",
-        @"Delete every item in this section?",
-        @"Delete All",
+        YTKACELocalized(@"Delete All"),
+        YTKACELocalized(@"Delete every item in this section?"),
+        YTKACELocalized(@"Delete All"),
         ^{
             __typeof__(self) strongSelf = weakSelf;
             if (strongSelf == nil) return;
@@ -1309,7 +1316,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         }
     );
     if (!shown) {
-        YTKACEShowNotice(@"Delete confirmation unavailable");
+        YTKACEShowNotice(YTKACELocalized(@"Delete confirmation unavailable"));
     }
 }
 

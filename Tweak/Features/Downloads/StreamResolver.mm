@@ -1,4 +1,5 @@
 #import "StreamResolver.h"
+#import "../../Runtime/Localization.h"
 
 #import <UIKit/UIKit.h>
 #import <VideoToolbox/VideoToolbox.h>
@@ -183,7 +184,7 @@ static YTKACEStreamOption *YTKACEOptionFromFormat(id format, BOOL adaptive) {
             }
         }
     }
-    option.languageLabel = language.length != 0 ? language : @"Original audio";
+    option.languageLabel = language.length != 0 ? language : YTKACELocalized(@"Original audio");
     NSString *trackID = YTKACEStringValue(YTKACEStreamObject(
         audioTrack, @[@"id_p", @"audioTrackId", @"audioTrackID"]));
     if (trackID.length == 0) {
@@ -282,7 +283,7 @@ static YTKACEStreamOption *YTKACEOptionFromFormat(id format, BOOL adaptive) {
             continue;
         }
         NSString *key = option.languageLabel.length != 0
-            ? option.languageLabel : @"Original audio";
+            ? option.languageLabel : YTKACELocalized(@"Original audio");
         YTKACEStreamOption *current = byLanguage[key];
         if (current == nil || option.isDefaultAudio || option.bitrate > current.bitrate) {
             byLanguage[key] = option;
