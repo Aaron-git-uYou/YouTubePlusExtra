@@ -72,6 +72,14 @@ jobs:
           done
           cat Release
 
+      - name: Landing page
+        run: |
+          version="$(awk -F': ' '/^Version:/ {print $2}' control | tr -d '\r')"
+          mkdir -p site/screenshots
+          cp screenshots/framed/*.png site/screenshots/
+          sed "s|Version 0\.0\.0|Version ${version}|" web/index.html > site/index.html
+          grep -o 'Version [0-9.]*' site/index.html
+
       - name: Icon
         run: |
           icon=$(find Resources -iname 'CydiaIcon.png' -o -iname 'icon*.png' | head -1)
