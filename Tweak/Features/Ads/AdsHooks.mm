@@ -315,8 +315,7 @@ static BOOL YTKACEIsAdLayoutIdentifier(NSString *identifier) {
         stringByReplacingOccurrencesOfString:@"." withString:@"_"];
     normalized = [normalized stringByReplacingOccurrencesOfString:@"-"
                                                         withString:@"_"];
-    return [normalized isEqualToString:@"eml_expandable_metadata_vpp"] ||
-        [normalized hasPrefix:@"eml_ad_"];
+    return [normalized hasPrefix:@"eml_ad_"];
 }
 
 static void YTKACEASDisplayDidMoveToWindow(id receiver, SEL selector) {
@@ -329,12 +328,33 @@ static void YTKACEASDisplayDidMoveToWindow(id receiver, SEL selector) {
         return;
     }
     NSString *identifier = YTKACEObjectValue(receiver, @"accessibilityIdentifier");
-    if (!YTKACEIsAdLayoutIdentifier(identifier)) return;
+    if (!YTKACEIsAdLayoutIdentifier(identifier)) return;
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([receiver respondsToSelector:@selector(removeFromSuperview)]) {
             ((void (*)(id, SEL))objc_msgSend)(receiver, @selector(removeFromSuperview));
         }
     });
+}
+
+static BOOL YTKACEElementDataLooksLikeAd(id object) {
+    SEL elementData = NSSelectorFromString(@"elementData");
+    if (![object respondsToSelector:elementData]) return NO;
+    id payload = ((id (*)(id, SEL))objc_msgSend)(object, elementData);
+    NSData *data = nil;
+    if ([payload isKindOfClass:NSData.class]) {
+        data = payload;
+    } else if ([payload respondsToSelector:NSSelectorFromString(@"data")]) {
+        id inner = ((id (*)(id, SEL))objc_msgSend)(
+            payload, NSSelectorFromString(@"data"));
+        if ([inner isKindOfClass:NSData.class]) data = inner;
+    }
+    if (data.length == 0 || data.length > 262144) return NO;
+    NSData *needle = [@"eml.ad" dataUsingEncoding:NSUTF8StringEncoding];
+    if ([data rangeOfData:needle options:0
+                    range:NSMakeRange(0, data.length)].location == NSNotFound) {
+        return NO;
+    }
+    return YES;
 }
 
 static BOOL YTKACEObjectLooksLikeAd(id object) {
@@ -373,6 +393,7 @@ static BOOL YTKACEObjectLooksLikeAd(id object) {
         [description containsString:@"eml_ad_"]) {
         return YES;
     }
+    if (YTKACEElementDataLooksLikeAd(object)) return YES;
     SEL compatibilitySelector = NSSelectorFromString(@"compatibilityOptions");
     if (![object respondsToSelector:compatibilitySelector]) {
         return NO;
