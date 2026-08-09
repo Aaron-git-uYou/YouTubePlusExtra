@@ -29,6 +29,27 @@ static const void *YTKACESponsorMarkerBoundsAssociation = &YTKACESponsorMarkerBo
 static const void *YTKACESponsorMarkerDurationAssociation = &YTKACESponsorMarkerDurationAssociation;
 static __weak id YTKACECurrentSponsorController;
 static NSHashTable<UIView *> *YTKACESponsorBars;
+static BOOL YTKACESponsorTimeUpdatesEnabled;
+static BOOL YTKACEPlaybackTimeNotificationsNeeded;
+static id YTKACEPlaybackPreferenceObserver;
+
+static void YTKACERefreshPlaybackTimePreferenceState(void) {
+    YTKACESponsorTimeUpdatesEnabled =
+        YTKACEFeatureEnabled(YTKACESponsorBlockKey);
+    YTKACEPlaybackTimeNotificationsNeeded =
+        YTKACEFeatureEnabled(@"shortsProgress") ||
+        YTKACEFeatureEnabled(@"autoSkipShorts") ||
+        YTKACEFeatureEnabled(YTKACESpeedKey) ||
+        YTKACEFeatureEnabled(YTKACESleepTimerKey);
+}
+
+static void YTKACEPublishPlaybackTime(id receiver, double time) {
+    if (!YTKACEPlaybackTimeNotificationsNeeded) return;
+    [NSNotificationCenter.defaultCenter
+        postNotificationName:@"YTKACEPlaybackTimeDidChange"
+        object:receiver
+        userInfo:@{@"time": @(time)}];
+}
 
 static id YTKACEObjectMessage(id receiver, NSString *selectorName) {
     SEL selector = NSSelectorFromString(selectorName);
@@ -404,11 +425,10 @@ static void YTKACESingleVideoTimeChanged(id receiver,
     }
     double current = YTKACEDoubleMessage(receiver, @[@"currentVideoMediaTime"]);
     double resolved = current > 0.0 ? current : time;
-    YTKACEEvaluateSponsorTime(receiver, resolved);
-    [NSNotificationCenter.defaultCenter
-        postNotificationName:@"YTKACEPlaybackTimeDidChange"
-        object:receiver
-        userInfo:@{@"time": @(resolved)}];
+    if (YTKACESponsorTimeUpdatesEnabled) {
+        YTKACEEvaluateSponsorTime(receiver, resolved);
+    }
+    YTKACEPublishPlaybackTime(receiver, resolved);
 }
 
 static void YTKACEMutatedVideoTimeChanged(id receiver,
@@ -422,11 +442,10 @@ static void YTKACEMutatedVideoTimeChanged(id receiver,
     }
     double current = YTKACEDoubleMessage(receiver, @[@"currentVideoMediaTime"]);
     double resolved = current > 0.0 ? current : time;
-    YTKACEEvaluateSponsorTime(receiver, resolved);
-    [NSNotificationCenter.defaultCenter
-        postNotificationName:@"YTKACEPlaybackTimeDidChange"
-        object:receiver
-        userInfo:@{@"time": @(resolved)}];
+    if (YTKACESponsorTimeUpdatesEnabled) {
+        YTKACEEvaluateSponsorTime(receiver, resolved);
+    }
+    YTKACEPublishPlaybackTime(receiver, resolved);
 }
 
 static void YTKACERenderSponsorMarkers(UIView *receiver, UIView *target,
@@ -544,6 +563,16 @@ static void YTKACEMiniplayerBarLayout(UIView *receiver, SEL selector) {
 void YTKACEInstallSponsorBlockHooks(void) {
     if (YTKACESponsorBars == nil) {
         YTKACESponsorBars = [NSHashTable weakObjectsHashTable];
+    }
+    YTKACERefreshPlaybackTimePreferenceState();
+    if (YTKACEPlaybackPreferenceObserver == nil) {
+        YTKACEPlaybackPreferenceObserver = [NSNotificationCenter.defaultCenter
+            addObserverForName:YTKACEPreferencesDidChangeNotification
+            object:nil
+            queue:NSOperationQueue.mainQueue
+            usingBlock:^(__unused NSNotification *notification) {
+                YTKACERefreshPlaybackTimePreferenceState();
+            }];
     }
     YTKACEInstallInstanceHook(@"YTPlayerViewController",
                               @"playbackController:didActivateVideo:withPlaybackData:",
