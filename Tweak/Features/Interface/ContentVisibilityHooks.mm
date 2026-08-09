@@ -168,13 +168,15 @@ static BOOL YTKACESectionIsProductsShelf(id section) {
 }
 
 static NSArray *YTKACEFilteredFeedSections(NSArray *sections) {
+    NSArray *adFiltered = YTKACEFilterAdSections(sections);
     BOOL hideShorts = YTKACEFeatureEnabled(@"YTKACE.Preference.Shorts.FeedHidden");
     BOOL hideProducts = YTKACEFeatureEnabled(@"YTKACE.Preference.Overlay.ProductsHidden");
-    if ((!hideShorts && !hideProducts) || ![sections isKindOfClass:NSArray.class]) {
-        return sections;
+    if ((!hideShorts && !hideProducts) ||
+        ![adFiltered isKindOfClass:NSArray.class]) {
+        return adFiltered;
     }
-    NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:sections.count];
-    for (id section in sections) {
+    NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:adFiltered.count];
+    for (id section in adFiltered) {
         if (hideShorts && YTKACESectionIsShortsShelf(section)) continue;
         if (hideProducts && YTKACESectionIsProductsShelf(section)) continue;
         [filtered addObject:section];
@@ -207,18 +209,6 @@ static BOOL YTKACEContentShouldHide(UIView *view, BOOL *hideSuperview) {
                        identifier ?: @"",
                        view.accessibilityLabel.lowercaseString ?: @"",
                        NSStringFromClass(view.class).lowercaseString];
-
-    if (YTKACEFeatureEnabled(YTKACENoAdsKey) &&
-        YTKACEContentContains(token, @[
-            @"eml_ad_",
-            @"eml_expandable_metadata_vpp",
-            @"feed_ad_metadata",
-            @"paid_content_overlay",
-            @"promoted_video",
-            @"companion_ad"
-        ])) {
-        return YES;
-    }
 
     if (YTKACEFeatureEnabled(@"YTKACE.Preference.Overlay.CommentsHidden")) {
         if ([identifier isEqualToString:@"id_comment_guidelines_text"]) {
