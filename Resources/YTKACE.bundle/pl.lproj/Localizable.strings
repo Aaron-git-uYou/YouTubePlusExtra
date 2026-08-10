@@ -1,6 +1,6 @@
 /* YTKACE localisation - pl */
 "--:--" = "--:--";
-"ABOUT" = "O PROGRAMIE";
+"ABOUT" = "O APLIKACJI";
 "ACTION BUTTONS" = "PRZYCISKI AKCJI";
 "ALWAYS VISIBLE" = "ZAWSZE WIDOCZNE";
 "APP" = "APLIKACJA";
@@ -8,7 +8,7 @@
 "AUTOPLAY & DATA" = "AUTOODTWARZANIE I DANE";
 "Action Buttons" = "Przyciski akcji";
 "Add video, audio, Shorts, artwork, or subtitles." = "Dodaj wideo, audio, Shorts, okładkę lub napisy.";
-"Appearance, privacy, and compatibility" = "Wygląd, prywatność i zgodność";
+"Appearance, privacy, and compatibility" = "Wygląd, prywatność i kompatybilność";
 "Apply Settings" = "Zastosuj ustawienia";
 "Ask" = "Pytaj";
 "Audio" = "Audio";
@@ -17,7 +17,7 @@
 "Auto Advance" = "Automatyczne przejście";
 "Auto-skip" = "Pomijaj automatycznie";
 "Avatar Preview" = "Podgląd awatara";
-"BRAND & CAST" = "MARKA I PRZESYŁANIE";
+"BRAND & CAST" = "MARKA I CAST";
 "BRIGHTNESS & VOLUME" = "JASNOŚĆ I GŁOŚNOŚĆ";
 "BUTTONS" = "PRZYCISKI";
 "Back" = "Wstecz";
@@ -32,7 +32,7 @@
 "Brightness" = "Jasność";
 "Brightness, volume, and seeking" = "Jasność, głośność i przewijanie";
 "Brightness, volume, hold and tap to seek" = "Jasność, głośność, przytrzymanie i dotknięcie";
-"Buttons, downloads, and feed options" = "Przyciski, pobieranie i opcje kanału";
+"Buttons, downloads, and feed options" = "Przyciski, pobieranie i opcje feedu";
 "Cancel" = "Anuluj";
 "Captions Off" = "Napisy wyłączone";
 "Captions On" = "Napisy włączone";
@@ -40,7 +40,7 @@
 "Cellular Quality" = "Jakość w sieci komórkowej";
 "Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off." = "Wybierz stronę dla jasności i głośności. Przesuwaj pionowo po tej stronie odtwarzacza. Ustawienie głośności na obu stronach wyłącza jasność.";
 "Choose and reorder bottom tabs" = "Wybierz i uporządkuj dolne karty";
-"Choose, reorder, and rename tabs" = "Wybieraj, porządkuj i zmieniaj nazwy kart";
+"Choose, reorder, and rename tabs" = "Wybierz, uporządkuj i zmień nazwy kart";
 "Clear Cache Now" = "Wyczyść pamięć podręczną";
 "Clear Cache at Launch" = "Czyść pamięć podręczną przy starcie";
 "Close" = "Zamknij";
@@ -59,7 +59,7 @@
 "Download, PiP, loop, speed and progress controls" = "Pobieranie, PiP, pętla, prędkość i postęp";
 "Downloads" = "Pobrane";
 "Downloads & Library" = "Pobrane i biblioteka";
-"Downloads, PiP, speed, loop, and background audio" = "Pobrane, PiP, prędkość, pętla i dźwięk w tle";
+"Downloads, PiP, speed, loop, and background audio" = "Pobieranie, PiP, prędkość, pętla i dźwięk w tle";
 "Enable" = "Włącz";
 "Explore" = "Odkrywaj";
 "FEED" = "KANAŁ";
@@ -106,7 +106,7 @@
 "PAGE CHROME" = "ELEMENTY STRONY";
 "PLAYBACK" = "ODTWARZANIE";
 "PREVIOUS & NEXT" = "POPRZEDNI I NASTĘPNY";
-"PRIVACY & PROMPTS" = "PRYWATNOŚĆ I MONITY";
+"PRIVACY & PROMPTS" = "PRYWATNOŚĆ I KOMUNIKATY";
 "PROGRESS BAR" = "PASEK POSTĘPU";
 "PiP Button" = "Przycisk PiP";
 "Playback" = "Odtwarzanie";
@@ -114,16 +114,16 @@
 "Playback, feed and action buttons" = "Odtwarzanie, kanał i przyciski akcji";
 "Player" = "Odtwarzacz";
 "Player buttons, captions and watch-page cleanup" = "Przyciski odtwarzacza, napisy i porządki na stronie";
-"Player controls and visibility" = "Sterowanie odtwarzaczem i widoczność";
-"Preferred quality on Wi-Fi" = "Preferowana jakość przez Wi-Fi";
-"Preferred quality on mobile data" = "Preferowana jakość przez dane komórkowe";
+"Player controls and visibility" = "Kontrolki odtwarzacza i widoczność";
+"Preferred quality on Wi-Fi" = "Preferowana jakość w Wi-Fi";
+"Preferred quality on mobile data" = "Preferowana jakość w danych komórkowych";
 "Premium Logo" = "Logo Premium";
 "Prevent Open in Shorts" = "Zablokuj otwieranie w Shorts";
 "Progress Bar" = "Pasek postępu";
 "Progress bar style" = "Styl paska postępu";
 "QUALITY" = "JAKOŚĆ";
 "Quality menu, autoplay and skip timing" = "Menu jakości, autoodtwarzanie i czas przewijania";
-"Quality, autoplay, and skip settings" = "Ustawienia jakości, autoodtwarzania i przewijania";
+"Quality, autoplay, and skip settings" = "Jakość, autoodtwarzanie i ustawienia pomijania";
 "Remove Account Button" = "Usuń przycisk konta";
 "Remove Ads" = "Usuń reklamy";
 "Remove Autoplay" = "Usuń autoodtwarzanie";
@@ -185,7 +185,7 @@
 "Skip Launch Animation" = "Pomiń animację uruchamiania";
 "Skip Only" = "Tylko pomiń";
 "Skip Time" = "Czas przewijania";
-"Skip or mark sponsored segments" = "Pomijaj lub oznaczaj segmenty sponsorowane";
+"Skip or mark sponsored segments" = "Pomiń lub oznacz segmenty sponsorowane";
 "Smaller Previous/Next" = "Mniejsze poprzedni/następny";
 "Solid color" = "Kolor jednolity";
 "Sort" = "Sortuj";
@@ -201,7 +201,7 @@
 "Thumbnails" = "Miniatury";
 "Titles" = "Tytuły";
 "Top Corner" = "Górny róg";
-"Top bar buttons, logo, and cast" = "Przyciski górnego paska, logo i przesyłanie";
+"Top bar buttons, logo, and cast" = "Przyciski górnego paska, logo i cast";
 "Top buttons, branding and topic chips" = "Górne przyciski, marka i etykiety tematów";
 "Turn Off Double Tap" = "Wyłącz podwójne dotknięcie";
 "Unskip" = "Cofnij pominięcie";
@@ -240,12 +240,9 @@
 "Advanced" = "Zaawansowane";
 "Always Show All Controls" = "Zawsze pokazuj wszystkie elementy";
 "Always Show Play/Pause Button" = "Zawsze pokazuj odtwórz/pauza";
-"Ask" = "Pytaj";
 "Audio Language" = "Język audio";
-"Auto" = "Auto";
 "Auto Skip Shorts" = "Automatycznie pomijaj Shorts";
 "Auto-Skip" = "Automatyczne pomijanie";
-"Auto-skip" = "Auto-pomiń";
 "AutoPlay" = "Autoodtwarzanie";
 "BACKUP & RESTORE" = "KOPIA ZAPASOWA I PRZYWRACANIE";
 "Backup Failed" = "Nieudana kopia zapasowa";
@@ -259,7 +256,6 @@
 "Cache Cleared" = "Pamięć podręczna wyczyszczona";
 "Cancelled" = "Anulowano";
 "Cast Confirmation" = "Potwierdzenie Cast";
-"Cellular Quality" = "Jakość w sieci komórkowej";
 "Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "Wybierz Wideo, Audio lub Shorts, a następnie wybierz multimedia, okładkę i napisy.";
 "Choose a YTKACE ZIP backup from Files." = "Wybierz kopię zapasową ZIP YTKACE z aplikacji Pliki.";
 "Choose and reorder the bottom tabs" = "Wybierz i zmień kolejność dolnych kart";
@@ -281,16 +277,14 @@
 "Credits" = "Twórcy";
 "Custom Skip Duration" = "Własny czas przewijania";
 "DEARROW" = "DEARROW";
-"DEVELOPER" = "DEVELOPER";
+"DEVELOPER" = "PROGRAMISTA";
 "DOUBLE TAP OPTIONS" = "OPCJE PODWÓJNEGO STUKNIĘCIA";
-"Default" = "Domyślny";
 "Default Player" = "Domyślny odtwarzacz";
 "Delete" = "Usuń";
 "Delete All" = "Usuń wszystko";
 "Delete confirmation unavailable" = "Potwierdzenie usunięcia niedostępne";
 "Delete every item in this section?" = "Usunąć wszystkie elementy w tej sekcji?";
 "Description copied" = "Opis skopiowany";
-"Developer" = "Deweloper";
 "Dimensions" = "Wymiary";
 "Disable Autoplay Videos" = "Wyłącz autoodtwarzanie";
 "Disable Captions" = "Wyłącz napisy";
@@ -299,7 +293,6 @@
 "Disable Drag & Drop" = "Wyłącz przeciąganie";
 "Disable Previous & Next" = "Wyłącz poprzedni i następny";
 "Disable RTL Languages" = "Wyłącz języki RTL";
-"Disabled" = "Wyłączone";
 "Do you want to create a backup?" = "Czy chcesz utworzyć kopię zapasową?";
 "Double tap, hold to seek and pinch" = "Dwukrotne dotknięcie, przytrzymaj, aby przeszukać i uszczypnij";
 "Download Audio" = "Pobierz audio";
@@ -323,7 +316,6 @@
 "End of track" = "Koniec utworu";
 "Endcards / Credits" = "Karty końcowe / Napisy końcowe";
 "Exit Fullscreen" = "Wyjdź z pełnego ekranu";
-"Explore" = "Odkrywaj";
 "Export settings and all media as a ZIP file." = "Eksportuj ustawienia i wszystkie multimedia jako plik ZIP.";
 "External Player" = "Zewnętrzny odtwarzacz";
 "Failed" = "Niepowodzenie";
@@ -336,8 +328,6 @@
 "Frame Rate" = "Liczba klatek";
 "Fullscreen" = "Pełny ekran";
 "Gaming" = "Gry";
-"Gestures" = "Gesty";
-"Gradient" = "Gradient";
 "HIDE ELEMENTS" = "UKRYJ ELEMENTY";
 "HIDE ITEMS" = "UKRYJ ELEMENTY";
 "Hide Account" = "Ukryj konto";
@@ -366,14 +356,12 @@
 "Hide Shorts from Feed" = "Ukryj Shorts w kanale";
 "Hide Sticker Ads" = "Ukryj reklamy naklejek";
 "Hide Suggested Videos" = "Ukryj proponowane filmy";
-"Hide Tab Labels" = "Ukryj etykiety kart";
 "Hide Topic Section" = "Ukryj sekcję tematów";
 "Hide Watermark" = "Ukryj znak wodny";
 "Hide YouTube Logo" = "Ukryj logo YouTube";
 "Hide YouTube Update Popup" = "Ukryj okno aktualizacji";
 "Highlight" = "Wyróżnienie";
 "History" = "Historia";
-"Home" = "Główna";
 "IMPORT MEDIA" = "IMPORTUJ MULTIMEDIA";
 "INACTIVE TABS" = "NIEAKTYWNE KARTY";
 "IPAD MODE" = "TRYB IPAD";
@@ -393,11 +381,9 @@
 "Keep Progress Bar Visible" = "Zawsze pokazuj pasek postępu";
 "Language" = "Język";
 "Learning" = "Nauka";
-"Left" = "Lewo";
 "Library" = "Biblioteka";
 "Live" = "Na żywo";
 "Loading PiP" = "Ładowanie PiP";
-"MAIN" = "GŁÓWNE";
 "MISCELLANEOUS" = "RÓŻNE";
 "Merge failed" = "Scalanie nieudane";
 "Merging" = "Scalanie";
@@ -421,13 +407,9 @@
 "OVERLAY" = "NAKŁADKA";
 "OVERLAY CONTROLLER" = "KONTROLER NAKŁADKI";
 "OVERLAY PLAYER" = "ODTWARZACZ NAKŁADKI";
-"Off" = "Wyłączone";
-"On" = "Włączone";
 "Open the YTKACE tab and tap the gear icon." = "Otwórz kartę YTKACE i dotknij ikony zębatki.";
 "Original audio" = "Oryginalne audio";
-"PLAYBACK" = "ODTWARZANIE";
 "PREVIOUS & NEXT BUTTONS" = "PRZYCISKI POPRZEDNI I NASTĘPNY";
-"PROGRESS BAR" = "PASEK POSTĘPU";
 "PiP failed to start." = "Nie udało się uruchomić PiP.";
 "PiP is not available for this video." = "PiP nie jest dostępne dla tego wideo.";
 "PiP is not supported on this device." = "PiP nie jest obsługiwane na tym urządzeniu.";
@@ -446,7 +428,6 @@
 "Preparing" = "Przygotowywanie";
 "Preparing Backup..." = "Przygotowywanie kopii zapasowej...";
 "Preparing download" = "Przygotowywanie pobierania";
-"Prevent Open in Shorts" = "Zablokuj otwieranie w Shorts";
 "Preview / Recap" = "Zapowiedź / Podsumowanie";
 "Profile Picture Preview" = "Podgląd zdjęcia profilowego";
 "Profile picture could not be saved" = "Nie można zapisać zdjęcia profilowego";
@@ -454,12 +435,10 @@
 "Remove Advertisements" = "Usuń reklamy";
 "Remove Launch Animation" = "Usuń animację uruchamiania";
 "Remove downloaded cache files." = "Usuń pobrane pliki pamięci podręcznej.";
-"Restart YouTube to apply changes." = "Uruchom ponownie YouTube, aby zastosować zmiany.";
 "Restore Backup" = "Przywróć kopię zapasową";
 "Restore Failed" = "Przywracanie nieudane";
 "Restoring Backup..." = "Przywracanie kopii zapasowej...";
 "Retrying lower quality" = "Ponowna próba z niższą jakością";
-"Right" = "Prawo";
 "SEEK SETTINGS" = "USTAWIENIA PRZEWIJANIA";
 "SHORTS" = "SHORTS";
 "STATUS BAR" = "PASEK STANU";
@@ -478,16 +457,11 @@
 "Settings could not be saved" = "Nie można zapisać ustawień";
 "Share" = "Udostępnij";
 "Show" = "Pokaż";
-"Show Marker" = "Pokaż znacznik";
 "Show Status Bar in Overlay" = "Pokaż pasek stanu na nakładce";
 "Shrink Tabs (Bottom)" = "Pomniejsz karty (na dole)";
 "Shrink Tabs (Smart)" = "Pomniejsz karty (inteligentnie)";
-"Silent" = "Cichy";
-"Skip + Unskip" = "Pomiń + Cofnij";
-"Skip Only" = "Tylko pomiń";
 "Skip sponsors and swap clickbait with DeArrow" = "Pomijaj sponsorów i zastępuj clickbait za pomocą DeArrow";
 "Sleep Timer" = "Wyłącznik czasowy";
-"Solid color" = "Jednolity kolor";
 "Speed, loop, gestures and overlay buttons" = "Prędkość, pętla, gesty i przyciski nakładki";
 "Sponsor" = "Sponsor";
 "SponsorBlock data: CC BY-NC-SA 4.0" = "Dane SponsorBlock: CC BY-NC-SA 4.0";
@@ -495,7 +469,6 @@
 "Starts YouTube faster" = "Uruchamia YouTube szybciej";
 "Startup Page" = "Strona startowa";
 "Streaming" = "Streaming";
-"Subscriptions" = "Subskrypcje";
 "System" = "Systemowy";
 "System Player" = "Odtwarzacz systemowy";
 "Tab Bar" = "Pasek kart";
@@ -530,9 +503,8 @@
 "Video Info" = "Informacje o wideo";
 "Video Quality" = "Jakość wideo";
 "Video information unavailable" = "Informacje o wideo niedostępne";
-"WLater" = "WLater";
+"WLater" = "Obejrzyj później";
 "Warning: Backup was not saved to Files app." = "Ostrzeżenie: Kopia zapasowa nie została zapisana w aplikacji Pliki.";
-"Wi-Fi Quality" = "Jakość w Wi-Fi";
 "YTKACE" = "YTKACE";
 "YTKACE Download" = "Pobieranie YTKACE";
 "YTKACE Faster" = "YTKACE Szybciej";
@@ -545,7 +517,6 @@
 "YTKACE follows your YouTube language." = "YTKACE stosuje się do języka Twojego YouTube.";
 "YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACE korzysta z danych SponsorBlock.\nNa licencji CC BY-NC-SA 4.0.";
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nImplementacja clean-room\nKod na licencji MIT\nStworzony przez Epic";
-"You" = "Ty";
 "YouTube Download" = "Pobieranie YouTube";
 "YouTube Video" = "Wideo YouTube";
 "YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube nie mógł odświeżyć tego strumienia w wysokiej rozdzielczości. Odtwórz wideo przez chwilę, a następnie spróbuj ponownie.";
@@ -587,60 +558,25 @@
 "merge complete" = "Scalanie ukończone";
 "thumbnail embedded" = "Miniaturka osadzona";
 
-/* 新增翻译 */
-"VIDEO" = "VIDEO";
-"APP" = "APP";
-"ABOUT" = "ABOUT";
-"Enabled" = "Enabled";
-"ACTIVE" = "ACTIVE";
-"Tap the checkmark to apply changes." = "Tap the checkmark to apply changes.";
+"Enabled" = "Włączone";
+"ACTIVE" = "AKTYWNE";
+"Tap the checkmark to apply changes." = "Dotknij znacznika, aby zastosować zmiany.";
 "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@";
-"Player" = "Player";
-"Tabs" = "Tabs";
-"Downloads, PiP, speed, loop, and background audio" = "Downloads, PiP, speed, loop, and background audio";
-"Skip or mark sponsored segments" = "Skip or mark sponsored segments";
-"Choose, reorder, and rename tabs" = "Choose, reorder, and rename tabs";
-"Brightness, volume, and seeking" = "Brightness, volume, and seeking";
-"Playback" = "Playback";
-"Player controls and visibility" = "Player controls and visibility";
-"Quality, autoplay, and skip settings" = "Quality, autoplay, and skip settings";
-"Buttons, downloads, and feed options" = "Buttons, downloads, and feed options";
-"Preferred quality on Wi-Fi" = "Preferred quality on Wi-Fi";
-"Preferred quality on mobile data" = "Preferred quality on mobile data";
-"Navigation" = "Navigation";
-"Other" = "Other";
-"Top bar buttons, logo, and cast" = "Top bar buttons, logo, and cast";
-"Appearance, privacy, and compatibility" = "Appearance, privacy, and compatibility";
 "Seconds: %@" = "Seconds: %@";
 "%@ seconds" = "%@ seconds";
 "%lu items added to %@." = "%lu items added to %@.";
-"BUTTONS" = "BUTTONS";
-"FILES" = "FILES";
-"STORAGE" = "STORAGE";
-"QUALITY" = "QUALITY";
-"DOUBLE TAP" = "DOUBLE TAP";
-"AUTOPLAY & DATA" = "AUTOPLAY & DATA";
-"BRAND & CAST" = "BRAND & CAST";
-"TOP BUTTONS" = "TOP BUTTONS";
-"PAGE CHROME" = "PAGE CHROME";
-"APPEARANCE" = "APPEARANCE";
-"LAYOUT" = "LAYOUT";
-"SYSTEM" = "SYSTEM";
-"PRIVACY & PROMPTS" = "PRIVACY & PROMPTS";
 "Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Choose a side for brightness and volume. Swipe vertically on that side of the player.";
-"BRIGHTNESS & VOLUME" = "BRIGHTNESS & VOLUME";
-"SEEK" = "SEEK";
 "YTKACE
 Clean-room implementation
 MIT licensed code
 Built by Epic" = "YTKACE
-Clean-room implementation
-MIT licensed code
-Built by Epic";
+Implementacja clean-room
+Kod na licencji MIT
+Stworzone przez Epic";
 "A-Z" = "A–Z";
 "Z-A" = "Z–A";
 "Format: %@
@@ -676,40 +612,17 @@ Intercepts playback failures and restores your session automatically.
 💡 Note:
 This requires a YouTube restart to take effect.";
 
-/* 新增翻译 */
 "YTKACE uses SponsorBlock data.
 Licensed under CC BY-NC-SA 4.0." = "YTKACE korzysta z danych SponsorBlock.
 Na licencji CC BY-NC-SA 4.0.";
 
-/* 新增翻译 */
-"Downloads & Library" = "Pobrane i biblioteka";
-"Saved video, audio, Shorts, imports and backups" = "Zapisane wideo, audio, Shorts, importy i kopie zapasowe";
-"Download, PiP, loop, speed and progress controls" = "Pobieranie, PiP, pętla, prędkość i sterowanie postępem";
-"Segments, alerts, colors and DeArrow" = "Segmenty, alerty, kolory i DeArrow";
-"Player buttons, captions and watch-page cleanup" = "Przyciski odtwarzacza, napisy i czyszczenie strony";
-"Quality menu, autoplay and skip timing" = "Menu jakości, autoodtwarzanie i czas pomijania";
-"Playback, feed and action buttons" = "Odtwarzanie, feed i przyciski akcji";
-"Top buttons, branding and topic chips" = "Górne przyciski, branding i chipy tematyczne";
-"Choose and reorder bottom tabs" = "Wybierz i zmień kolejność dolnych kart";
-"Brightness, volume, hold and tap to seek" = "Jasność, głośność, przytrzymaj i stuknij, aby przewijać";
-"OLED, startup, sharing, layout and prompts" = "OLED, uruchamianie, udostępnianie, układ i monity";
-
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"WATCH PAGE" = "STRONA ODTWARZANIA";
-"GESTURES" = "GESTY";
-"ALWAYS VISIBLE" = "ZAWSZE WIDOCZNE";
-"HIDE FROM PLAYER" = "UKRYJ Z ODTWARZACZA";
-"FEED" = "FEED";
-"ACTION BUTTONS" = "PRZYCISKI AKCJI";
 "%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "Pobrano %@, ale nie można połączyć wideo i dźwięku. Spróbuj innego formatu %@.\n%@";
 
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"PREVIOUS & NEXT" = "POPRZEDNIE & NASTĘPNE";
 "VLC" = "VLC";
 
 /* Shorts download button position picker options */
-"Top Corner" = "Górny róg";
-"Action Buttons" = "Przyciski akcji";
 "Remove Frosted Tab Bar" = "Usuń matowy pasek kart";
 
 /* Sleep timer */
@@ -719,3 +632,4 @@ Na licencji CC BY-NC-SA 4.0.";
 "1 hour" = "1 godzina";
 "minutes" = "minut";
 "End of video" = "Koniec filmu";
+"OK" = "OK";

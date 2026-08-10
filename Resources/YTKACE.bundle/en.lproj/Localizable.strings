@@ -240,12 +240,9 @@
 "Advanced" = "Advanced";
 "Always Show All Controls" = "Always Show All Controls";
 "Always Show Play/Pause Button" = "Always Show Play/Pause Button";
-"Ask" = "Ask";
 "Audio Language" = "Audio Language";
-"Auto" = "Auto";
 "Auto Skip Shorts" = "Auto Skip Shorts";
 "Auto-Skip" = "Auto-Skip";
-"Auto-skip" = "Auto-skip";
 "AutoPlay" = "AutoPlay";
 "BACKUP & RESTORE" = "BACKUP & RESTORE";
 "Backup Failed" = "Backup Failed";
@@ -259,7 +256,6 @@
 "Cache Cleared" = "Cache Cleared";
 "Cancelled" = "Cancelled";
 "Cast Confirmation" = "Cast Confirmation";
-"Cellular Quality" = "Cellular Quality";
 "Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "Choose Video, Audio, or Shorts, then select media, artwork, and subtitles.";
 "Choose a YTKACE ZIP backup from Files." = "Choose a YTKACE ZIP backup from Files.";
 "Choose and reorder the bottom tabs" = "Choose and reorder the bottom tabs";
@@ -283,14 +279,12 @@
 "DEARROW" = "DEARROW";
 "DEVELOPER" = "DEVELOPER";
 "DOUBLE TAP OPTIONS" = "DOUBLE TAP OPTIONS";
-"Default" = "Default";
 "Default Player" = "Default Player";
 "Delete" = "Delete";
 "Delete All" = "Delete All";
 "Delete confirmation unavailable" = "Delete confirmation unavailable";
 "Delete every item in this section?" = "Delete every item in this section?";
 "Description copied" = "Description copied";
-"Developer" = "Developer";
 "Dimensions" = "Dimensions";
 "Disable Autoplay Videos" = "Disable Autoplay Videos";
 "Disable Captions" = "Disable Captions";
@@ -299,7 +293,6 @@
 "Disable Drag & Drop" = "Disable Drag & Drop";
 "Disable Previous & Next" = "Disable Previous & Next";
 "Disable RTL Languages" = "Disable RTL Languages";
-"Disabled" = "Disabled";
 "Do you want to create a backup?" = "Do you want to create a backup?";
 "Double tap, hold to seek and pinch" = "Double tap, hold to seek and pinch";
 "Download Audio" = "Download Audio";
@@ -323,7 +316,6 @@
 "End of track" = "End of track";
 "Endcards / Credits" = "Endcards / Credits";
 "Exit Fullscreen" = "Exit Fullscreen";
-"Explore" = "Explore";
 "Export settings and all media as a ZIP file." = "Export settings and all media as a ZIP file.";
 "External Player" = "External Player";
 "Failed" = "Failed";
@@ -336,8 +328,6 @@
 "Frame Rate" = "Frame Rate";
 "Fullscreen" = "Fullscreen";
 "Gaming" = "Gaming";
-"Gestures" = "Gestures";
-"Gradient" = "Gradient";
 "HIDE ELEMENTS" = "HIDE ELEMENTS";
 "HIDE ITEMS" = "HIDE ITEMS";
 "Hide Account" = "Hide Account";
@@ -366,14 +356,12 @@
 "Hide Shorts from Feed" = "Hide Shorts from Feed";
 "Hide Sticker Ads" = "Hide Sticker Ads";
 "Hide Suggested Videos" = "Hide Suggested Videos";
-"Hide Tab Labels" = "Hide Tab Labels";
 "Hide Topic Section" = "Hide Topic Section";
 "Hide Watermark" = "Hide Watermark";
 "Hide YouTube Logo" = "Hide YouTube Logo";
 "Hide YouTube Update Popup" = "Hide YouTube Update Popup";
 "Highlight" = "Highlight";
 "History" = "History";
-"Home" = "Home";
 "IMPORT MEDIA" = "IMPORT MEDIA";
 "INACTIVE TABS" = "INACTIVE TABS";
 "IPAD MODE" = "IPAD MODE";
@@ -393,11 +381,9 @@
 "Keep Progress Bar Visible" = "Keep Progress Bar Visible";
 "Language" = "Language";
 "Learning" = "Learning";
-"Left" = "Left";
 "Library" = "Library";
 "Live" = "Live";
 "Loading PiP" = "Loading PiP";
-"MAIN" = "MAIN";
 "MISCELLANEOUS" = "MISCELLANEOUS";
 "Merge failed" = "Merge failed";
 "Merging" = "Merging";
@@ -421,13 +407,9 @@
 "OVERLAY" = "OVERLAY";
 "OVERLAY CONTROLLER" = "OVERLAY CONTROLLER";
 "OVERLAY PLAYER" = "OVERLAY PLAYER";
-"Off" = "Off";
-"On" = "On";
 "Open the YTKACE tab and tap the gear icon." = "Open the YTKACE tab and tap the gear icon.";
 "Original audio" = "Original audio";
-"PLAYBACK" = "PLAYBACK";
 "PREVIOUS & NEXT BUTTONS" = "PREVIOUS & NEXT BUTTONS";
-"PROGRESS BAR" = "PROGRESS BAR";
 "PiP failed to start." = "PiP failed to start.";
 "PiP is not available for this video." = "PiP is not available for this video.";
 "PiP is not supported on this device." = "PiP is not supported on this device.";
@@ -446,7 +428,6 @@
 "Preparing" = "Preparing";
 "Preparing Backup..." = "Preparing Backup...";
 "Preparing download" = "Preparing download";
-"Prevent Open in Shorts" = "Prevent Open in Shorts";
 "Preview / Recap" = "Preview / Recap";
 "Profile Picture Preview" = "Profile Picture Preview";
 "Profile picture could not be saved" = "Profile picture could not be saved";
@@ -454,12 +435,10 @@
 "Remove Advertisements" = "Remove Advertisements";
 "Remove Launch Animation" = "Remove Launch Animation";
 "Remove downloaded cache files." = "Remove downloaded cache files.";
-"Restart YouTube to apply changes." = "Restart YouTube to apply changes.";
 "Restore Backup" = "Restore Backup";
 "Restore Failed" = "Restore Failed";
 "Restoring Backup..." = "Restoring Backup...";
 "Retrying lower quality" = "Retrying lower quality";
-"Right" = "Right";
 "SEEK SETTINGS" = "SEEK SETTINGS";
 "SHORTS" = "SHORTS";
 "STATUS BAR" = "STATUS BAR";
@@ -478,16 +457,11 @@
 "Settings could not be saved" = "Settings could not be saved";
 "Share" = "Share";
 "Show" = "Show";
-"Show Marker" = "Show Marker";
 "Show Status Bar in Overlay" = "Show Status Bar in Overlay";
 "Shrink Tabs (Bottom)" = "Shrink Tabs (Bottom)";
 "Shrink Tabs (Smart)" = "Shrink Tabs (Smart)";
-"Silent" = "Silent";
-"Skip + Unskip" = "Skip + Unskip";
-"Skip Only" = "Skip Only";
 "Skip sponsors and swap clickbait with DeArrow" = "Skip sponsors and swap clickbait with DeArrow";
 "Sleep Timer" = "Sleep Timer";
-"Solid color" = "Solid color";
 "Speed, loop, gestures and overlay buttons" = "Speed, loop, gestures and overlay buttons";
 "Sponsor" = "Sponsor";
 "SponsorBlock data: CC BY-NC-SA 4.0" = "SponsorBlock data: CC BY-NC-SA 4.0";
@@ -495,7 +469,6 @@
 "Starts YouTube faster" = "Starts YouTube faster";
 "Startup Page" = "Startup Page";
 "Streaming" = "Streaming";
-"Subscriptions" = "Subscriptions";
 "System" = "System";
 "System Player" = "System Player";
 "Tab Bar" = "Tab Bar";
@@ -532,7 +505,6 @@
 "Video information unavailable" = "Video information unavailable";
 "WLater" = "WLater";
 "Warning: Backup was not saved to Files app." = "Warning: Backup was not saved to Files app.";
-"Wi-Fi Quality" = "Wi-Fi Quality";
 "YTKACE" = "YTKACE";
 "YTKACE Download" = "YTKACE Download";
 "YTKACE Faster" = "YTKACE Faster";
@@ -545,7 +517,6 @@
 "YTKACE follows your YouTube language." = "YTKACE follows your YouTube language.";
 "YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0.";
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic";
-"You" = "You";
 "YouTube Download" = "YouTube Download";
 "YouTube Video" = "YouTube Video";
 "YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube could not refresh this high-resolution stream. Play the video briefly, then retry.";
@@ -587,10 +558,6 @@
 "merge complete" = "merge complete";
 "thumbnail embedded" = "thumbnail embedded";
 
-/* 新增翻译 */
-"VIDEO" = "VIDEO";
-"APP" = "APP";
-"ABOUT" = "ABOUT";
 "Enabled" = "Enabled";
 "ACTIVE" = "ACTIVE";
 "Tap the checkmark to apply changes." = "Tap the checkmark to apply changes.";
@@ -599,41 +566,10 @@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@";
-"Player" = "Player";
-"Tabs" = "Tabs";
-"Downloads, PiP, speed, loop, and background audio" = "Downloads, PiP, speed, loop, and background audio";
-"Skip or mark sponsored segments" = "Skip or mark sponsored segments";
-"Choose, reorder, and rename tabs" = "Choose, reorder, and rename tabs";
-"Brightness, volume, and seeking" = "Brightness, volume, and seeking";
-"Playback" = "Playback";
-"Player controls and visibility" = "Player controls and visibility";
-"Quality, autoplay, and skip settings" = "Quality, autoplay, and skip settings";
-"Buttons, downloads, and feed options" = "Buttons, downloads, and feed options";
-"Preferred quality on Wi-Fi" = "Preferred quality on Wi-Fi";
-"Preferred quality on mobile data" = "Preferred quality on mobile data";
-"Navigation" = "Navigation";
-"Other" = "Other";
-"Top bar buttons, logo, and cast" = "Top bar buttons, logo, and cast";
-"Appearance, privacy, and compatibility" = "Appearance, privacy, and compatibility";
 "Seconds: %@" = "Seconds: %@";
 "%@ seconds" = "%@ seconds";
 "%lu items added to %@." = "%lu items added to %@.";
-"BUTTONS" = "BUTTONS";
-"FILES" = "FILES";
-"STORAGE" = "STORAGE";
-"QUALITY" = "QUALITY";
-"DOUBLE TAP" = "DOUBLE TAP";
-"AUTOPLAY & DATA" = "AUTOPLAY & DATA";
-"BRAND & CAST" = "BRAND & CAST";
-"TOP BUTTONS" = "TOP BUTTONS";
-"PAGE CHROME" = "PAGE CHROME";
-"APPEARANCE" = "APPEARANCE";
-"LAYOUT" = "LAYOUT";
-"SYSTEM" = "SYSTEM";
-"PRIVACY & PROMPTS" = "PRIVACY & PROMPTS";
 "Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Choose a side for brightness and volume. Swipe vertically on that side of the player.";
-"BRIGHTNESS & VOLUME" = "BRIGHTNESS & VOLUME";
-"SEEK" = "SEEK";
 "YTKACE
 Clean-room implementation
 MIT licensed code
@@ -676,85 +612,17 @@ Intercepts playback failures and restores your session automatically.
 💡 Note:
 This requires a YouTube restart to take effect.";
 
-/* 新增翻译 */
-"YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@";
-"YTKACE
-Clean-room implementation
-MIT licensed code
-Built by Epic" = "YTKACE
-Clean-room implementation
-MIT licensed code
-Built by Epic";
-"Format: %@
-" = "Format: %@
-";
-"File Size: %@
-" = "File Size: %@
-";
-"Duration: %@
-" = "Duration: %@
-";
-"Dimensions: %.0f×%.0f
-" = "Dimensions: %.0f×%.0f
-";
-"Bitrate: %.2f Kbps
-" = "Bitrate: %.2f Kbps
-";
-"Frame Rate: %.2f fps
-" = "Frame Rate: %.2f fps
-";
-"✅ Playback recovery hooks will install on next launch.
-
-📍 What this does:
-Intercepts playback failures and restores your session automatically.
-
-💡 Note:
-This requires a YouTube restart to take effect." = "✅ Playback recovery hooks will install on next launch.
-
-📍 What this does:
-Intercepts playback failures and restores your session automatically.
-
-💡 Note:
-This requires a YouTube restart to take effect.";
-
-/* 新增翻译 */
 "YTKACE uses SponsorBlock data.
 Licensed under CC BY-NC-SA 4.0." = "YTKACE uses SponsorBlock data.
 Licensed under CC BY-NC-SA 4.0.";
 
-/* 新增翻译 */
-"Downloads & Library" = "Downloads & Library";
-"Saved video, audio, Shorts, imports and backups" = "Saved video, audio, Shorts, imports and backups";
-"Download, PiP, loop, speed and progress controls" = "Download, PiP, loop, speed and progress controls";
-"Segments, alerts, colors and DeArrow" = "Segments, alerts, colors and DeArrow";
-"Player buttons, captions and watch-page cleanup" = "Player buttons, captions and watch-page cleanup";
-"Quality menu, autoplay and skip timing" = "Quality menu, autoplay and skip timing";
-"Playback, feed and action buttons" = "Playback, feed and action buttons";
-"Top buttons, branding and topic chips" = "Top buttons, branding and topic chips";
-"Choose and reorder bottom tabs" = "Choose and reorder bottom tabs";
-"Brightness, volume, hold and tap to seek" = "Brightness, volume, hold and tap to seek";
-"OLED, startup, sharing, layout and prompts" = "OLED, startup, sharing, layout and prompts";
-
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"WATCH PAGE" = "WATCH PAGE";
-"GESTURES" = "GESTURES";
-"ALWAYS VISIBLE" = "ALWAYS VISIBLE";
-"HIDE FROM PLAYER" = "HIDE FROM PLAYER";
-"FEED" = "FEED";
-"ACTION BUTTONS" = "ACTION BUTTONS";
 "%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@";
 
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"PREVIOUS & NEXT" = "PREVIOUS & NEXT";
 "VLC" = "VLC";
 
 /* Shorts download button position picker options */
-"Top Corner" = "Top Corner";
-"Action Buttons" = "Action Buttons";
 "Remove Frosted Tab Bar" = "Remove Frosted Tab Bar";
 
 /* Sleep timer */
@@ -764,3 +632,4 @@ Licensed under CC BY-NC-SA 4.0.";
 "1 hour" = "1 hour";
 "minutes" = "minutes";
 "End of video" = "End of video";
+"OK" = "OK";
