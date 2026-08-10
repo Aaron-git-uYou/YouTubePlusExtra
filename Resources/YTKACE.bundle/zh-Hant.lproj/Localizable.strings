@@ -240,12 +240,9 @@
 "Advanced" = "進階";
 "Always Show All Controls" = "永遠顯示全部控件";
 "Always Show Play/Pause Button" = "永遠顯示播放/暫停按鈕";
-"Ask" = "詢問";
 "Audio Language" = "音訊語言";
-"Auto" = "自動";
 "Auto Skip Shorts" = "自動跳過短影片";
 "Auto-Skip" = "自動跳過";
-"Auto-skip" = "自動跳過";
 "AutoPlay" = "自動播放";
 "BACKUP & RESTORE" = "備份與還原";
 "Backup Failed" = "備份失敗";
@@ -259,7 +256,6 @@
 "Cache Cleared" = "快取已清除";
 "Cancelled" = "已取消";
 "Cast Confirmation" = "投放確認";
-"Cellular Quality" = "行動網路畫質";
 "Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "選擇影片、音訊或短影片，然後選取媒體、封面和字幕。";
 "Choose a YTKACE ZIP backup from Files." = "從「檔案」中選擇一個 YTKACE 備份 ZIP。";
 "Choose and reorder the bottom tabs" = "選擇並重新排列底部分頁";
@@ -283,14 +279,12 @@
 "DEARROW" = "DEARROW";
 "DEVELOPER" = "開發者";
 "DOUBLE TAP OPTIONS" = "雙擊選項";
-"Default" = "預設";
 "Default Player" = "預設播放器";
 "Delete" = "刪除";
 "Delete All" = "全部刪除";
 "Delete confirmation unavailable" = "無法顯示刪除確認";
 "Delete every item in this section?" = "確認刪除此分區的全部項目？";
 "Description copied" = "描述已複製";
-"Developer" = "開發者";
 "Dimensions" = "解析度";
 "Disable Autoplay Videos" = "關閉自動播放";
 "Disable Captions" = "關閉字幕";
@@ -299,7 +293,6 @@
 "Disable Drag & Drop" = "關閉拖曳";
 "Disable Previous & Next" = "關閉上一/下一集按鈕";
 "Disable RTL Languages" = "關閉從右到左語言";
-"Disabled" = "已停用";
 "Do you want to create a backup?" = "是否要建立備份？";
 "Double tap, hold to seek and pinch" = "雙擊、長按快轉和捏合手勢";
 "Download Audio" = "下載音訊";
@@ -323,7 +316,6 @@
 "End of track" = "曲目結束";
 "Endcards / Credits" = "片尾卡/製作名單";
 "Exit Fullscreen" = "退出全螢幕";
-"Explore" = "探索";
 "Export settings and all media as a ZIP file." = "將設定和所有媒體匯出為 ZIP 檔案。";
 "External Player" = "外部播放器";
 "Failed" = "失敗";
@@ -336,8 +328,6 @@
 "Frame Rate" = "影格率";
 "Fullscreen" = "全螢幕";
 "Gaming" = "遊戲";
-"Gestures" = "手勢控制";
-"Gradient" = "漸層";
 "HIDE ELEMENTS" = "隱藏元素";
 "HIDE ITEMS" = "隱藏元素";
 "Hide Account" = "隱藏帳號";
@@ -366,14 +356,12 @@
 "Hide Shorts from Feed" = "訊息串中隱藏短影片";
 "Hide Sticker Ads" = "隱藏貼圖廣告";
 "Hide Suggested Videos" = "隱藏推薦影片";
-"Hide Tab Labels" = "隱藏分頁文字";
 "Hide Topic Section" = "隱藏主題分區";
 "Hide Watermark" = "隱藏浮水印";
 "Hide YouTube Logo" = "隱藏 YouTube 標誌";
 "Hide YouTube Update Popup" = "隱藏 YouTube 更新彈窗";
 "Highlight" = "重點高亮";
 "History" = "歷史";
-"Home" = "首頁";
 "IMPORT MEDIA" = "匯入媒體";
 "INACTIVE TABS" = "未啟用分頁";
 "IPAD MODE" = "iPad 模式";
@@ -393,11 +381,9 @@
 "Keep Progress Bar Visible" = "保持進度條可見";
 "Language" = "語言";
 "Learning" = "學習";
-"Left" = "左";
 "Library" = "媒體庫";
 "Live" = "直播";
 "Loading PiP" = "正在載入子母畫面";
-"MAIN" = "主要";
 "MISCELLANEOUS" = "雜項";
 "Merge failed" = "合併失敗";
 "Merging" = "正在合併";
@@ -422,13 +408,9 @@
 "OVERLAY" = "播放介面";
 "OVERLAY CONTROLLER" = "播放介面控件";
 "OVERLAY PLAYER" = "懸浮播放器";
-"Off" = "關閉";
-"On" = "開啟";
 "Open the YTKACE tab and tap the gear icon." = "開啟 YTKACE 分頁並點擊齒輪圖示。";
 "Original audio" = "原始音軌";
-"PLAYBACK" = "播放";
 "PREVIOUS & NEXT BUTTONS" = "上一/下一集按鈕";
-"PROGRESS BAR" = "進度條";
 "PiP failed to start." = "子母畫面啟動失敗。";
 "PiP is not available for this video." = "目前影片不支援子母畫面。";
 "PiP is not supported on this device." = "本裝置不支援子母畫面。";
@@ -448,7 +430,6 @@
 "Preparing" = "準備中";
 "Preparing Backup..." = "正在準備備份...";
 "Preparing download" = "正在準備下載";
-"Prevent Open in Shorts" = "阻止跳轉到短影片";
 "Preview / Recap" = "預告/回顧";
 "Profile Picture Preview" = "頭像預覽";
 "Profile picture could not be saved" = "無法儲存頭像";
@@ -465,12 +446,10 @@
 "Respring Now" = "立即重新啟動";
 "Respring Required" = "需要重新啟動";
 "Respring required for some changes" = "部分設定變更後需要重新啟動才能生效";
-"Restart YouTube to apply changes." = "重新啟動 YouTube 以套用變更。";
 "Restore Backup" = "還原備份";
 "Restore Failed" = "還原失敗";
 "Restoring Backup..." = "正在還原備份...";
 "Retrying lower quality" = "正在嘗試較低畫質";
-"Right" = "右";
 "SEEK SETTINGS" = "快轉設定";
 "SHORTS" = "短影片";
 "STATUS BAR" = "狀態列";
@@ -490,16 +469,11 @@
 "Settings could not be saved" = "設定無法儲存";
 "Share" = "分享";
 "Show" = "顯示";
-"Show Marker" = "顯示標記";
 "Show Status Bar in Overlay" = "在播放介面中顯示狀態列";
 "Shrink Tabs (Bottom)" = "壓縮分頁（底部）";
 "Shrink Tabs (Smart)" = "壓縮分頁（智慧）";
-"Silent" = "靜默";
-"Skip + Unskip" = "跳過+恢復";
-"Skip Only" = "僅跳過";
 "Skip sponsors and swap clickbait with DeArrow" = "跳過贊助商片段並用 DeArrow 替換標題黨";
 "Sleep Timer" = "睡眠計時器";
-"Solid color" = "純色";
 "Speed, loop, gestures and overlay buttons" = "速度、循環、手勢和覆蓋層按鈕";
 "Sponsor" = "贊助廣告";
 "SponsorBlock data: CC BY-NC-SA 4.0" = "SponsorBlock 資料：CC BY-NC-SA 4.0";
@@ -507,7 +481,6 @@
 "Starts YouTube faster" = "讓 YouTube 啟動更快";
 "Startup Page" = "啟動頁";
 "Streaming" = "串流";
-"Subscriptions" = "訂閱";
 "System" = "跟隨系統";
 "System Player" = "系統播放器";
 "Tab Bar" = "底部分頁";
@@ -544,7 +517,6 @@
 "Video information unavailable" = "影片資訊無法使用";
 "WLater" = "稍後觀看";
 "Warning: Backup was not saved to Files app." = "警告：備份未儲存到「檔案」App。";
-"Wi-Fi Quality" = "Wi-Fi 畫質";
 "YTKACE" = "YTKACE";
 "YTKACE Download" = "YTKACE 下載";
 "YTKACE Faster" = "YTKACE 加速";
@@ -557,7 +529,6 @@
 "YTKACE follows your YouTube language." = "YTKACE 跟隨你的 YouTube 語言。";
 "YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACE 使用 SponsorBlock 資料。\n遵循 CC BY-NC-SA 4.0 授權。";
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nClean-room 實作\nMIT 授權程式碼\n由 Epic 建構";
-"You" = "我";
 "YouTube Download" = "YouTube 下載";
 "YouTube Video" = "YouTube 影片";
 "YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube 無法重新整理此高解析度串流，請先播放幾秒再重試。";
@@ -587,10 +558,6 @@
 "🔧 Fix Playback & Account Recovery" = "🔧 修復播放與帳號恢復";
 "🧰 Fixes playback guidance for sideloaded apps." = "🧰 修復自簽應用程式中的播放引導。";
 
-/* 新增翻译 */
-"VIDEO" = "影片";
-"APP" = "應用";
-"ABOUT" = "關於";
 "Enabled" = "已啟用";
 "ACTIVE" = "運行中";
 "Tap the checkmark to apply changes." = "點擊對勾以套用更改。";
@@ -599,41 +566,10 @@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@";
-"Player" = "播放器";
-"Tabs" = "分頁";
-"Downloads, PiP, speed, loop, and background audio" = "下載、子母畫面、倍速、循環和背景音訊";
-"Skip or mark sponsored segments" = "跳過或標記贊助片段";
-"Choose, reorder, and rename tabs" = "選擇、排序和重新命名分頁";
-"Brightness, volume, and seeking" = "亮度、音量和快進";
-"Playback" = "播放";
-"Player controls and visibility" = "播放器控件和可見性";
-"Quality, autoplay, and skip settings" = "畫質、自動播放和跳過設定";
-"Buttons, downloads, and feed options" = "按鈕、下載和資訊流選項";
-"Preferred quality on Wi-Fi" = "Wi-Fi 下的首選畫質";
-"Preferred quality on mobile data" = "行動數據下的首選畫質";
-"Navigation" = "導航";
-"Other" = "其他";
-"Top bar buttons, logo, and cast" = "頂部欄按鈕、圖標和投屏";
-"Appearance, privacy, and compatibility" = "外觀、隱私和相容性";
 "Seconds: %@" = "秒數：%@";
 "%@ seconds" = "%@ 秒";
 "%lu items added to %@." = "已加入 %lu 個項目到 %@。";
-"BUTTONS" = "按鈕";
-"FILES" = "檔案";
-"STORAGE" = "儲存";
-"QUALITY" = "畫質";
-"DOUBLE TAP" = "雙擊";
-"AUTOPLAY & DATA" = "自動播放與數據";
-"BRAND & CAST" = "品牌與投屏";
-"TOP BUTTONS" = "頂部按鈕";
-"PAGE CHROME" = "頁面外觀";
-"APPEARANCE" = "外觀";
-"LAYOUT" = "佈局";
-"SYSTEM" = "系統";
-"PRIVACY & PROMPTS" = "隱私與提示";
 "Choose a side for brightness and volume. Swipe vertically on that side of the player." = "選擇亮度和音量所在的一側。在播放器的該側垂直滑動。";
-"BRIGHTNESS & VOLUME" = "亮度與音量";
-"SEEK" = "快進";
 "YTKACE
 Clean-room implementation
 MIT licensed code
@@ -676,85 +612,17 @@ This requires a YouTube restart to take effect." = "✅ 播放恢復掛鉤將在
 💡 注意：
 需要重啟 YouTube 才能生效。";
 
-/* 新增翻译 */
-"YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@";
-"YTKACE
-Clean-room implementation
-MIT licensed code
-Built by Epic" = "YTKACE
-淨室實作
-MIT 授權程式碼
-由 Epic 建構";
-"Format: %@
-" = "格式：%@
-";
-"File Size: %@
-" = "檔案大小：%@
-";
-"Duration: %@
-" = "時長：%@
-";
-"Dimensions: %.0f×%.0f
-" = "尺寸：%.0f×%.0f
-";
-"Bitrate: %.2f Kbps
-" = "位元率：%.2f Kbps
-";
-"Frame Rate: %.2f fps
-" = "幀率：%.2f fps
-";
-"✅ Playback recovery hooks will install on next launch.
-
-📍 What this does:
-Intercepts playback failures and restores your session automatically.
-
-💡 Note:
-This requires a YouTube restart to take effect." = "✅ 播放恢復掛鉤將在下次啟動時安裝。
-
-📍 作用：
-攔截播放失敗並自動恢復您的對話。
-
-💡 注意：
-需要重啟 YouTube 才能生效。";
-
-/* 新增翻译 */
 "YTKACE uses SponsorBlock data.
 Licensed under CC BY-NC-SA 4.0." = "YTKACE 使用 SponsorBlock 資料。
 基於 CC BY-NC-SA 4.0 授權。";
 
-/* 新增翻译 */
-"Downloads & Library" = "下載和媒體庫";
-"Saved video, audio, Shorts, imports and backups" = "已儲存的影片、音訊、短影片、匯入和備份";
-"Download, PiP, loop, speed and progress controls" = "下載、子母畫面、循環、倍速和進度條控制";
-"Segments, alerts, colors and DeArrow" = "片段、提醒、顏色和 DeArrow";
-"Player buttons, captions and watch-page cleanup" = "播放器按鈕、字幕和觀看頁面清理";
-"Quality menu, autoplay and skip timing" = "畫質選單、自動播放和跳過計時";
-"Playback, feed and action buttons" = "播放、資訊流和操作按鈕";
-"Top buttons, branding and topic chips" = "頂部按鈕、品牌和主題標籤";
-"Choose and reorder bottom tabs" = "選擇和重新排序底部分頁";
-"Brightness, volume, hold and tap to seek" = "亮度、音量、長按和點擊快進";
-"OLED, startup, sharing, layout and prompts" = "OLED、啟動、分享、佈局和提示";
-
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"WATCH PAGE" = "觀看頁";
-"GESTURES" = "手勢";
-"ALWAYS VISIBLE" = "常駐顯示";
-"HIDE FROM PLAYER" = "隱藏播放器元素";
-"FEED" = "資訊流";
-"ACTION BUTTONS" = "操作按鈕";
 "%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "%@ 已下載，但影片和音訊無法合併。請嘗試其他 %@ 格式。\n%@";
 
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"PREVIOUS & NEXT" = "上一個/下一個";
 "VLC" = "VLC";
 
 /* Shorts download button position picker options */
-"Top Corner" = "頂部角落";
-"Action Buttons" = "操作按鈕";
 "Remove Frosted Tab Bar" = "移除毛玻璃分頁列";
 
 /* Sleep timer */
@@ -764,3 +632,4 @@ Licensed under CC BY-NC-SA 4.0." = "YTKACE 使用 SponsorBlock 資料。
 "1 hour" = "1小時";
 "minutes" = "分鐘";
 "End of video" = "影片結束時";
+"OK" = "好";
