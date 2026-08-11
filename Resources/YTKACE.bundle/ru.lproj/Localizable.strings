@@ -240,12 +240,9 @@
 "Advanced" = "Дополнительно";
 "Always Show All Controls" = "Всегда показывать все элементы";
 "Always Show Play/Pause Button" = "Всегда показывать воспроизведение/паузу";
-"Ask" = "Спрашивать";
 "Audio Language" = "Язык аудио";
-"Auto" = "Авто";
 "Auto Skip Shorts" = "Автопропуск Shorts";
 "Auto-Skip" = "Автопропуск";
-"Auto-skip" = "Автопропуск";
 "AutoPlay" = "Автовоспроизведение";
 "BACKUP & RESTORE" = "РЕЗЕРВНОЕ КОПИРОВАНИЕ И ВОССТАНОВЛЕНИЕ";
 "Backup Failed" = "Сбой резервного копирования";
@@ -259,7 +256,6 @@
 "Cache Cleared" = "Кэш очищен";
 "Cancelled" = "Отменено";
 "Cast Confirmation" = "Подтверждение Cast";
-"Cellular Quality" = "Качество по сотовой связи";
 "Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "Выберите Видео, Аудио или Shorts, затем выберите медиа, обложку и субтитры.";
 "Choose a YTKACE ZIP backup from Files." = "Выберите ZIP-резервную копию YTKACE из Файлов.";
 "Choose and reorder the bottom tabs" = "Выбор и упорядочивание нижних вкладок";
@@ -283,14 +279,12 @@
 "DEARROW" = "DEARROW";
 "DEVELOPER" = "РАЗРАБОТЧИК";
 "DOUBLE TAP OPTIONS" = "ПАРАМЕТРЫ ДВОЙНОГО НАЖАТИЯ";
-"Default" = "По умолчанию";
 "Default Player" = "Плеер по умолчанию";
 "Delete" = "Удалить";
 "Delete All" = "Удалить все";
 "Delete confirmation unavailable" = "Подтверждение удаления недоступно";
 "Delete every item in this section?" = "Удалить все элементы в этом разделе?";
 "Description copied" = "Описание скопировано";
-"Developer" = "Разработчик";
 "Dimensions" = "Размеры";
 "Disable Autoplay Videos" = "Отключить автовоспроизведение";
 "Disable Captions" = "Отключить субтитры";
@@ -299,7 +293,6 @@
 "Disable Drag & Drop" = "Отключить перетаскивание";
 "Disable Previous & Next" = "Отключить назад и вперёд";
 "Disable RTL Languages" = "Отключить языки RTL";
-"Disabled" = "Отключено";
 "Do you want to create a backup?" = "Создать резервную копию?";
 "Double tap, hold to seek and pinch" = "Двойное нажатие, удержание для поиска и щипок";
 "Download Audio" = "Скачать аудио";
@@ -323,7 +316,6 @@
 "End of track" = "Конец трека";
 "Endcards / Credits" = "Концевые заставки / Авторы";
 "Exit Fullscreen" = "Выйти из полноэкранного режима";
-"Explore" = "Обзор";
 "Export settings and all media as a ZIP file." = "Экспорт настроек и всех медиа в ZIP-файл.";
 "External Player" = "Внешний плеер";
 "Failed" = "Сбой";
@@ -336,8 +328,6 @@
 "Frame Rate" = "Частота кадров";
 "Fullscreen" = "Полный экран";
 "Gaming" = "Игры";
-"Gestures" = "Жесты";
-"Gradient" = "Градиент";
 "HIDE ELEMENTS" = "СКРЫТЬ ЭЛЕМЕНТЫ";
 "HIDE ITEMS" = "СКРЫТЬ ПУНКТЫ";
 "Hide Account" = "Скрыть аккаунт";
@@ -366,14 +356,12 @@
 "Hide Shorts from Feed" = "Скрыть Shorts из ленты";
 "Hide Sticker Ads" = "Скрыть рекламные стикеры";
 "Hide Suggested Videos" = "Скрыть рекомендуемые видео";
-"Hide Tab Labels" = "Скрыть подписи вкладок";
 "Hide Topic Section" = "Скрыть раздел тем";
 "Hide Watermark" = "Скрыть водяной знак";
 "Hide YouTube Logo" = "Скрыть логотип YouTube";
 "Hide YouTube Update Popup" = "Скрыть окно обновления";
 "Highlight" = "Выделение";
 "History" = "История";
-"Home" = "Главная";
 "IMPORT MEDIA" = "ИМПОРТ МЕДИА";
 "INACTIVE TABS" = "НЕАКТИВНЫЕ ВКЛАДКИ";
 "IPAD MODE" = "РЕЖИМ IPAD";
@@ -393,11 +381,9 @@
 "Keep Progress Bar Visible" = "Всегда показывать полосу прогресса";
 "Language" = "Язык";
 "Learning" = "Обучение";
-"Left" = "Слева";
 "Library" = "Библиотека";
 "Live" = "Прямой эфир";
 "Loading PiP" = "Загрузка PiP";
-"MAIN" = "ОСНОВНОЕ";
 "MISCELLANEOUS" = "РАЗНОЕ";
 "Merge failed" = "Сбой объединения";
 "Merging" = "Объединение";
@@ -421,13 +407,9 @@
 "OVERLAY" = "ОВЕРЛЕЙ";
 "OVERLAY CONTROLLER" = "КОНТРОЛЛЕР ОВЕРЛЕЯ";
 "OVERLAY PLAYER" = "ОВЕРЛЕЙ-ПЛЕЕР";
-"Off" = "Выключено";
-"On" = "Вкл";
 "Open the YTKACE tab and tap the gear icon." = "Откройте вкладку YTKACE и нажмите значок шестерёнки.";
 "Original audio" = "Оригинальное аудио";
-"PLAYBACK" = "ВОСПРОИЗВЕДЕНИЕ";
 "PREVIOUS & NEXT BUTTONS" = "КНОПКИ ПРЕДЫДУЩИЙ И СЛЕДУЮЩИЙ";
-"PROGRESS BAR" = "ПОЛОСА ПРОГРЕССА";
 "PiP failed to start." = "Не удалось запустить PiP.";
 "PiP is not available for this video." = "PiP недоступно для этого видео.";
 "PiP is not supported on this device." = "PiP не поддерживается на этом устройстве.";
@@ -446,7 +428,6 @@
 "Preparing" = "Подготовка";
 "Preparing Backup..." = "Подготовка резервной копии...";
 "Preparing download" = "Подготовка загрузки";
-"Prevent Open in Shorts" = "Запретить открытие в Shorts";
 "Preview / Recap" = "Превью / Повтор";
 "Profile Picture Preview" = "Просмотр фото профиля";
 "Profile picture could not be saved" = "Не удалось сохранить фото профиля";
@@ -454,12 +435,10 @@
 "Remove Advertisements" = "Удалить рекламу";
 "Remove Launch Animation" = "Убрать анимацию запуска";
 "Remove downloaded cache files." = "Удалить загруженные файлы кэша.";
-"Restart YouTube to apply changes." = "Перезапустите YouTube, чтобы применить изменения.";
 "Restore Backup" = "Восстановить копию";
 "Restore Failed" = "Сбой восстановления";
 "Restoring Backup..." = "Восстановление резервной копии...";
 "Retrying lower quality" = "Повтор с более низким качеством";
-"Right" = "Справа";
 "SEEK SETTINGS" = "ПАРАМЕТРЫ ПЕРЕМОТКИ";
 "SHORTS" = "SHORTS";
 "STATUS BAR" = "СТАТУС-БАР";
@@ -478,16 +457,11 @@
 "Settings could not be saved" = "Не удалось сохранить настройки";
 "Share" = "Поделиться";
 "Show" = "Показывать";
-"Show Marker" = "Показать маркер";
 "Show Status Bar in Overlay" = "Показывать строку состояния поверх";
 "Shrink Tabs (Bottom)" = "Уменьшить вкладки (снизу)";
 "Shrink Tabs (Smart)" = "Уменьшить вкладки (умно)";
-"Silent" = "Тихо";
-"Skip + Unskip" = "Пропустить + Вернуть";
-"Skip Only" = "Только пропустить";
 "Skip sponsors and swap clickbait with DeArrow" = "Пропуск спонсоров и замена кликбейта с помощью DeArrow";
 "Sleep Timer" = "Таймер сна";
-"Solid color" = "Сплошной цвет";
 "Speed, loop, gestures and overlay buttons" = "Скорость, цикл, жесты и кнопки наложения";
 "Sponsor" = "Спонсор";
 "SponsorBlock data: CC BY-NC-SA 4.0" = "Данные SponsorBlock: CC BY-NC-SA 4.0";
@@ -495,7 +469,6 @@
 "Starts YouTube faster" = "Запускает YouTube быстрее";
 "Startup Page" = "Стартовая страница";
 "Streaming" = "Стриминг";
-"Subscriptions" = "Подписки";
 "System" = "Системный";
 "System Player" = "Системный плеер";
 "Tab Bar" = "Панель вкладок";
@@ -530,9 +503,8 @@
 "Video Info" = "Информация о видео";
 "Video Quality" = "Качество видео";
 "Video information unavailable" = "Информация о видео недоступна";
-"WLater" = "WLater";
+"WLater" = "Смотреть позже";
 "Warning: Backup was not saved to Files app." = "Предупреждение: резервная копия не сохранена в приложении Файлы.";
-"Wi-Fi Quality" = "Качество по Wi-Fi";
 "YTKACE" = "YTKACE";
 "YTKACE Download" = "Загрузка YTKACE";
 "YTKACE Faster" = "YTKACE Быстрее";
@@ -545,7 +517,6 @@
 "YTKACE follows your YouTube language." = "YTKACE следует языку вашего YouTube.";
 "YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACE использует данные SponsorBlock.\nЛицензировано под CC BY-NC-SA 4.0.";
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nЧистая реализация\nКод под лицензией MIT\nСоздано Epic";
-"You" = "Вы";
 "YouTube Download" = "Загрузка YouTube";
 "YouTube Video" = "Видео YouTube";
 "YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube не смог обновить этот поток в высоком разрешении. Воспроизведите видео кратко и повторите.";
@@ -587,10 +558,6 @@
 "merge complete" = "Слияние завершено";
 "thumbnail embedded" = "Миниатюра встроена";
 
-/* 新增翻译 */
-"VIDEO" = "ВИДЕО";
-"APP" = "ПРИЛОЖЕНИЕ";
-"ABOUT" = "О ПРОГРАММЕ";
 "Enabled" = "Включено";
 "ACTIVE" = "АКТИВНО";
 "Tap the checkmark to apply changes." = "Нажмите галочку, чтобы применить изменения.";
@@ -599,41 +566,10 @@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@";
-"Player" = "Плеер";
-"Tabs" = "Вкладки";
-"Downloads, PiP, speed, loop, and background audio" = "Загрузки, PiP, скорость, цикл и фоновое аудио";
-"Skip or mark sponsored segments" = "Пропускать или отмечать спонсорские сегменты";
-"Choose, reorder, and rename tabs" = "Выбор, упорядочивание и переименование вкладок";
-"Brightness, volume, and seeking" = "Яркость, громкость и перемотка";
-"Playback" = "Воспроизведение";
-"Player controls and visibility" = "Управление плеером и видимость";
-"Quality, autoplay, and skip settings" = "Качество, автовоспроизведение и настройки пропуска";
-"Buttons, downloads, and feed options" = "Кнопки, загрузки и параметры ленты";
-"Preferred quality on Wi-Fi" = "Предпочтительное качество по Wi-Fi";
-"Preferred quality on mobile data" = "Предпочтительное качество по мобильной сети";
-"Navigation" = "Навигация";
-"Other" = "Другое";
-"Top bar buttons, logo, and cast" = "Кнопки верхней панели, логотип и трансляция";
-"Appearance, privacy, and compatibility" = "Внешний вид, конфиденциальность и совместимость";
 "Seconds: %@" = "Секунды: %@";
 "%@ seconds" = "%@ секунд";
 "%lu items added to %@." = "%lu элементов добавлено в %@.";
-"BUTTONS" = "КНОПКИ";
-"FILES" = "ФАЙЛЫ";
-"STORAGE" = "ХРАНИЛИЩЕ";
-"QUALITY" = "КАЧЕСТВО";
-"DOUBLE TAP" = "ДВОЙНОЕ НАЖАТИЕ";
-"AUTOPLAY & DATA" = "АВТОВОСПРОИЗВЕДЕНИЕ И ДАННЫЕ";
-"BRAND & CAST" = "БРЕНД И ТРАНСЛЯЦИЯ";
-"TOP BUTTONS" = "ВЕРХНИЕ КНОПКИ";
-"PAGE CHROME" = "ОФОРМЛЕНИЕ СТРАНИЦЫ";
-"APPEARANCE" = "ОФОРМЛЕНИЕ";
-"LAYOUT" = "РАСКЛАДКА";
-"SYSTEM" = "СИСТЕМА";
-"PRIVACY & PROMPTS" = "КОНФИДЕНЦИАЛЬНОСТЬ И ЗАПРОСЫ";
 "Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Выберите сторону для яркости и громкости. Свайпайте вертикально по этой стороне плеера.";
-"BRIGHTNESS & VOLUME" = "ЯРКОСТЬ И ГРОМКОСТЬ";
-"SEEK" = "ПЕРЕМОТКА";
 "YTKACE
 Clean-room implementation
 MIT licensed code
@@ -676,85 +612,17 @@ This requires a YouTube restart to take effect." = "✅ Хуки восстан�
 💡 Примечание:
 Требуется перезапуск YouTube.";
 
-/* 新增翻译 */
-"YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@";
-"YTKACE
-Clean-room implementation
-MIT licensed code
-Built by Epic" = "YTKACE
-Реализация чистой комнаты
-Код под лицензией MIT
-Создано Epic";
-"Format: %@
-" = "Формат: %@
-";
-"File Size: %@
-" = "Размер файла: %@
-";
-"Duration: %@
-" = "Длительность: %@
-";
-"Dimensions: %.0f×%.0f
-" = "Размеры: %.0f×%.0f
-";
-"Bitrate: %.2f Kbps
-" = "Битрейт: %.2f Кбит/с
-";
-"Frame Rate: %.2f fps
-" = "Частота кадров: %.2f fps
-";
-"✅ Playback recovery hooks will install on next launch.
-
-📍 What this does:
-Intercepts playback failures and restores your session automatically.
-
-💡 Note:
-This requires a YouTube restart to take effect." = "✅ Хуки восстановления воспроизведения будут установлены при следующем запуске.
-
-📍 Что это делает:
-Перехватывает сбои воспроизведения и автоматически восстанавливает сеанс.
-
-💡 Примечание:
-Требуется перезапуск YouTube.";
-
-/* 新增翻译 */
 "YTKACE uses SponsorBlock data.
 Licensed under CC BY-NC-SA 4.0." = "YTKACE использует данные SponsorBlock.
 Лицензировано под CC BY-NC-SA 4.0.";
 
-/* 新增翻译 */
-"Downloads & Library" = "Загрузки и библиотека";
-"Saved video, audio, Shorts, imports and backups" = "Сохранённые видео, аудио, Shorts, импорты и резервные копии";
-"Download, PiP, loop, speed and progress controls" = "Загрузка, PiP, цикл, скорость и управление прогрессом";
-"Segments, alerts, colors and DeArrow" = "Сегменты, оповещения, цвета и DeArrow";
-"Player buttons, captions and watch-page cleanup" = "Кнопки плеера, субтитры и очистка страницы";
-"Quality menu, autoplay and skip timing" = "Меню качества, автовоспроизведение и таймер пропуска";
-"Playback, feed and action buttons" = "Воспроизведение, лента и кнопки действий";
-"Top buttons, branding and topic chips" = "Верхние кнопки, брендинг и чипы тем";
-"Choose and reorder bottom tabs" = "Выбор и упорядочивание нижних вкладок";
-"Brightness, volume, hold and tap to seek" = "Яркость, громкость, удержание и тап для перемотки";
-"OLED, startup, sharing, layout and prompts" = "OLED, запуск, обмен, макет и запросы";
-
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"WATCH PAGE" = "СТРАНИЦА ПРОСМОТРА";
-"GESTURES" = "ЖЕСТЫ";
-"ALWAYS VISIBLE" = "ВСЕГДА ВИДИМО";
-"HIDE FROM PLAYER" = "СКРЫТЬ ИЗ ПЛЕЕРА";
-"FEED" = "ЛЕНТА";
-"ACTION BUTTONS" = "КНОПКИ ДЕЙСТВИЙ";
 "%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "%@ загружено, но видео и аудио не удалось объединить. Попробуйте другой формат %@.\n%@";
 
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"PREVIOUS & NEXT" = "ПРЕДЫДУЩИЙ & СЛЕДУЮЩИЙ";
 "VLC" = "VLC";
 
 /* Shorts download button position picker options */
-"Top Corner" = "Верхний угол";
-"Action Buttons" = "Кнопки действий";
 "Remove Frosted Tab Bar" = "Убрать матовую панель вкладок";
 
 /* Sleep timer */
@@ -764,3 +632,4 @@ Licensed under CC BY-NC-SA 4.0." = "YTKACE использует данные Spo
 "1 hour" = "1 час";
 "minutes" = "минут";
 "End of video" = "Конец видео";
+"OK" = "OK";

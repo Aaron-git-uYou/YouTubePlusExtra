@@ -240,12 +240,9 @@
 "Advanced" = "Gelişmiş";
 "Always Show All Controls" = "Tüm kontrolleri daima göster";
 "Always Show Play/Pause Button" = "Oynat/duraklat'ı daima göster";
-"Ask" = "Sor";
 "Audio Language" = "Ses Dili";
-"Auto" = "Otomatik";
 "Auto Skip Shorts" = "Shorts'u otomatik atla";
 "Auto-Skip" = "Otomatik Atlama";
-"Auto-skip" = "Otomatik atla";
 "AutoPlay" = "Otomatik Oynat";
 "BACKUP & RESTORE" = "YEDEKLE & GERİ YÜKLE";
 "Backup Failed" = "Yedekleme Başarısız";
@@ -259,7 +256,6 @@
 "Cache Cleared" = "Önbellek Temizlendi";
 "Cancelled" = "İptal edildi";
 "Cast Confirmation" = "Cast onayı";
-"Cellular Quality" = "Hücresel Veri Kalitesi";
 "Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "Video, Ses veya Shorts seçin, ardından medya, görsel ve altyazıları seçin.";
 "Choose a YTKACE ZIP backup from Files." = "Dosyalar'dan bir YTKACE ZIP yedeği seçin.";
 "Choose and reorder the bottom tabs" = "Alt sekmeleri seçin ve yeniden sıralayın";
@@ -283,14 +279,12 @@
 "DEARROW" = "DEARROW";
 "DEVELOPER" = "GELİŞTİRİCİ";
 "DOUBLE TAP OPTIONS" = "ÇİFT DOKUNMA SEÇENEKLERİ";
-"Default" = "Varsayılan";
 "Default Player" = "Varsayılan Oynatıcı";
 "Delete" = "Sil";
 "Delete All" = "Tümünü Sil";
 "Delete confirmation unavailable" = "Silme onayı kullanılamıyor";
 "Delete every item in this section?" = "Bu bölümdeki tüm öğeler silinsin mi?";
 "Description copied" = "Açıklama kopyalandı";
-"Developer" = "Geliştirici";
 "Dimensions" = "Boyutlar";
 "Disable Autoplay Videos" = "Otomatik oynatmayı kapat";
 "Disable Captions" = "Altyazıları kapat";
@@ -299,7 +293,6 @@
 "Disable Drag & Drop" = "Sürükle bırak'ı kapat";
 "Disable Previous & Next" = "Önceki ve sonraki'yi kapat";
 "Disable RTL Languages" = "RTL dilleri kapat";
-"Disabled" = "Devre dışı";
 "Do you want to create a backup?" = "Yedek oluşturmak istiyor musunuz?";
 "Double tap, hold to seek and pinch" = "Çift dokun, aramak için basılı tut ve sıkıştır";
 "Download Audio" = "Sesi İndir";
@@ -323,7 +316,6 @@
 "End of track" = "Parça sonu";
 "Endcards / Credits" = "Bitiş kartları / Katkıda Bulunanlar";
 "Exit Fullscreen" = "Tam Ekrandan Çık";
-"Explore" = "Keşfet";
 "Export settings and all media as a ZIP file." = "Ayarları ve tüm medyayı ZIP dosyası olarak dışa aktarın.";
 "External Player" = "Harici Oynatıcı";
 "Failed" = "Başarısız";
@@ -336,8 +328,6 @@
 "Frame Rate" = "Kare Hızı";
 "Fullscreen" = "Tam Ekran";
 "Gaming" = "Oyun";
-"Gestures" = "Hareketler";
-"Gradient" = "Gradyan";
 "HIDE ELEMENTS" = "BİLEŞENLERİ GİZLE";
 "HIDE ITEMS" = "ÖĞELERİ GİZLE";
 "Hide Account" = "Hesabı gizle";
@@ -366,14 +356,12 @@
 "Hide Shorts from Feed" = "Akıştaki Shorts'u gizle";
 "Hide Sticker Ads" = "Çıkartma reklamlarını gizle";
 "Hide Suggested Videos" = "Önerilen videoları gizle";
-"Hide Tab Labels" = "Sekme Etiketlerini Gizle";
 "Hide Topic Section" = "Konu bölümünü gizle";
 "Hide Watermark" = "Filigranı gizle";
 "Hide YouTube Logo" = "YouTube logosunu gizle";
 "Hide YouTube Update Popup" = "Güncelleme penceresini gizle";
 "Highlight" = "Vurgula";
 "History" = "Geçmiş";
-"Home" = "Ana sayfa";
 "IMPORT MEDIA" = "MEDYA İÇE AKTAR";
 "INACTIVE TABS" = "PASİF SEKMELER";
 "IPAD MODE" = "IPAD MODU";
@@ -393,11 +381,9 @@
 "Keep Progress Bar Visible" = "İlerleme çubuğunu görünür tut";
 "Language" = "Dil";
 "Learning" = "Eğitim";
-"Left" = "Sol";
 "Library" = "Kitaplık";
 "Live" = "Canlı";
 "Loading PiP" = "PiP yükleniyor";
-"MAIN" = "ANA";
 "MISCELLANEOUS" = "ÇEŞİTLİ";
 "Merge failed" = "Birleştirme başarısız";
 "Merging" = "Birleştiriliyor";
@@ -421,13 +407,9 @@
 "OVERLAY" = "KAPLAMA";
 "OVERLAY CONTROLLER" = "KAPLAMA KONTROLCÜSÜ";
 "OVERLAY PLAYER" = "KAPLAMA OYNATICI";
-"Off" = "Kapalı";
-"On" = "Açık";
 "Open the YTKACE tab and tap the gear icon." = "YTKACE sekmesini açın ve dişli simgesine dokunun.";
 "Original audio" = "Orijinal ses";
-"PLAYBACK" = "OYNATMA";
 "PREVIOUS & NEXT BUTTONS" = "ÖNCEKİ & SONRAKİ DÜĞMELERİ";
-"PROGRESS BAR" = "İLERLEME ÇUBUĞU";
 "PiP failed to start." = "PiP başlatılamadı.";
 "PiP is not available for this video." = "PiP bu video için kullanılamıyor.";
 "PiP is not supported on this device." = "PiP bu cihazda desteklenmiyor.";
@@ -446,7 +428,6 @@
 "Preparing" = "Hazırlanıyor";
 "Preparing Backup..." = "Yedek Hazırlanıyor...";
 "Preparing download" = "İndirme hazırlanıyor";
-"Prevent Open in Shorts" = "Shorts'ta Açılmasını Engelle";
 "Preview / Recap" = "Önizleme / Özet";
 "Profile Picture Preview" = "Profil fotoğrafı önizlemesi";
 "Profile picture could not be saved" = "Profil resmi kaydedilemedi";
@@ -454,12 +435,10 @@
 "Remove Advertisements" = "Reklamları kaldır";
 "Remove Launch Animation" = "Açılış animasyonunu kaldır";
 "Remove downloaded cache files." = "İndirilen önbellek dosyalarını kaldırın.";
-"Restart YouTube to apply changes." = "Değişiklikleri uygulamak için YouTube'u yeniden başlatın.";
 "Restore Backup" = "Yedeği geri yükle";
 "Restore Failed" = "Geri Yükleme Başarısız";
 "Restoring Backup..." = "Yedek Geri Yükleniyor...";
 "Retrying lower quality" = "Daha düşük kaliteyle yeniden deneniyor";
-"Right" = "Sağ";
 "SEEK SETTINGS" = "ARAMA AYARLARI";
 "SHORTS" = "SHORTS";
 "STATUS BAR" = "DURUM ÇUBUĞU";
@@ -478,16 +457,11 @@
 "Settings could not be saved" = "Ayarlar kaydedilemedi";
 "Share" = "Paylaş";
 "Show" = "Göster";
-"Show Marker" = "İşaretçi göster";
 "Show Status Bar in Overlay" = "Durum çubuğunu katmanda göster";
 "Shrink Tabs (Bottom)" = "Sekmeleri Küçült (Alt)";
 "Shrink Tabs (Smart)" = "Sekmeleri Küçült (Akıllı)";
-"Silent" = "Sessiz";
-"Skip + Unskip" = "Atla + Geri al";
-"Skip Only" = "Sadece atla";
 "Skip sponsors and swap clickbait with DeArrow" = "Sponsorları atla ve tıklama tuzağını DeArrow ile değiştir";
 "Sleep Timer" = "Uyku Zamanlayıcısı";
-"Solid color" = "Düz renk";
 "Speed, loop, gestures and overlay buttons" = "Hız, döngü, jestler ve yer paylaşımı düğmeleri";
 "Sponsor" = "Sponsor";
 "SponsorBlock data: CC BY-NC-SA 4.0" = "SponsorBlock verisi: CC BY-NC-SA 4.0";
@@ -495,7 +469,6 @@
 "Starts YouTube faster" = "YouTube'u daha hızlı başlatır";
 "Startup Page" = "Başlangıç Sayfası";
 "Streaming" = "Yayın";
-"Subscriptions" = "Abonelikler";
 "System" = "Sistem";
 "System Player" = "Sistem Oynatıcı";
 "Tab Bar" = "Sekme çubuğu";
@@ -530,9 +503,8 @@
 "Video Info" = "Video Bilgisi";
 "Video Quality" = "Video Kalitesi";
 "Video information unavailable" = "Video bilgisi kullanılamıyor";
-"WLater" = "WLater";
+"WLater" = "Daha sonra izle";
 "Warning: Backup was not saved to Files app." = "Uyarı: Yedek Dosyalar uygulamasına kaydedilmedi.";
-"Wi-Fi Quality" = "Wi-Fi Kalitesi";
 "YTKACE" = "YTKACE";
 "YTKACE Download" = "YTKACE İndirme";
 "YTKACE Faster" = "YTKACE Daha Hızlı";
@@ -545,7 +517,6 @@
 "YTKACE follows your YouTube language." = "YTKACE YouTube dilinizi izler.";
 "YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACE SponsorBlock verisi kullanır.\nCC BY-NC-SA 4.0 altında lisanslıdır.";
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nTemiz-oda uygulaması\nMIT lisanslı kod\nEpic tarafından yapıldı";
-"You" = "Siz";
 "YouTube Download" = "YouTube İndirme";
 "YouTube Video" = "YouTube Videosu";
 "YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube bu yüksek çözünürlüklü akışı yenileyemedi. Videoyu kısa süre oynatın ve tekrar deneyin.";
@@ -587,10 +558,6 @@
 "merge complete" = "Birleştirme tamamlandı";
 "thumbnail embedded" = "Küçük resim gömüldü";
 
-/* 新增翻译 */
-"VIDEO" = "VİDEO";
-"APP" = "UYGULAMA";
-"ABOUT" = "HAKKINDA";
 "Enabled" = "Etkin";
 "ACTIVE" = "AKTİF";
 "Tap the checkmark to apply changes." = "Değişiklikleri uygulamak için onay işaretine dokunun.";
@@ -599,41 +566,10 @@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@";
-"Player" = "Oynatıcı";
-"Tabs" = "Sekmeler";
-"Downloads, PiP, speed, loop, and background audio" = "İndirmeler, PiP, hız, döngü ve arka plan sesi";
-"Skip or mark sponsored segments" = "Sponsorlu bölümleri atla veya işaretle";
-"Choose, reorder, and rename tabs" = "Sekmeleri seç, yeniden sırala ve yeniden adlandır";
-"Brightness, volume, and seeking" = "Parlaklık, ses ve arama";
-"Playback" = "Oynatma";
-"Player controls and visibility" = "Oynatıcı kontrolleri ve görünürlük";
-"Quality, autoplay, and skip settings" = "Kalite, otomatik oynatma ve atlama ayarları";
-"Buttons, downloads, and feed options" = "Düğmeler, indirmeler ve akış seçenekleri";
-"Preferred quality on Wi-Fi" = "Wi-Fi'da tercih edilen kalite";
-"Preferred quality on mobile data" = "Mobil veride tercih edilen kalite";
-"Navigation" = "Gezinme";
-"Other" = "Diğer";
-"Top bar buttons, logo, and cast" = "Üst çubuk düğmeleri, logo ve yayın";
-"Appearance, privacy, and compatibility" = "Görünüm, gizlilik ve uyumluluk";
 "Seconds: %@" = "Saniye: %@";
 "%@ seconds" = "%@ saniye";
 "%lu items added to %@." = "%lu öğe %@ öğesine eklendi.";
-"BUTTONS" = "DÜĞMELER";
-"FILES" = "DOSYALAR";
-"STORAGE" = "DEPOLAMA";
-"QUALITY" = "KALİTE";
-"DOUBLE TAP" = "ÇİFT DOKUNUŞ";
-"AUTOPLAY & DATA" = "OTOMATİK OYNATMA VE VERİ";
-"BRAND & CAST" = "MARKA VE YAYIN";
-"TOP BUTTONS" = "ÜST DÜĞMELER";
-"PAGE CHROME" = "SAYFA KROMU";
-"APPEARANCE" = "GÖRÜNÜM";
-"LAYOUT" = "DÜZEN";
-"SYSTEM" = "SİSTEM";
-"PRIVACY & PROMPTS" = "GİZLİLİK VE İSTEMELER";
 "Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Parlaklık ve ses için bir taraf seçin. Oynatıcının o tarafında dikey olarak kaydırın.";
-"BRIGHTNESS & VOLUME" = "PARLAKLIK VE SES";
-"SEEK" = "ARAMA";
 "YTKACE
 Clean-room implementation
 MIT licensed code
@@ -676,85 +612,17 @@ Oynatma hatalarını yakalar ve oturumunuzu otomatik olarak geri yükler.
 💡 Not:
 YouTube'un yeniden başlatılmasını gerektirir.";
 
-/* 新增翻译 */
-"YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@";
-"YTKACE
-Clean-room implementation
-MIT licensed code
-Built by Epic" = "YTKACE
-Temiz oda uygulaması
-MIT lisanslı kod
-Epic tarafından yapıldı";
-"Format: %@
-" = "Biçim: %@
-";
-"File Size: %@
-" = "Dosya boyutu: %@
-";
-"Duration: %@
-" = "Süre: %@
-";
-"Dimensions: %.0f×%.0f
-" = "Boyutlar: %.0f×%.0f
-";
-"Bitrate: %.2f Kbps
-" = "Bit hızı: %.2f Kbps
-";
-"Frame Rate: %.2f fps
-" = "Kare hızı: %.2f fps
-";
-"✅ Playback recovery hooks will install on next launch.
-
-📍 What this does:
-Intercepts playback failures and restores your session automatically.
-
-💡 Note:
-This requires a YouTube restart to take effect." = "✅ Oynatma kurtarma kancaları bir sonraki başlatmada yüklenecek.
-
-📍 Ne yapar:
-Oynatma hatalarını yakalar ve oturumunuzu otomatik olarak geri yükler.
-
-💡 Not:
-YouTube'un yeniden başlatılmasını gerektirir.";
-
-/* 新增翻译 */
 "YTKACE uses SponsorBlock data.
 Licensed under CC BY-NC-SA 4.0." = "YTKACE, SponsorBlock verilerini kullanır.
 CC BY-NC-SA 4.0 lisansı altında.";
 
-/* 新增翻译 */
-"Downloads & Library" = "İndirmeler ve kitaplık";
-"Saved video, audio, Shorts, imports and backups" = "Kaydedilen video, ses, Shorts, içe aktarmalar ve yedekler";
-"Download, PiP, loop, speed and progress controls" = "İndirme, PiP, döngü, hız ve ilerleme kontrolleri";
-"Segments, alerts, colors and DeArrow" = "Bölümler, uyarılar, renkler ve DeArrow";
-"Player buttons, captions and watch-page cleanup" = "Oynatıcı düğmeleri, altyazılar ve sayfa temizleme";
-"Quality menu, autoplay and skip timing" = "Kalite menüsü, otomatik oynatma ve atlama zamanlaması";
-"Playback, feed and action buttons" = "Oynatma, akış ve eylem düğmeleri";
-"Top buttons, branding and topic chips" = "Üst düğmeler, marka ve konu çipleri";
-"Choose and reorder bottom tabs" = "Alt sekmeleri seç ve yeniden sırala";
-"Brightness, volume, hold and tap to seek" = "Parlaklık, ses, basılı tut ve aramak için dokun";
-"OLED, startup, sharing, layout and prompts" = "OLED, başlangıç, paylaşım, düzen ve istemler";
-
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"WATCH PAGE" = "İZLEME SAYFASI";
-"GESTURES" = "JESTLER";
-"ALWAYS VISIBLE" = "HER ZAMAN GÖRÜNÜR";
-"HIDE FROM PLAYER" = "OYNATICIDAN GİZLE";
-"FEED" = "AKIŞ";
-"ACTION BUTTONS" = "EYLEM DÜĞMELERİ";
 "%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "%@ indirildi, ancak video ve ses birleştirilemedi. Başka bir %@ biçimi deneyin.\n%@";
 
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"PREVIOUS & NEXT" = "ÖNCEKİ & SONRAKİ";
 "VLC" = "VLC";
 
 /* Shorts download button position picker options */
-"Top Corner" = "Üst Köşe";
-"Action Buttons" = "Eylem düğmeleri";
 "Remove Frosted Tab Bar" = "Buzlu sekme çubuğunu kaldır";
 
 /* Sleep timer */
@@ -764,3 +632,4 @@ CC BY-NC-SA 4.0 lisansı altında.";
 "1 hour" = "1 saat";
 "minutes" = "dakika";
 "End of video" = "Video sonu";
+"OK" = "Tamam";

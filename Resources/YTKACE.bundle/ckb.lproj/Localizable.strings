@@ -3,12 +3,12 @@
 "ABOUT" = "دەربارە";
 "ACTION BUTTONS" = "دوگمەکانی کردار";
 "ALWAYS VISIBLE" = "هەمیشە دیار";
-"APP" = "ئەپ";
+"APP" = "بەرنامە";
 "APPEARANCE" = "ڕووکار";
-"AUTOPLAY & DATA" = "لێدانی خۆکار و داتا";
+"AUTOPLAY & DATA" = "لێدانی خۆکار & داتا";
 "Action Buttons" = "دوگمەکانی کردار";
 "Add video, audio, Shorts, artwork, or subtitles." = "ڤیدیۆ، دەنگ، Shorts، وێنە یان ژێرنووس زیاد بکە.";
-"Appearance, privacy, and compatibility" = "ڕووکار، تایبەتێتی و گونجان";
+"Appearance, privacy, and compatibility" = "ڕووکار، تایبەتمەندی و گونجاوی";
 "Apply Settings" = "ڕێکخستنەکان جێبەجێ بکە";
 "Ask" = "بپرسە";
 "Audio" = "دەنگ";
@@ -17,8 +17,8 @@
 "Auto Advance" = "پێشچوونی خۆکار";
 "Auto-skip" = "بازدانی خۆکار";
 "Avatar Preview" = "پێشبینینی وێنەی پرۆفایل";
-"BRAND & CAST" = "برەند و کاست";
-"BRIGHTNESS & VOLUME" = "ڕووناکی و دەنگ";
+"BRAND & CAST" = "براند & cast";
+"BRIGHTNESS & VOLUME" = "ڕووناکی & دەنگ";
 "BUTTONS" = "دوگمەکان";
 "Back" = "گەڕانەوە";
 "Back Up" = "پاڵپشت";
@@ -32,7 +32,7 @@
 "Brightness" = "ڕووناکی";
 "Brightness, volume, and seeking" = "ڕووناکی، دەنگ و گەڕان";
 "Brightness, volume, hold and tap to seek" = "ڕووناکی، دەنگ، گرتن و دانان بۆ گەڕان";
-"Buttons, downloads, and feed options" = "دوگمە، داگرتن و هەڵبژاردەکانی فیید";
+"Buttons, downloads, and feed options" = "دوگمە، داگرتن و ھەڵبژاردەی فیید";
 "Cancel" = "هەڵوەشاندنەوە";
 "Captions Off" = "ژێرنووس ناچالاک";
 "Captions On" = "ژێرنووس چالاک";
@@ -40,13 +40,13 @@
 "Cellular Quality" = "کوالیتی داتای مۆبایل";
 "Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off." = "لایەکی هەڵبژێرە بۆ ڕووناکی و دەنگ. بە ئەستوونی لەو لایەی لێدەرەکە بیجوڵێنە. دانانی دەنگ بۆ هەردوو لا ڕووناکی دەکوژێنێتەوە.";
 "Choose and reorder bottom tabs" = "تابەکانی خوارەوە هەڵبژێرە و ڕێکیان بخەوە";
-"Choose, reorder, and rename tabs" = "تابەکان هەڵبژێرە، ڕێکیان بخە و ناویان بگۆڕە";
+"Choose, reorder, and rename tabs" = "تابەکان ھەڵبژێرە، ڕێکیان بخەرەوە و ناویان بگۆڕە";
 "Clear Cache Now" = "ئێستا کاش پاک بکەرەوە";
 "Clear Cache at Launch" = "لە کاتی کردنەوەدا کاش پاک بکەرەوە";
 "Close" = "داخستن";
 "Confirm Before Casting" = "پێش بڵاوکردنەوە دڵنیابەرەوە";
 "Custom Double-Tap Time" = "ماوەی دوو جار دەستلێدان";
-"DOUBLE TAP" = "دوو جار دانان";
+"DOUBLE TAP" = "دووجار دەستلێدان";
 "Default" = "بنەڕەت";
 "Default Startup Tab" = "تابی بنەڕەتی دەستپێک";
 "Delete temporary download files." = "فایلە کاتییەکانی داگرتن بسڕەوە.";
@@ -59,7 +59,7 @@
 "Download, PiP, loop, speed and progress controls" = "داگرتن، PiP، دووبارە، خێرایی و کۆنترۆڵی پێشکەوتن";
 "Downloads" = "داگرتنەکان";
 "Downloads & Library" = "داگرتنەکان و کتێبخانە";
-"Downloads, PiP, speed, loop, and background audio" = "داگرتن، PiP، خێرایی، دووبارە و دەنگی پاشبنەما";
+"Downloads, PiP, speed, loop, and background audio" = "داگرتن، PiP، خێرایی، دووبارەکردنەوە و دەنگی پاشبنەما";
 "Enable" = "چالاککردن";
 "Explore" = "گەڕان";
 "FEED" = "فیید";
@@ -80,7 +80,7 @@
 "Keep Controls Visible" = "کۆنترۆڵەکان دیار بهێڵەرەوە";
 "Keep Play Button Visible" = "دوگمەی لێدان دیار بهێڵەرەوە";
 "Keep Timeline Visible" = "هێڵی کات دیار بهێڵەرەوە";
-"LAYOUT" = "ڕووکار";
+"LAYOUT" = "شێوە";
 "Layout" = "ڕووکار";
 "Leave blank to restore the default name." = "بەتاڵی بەجێبهێڵە بۆ گەڕاندنەوەی ناوی بنەڕەتی.";
 "Left" = "چەپ";
@@ -91,7 +91,7 @@
 "Main color" = "ڕەنگی سەرەکی";
 "Mini Player for Kids Videos" = "لێدەری بچووک بۆ ڤیدیۆی منداڵان";
 "Mute HUD Alerts" = "بێدەنگکردنی ئاگادارکردنەوەی HUD";
-"Navigation" = "گەشتکردن";
+"Navigation" = "ڕێبەر";
 "Newest" = "نوێترین";
 "No Downloads" = "هیچ داگرتنێک نییە";
 "OLED Black" = "ڕەشی OLED";
@@ -103,10 +103,10 @@
 "Open a YTKACE backup from Files." = "پاڵپشتێکی YTKACE لە Files بکەرەوە.";
 "Other" = "هیتر";
 "Overlay" = "ڕووپۆش";
-"PAGE CHROME" = "پێکهاتەی لاپەڕە";
+"PAGE CHROME" = "چوارچێوەی پەڕە";
 "PLAYBACK" = "لێدان";
 "PREVIOUS & NEXT" = "پێشوو و دواتر";
-"PRIVACY & PROMPTS" = "تایبەتێتی و پرسیارەکان";
+"PRIVACY & PROMPTS" = "تایبەتمەندی & ئاگادارکردنەوە";
 "PROGRESS BAR" = "شریتی پێشکەوتن";
 "PiP Button" = "دوگمەی PiP";
 "Playback" = "لێدان";
@@ -114,14 +114,14 @@
 "Playback, feed and action buttons" = "لێدان، فیید و دوگمەکانی کردار";
 "Player" = "لێدەر";
 "Player buttons, captions and watch-page cleanup" = "دوگمەکانی لێدەر، ژێرنووس و پاککردنەوەی لاپەڕەی بینین";
-"Player controls and visibility" = "کۆنترۆڵەکانی لێدەر و دەرکەوتنیان";
-"Preferred quality on Wi-Fi" = "کوالیتی پەسەند لەسەر Wi-Fi";
-"Preferred quality on mobile data" = "کوالیتی پەسەند لەسەر داتای مۆبایل";
+"Player controls and visibility" = "کۆنترۆڵ و بینینی لێدەر";
+"Preferred quality on Wi-Fi" = "کوالیتی ویستراو لە Wi-Fi";
+"Preferred quality on mobile data" = "کوالیتی ویستراو لە داتای مۆبایل";
 "Premium Logo" = "لۆگۆی Premium";
 "Prevent Open in Shorts" = "ڕێگری لە کردنەوە لە Shorts";
 "Progress Bar" = "شریتی پێشکەوتن";
 "Progress bar style" = "شێوازی شریتی پێشکەوتن";
-"QUALITY" = "کوالیتی";
+"QUALITY" = "کوالێتی";
 "Quality menu, autoplay and skip timing" = "لیستی کوالیتی، لێدانی خۆکار و کاتی بازدان";
 "Quality, autoplay, and skip settings" = "ڕێکخستنی کوالیتی، لێدانی خۆکار و بازدان";
 "Remove Account Button" = "لابردنی دوگمەی هەژمار";
@@ -164,7 +164,7 @@
 "Restore" = "گەڕاندنەوە";
 "Right" = "ڕاست";
 "SEEK" = "گەڕان";
-"STORAGE" = "بیرگە";
+"STORAGE" = "پاشەکەوتکردن";
 "SYSTEM" = "سیستەم";
 "Save" = "پاشەکەوتکردن";
 "Save settings and media to a ZIP file." = "ڕێکخستن و میدیا لە فایلێکی ZIP پاشەکەوت بکە.";
@@ -185,7 +185,7 @@
 "Skip Launch Animation" = "بازدان بە ئەنیمەیشنی دەستپێک";
 "Skip Only" = "تەنها بازدان";
 "Skip Time" = "کاتی بازدان";
-"Skip or mark sponsored segments" = "بازدان یان نیشانەکردنی بەشە ڕیکلامەکان";
+"Skip or mark sponsored segments" = "بازبدە یان بەشە سپۆنسەرکراوەکان نیشان بکە";
 "Smaller Previous/Next" = "بچووککردنەوەی پێشوو/دواتر";
 "Solid color" = "ڕەنگی تەواو";
 "Sort" = "ڕیزکردن";
@@ -195,13 +195,13 @@
 "Stop Autoplay" = "وەستاندنی لێدانی خۆکار";
 "Stop Continue Watching" = "وەستاندنی بەردەوامبوون لە بینین";
 "Subscriptions" = "بەشداریەکان";
-"TOP BUTTONS" = "دوگمە سەرەوەکان";
+"TOP BUTTONS" = "دوگمە سەرەکییەکان";
 "Tabs" = "تابەکان";
 "Tap to Seek" = "دەستلێدان بۆ گەڕان";
 "Thumbnails" = "وێنۆچکەکان";
 "Titles" = "ناونیشانەکان";
 "Top Corner" = "گۆشەی سەرەوە";
-"Top bar buttons, logo, and cast" = "دوگمەکانی شریتی سەرەوە، لۆگۆ و کاست";
+"Top bar buttons, logo, and cast" = "دوگمەی سەرەوە، لۆگۆ و cast";
 "Top buttons, branding and topic chips" = "دوگمە سەرەوەکان، برەند و چیپی بابەتەکان";
 "Turn Off Double Tap" = "ناچالاککردنی دوو جار دەستلێدان";
 "Unskip" = "پاشگەزبوونەوە لە بازدان";
@@ -240,12 +240,9 @@
 "Advanced" = "پێشکەوتوو";
 "Always Show All Controls" = "هەمیشە هەموو کۆنترۆڵەکان پیشان بدە";
 "Always Show Play/Pause Button" = "هەمیشە دوگمەی لێدان/وەستان پیشان بدە";
-"Ask" = "پرسیار بکە";
 "Audio Language" = "زمانی دەنگ";
-"Auto" = "خۆکار";
 "Auto Skip Shorts" = "خۆکارانە Shorts تێپەڕێنە";
 "Auto-Skip" = "خۆکارانە تێپەڕێنە";
-"Auto-skip" = "بایپاسی خۆکار";
 "AutoPlay" = "لێدانی خۆکار";
 "BACKUP & RESTORE" = "پاڵپشت و گەڕاندنەوە";
 "Backup Failed" = "پاڵپشتکردن سەرکەوتوو نەبوو";
@@ -259,7 +256,6 @@
 "Cache Cleared" = "کاش سڕایەوە";
 "Cancelled" = "هەڵوەشایەوە";
 "Cast Confirmation" = "پشتڕاستکردنەوەی Cast";
-"Cellular Quality" = "کوالێتی مۆبایل";
 "Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "ڤیدیۆ، دەنگ، یان Shorts هەڵبژێرە، پاشان میدیا، کاری هونەری و ژێرنووس هەڵبژێرە.";
 "Choose a YTKACE ZIP backup from Files." = "پاڵپشتی ZIP ی YTKACE لە فایلەکان هەڵبژێرە.";
 "Choose and reorder the bottom tabs" = "هەڵبژاردن و دووبارە ڕیزکردنی تابەکانی خوارەوە";
@@ -283,14 +279,12 @@
 "DEARROW" = "DEARROW";
 "DEVELOPER" = "گەشەپێدەر";
 "DOUBLE TAP OPTIONS" = "بژاردەکانی دوو جار دان";
-"Default" = "بنەڕەت";
 "Default Player" = "لێدەری بنەڕەت";
 "Delete" = "سڕینەوە";
 "Delete All" = "سڕینەوەی هەموو";
 "Delete confirmation unavailable" = "پشتڕاستکردنەوەی سڕینەوە بەردەست نییە";
 "Delete every item in this section?" = "سڕینەوەی هەموو دانە لەم بەشە؟";
 "Description copied" = "وەسف کۆپی کر";
-"Developer" = "گەشەپێدەر";
 "Dimensions" = "قەبارە";
 "Disable Autoplay Videos" = "ناچالاککردنی لێدانی خۆکار";
 "Disable Captions" = "ناچالاککردنی ژێرنووس";
@@ -299,7 +293,6 @@
 "Disable Drag & Drop" = "ناچالاککردنی ڕاکێشان";
 "Disable Previous & Next" = "ناچالاککردنی پێشوو و دواتر";
 "Disable RTL Languages" = "ناچالاککردنی زمانەکانی RTL";
-"Disabled" = "ناچالاک";
 "Do you want to create a backup?" = "دەتەوێت پاڵپشت دروست بکەیت؟";
 "Double tap, hold to seek and pinch" = "دووجار tapping، بەردەوامبون بۆ گەڕان و pinch";
 "Download Audio" = "داگرتنی دەنگ";
@@ -323,7 +316,6 @@
 "End of track" = "کۆتایی تراک";
 "Endcards / Credits" = "کارتەکانی کۆتایی / شاناز";
 "Exit Fullscreen" = "دەرچوون لە پڕی شاشە";
-"Explore" = "گەڕان";
 "Export settings and all media as a ZIP file." = "هەناردەکردنی ڕێکخستن و هەموو میدیا وەک فایلی ZIP.";
 "External Player" = "لێدەری دەرەکی";
 "Failed" = "سەرکەوتوو نەبوو";
@@ -336,8 +328,6 @@
 "Frame Rate" = "ڕێژەی چوارچێوە";
 "Fullscreen" = "پڕی شاشە";
 "Gaming" = "یاری";
-"Gestures" = "جوڵەکان";
-"Gradient" = "ڕەنگی تێکەڵ";
 "HIDE ELEMENTS" = "شاردنەوەی توخمەکان";
 "HIDE ITEMS" = "شاردنەوەی بابەتەکان";
 "Hide Account" = "شاردنەوەی هەژمار";
@@ -366,14 +356,12 @@
 "Hide Shorts from Feed" = "شاردنەوەی Shorts لە پەڕەدا";
 "Hide Sticker Ads" = "شاردنەوەی ڕیکلامی ستیکەر";
 "Hide Suggested Videos" = "شاردنەوەی ڤیدیۆ پێشنیارکراوەکان";
-"Hide Tab Labels" = "شاردنەوەی ناونیشانی تاب";
 "Hide Topic Section" = "شاردنەوەی بەشی بابەت";
 "Hide Watermark" = "شاردنەوەی نیشانەی ئاوی";
 "Hide YouTube Logo" = "شاردنەوەی لۆگۆی YouTube";
 "Hide YouTube Update Popup" = "شاردنەوەی پەنجەرەی نوێکردنەوە";
 "Highlight" = "بەرزکردنەوە";
 "History" = "مێژوو";
-"Home" = "سەرەکی";
 "IMPORT MEDIA" = "هاوردەکردنی میدیا";
 "INACTIVE TABS" = "تابە ناچالاکەکان";
 "IPAD MODE" = "دۆخی IPAD";
@@ -393,11 +381,9 @@
 "Keep Progress Bar Visible" = "شریتی پێشکەوتن هەمیشە دیار بێت";
 "Language" = "زمان";
 "Learning" = "فێربوون";
-"Left" = "چەپ";
 "Library" = "کتێبخانە";
 "Live" = "ڕاستەوخۆ";
 "Loading PiP" = "بارکردنی PiP";
-"MAIN" = "سەرەکی";
 "MISCELLANEOUS" = "جۆراوجۆر";
 "Merge failed" = "تێکەڵکردن سەرکەوتوو نەبوو";
 "Merging" = "تێکەڵکردن";
@@ -421,13 +407,9 @@
 "OVERLAY" = "Overlay";
 "OVERLAY CONTROLLER" = "کۆنترۆڵکاری Overlay";
 "OVERLAY PLAYER" = "لێدەری Overlay";
-"Off" = "کوژاوە";
-"On" = "کراوە";
 "Open the YTKACE tab and tap the gear icon." = "تابی YTKACE بکەرەوە و دوگمەی گێر دابگرە.";
 "Original audio" = "دەنگی ڕەسەن";
-"PLAYBACK" = "لێدان";
 "PREVIOUS & NEXT BUTTONS" = "دوگمەکانی پێشوو و دواتر";
-"PROGRESS BAR" = "باری پێشکەوتن";
 "PiP failed to start." = "دەستپێکردنی PiP سەرکەوتوو نەبوو.";
 "PiP is not available for this video." = "PiP بۆ ئەم ڤیدیۆیە بەردەست نییە.";
 "PiP is not supported on this device." = "PiP لەسەر ئەم ئامێرە پشتگیری نەکراوە.";
@@ -446,7 +428,6 @@
 "Preparing" = "ئامادەکردن";
 "Preparing Backup..." = "ئامادەکردنی پاڵپشت...";
 "Preparing download" = "ئامادەکردنی داگرتن";
-"Prevent Open in Shorts" = "ڕێگریکردن لە کردنەوە لە Shorts";
 "Preview / Recap" = "پێشبینین / پوختە";
 "Profile Picture Preview" = "پێشبینینی وێنەی پرۆفایل";
 "Profile picture could not be saved" = "وێنەی پرۆفایل نەتوانرا پاشەکەوت بکرێت";
@@ -454,14 +435,12 @@
 "Remove Advertisements" = "لابردنی ڕیکلام";
 "Remove Launch Animation" = "لابردنی ئەنیمەیشنی دەستپێک";
 "Remove downloaded cache files." = "سڕینەوەی فایلە کاشە داگیراوەکان.";
-"Restart YouTube to apply changes." = "YouTube دووبارە بکەرەوە بۆ جێبەجێکردنی گۆڕانکارییەکان.";
 "Restore Backup" = "گەڕاندنەوەی پاڵپشت";
 "Restore Failed" = "گەڕاندنەوە سەرکەوتوو نەبوو";
 "Restoring Backup..." = "گەڕاندنەوەی پاڵپشت...";
 "Retrying lower quality" = "هەوڵدان بە کوالێتی نزمتر";
-"Right" = "ڕاست";
 "SEEK SETTINGS" = "ڕێکخستنەکانی گەڕان";
-"SHORTS" = "SHORTS";
+"SHORTS" = "ڤیدیۆ کورتەکان";
 "STATUS BAR" = "باری دۆخ";
 "STREAMING" = "ستریمکردن";
 "Save Artwork" = "پاشەکەوتکردنی کاری هونەری";
@@ -478,16 +457,11 @@
 "Settings could not be saved" = "ڕێکخستن نەتوانرا پاشەکەوت بکرێت";
 "Share" = "هاوبەشکردن";
 "Show" = "پیشاندان";
-"Show Marker" = "پیشاندانی نیشانە";
 "Show Status Bar in Overlay" = "پیشاندانی شریتی دۆخ لە چیندا";
 "Shrink Tabs (Bottom)" = "بچووککردنی تابەکان (خوارەوە)";
 "Shrink Tabs (Smart)" = "بچووککردنی تابەکان (زیرەک)";
-"Silent" = "بێدەنگ";
-"Skip + Unskip" = "بایپاس + گەڕاندنەوە";
-"Skip Only" = "تەنها بایپاس";
 "Skip sponsors and swap clickbait with DeArrow" = "بایپاستکردنی سپۆنسەرەکان و گۆڕینی کلیک-بایت بە DeArrow";
 "Sleep Timer" = "کاتژمێری خەو";
-"Solid color" = "ڕەنگی تەواو";
 "Speed, loop, gestures and overlay buttons" = "خێرایی، دووبارەکردنەوە، ئاماژە و دووگمەکانی overlay";
 "Sponsor" = "سپۆنسەر";
 "SponsorBlock data: CC BY-NC-SA 4.0" = "داتای SponsorBlock: CC BY-NC-SA 4.0";
@@ -495,7 +469,6 @@
 "Starts YouTube faster" = "YouTube خێراتر دەست پێ دەکات";
 "Startup Page" = "پەڕەی دەستپێک";
 "Streaming" = "ستریمینگ";
-"Subscriptions" = "بەشداربوونەکان";
 "System" = "سیستەم";
 "System Player" = "لێدەری سیستەم";
 "Tab Bar" = "شریتی تاب";
@@ -530,9 +503,8 @@
 "Video Info" = "زانیاری ڤیدیۆ";
 "Video Quality" = "کوالێتی ڤیدیۆ";
 "Video information unavailable" = "زانیاری ڤیدیۆ بەردەست نییە";
-"WLater" = "WLater";
+"WLater" = "بۆ دواتر بینین";
 "Warning: Backup was not saved to Files app." = "ئاگادبە: پاڵپشت لە بەرنامەی فایلەکان پاشەکەوت نەکرا.";
-"Wi-Fi Quality" = "کوالێتی Wi-Fi";
 "YTKACE" = "YTKACE";
 "YTKACE Download" = "داگرتنی YTKACE";
 "YTKACE Faster" = "YTKACE خێراتر";
@@ -545,7 +517,6 @@
 "YTKACE follows your YouTube language." = "YTKACE بەدوای زمانی YouTube تۆدا دێت.";
 "YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACE داتای SponsorBlock بەکاردێنێت.\nمۆڵەتدراوە لەژێر CC BY-NC-SA 4.0.";
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nجێبەجێکردنی ژووری پاک\nکۆدی مۆڵەتدراوی MIT\nدروستکراو لەلایەن Epic";
-"You" = "تۆ";
 "YouTube Download" = "داگرتنی YouTube";
 "YouTube Video" = "ڤیدیۆی YouTube";
 "YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube نەتوانی ئەم ستریمە بەرزی ڕێکخستنەوە بکات. ڤیدیۆکە بۆ ماوەیەکی کورت لێبدە، پاشان دووبارە هەوڵ بدە.";
@@ -587,81 +558,46 @@
 "merge complete" = "تێکەڵکردن تەواوبوو";
 "thumbnail embedded" = "وێنۆچکەکە جێگیرکرا";
 
-/* 新增翻译 */
-"VIDEO" = "VIDEO";
-"APP" = "APP";
-"ABOUT" = "ABOUT";
-"Enabled" = "Enabled";
-"ACTIVE" = "ACTIVE";
-"Tap the checkmark to apply changes." = "Tap the checkmark to apply changes.";
+"Enabled" = "چالاککراو";
+"ACTIVE" = "چالاک";
+"Tap the checkmark to apply changes." = "بۆ جێبەجێکردنی گۆڕانکارییەکان، لە نیشانەی ✓ دابگرە.";
 "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@";
-"Player" = "Player";
-"Tabs" = "Tabs";
-"Downloads, PiP, speed, loop, and background audio" = "Downloads, PiP, speed, loop, and background audio";
-"Skip or mark sponsored segments" = "Skip or mark sponsored segments";
-"Choose, reorder, and rename tabs" = "Choose, reorder, and rename tabs";
-"Brightness, volume, and seeking" = "Brightness, volume, and seeking";
-"Playback" = "Playback";
-"Player controls and visibility" = "Player controls and visibility";
-"Quality, autoplay, and skip settings" = "Quality, autoplay, and skip settings";
-"Buttons, downloads, and feed options" = "Buttons, downloads, and feed options";
-"Preferred quality on Wi-Fi" = "Preferred quality on Wi-Fi";
-"Preferred quality on mobile data" = "Preferred quality on mobile data";
-"Navigation" = "Navigation";
-"Other" = "Other";
-"Top bar buttons, logo, and cast" = "Top bar buttons, logo, and cast";
-"Appearance, privacy, and compatibility" = "Appearance, privacy, and compatibility";
 "Seconds: %@" = "Seconds: %@";
 "%@ seconds" = "%@ seconds";
 "%lu items added to %@." = "%lu items added to %@.";
-"BUTTONS" = "BUTTONS";
-"FILES" = "FILES";
-"STORAGE" = "STORAGE";
-"QUALITY" = "QUALITY";
-"DOUBLE TAP" = "DOUBLE TAP";
-"AUTOPLAY & DATA" = "AUTOPLAY & DATA";
-"BRAND & CAST" = "BRAND & CAST";
-"TOP BUTTONS" = "TOP BUTTONS";
-"PAGE CHROME" = "PAGE CHROME";
-"APPEARANCE" = "APPEARANCE";
-"LAYOUT" = "LAYOUT";
-"SYSTEM" = "SYSTEM";
-"PRIVACY & PROMPTS" = "PRIVACY & PROMPTS";
 "Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Choose a side for brightness and volume. Swipe vertically on that side of the player.";
-"BRIGHTNESS & VOLUME" = "BRIGHTNESS & VOLUME";
-"SEEK" = "SEEK";
 "YTKACE
 Clean-room implementation
 MIT licensed code
 Built by Epic" = "YTKACE
-Clean-room implementation
-MIT licensed code
-Built by Epic";
+جێبەجێکردنی پاکی (Clean-room)
+کۆدی مۆڵەتدراوی MIT
+دروستکراو لەلایەن Epic";
 "A-Z" = "A–Z";
 "Z-A" = "Z–A";
 "Format: %@
-" = "Format: %@
+" = "فۆرمات: %@
 ";
 "File Size: %@
-" = "File Size: %@
+" = "قەبارەی فایل: %@
 ";
 "Duration: %@
-" = "Duration: %@
+" = "ماوە: %@
 ";
 "Dimensions: %.0f×%.0f
-" = "Dimensions: %.0f×%.0f
+" = "ئەندازە: %.0f×%.0f
 ";
 "Bitrate: %.2f Kbps
-" = "Bitrate: %.2f Kbps
+" = "بیتڕەیت: %.2f Kbps
 ";
 "Frame Rate: %.2f fps
-" = "Frame Rate: %.2f fps
+" = "تێژری چوارچێوە: %.2f fps
 ";
-"Created: %@" = "Created: %@";
+"Created: %@" = "دروستکراو: %@";
 "✅ Playback recovery hooks will install on next launch.
 
 📍 What this does:
@@ -676,40 +612,17 @@ Intercepts playback failures and restores your session automatically.
 💡 Note:
 This requires a YouTube restart to take effect.";
 
-/* 新增翻译 */
 "YTKACE uses SponsorBlock data.
 Licensed under CC BY-NC-SA 4.0." = "YTKACE SponsorBlock بەکاردێنێت.
 مۆڵەتی CC BY-NC-SA 4.0.";
 
-/* 新增翻译 */
-"Downloads & Library" = "داونلۆد و کتێبخانە";
-"Saved video, audio, Shorts, imports and backups" = "ڤیدیۆ و دەنگ و Shorts و هاوردەکراو و باکئەپەکانی پاشەکەوتکراو";
-"Download, PiP, loop, speed and progress controls" = "داونلۆد، PiP، لوپ، خێرایی و کۆنترۆڵی پێشکەوتن";
-"Segments, alerts, colors and DeArrow" = "بەشەکان، ئاگادارکردنەوەکان، ڕەنگەکان و DeArrow";
-"Player buttons, captions and watch-page cleanup" = "دوگمەکانی لێدەر، ژێرنووس و پاککردنەوەی پەڕە";
-"Quality menu, autoplay and skip timing" = "مێنیی کوالێتی، لێدانی خۆکار و کاتداری بەهای خستنەسەر";
-"Playback, feed and action buttons" = "لێدان، فیید و دوگمەکانی کردار";
-"Top buttons, branding and topic chips" = "دوگمەکانی سەرەوە، براندینگ و چیپی بابەت";
-"Choose and reorder bottom tabs" = "هەڵبژاردن و دووبارە ڕیزکردنی تبۆبەکانی خوارەوە";
-"Brightness, volume, hold and tap to seek" = "ڕووناکی، دەنگ، گرتن و تەپە بۆ گەڕان";
-"OLED, startup, sharing, layout and prompts" = "OLED، دەستپێکردن، هاوبەشکردن، شێوە و ئاگادارکردنەوەکان";
-
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"WATCH PAGE" = "پەڕەی بینین";
-"GESTURES" = "ئاماژەکان";
-"ALWAYS VISIBLE" = "هەمیشە بینراو";
-"HIDE FROM PLAYER" = "شاردن لە لێدەر";
-"FEED" = "فیید";
-"ACTION BUTTONS" = "دوگمەکانی کردار";
 "%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "داگرتنرا %@، بەڵام ڤیدیۆ و دەنگ تێکەڵ نەکران. فۆرماتێکی دیکەی %@ تاقی بکەرەوە.\n%@";
 
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"PREVIOUS & NEXT" = "پێشوو و داهاتوو";
 "VLC" = "VLC";
 
 /* Shorts download button position picker options */
-"Top Corner" = "گۆشەی سەرەوە";
-"Action Buttons" = "دوگمەکانی کردار";
 "Remove Frosted Tab Bar" = "لابردنی شریتی تاب";
 
 /* Sleep timer */
@@ -719,3 +632,4 @@ Licensed under CC BY-NC-SA 4.0." = "YTKACE SponsorBlock بەکاردێنێت.
 "1 hour" = "١ کاتژمێر";
 "minutes" = "خولەک";
 "End of video" = "کۆتایی ڤیدیۆ";
+"OK" = "باشە";
