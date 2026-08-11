@@ -1,3 +1,4 @@
+/* YTKACE localisation - ja */
 "YTKACE" = "YTKACE";
 "Player Controls" = "プレーヤーコントロール";
 "Downloads" = "ダウンロード";
@@ -502,7 +503,6 @@
 "merge complete" = "マージ完了";
 "thumbnail embedded" = "サムネイル埋め込み済み";
 
-/* 新增翻译 */
 "VIDEO" = "ビデオ";
 "APP" = "アプリ";
 "ABOUT" = "概要";
@@ -591,57 +591,10 @@ This requires a YouTube restart to take effect." = "✅ 再生回復フックは
 💡 注意：
 YouTubeの再起動が必要です。";
 
-/* 新增翻译 */
-"YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@";
-"YTKACE
-Clean-room implementation
-MIT licensed code
-Built by Epic" = "YTKACE
-クリーンルーム実装
-MITライセンスコード
-Epicによる作成";
-"Format: %@
-" = "形式：%@
-";
-"File Size: %@
-" = "ファイルサイズ：%@
-";
-"Duration: %@
-" = "再生時間：%@
-";
-"Dimensions: %.0f×%.0f
-" = "サイズ：%.0f×%.0f
-";
-"Bitrate: %.2f Kbps
-" = "ビットレート：%.2f Kbps
-";
-"Frame Rate: %.2f fps
-" = "フレームレート：%.2f fps
-";
-"✅ Playback recovery hooks will install on next launch.
-
-📍 What this does:
-Intercepts playback failures and restores your session automatically.
-
-💡 Note:
-This requires a YouTube restart to take effect." = "✅ 再生回復フックは次回起動時にインストールされます。
-
-📍 機能：
-再生エラーを傍受してセッションを自動的に復元します。
-
-💡 注意：
-YouTubeの再起動が必要です。";
-
-/* 新增翻译 */
 "YTKACE uses SponsorBlock data.
 Licensed under CC BY-NC-SA 4.0." = "YTKACE は SponsorBlock データを使用します。
 CC BY-NC-SA 4.0 ライセンス。";
 
-/* 新增翻译 */
 "Downloads & Library" = "ダウンロードとライブラリ";
 "Saved video, audio, Shorts, imports and backups" = "保存された動画、オーディオ、Shorts、インポート、バックアップ";
 "Download, PiP, loop, speed and progress controls" = "ダウンロード、PiP、ループ、速度、プログレスバー制御";
@@ -688,3 +641,4 @@ CC BY-NC-SA 4.0 ライセンス。";
 "1 hour" = "1時間";
 "minutes" = "分";
 "End of video" = "動画の最後";
+"OK" = "OK";

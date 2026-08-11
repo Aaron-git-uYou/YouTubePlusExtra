@@ -240,12 +240,9 @@
 "Advanced" = "متقدم";
 "Always Show All Controls" = "إظهار جميع عناصر التحكم دائماً";
 "Always Show Play/Pause Button" = "إظهار زر التشغيل/الإيقاف المؤقت دائماً";
-"Ask" = "سؤال";
 "Audio Language" = "لغة الصوت";
-"Auto" = "تلقائي";
 "Auto Skip Shorts" = "تخطي المقاطع القصيرة تلقائياً";
 "Auto-Skip" = "تخطي تلقائي";
-"Auto-skip" = "تخطي تلقائي";
 "AutoPlay" = "تشغيل تلقائي";
 "BACKUP & RESTORE" = "نسخ احتياطي واستعادة";
 "Backup Failed" = "فشل النسخ الاحتياطي";
@@ -259,7 +256,6 @@
 "Cache Cleared" = "تم مسح ذاكرة التخزين المؤقت";
 "Cancelled" = "ملغى";
 "Cast Confirmation" = "تأكيد البث";
-"Cellular Quality" = "جودة شبكة الجوال";
 "Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "اختر فيديو أو صوتاً أو مقاطع قصيرة، ثم حدد الوسائط والغلاف والترجمات.";
 "Choose a YTKACE ZIP backup from Files." = "اختر نسخة احتياطية ZIP لـ YTKACE من الملفات.";
 "Choose and reorder the bottom tabs" = "اختر وأعد ترتيب علامات التبويب السفلية";
@@ -283,14 +279,12 @@
 "DEARROW" = "DEARROW";
 "DEVELOPER" = "المطوّر";
 "DOUBLE TAP OPTIONS" = "خيارات النقر المزدوج";
-"Default" = "افتراضي";
 "Default Player" = "المشغل الافتراضي";
 "Delete" = "حذف";
 "Delete All" = "حذف الكل";
 "Delete confirmation unavailable" = "تأكيد الحذف غير متاح";
 "Delete every item in this section?" = "حذف كل عنصر في هذا القسم؟";
 "Description copied" = "تم نسخ الوصف";
-"Developer" = "المطوّر";
 "Dimensions" = "الأبعاد";
 "Disable Autoplay Videos" = "تعطيل التشغيل التلقائي للفيديوهات";
 "Disable Captions" = "تعطيل الترجمة";
@@ -299,7 +293,6 @@
 "Disable Drag & Drop" = "تعطيل السحب والإفلات";
 "Disable Previous & Next" = "تعطيل السابق والتالي";
 "Disable RTL Languages" = "تعطيل لغات RTL";
-"Disabled" = "معطّل";
 "Do you want to create a backup?" = "هل تريد إنشاء نسخة احتياطية؟";
 "Double tap, hold to seek and pinch" = "نقر مزدوج، اضغط مع الاستمرار للبحث والقرص";
 "Download Audio" = "تنزيل الصوت";
@@ -323,7 +316,6 @@
 "End of track" = "نهاية المقطع";
 "Endcards / Credits" = "بطاقات النهاية / الاعتمادات";
 "Exit Fullscreen" = "الخروج من ملء الشاشة";
-"Explore" = "استكشاف";
 "Export settings and all media as a ZIP file." = "تصدير الإعدادات وجميع الوسائط كملف ZIP.";
 "External Player" = "مشغل خارجي";
 "Failed" = "فشل";
@@ -336,8 +328,6 @@
 "Frame Rate" = "معدل الإطارات";
 "Fullscreen" = "ملء الشاشة";
 "Gaming" = "الألعاب";
-"Gestures" = "الإيماءات";
-"Gradient" = "تدرج";
 "HIDE ELEMENTS" = "إخفاء العناصر";
 "HIDE ITEMS" = "إخفاء العناصر";
 "Hide Account" = "إخفاء الحساب";
@@ -366,14 +356,12 @@
 "Hide Shorts from Feed" = "إخفاء المقاطع القصيرة من التغذية";
 "Hide Sticker Ads" = "إخفاء إعلانات الملصقات";
 "Hide Suggested Videos" = "إخفاء الفيديوهات المقترحة";
-"Hide Tab Labels" = "إخفاء تسميات التبويبات";
 "Hide Topic Section" = "إخفاء قسم الموضوع";
 "Hide Watermark" = "إخفاء العلامة المائية";
 "Hide YouTube Logo" = "إخفاء شعار YouTube";
 "Hide YouTube Update Popup" = "إخفاء نافذة تحديث YouTube";
 "Highlight" = "تمييز";
 "History" = "السجل";
-"Home" = "الرئيسية";
 "IMPORT MEDIA" = "استيراد الوسائط";
 "INACTIVE TABS" = "التبويبات غير النشطة";
 "IPAD MODE" = "وضع IPAD";
@@ -393,11 +381,9 @@
 "Keep Progress Bar Visible" = "إبقاء شريط التقدم مرئياً";
 "Language" = "اللغة";
 "Learning" = "التعلم";
-"Left" = "يسار";
 "Library" = "المكتبة";
 "Live" = "مباشر";
 "Loading PiP" = "جارٍ تحميل صورة داخل صورة";
-"MAIN" = "الرئيسي";
 "MISCELLANEOUS" = "متفرقات";
 "Merge failed" = "فشل الدمج";
 "Merging" = "جارٍ الدمج";
@@ -421,13 +407,9 @@
 "OVERLAY" = "الطبقة العلوية";
 "OVERLAY CONTROLLER" = "متحكم الطبقة العلوية";
 "OVERLAY PLAYER" = "مشغل الطبقة العلوية";
-"Off" = "إيقاف";
-"On" = "تشغيل";
 "Open the YTKACE tab and tap the gear icon." = "افتح تبويب YTKACE واضغط على أيقونة الترس.";
 "Original audio" = "الصوت الأصلي";
-"PLAYBACK" = "التشغيل";
 "PREVIOUS & NEXT BUTTONS" = "أزرار السابق والتالي";
-"PROGRESS BAR" = "شريط التقدم";
 "PiP failed to start." = "فشل بدء صورة داخل صورة.";
 "PiP is not available for this video." = "صورة داخل صورة غير متاحة لهذا الفيديو.";
 "PiP is not supported on this device." = "صورة داخل صورة غير مدعومة على هذا الجهاز.";
@@ -446,7 +428,6 @@
 "Preparing" = "جاري التحضير";
 "Preparing Backup..." = "جارٍ تحضير النسخة الاحتياطية...";
 "Preparing download" = "جارٍ تحضير التنزيل";
-"Prevent Open in Shorts" = "منع الفتح في المقاطع القصيرة";
 "Preview / Recap" = "معاينة / استرجاع";
 "Profile Picture Preview" = "معاينة صورة الملف الشخصي";
 "Profile picture could not be saved" = "تعذر حفظ صورة الملف الشخصي";
@@ -454,12 +435,10 @@
 "Remove Advertisements" = "إزالة الإعلانات";
 "Remove Launch Animation" = "إزالة حركة التشغيل";
 "Remove downloaded cache files." = "إزالة ملفات ذاكرة التخزين المؤقت للتنزيلات.";
-"Restart YouTube to apply changes." = "أعد تشغيل YouTube لتطبيق التغييرات.";
 "Restore Backup" = "استعادة النسخة الاحتياطية";
 "Restore Failed" = "فشلت الاستعادة";
 "Restoring Backup..." = "جارٍ استعادة النسخة الاحتياطية...";
 "Retrying lower quality" = "إعادة المحاولة بجودة أقل";
-"Right" = "يمين";
 "SEEK SETTINGS" = "إعدادات التقديم";
 "SHORTS" = "القصيرة";
 "STATUS BAR" = "شريط الحالة";
@@ -478,16 +457,11 @@
 "Settings could not be saved" = "تعذّر حفظ الإعدادات";
 "Share" = "مشاركة";
 "Show" = "إظهار";
-"Show Marker" = "إظهار العلامة";
 "Show Status Bar in Overlay" = "إظهار شريط الحالة في الطبقة العلوية";
 "Shrink Tabs (Bottom)" = "تصغير التبويبات (أسفل)";
 "Shrink Tabs (Smart)" = "تصغير التبويبات (ذكي)";
-"Silent" = "صامت";
-"Skip + Unskip" = "تخطي + إلغاء التخطي";
-"Skip Only" = "تخطي فقط";
 "Skip sponsors and swap clickbait with DeArrow" = "تخطي الرعاة واستبدال العناوين المضللة بـ DeArrow";
 "Sleep Timer" = "مؤقت النوم";
-"Solid color" = "لون خالص";
 "Speed, loop, gestures and overlay buttons" = "السرعة والتكرار والإيماءات وأزرار التراكب";
 "Sponsor" = "راعٍ";
 "SponsorBlock data: CC BY-NC-SA 4.0" = "بيانات SponsorBlock: CC BY-NC-SA 4.0";
@@ -495,7 +469,6 @@
 "Starts YouTube faster" = "يجعل YouTube يبدأ بشكل أسرع";
 "Startup Page" = "صفحة البدء";
 "Streaming" = "البث";
-"Subscriptions" = "الاشتراكات";
 "System" = "النظام";
 "System Player" = "مشغل النظام";
 "Tab Bar" = "شريط التبويبات";
@@ -532,7 +505,6 @@
 "Video information unavailable" = "معلومات الفيديو غير متاحة";
 "WLater" = "المشاهدة لاحقاً";
 "Warning: Backup was not saved to Files app." = "تحذير: لم يتم حفظ النسخة الاحتياطية في تطبيق الملفات.";
-"Wi-Fi Quality" = "جودة Wi-Fi";
 "YTKACE" = "YTKACE";
 "YTKACE Download" = "تنزيل YTKACE";
 "YTKACE Faster" = "YTKACE أسرع";
@@ -545,7 +517,6 @@
 "YTKACE follows your YouTube language." = "يتبع YTKACE لغة YouTube الخاصة بك.";
 "YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "يستخدم YTKACE بيانات SponsorBlock.\nمرخص بموجب CC BY-NC-SA 4.0.";
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nتنفيذ نظيف\nكود مرخص MIT\nبُني بواسطة Epic";
-"You" = "أنت";
 "YouTube Download" = "تنزيل YouTube";
 "YouTube Video" = "فيديو YouTube";
 "YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "تعذّر على YouTube تحديث بث الدقة العالية. شغّل الفيديو لفترة وجيزة، ثم أعد المحاولة.";
@@ -587,10 +558,6 @@
 "merge complete" = "اكتال الدمج";
 "thumbnail embedded" = "تم تضمين الصورة المصغرة";
 
-/* 新增翻译 */
-"VIDEO" = "فيديو";
-"APP" = "تطبيق";
-"ABOUT" = "حول";
 "Enabled" = "مُفعّل";
 "ACTIVE" = "نشط";
 "Tap the checkmark to apply changes." = "اضغط على علامة الصح لتطبيق التغييرات.";
@@ -599,41 +566,10 @@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@";
-"Player" = "المشغل";
-"Tabs" = "التبويبات";
-"Downloads, PiP, speed, loop, and background audio" = "التنزيلات، PiP، السرعة، التكرار والصوت في الخلفية";
-"Skip or mark sponsored segments" = "تخطي أو وضع علامة على المقاطع الإعلانية";
-"Choose, reorder, and rename tabs" = "اختيار وإعادة ترتيب وإعادة تسمية التبويبات";
-"Brightness, volume, and seeking" = "السطوع والصوت والبحث";
-"Playback" = "التشغيل";
-"Player controls and visibility" = "تحكمات المشغل والرؤية";
-"Quality, autoplay, and skip settings" = "الجودة والتشغيل التلقائي وإعدادات التخطي";
-"Buttons, downloads, and feed options" = "الأزرار والتنزيلات وخيارات الموجز";
-"Preferred quality on Wi-Fi" = "الجودة المفضلة على Wi-Fi";
-"Preferred quality on mobile data" = "الجودة المفضلة على بيانات الهاتف";
-"Navigation" = "التنقل";
-"Other" = "أخرى";
-"Top bar buttons, logo, and cast" = "أزرار الشريط العلوي والشعار والبث";
-"Appearance, privacy, and compatibility" = "المظهر والخصوصية والتوافق";
 "Seconds: %@" = "ثوانٍ: %@";
 "%@ seconds" = "%@ ثانية";
 "%lu items added to %@." = "تمت إضافة %lu عنصرًا إلى %@.";
-"BUTTONS" = "أزرار";
-"FILES" = "ملفات";
-"STORAGE" = "تخزين";
-"QUALITY" = "الجودة";
-"DOUBLE TAP" = "نقر مزدوج";
-"AUTOPLAY & DATA" = "التشغيل التلقائي والبيانات";
-"BRAND & CAST" = "العلامة التجارية والبث";
-"TOP BUTTONS" = "أزرار علوية";
-"PAGE CHROME" = "كروم الصفحة";
-"APPEARANCE" = "المظهر";
-"LAYOUT" = "التخطيط";
-"SYSTEM" = "النظام";
-"PRIVACY & PROMPTS" = "الخصوصية والإشعارات";
 "Choose a side for brightness and volume. Swipe vertically on that side of the player." = "اختر جانبًا للسطوع والصوت. اسحب عموديًا على هذا الجانب من المشغل.";
-"BRIGHTNESS & VOLUME" = "السطوع والصوت";
-"SEEK" = "بحث";
 "YTKACE
 Clean-room implementation
 MIT licensed code
@@ -676,85 +612,17 @@ This requires a YouTube restart to take effect." = "✅ سيتم تثبيت خط
 💡 ملاحظة:
 يتطلب إعادة تشغيل YouTube.";
 
-/* 新增翻译 */
-"YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@";
-"YTKACE
-Clean-room implementation
-MIT licensed code
-Built by Epic" = "YTKACE
-تنفيذ النظيف
-كود مرخص MIT
-صنع بواسطة Epic";
-"Format: %@
-" = "الصيغة: %@
-";
-"File Size: %@
-" = "حجم الملف: %@
-";
-"Duration: %@
-" = "المدة: %@
-";
-"Dimensions: %.0f×%.0f
-" = "الأبعاد: %.0f×%.0f
-";
-"Bitrate: %.2f Kbps
-" = "معدل البت: %.2f Kbps
-";
-"Frame Rate: %.2f fps
-" = "معدل الإطارات: %.2f fps
-";
-"✅ Playback recovery hooks will install on next launch.
-
-📍 What this does:
-Intercepts playback failures and restores your session automatically.
-
-💡 Note:
-This requires a YouTube restart to take effect." = "✅ سيتم تثبيت خطافات استعادة التشغيل عند التشغيل التالي.
-
-📍 ما يفعله:
-يعترض على أعطال التشغيل ويستعيد جلستك تلقائيًا.
-
-💡 ملاحظة:
-يتطلب إعادة تشغيل YouTube.";
-
-/* 新增翻译 */
 "YTKACE uses SponsorBlock data.
 Licensed under CC BY-NC-SA 4.0." = "يستخدم YTKACE بيانات SponsorBlock.
 مرخص تحت CC BY-NC-SA 4.0.";
 
-/* 新增翻译 */
-"Downloads & Library" = "التنزيلات والمكتبة";
-"Saved video, audio, Shorts, imports and backups" = "الفيديوهات والصوت وال Shorts والواردات والنسخ الاحتياطي المحفوظة";
-"Download, PiP, loop, speed and progress controls" = "التنزيل، PiP، التكرار، السرعة وضوابط التقدم";
-"Segments, alerts, colors and DeArrow" = "المقاطع، التنبيهات، الألوان و DeArrow";
-"Player buttons, captions and watch-page cleanup" = "أزرار المشغل، الترجمة وتنظيف الصفحة";
-"Quality menu, autoplay and skip timing" = "قائمة الجودة، التشغيل التلقائي وتوقيت التخطي";
-"Playback, feed and action buttons" = "التشغيل، الموجز وأزرار الإجراءات";
-"Top buttons, branding and topic chips" = "الأزرار العلوية، العلامة التجارية وشرائح المواضيع";
-"Choose and reorder bottom tabs" = "اختيار وإعادة ترتيب التبويبات السفلية";
-"Brightness, volume, hold and tap to seek" = "السطوع، الصوت، الضغط المطول والنقر للبحث";
-"OLED, startup, sharing, layout and prompts" = "OLED، البدء، المشاركة، التخطيط والإشعارات";
-
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"WATCH PAGE" = "صفحة المشاهدة";
-"GESTURES" = "الإيماءات";
-"ALWAYS VISIBLE" = "مرئي دائمًا";
-"HIDE FROM PLAYER" = "إخفاء من المشغل";
-"FEED" = "التغذية";
-"ACTION BUTTONS" = "أزرار الإجراءات";
 "%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "تم تنزيل %@، لكن لا يمكن دمج الفيديو والصوت. جرب تنسيق %@ آخر.\n%@";
 
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"PREVIOUS & NEXT" = "السابق والتالي";
 "VLC" = "VLC";
 
 /* Shorts download button position picker options */
-"Top Corner" = "الزاوية العلوية";
-"Action Buttons" = "أزرار الإجراءات";
 "Remove Frosted Tab Bar" = "إزالة شريط التبويب المصفر";
 
 /* Sleep timer */
@@ -764,3 +632,4 @@ Licensed under CC BY-NC-SA 4.0." = "يستخدم YTKACE بيانات SponsorBloc
 "1 hour" = "ساعة واحدة";
 "minutes" = "دقائق";
 "End of video" = "نهاية الفيديو";
+"OK" = "موافق";

@@ -240,12 +240,9 @@
 "Advanced" = "高级";
 "Always Show All Controls" = "始终显示全部控件";
 "Always Show Play/Pause Button" = "始终显示播放/暂停按钮";
-"Ask" = "询问";
 "Audio Language" = "音频语言";
-"Auto" = "自动";
 "Auto Skip Shorts" = "自动跳过短视频";
 "Auto-Skip" = "自动跳过";
-"Auto-skip" = "自动跳过";
 "AutoPlay" = "自动播放";
 "BACKUP & RESTORE" = "备份与恢复";
 "Backup Failed" = "备份失败";
@@ -259,7 +256,6 @@
 "Cache Cleared" = "缓存已清除";
 "Cancelled" = "已取消";
 "Cast Confirmation" = "投屏确认";
-"Cellular Quality" = "蜂窝画质";
 "Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "选择视频、音频或短视频，然后选取媒体、封面和字幕。";
 "Choose a YTKACE ZIP backup from Files." = "从\"文件\"中选择一个 YTKACE 备份 ZIP。";
 "Choose and reorder the bottom tabs" = "选择并重新排列底部标签";
@@ -283,14 +279,12 @@
 "DEARROW" = "DEARROW";
 "DEVELOPER" = "开发者";
 "DOUBLE TAP OPTIONS" = "双击选项";
-"Default" = "默认";
 "Default Player" = "默认播放器";
 "Delete" = "删除";
 "Delete All" = "全部删除";
 "Delete confirmation unavailable" = "无法显示删除确认";
 "Delete every item in this section?" = "确认删除此分区的全部项目？";
 "Description copied" = "描述已复制";
-"Developer" = "开发者";
 "Dimensions" = "分辨率";
 "Disable Autoplay Videos" = "关闭自动播放";
 "Disable Captions" = "关闭字幕";
@@ -299,7 +293,6 @@
 "Disable Drag & Drop" = "关闭拖拽";
 "Disable Previous & Next" = "关闭上/下集按钮";
 "Disable RTL Languages" = "关闭从右到左语言";
-"Disabled" = "已禁用";
 "Do you want to create a backup?" = "是否要创建备份？";
 "Double tap, hold to seek and pinch" = "双击、长按快进和捏合手势";
 "Download Audio" = "下载音频";
@@ -323,7 +316,6 @@
 "End of track" = "曲目结束";
 "Endcards / Credits" = "片尾卡/制作名单";
 "Exit Fullscreen" = "退出全屏";
-"Explore" = "探索";
 "Export settings and all media as a ZIP file." = "将设置和所有媒体导出为 ZIP 文件。";
 "External Player" = "外部播放器";
 "Failed" = "失败";
@@ -336,8 +328,6 @@
 "Frame Rate" = "帧率";
 "Fullscreen" = "全屏";
 "Gaming" = "游戏";
-"Gestures" = "手势控制";
-"Gradient" = "渐变";
 "HIDE ELEMENTS" = "隐藏元素";
 "HIDE ITEMS" = "隐藏元素";
 "Hide Account" = "隐藏账号";
@@ -366,14 +356,12 @@
 "Hide Shorts from Feed" = "信息流中隐藏短视频";
 "Hide Sticker Ads" = "隐藏贴纸广告";
 "Hide Suggested Videos" = "隐藏推荐视频";
-"Hide Tab Labels" = "隐藏标签文字";
 "Hide Topic Section" = "隐藏主题分区";
 "Hide Watermark" = "隐藏水印";
 "Hide YouTube Logo" = "隐藏 YouTube 标志";
 "Hide YouTube Update Popup" = "隐藏 YouTube 更新弹窗";
 "Highlight" = "重点高亮";
 "History" = "历史";
-"Home" = "首页";
 "IMPORT MEDIA" = "导入媒体";
 "INACTIVE TABS" = "未启用标签";
 "IPAD MODE" = "iPad 模式";
@@ -393,11 +381,9 @@
 "Keep Progress Bar Visible" = "保持进度条可见";
 "Language" = "语言";
 "Learning" = "学习";
-"Left" = "左";
 "Library" = "媒体库";
 "Live" = "直播";
 "Loading PiP" = "正在加载画中画";
-"MAIN" = "主要";
 "MISCELLANEOUS" = "杂项";
 "Merge failed" = "合并失败";
 "Merging" = "正在合并";
@@ -422,13 +408,9 @@
 "OVERLAY" = "播放界面";
 "OVERLAY CONTROLLER" = "播放界面控件";
 "OVERLAY PLAYER" = "悬浮播放器";
-"Off" = "关闭";
-"On" = "开启";
 "Open the YTKACE tab and tap the gear icon." = "打开 YTKACE 标签并点击齿轮图标。";
 "Original audio" = "原始音轨";
-"PLAYBACK" = "播放";
 "PREVIOUS & NEXT BUTTONS" = "上/下集按钮";
-"PROGRESS BAR" = "进度条";
 "PiP failed to start." = "画中画启动失败。";
 "PiP is not available for this video." = "当前视频不支持画中画。";
 "PiP is not supported on this device." = "本设备不支持画中画。";
@@ -448,7 +430,6 @@
 "Preparing" = "准备中";
 "Preparing Backup..." = "正在准备备份...";
 "Preparing download" = "正在准备下载";
-"Prevent Open in Shorts" = "阻止跳转到短视频";
 "Preview / Recap" = "预告/回顾";
 "Profile Picture Preview" = "头像预览";
 "Profile picture could not be saved" = "无法保存头像";
@@ -465,12 +446,10 @@
 "Respring Now" = "立即注销重启";
 "Respring Required" = "需要注销重启";
 "Respring required for some changes" = "部分设置更改后需要注销重启才能生效";
-"Restart YouTube to apply changes." = "重启 YouTube 以应用更改。";
 "Restore Backup" = "恢复备份";
 "Restore Failed" = "恢复失败";
 "Restoring Backup..." = "正在恢复备份...";
 "Retrying lower quality" = "正在尝试较低画质";
-"Right" = "右";
 "SEEK SETTINGS" = "快进设置";
 "SHORTS" = "短视频";
 "STATUS BAR" = "状态栏";
@@ -490,16 +469,11 @@
 "Settings could not be saved" = "设置无法保存";
 "Share" = "分享";
 "Show" = "显示";
-"Show Marker" = "显示标记";
 "Show Status Bar in Overlay" = "在播放界面中显示状态栏";
 "Shrink Tabs (Bottom)" = "压缩标签（底部）";
 "Shrink Tabs (Smart)" = "压缩标签（智能）";
-"Silent" = "静默";
-"Skip + Unskip" = "跳过+恢复";
-"Skip Only" = "仅跳过";
 "Skip sponsors and swap clickbait with DeArrow" = "跳过赞助商片段并用 DeArrow 替换标题党";
 "Sleep Timer" = "睡眠定时";
-"Solid color" = "纯色";
 "Speed, loop, gestures and overlay buttons" = "速度、循环、手势和覆盖层按钮";
 "Sponsor" = "赞助广告";
 "SponsorBlock data: CC BY-NC-SA 4.0" = "SponsorBlock 数据：CC BY-NC-SA 4.0";
@@ -507,7 +481,6 @@
 "Starts YouTube faster" = "让 YouTube 启动更快";
 "Startup Page" = "启动页";
 "Streaming" = "流媒体";
-"Subscriptions" = "订阅";
 "System" = "跟随系统";
 "System Player" = "系统播放器";
 "Tab Bar" = "底部标签";
@@ -544,7 +517,6 @@
 "Video information unavailable" = "视频信息不可用";
 "WLater" = "稍后观看";
 "Warning: Backup was not saved to Files app." = "警告：备份未保存到\"文件\"App。";
-"Wi-Fi Quality" = "无线画质";
 "YTKACE" = "YTKACE";
 "YTKACE Download" = "YTKACE 下载";
 "YTKACE Faster" = "YTKACE 加速";
@@ -557,7 +529,6 @@
 "YTKACE follows your YouTube language." = "YTKACE 跟随你的 YouTube 语言。";
 "YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACE 使用 SponsorBlock 数据。\n遵循 CC BY-NC-SA 4.0 许可。";
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nClean-room 实现\nMIT 许可代码\n由 Epic 构建";
-"You" = "我";
 "YouTube Download" = "YouTube 下载";
 "YouTube Video" = "YouTube 视频";
 "YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube 无法刷新此高清流，请先播放几秒再重试。";
@@ -587,10 +558,6 @@
 "🔧 Fix Playback & Account Recovery" = "🔧 修复播放与账号恢复";
 "🧰 Fixes playback guidance for sideloaded apps." = "🧰 修复自签应用中的播放引导。";
 
-/* 新增翻译 */
-"VIDEO" = "视频";
-"APP" = "应用";
-"ABOUT" = "关于";
 "Enabled" = "已启用";
 "ACTIVE" = "运行中";
 "Tap the checkmark to apply changes." = "点击对勾以应用更改。";
@@ -599,41 +566,10 @@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@";
-"Player" = "播放器";
-"Tabs" = "标签页";
-"Downloads, PiP, speed, loop, and background audio" = "下载、画中画、倍速、循环和后台音频";
-"Skip or mark sponsored segments" = "跳过或标记赞助片段";
-"Choose, reorder, and rename tabs" = "选择、排序和重命名标签页";
-"Brightness, volume, and seeking" = "亮度、音量和快进";
-"Playback" = "播放";
-"Player controls and visibility" = "播放器控件和可见性";
-"Quality, autoplay, and skip settings" = "画质、自动播放和跳过设置";
-"Buttons, downloads, and feed options" = "按钮、下载和信息流选项";
-"Preferred quality on Wi-Fi" = "Wi-Fi 下的首选画质";
-"Preferred quality on mobile data" = "移动数据下的首选画质";
-"Navigation" = "导航";
-"Other" = "其他";
-"Top bar buttons, logo, and cast" = "顶部栏按钮、图标和投屏";
-"Appearance, privacy, and compatibility" = "外观、隐私和兼容性";
 "Seconds: %@" = "秒数：%@";
 "%@ seconds" = "%@ 秒";
 "%lu items added to %@." = "已添加 %lu 个项目到 %@。";
-"BUTTONS" = "按钮";
-"FILES" = "文件";
-"STORAGE" = "存储";
-"QUALITY" = "画质";
-"DOUBLE TAP" = "双击";
-"AUTOPLAY & DATA" = "自动播放与数据";
-"BRAND & CAST" = "品牌与投屏";
-"TOP BUTTONS" = "顶部按钮";
-"PAGE CHROME" = "页面外观";
-"APPEARANCE" = "外观";
-"LAYOUT" = "布局";
-"SYSTEM" = "系统";
-"PRIVACY & PROMPTS" = "隐私与提示";
 "Choose a side for brightness and volume. Swipe vertically on that side of the player." = "选择亮度和音量所在的一侧。在播放器的该侧垂直滑动。";
-"BRIGHTNESS & VOLUME" = "亮度与音量";
-"SEEK" = "快进";
 "YTKACE
 Clean-room implementation
 MIT licensed code
@@ -676,85 +612,17 @@ This requires a YouTube restart to take effect." = "✅ 播放恢复钩子将在
 💡 注意：
 需要重启 YouTube 才能生效。";
 
-/* 新增翻译 */
-"YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@" = "YTKACE %@  •  YouTube %@
-%@
-%@  •  iOS %@";
-"YTKACE
-Clean-room implementation
-MIT licensed code
-Built by Epic" = "YTKACE
-净室实现
-MIT 许可代码
-由 Epic 构建";
-"Format: %@
-" = "格式：%@
-";
-"File Size: %@
-" = "文件大小：%@
-";
-"Duration: %@
-" = "时长：%@
-";
-"Dimensions: %.0f×%.0f
-" = "尺寸：%.0f×%.0f
-";
-"Bitrate: %.2f Kbps
-" = "比特率：%.2f Kbps
-";
-"Frame Rate: %.2f fps
-" = "帧率：%.2f fps
-";
-"✅ Playback recovery hooks will install on next launch.
-
-📍 What this does:
-Intercepts playback failures and restores your session automatically.
-
-💡 Note:
-This requires a YouTube restart to take effect." = "✅ 播放恢复钩子将在下次启动时安装。
-
-📍 作用：
-拦截播放失败并自动恢复您的会话。
-
-💡 注意：
-需要重启 YouTube 才能生效。";
-
-/* 新增翻译 */
 "YTKACE uses SponsorBlock data.
 Licensed under CC BY-NC-SA 4.0." = "YTKACE 使用 SponsorBlock 数据。
 基于 CC BY-NC-SA 4.0 许可。";
 
-/* 新增翻译 */
-"Downloads & Library" = "下载和媒体库";
-"Saved video, audio, Shorts, imports and backups" = "已保存的视频、音频、短视频、导入和备份";
-"Download, PiP, loop, speed and progress controls" = "下载、画中画、循环、倍速和进度条控制";
-"Segments, alerts, colors and DeArrow" = "片段、提醒、颜色和 DeArrow";
-"Player buttons, captions and watch-page cleanup" = "播放器按钮、字幕和观看页面清理";
-"Quality menu, autoplay and skip timing" = "画质菜单、自动播放和跳过计时";
-"Playback, feed and action buttons" = "播放、信息流和操作按钮";
-"Top buttons, branding and topic chips" = "顶部按钮、品牌和主题标签";
-"Choose and reorder bottom tabs" = "选择和重新排序底部标签页";
-"Brightness, volume, hold and tap to seek" = "亮度、音量、长按和点击快进";
-"OLED, startup, sharing, layout and prompts" = "OLED、启动、分享、布局和提示";
-
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"WATCH PAGE" = "观看页";
-"GESTURES" = "手势";
-"ALWAYS VISIBLE" = "常驻显示";
-"HIDE FROM PLAYER" = "隐藏播放器元素";
-"FEED" = "信息流";
-"ACTION BUTTONS" = "操作按钮";
 "%@ downloaded, but its video and audio could not be merged. Try another %@ format.\n%@" = "%@ 已下载，但视频和音频无法合并。请尝试其他 %@ 格式。\n%@";
 
 /* SponsorBlock/Overlay/Shorts section titles and missing strings */
-"PREVIOUS & NEXT" = "上一个/下一个";
 "VLC" = "VLC";
 
 /* Shorts download button position picker options */
-"Top Corner" = "顶部角落";
-"Action Buttons" = "操作按钮";
 "Remove Frosted Tab Bar" = "移除毛玻璃标签栏";
 
 /* Sleep timer */
@@ -764,3 +632,4 @@ Licensed under CC BY-NC-SA 4.0." = "YTKACE 使用 SponsorBlock 数据。
 "1 hour" = "1小时";
 "minutes" = "分钟";
 "End of video" = "视频结束时";
+"OK" = "好的";
