@@ -8,7 +8,7 @@
 | Ads | Player ads, slots, placements, ad parameters, playback ad state, and companion ads |
 | SponsorBlock | Segment lookup, timeline markers, automatic skip, Ask mode, skipped HUD, sound, and haptic feedback |
 | Downloads | SABR adaptive video/audio downloading, FFmpeg MP4 remuxing, Shorts downloading, library, custom AVPlayer player, mini-player, share, delete, import, backup, restore, sorting, and layouts |
-| Playback | Background playback, PiP, native-visibility overlay controls, loop, speed, sleep timer, and custom double-tap duration |
+| Playback | Background playback, PiP, native-visibility overlay controls, loop, speed, default playback speed, sleep timer, and custom double-tap duration |
 | Appearance | OLED theme and Premium logo |
 | Streaming | Legacy quality mode, autoplay blocking, cellular HD preference, and custom double-tap duration |
 | Tab bar | Hide and reorder tabs, Create-tab conversion, YTKACE downloads tab, Music/Live/Gaming/News/Sports tabs, startup selection, label hiding, and custom names |
