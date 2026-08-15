@@ -1,4 +1,5 @@
 #import "YTKACEDownloadPlayerController.h"
+#import "../../YTKACE.h"
 #import "../../Runtime/Localization.h"
 #import "../../Runtime/Preferences.h"
 #import "MediaArtwork.h"
@@ -139,7 +140,8 @@ static NSArray<YTKACESubtitleCue *> *YTKACEReadSubtitles(NSURL *mediaURL) {
     self.autoplayEnabled = YES;
     self.gesturesEnabled = NO;
     self.repeatEnabled = NO;
-    self.playbackRate = 1.0f;
+    double defaultRate = YTKACEDefaultPlaybackRate();
+    self.playbackRate = defaultRate >= 0.25 ? (float)defaultRate : 1.0f;
     self.player.allowsExternalPlayback = YES;
     if (@available(iOS 15.0, *)) {
         self.player.audiovisualBackgroundPlaybackPolicy =

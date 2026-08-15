@@ -60,6 +60,8 @@ void YTKACERegisterDefaults(void) {
         @"YTKACE.Preference.Overlay.ProductsHidden": @NO,
         @"YTKACE.Preference.Profiles.Preview": @YES,
         @"YTKACE.Preference.Appearance.LaunchAnimationDisabled": @NO,
+        @"YTKACE.Preference.Player.DefaultRateMode": @0,
+        @"YTKACE.Preference.Player.DefaultRate": @1.0,
         @"YTKACE.Preference.Playback.DoubleTapSeconds": @10.0,
         @"YTKACE.Preference.Gestures.HoldSeekSeconds": @10.0,
         @"YTKACE.Preference.Gestures.VolumeSide": @2,

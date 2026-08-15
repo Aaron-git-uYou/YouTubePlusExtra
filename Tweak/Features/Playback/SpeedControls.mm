@@ -13,6 +13,67 @@
 
 static NSMutableDictionary<NSString *, NSNumber *> *YTKACEMaximumRateOriginals;
 
+static NSString * const YTKACESavedRateKey = @"YTKACE.Preference.Player.SavedRate";
+static NSString * const YTKACEDefaultRateKey = @"YTKACE.Preference.Player.DefaultRate";
+static NSString * const YTKACEDefaultRateModeKey =
+    @"YTKACE.Preference.Player.DefaultRateMode";
+
+typedef NS_ENUM(NSInteger, YTKACEDefaultRateMode) {
+    YTKACEDefaultRateModeNormal = 0,
+    YTKACEDefaultRateModeLastUsed = 1,
+    YTKACEDefaultRateModeCustom = 2
+};
+
+static double YTKACESavedRate(void) {
+    double rate = [NSUserDefaults.standardUserDefaults doubleForKey:YTKACESavedRateKey];
+    return isfinite(rate) && rate >= 0.25 && rate <= 5.0 ? rate : 0.0;
+}
+
+double YTKACEDefaultPlaybackRate(void) {
+    switch ([NSUserDefaults.standardUserDefaults integerForKey:YTKACEDefaultRateModeKey]) {
+        case YTKACEDefaultRateModeLastUsed:
+            return YTKACESavedRate();
+        case YTKACEDefaultRateModeCustom: {
+            double configured =
+                [NSUserDefaults.standardUserDefaults doubleForKey:YTKACEDefaultRateKey];
+            return isfinite(configured) && configured >= 0.25 && configured <= 5.0
+                ? configured
+                : 1.0;
+        }
+        default:
+            return 1.0;
+    }
+}
+
+static BOOL YTKACEExtendedRatesUnlocked(void) {
+    return YTKACEFeatureEnabled(YTKACESpeedKey) || YTKACEDefaultPlaybackRate() > 2.0;
+}
+
+static BOOL YTKACESendRate(id target, NSString *name, double rate) {
+    SEL selector = NSSelectorFromString(name);
+    if (![target respondsToSelector:selector]) {
+        return NO;
+    }
+    NSMethodSignature *signature = [target methodSignatureForSelector:selector];
+    if (signature.numberOfArguments != 3) {
+        return NO;
+    }
+    const char *type = [signature getArgumentTypeAtIndex:2];
+    if (type[0] == 'd') {
+        ((void (*)(id, SEL, double))objc_msgSend)(target, selector, rate);
+    } else if (type[0] == 'f') {
+        ((void (*)(id, SEL, float))objc_msgSend)(target, selector, (float)rate);
+    } else if (strchr("cislqCISLQ", type[0]) != NULL) {
+        ((void (*)(id, SEL, NSInteger))objc_msgSend)(
+            target, selector, (NSInteger)llround(rate * 100.0));
+    } else if (type[0] == '@') {
+        ((void (*)(id, SEL, id))objc_msgSend)(target, selector, @(rate));
+    } else {
+        return NO;
+    }
+    return YES;
+}
+
 static NSString *YTKACESpeedText(double rate) {
     if (fabs(rate - round(rate)) < 0.001) {
         return [NSString stringWithFormat:@"%.0fx", rate];
@@ -46,6 +107,8 @@ static UIImage *YTKACESpeedButtonImage(BOOL plus) {
 + (instancetype)sharedCoordinator;
 @property(nonatomic, weak) UIView *overlay;
 @property(nonatomic, weak) UIButton *valueButton;
+@property(nonatomic, weak) id rateSource;
+@property(nonatomic, copy) NSString *appliedDefaultVideo;
 @property(nonatomic, assign) double observedRate;
 - (void)decrease;
 - (void)increase;
@@ -71,6 +134,11 @@ static UIImage *YTKACESpeedButtonImage(BOOL plus) {
             addObserver:self
                selector:@selector(playbackTimeChanged:)
                    name:@"YTKACEPlaybackTimeDidChange"
+                 object:nil];
+        [NSNotificationCenter.defaultCenter
+            addObserver:self
+               selector:@selector(preferencesChanged:)
+                   name:YTKACEPreferencesDidChangeNotification
                  object:nil];
     }
     return self;
@@ -122,7 +190,56 @@ static UIImage *YTKACESpeedButtonImage(BOOL plus) {
     return 0.0;
 }
 
+- (NSString *)videoIdentifierForSource:(id)source {
+    for (NSString *name in @[@"currentVideoID", @"videoID", @"videoId"]) {
+        SEL selector = NSSelectorFromString(name);
+        if (![source respondsToSelector:selector]) {
+            continue;
+        }
+        id value = ((id (*)(id, SEL))objc_msgSend)(source, selector);
+        if ([value isKindOfClass:NSString.class] && [value length] != 0) {
+            return value;
+        }
+    }
+    return YTKACELastVideoID();
+}
+
+- (BOOL)applyDefaultRateForSource:(id)source {
+    NSString *identifier = [self videoIdentifierForSource:source];
+    if (identifier.length == 0 ||
+        [identifier isEqualToString:self.appliedDefaultVideo]) {
+        return NO;
+    }
+    self.appliedDefaultVideo = identifier;
+    double target = YTKACEDefaultPlaybackRate();
+    if (target < 0.25) {
+        return NO;
+    }
+    if (fabs([self rateFromObject:source depth:0] - target) < 0.01) {
+        return NO;
+    }
+    [self setRate:target];
+    return YES;
+}
+
+- (void)preferencesChanged:(NSNotification *)notification {
+    NSString *key = notification.userInfo[@"key"];
+    if (![key isEqualToString:YTKACEDefaultRateKey] &&
+        ![key isEqualToString:YTKACEDefaultRateModeKey]) {
+        return;
+    }
+    self.appliedDefaultVideo = nil;
+    id source = self.rateSource;
+    if ([self rateFromObject:source depth:0] >= 0.25) {
+        [self applyDefaultRateForSource:source];
+    }
+}
+
 - (void)playbackTimeChanged:(NSNotification *)notification {
+    self.rateSource = notification.object;
+    if ([self applyDefaultRateForSource:notification.object]) {
+        return;
+    }
     double rate = [self rateFromObject:notification.object depth:0];
     if (rate < 0.25) {
         AVPlayer *player = self.activePlayer;
@@ -135,7 +252,7 @@ static UIImage *YTKACESpeedButtonImage(BOOL plus) {
     }
     self.observedRate = rate;
     [NSUserDefaults.standardUserDefaults setFloat:(float)rate
-                                           forKey:@"YTKACE.Preference.Player.SavedRate"];
+                                           forKey:YTKACESavedRateKey];
     [self.valueButton setTitle:YTKACESpeedText(rate)
                       forState:UIControlStateNormal];
 }
@@ -153,11 +270,8 @@ static UIImage *YTKACESpeedButtonImage(BOOL plus) {
         self.observedRate <= 5.0) {
         return self.observedRate;
     }
-    float saved =
-        [NSUserDefaults.standardUserDefaults floatForKey:@"YTKACE.Preference.Player.SavedRate"];
-    return isfinite(saved) && saved >= 0.25f && saved <= 5.0f
-        ? saved
-        : 1.0;
+    double saved = YTKACESavedRate();
+    return saved >= 0.25 ? saved : 1.0;
 }
 
 - (AVPlayer *)activePlayerInLayer:(CALayer *)layer {
@@ -184,29 +298,51 @@ static UIImage *YTKACESpeedButtonImage(BOOL plus) {
     return [self activePlayerInLayer:root.layer];
 }
 
-- (void)setRate:(double)rate {
-    rate = MIN(5.0, MAX(0.25, round(rate * 4.0) / 4.0));
-    id delegate = self.eventsDelegate;
-    for (NSString *name in @[@"setPlaybackRate:", @"setRate:"]) {
+- (BOOL)applyRate:(double)rate toObject:(id)object depth:(NSUInteger)depth {
+    if (object == nil || depth > 2) {
+        return NO;
+    }
+    if (YTKACESendRate(object, @"setPlaybackRate:", rate)) {
+        return YES;
+    }
+    if (depth == 0 && YTKACESendRate(object, @"setRate:", rate)) {
+        return YES;
+    }
+    for (NSString *name in @[@"eventsDelegate", @"playbackController",
+                              @"playerController"]) {
         SEL selector = NSSelectorFromString(name);
-        if ([delegate respondsToSelector:selector]) {
-            ((void (*)(id, SEL, double))objc_msgSend)(delegate, selector, rate);
-            break;
+        if (![object respondsToSelector:selector]) {
+            continue;
+        }
+        id child = ((id (*)(id, SEL))objc_msgSend)(object, selector);
+        if (child == object) {
+            continue;
+        }
+        if ([self applyRate:rate toObject:child depth:depth + 1]) {
+            return YES;
         }
     }
+    return NO;
+}
+
+- (void)setRate:(double)rate {
+    rate = MIN(5.0, MAX(0.25, rate));
+    if (![self applyRate:rate toObject:self.eventsDelegate depth:0]) {
+        [self applyRate:rate toObject:self.rateSource depth:0];
+    }
     [NSUserDefaults.standardUserDefaults setFloat:(float)rate
-                                           forKey:@"YTKACE.Preference.Player.SavedRate"];
+                                           forKey:YTKACESavedRateKey];
     self.observedRate = rate;
     [self.valueButton setTitle:YTKACESpeedText(rate)
                       forState:UIControlStateNormal];
 }
 
 - (void)decrease {
-    [self setRate:self.currentRate - 0.25];
+    [self setRate:(ceil(self.currentRate * 4.0 - 0.001) - 1.0) / 4.0];
 }
 
 - (void)increase {
-    [self setRate:self.currentRate + 0.25];
+    [self setRate:(floor(self.currentRate * 4.0 + 0.001) + 1.0) / 4.0];
 }
 
 - (void)reset {
@@ -222,7 +358,7 @@ static IMP YTKACEMaximumOriginal(id receiver, SEL selector) {
 }
 
 static double YTKACEMaximumPlaybackRateDouble(id receiver, SEL selector) {
-    if (YTKACEFeatureEnabled(YTKACESpeedKey)) {
+    if (YTKACEExtendedRatesUnlocked()) {
         return 5.0;
     }
     IMP original = YTKACEMaximumOriginal(receiver, selector);
@@ -232,7 +368,7 @@ static double YTKACEMaximumPlaybackRateDouble(id receiver, SEL selector) {
 }
 
 static float YTKACEMaximumPlaybackRateFloat(id receiver, SEL selector) {
-    if (YTKACEFeatureEnabled(YTKACESpeedKey)) {
+    if (YTKACEExtendedRatesUnlocked()) {
         return 5.0f;
     }
     IMP original = YTKACEMaximumOriginal(receiver, selector);
@@ -242,7 +378,7 @@ static float YTKACEMaximumPlaybackRateFloat(id receiver, SEL selector) {
 }
 
 static NSInteger YTKACEMaximumPlaybackRateInteger(id receiver, SEL selector) {
-    if (YTKACEFeatureEnabled(YTKACESpeedKey)) {
+    if (YTKACEExtendedRatesUnlocked()) {
         return 500;
     }
     IMP original = YTKACEMaximumOriginal(receiver, selector);
@@ -252,7 +388,7 @@ static NSInteger YTKACEMaximumPlaybackRateInteger(id receiver, SEL selector) {
 }
 
 static NSUInteger YTKACEMaximumPlaybackRateUnsigned(id receiver, SEL selector) {
-    if (YTKACEFeatureEnabled(YTKACESpeedKey)) {
+    if (YTKACEExtendedRatesUnlocked()) {
         return 500;
     }
     IMP original = YTKACEMaximumOriginal(receiver, selector);
@@ -325,9 +461,10 @@ static void YTKACEInstallMaximumRateHooks(void) {
 }
 
 void YTKACEInstallSpeedHooks(void) {
-    if (YTKACEFeatureEnabled(YTKACESpeedKey)) {
+    if (YTKACEExtendedRatesUnlocked()) {
         YTKACEInstallMaximumRateHooks();
     }
+    (void)YTKACESpeedCoordinator.sharedCoordinator;
 
     YTKACERegisterOverlayConfigurator(@"speed", ^(UIView *overlay, UIStackView *stack) {
         YTKACESpeedCoordinator *coordinator = YTKACESpeedCoordinator.sharedCoordinator;

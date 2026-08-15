@@ -21,6 +21,7 @@ void YTKACEInstallPremiumLogoHooks(void);
 void YTKACEInstallBackgroundPlaybackHooks(void);
 void YTKACEInstallPiPHooks(void);
 void YTKACEInstallSpeedHooks(void);
+double YTKACEDefaultPlaybackRate(void);
 void YTKACEInstallLoopHooks(void);
 void YTKACEInstallSleepTimerHooks(void);
 void YTKACEInstallDoubleTapHooks(void);
