@@ -124,6 +124,55 @@ static NSDictionary *YTKACESlider(NSString *title,
     };
 }
 
+static const void *YTKACESliderAssociation = &YTKACESliderAssociation;
+
+static NSDictionary *YTKACESpeedSlider(NSString *title,
+                                       NSString *key,
+                                       double minimum,
+                                       double maximum,
+                                       double step,
+                                       double fallback) {
+    NSMutableDictionary *item =
+        [YTKACESlider(title, key, minimum, maximum, step, fallback) mutableCopy];
+    item[@"unit"] = @"speed";
+    item[@"stacked"] = @YES;
+    return item;
+}
+
+static UIButton *YTKACESliderStepButton(NSString *symbol,
+                                        NSInteger tag,
+                                        id target,
+                                        SEL action,
+                                        UISlider *slider) {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.tag = tag;
+    button.tintColor = YTKACEAccentColor();
+    UIImageSymbolConfiguration *configuration =
+        [UIImageSymbolConfiguration configurationWithPointSize:14.0
+                                                        weight:UIImageSymbolWeightSemibold];
+    [button setImage:[UIImage systemImageNamed:symbol withConfiguration:configuration]
+            forState:UIControlStateNormal];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    objc_setAssociatedObject(button, YTKACESliderAssociation, slider,
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
+
+static NSString *YTKACESliderValueText(NSDictionary *item, double value) {
+    if (![item[@"unit"] isEqualToString:@"speed"]) {
+        return [NSString stringWithFormat:YTKACELocalized(@"%@ seconds"),
+                [NSString stringWithFormat:@"%.0f", value]];
+    }
+    if (fabs(value - round(value)) < 0.001) {
+        return [NSString stringWithFormat:@"%.0fx", value];
+    }
+    if (fabs(value * 10.0 - round(value * 10.0)) < 0.001) {
+        return [NSString stringWithFormat:@"%.1fx", value];
+    }
+    return [NSString stringWithFormat:@"%.2fx", value];
+}
+
 static NSDictionary *YTKACEColor(NSString *title,
                                  NSString *key,
                                  NSString *fallback) {
@@ -524,7 +573,7 @@ NSString *YTKACEPickerSummary(NSString *key,
         return 92.0;
     }
     if ([type isEqualToString:@"slider"]) {
-        return 58.0;
+        return [item[@"stacked"] boolValue] ? 78.0 : 58.0;
     }
     if ([type isEqualToString:@"segmented"] && [item[@"stacked"] boolValue]) {
         return 74.0;
@@ -559,6 +608,7 @@ willDisplayHeaderView:(UIView *)view
 
     [[cell.contentView viewWithTag:8801] removeFromSuperview];
     [[cell.contentView viewWithTag:8802] removeFromSuperview];
+    [[cell.contentView viewWithTag:8803] removeFromSuperview];
 
     cell.textLabel.text = item[@"title"];
     cell.detailTextLabel.text = item[@"subtitle"];
@@ -657,6 +707,87 @@ willDisplayHeaderView:(UIView *)view
           forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = stepper;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else if ([type isEqualToString:@"slider"] && [item[@"stacked"] boolValue]) {
+        double stored = [YTKACEPreferenceObject(item[@"key"]) doubleValue];
+        double value = stored > 0.0 ? stored : [item[@"fallback"] doubleValue];
+
+        UIView *container = [UIView new];
+        container.tag = 8803;
+        container.translatesAutoresizingMaskIntoConstraints = NO;
+        [cell.contentView addSubview:container];
+
+        UILabel *caption = [UILabel new];
+        caption.text = item[@"title"];
+        caption.font = [UIFont systemFontOfSize:16.0];
+        caption.textColor = UIColor.labelColor;
+        caption.translatesAutoresizingMaskIntoConstraints = NO;
+        [container addSubview:caption];
+
+        UILabel *valueLabel = [UILabel new];
+        valueLabel.font = [UIFont monospacedDigitSystemFontOfSize:15.0
+                                                           weight:UIFontWeightSemibold];
+        valueLabel.textColor = YTKACEAccentColor();
+        valueLabel.textAlignment = NSTextAlignmentRight;
+        valueLabel.text = YTKACESliderValueText(item, value);
+        valueLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        [container addSubview:valueLabel];
+
+        UISlider *slider = [UISlider new];
+        slider.minimumTrackTintColor = YTKACEAccentColor();
+        slider.minimumValue = [item[@"minimum"] floatValue];
+        slider.maximumValue = [item[@"maximum"] floatValue];
+        slider.value = (float)value;
+        slider.translatesAutoresizingMaskIntoConstraints = NO;
+        objc_setAssociatedObject(slider, YTKACEItemAssociation, item,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(slider, YTKACEValueLabelAssociation, valueLabel,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [slider addTarget:self
+                   action:@selector(sliderChanged:)
+         forControlEvents:UIControlEventValueChanged];
+        [container addSubview:slider];
+
+        UIButton *minus = YTKACESliderStepButton(@"minus", 1, self,
+                                                 @selector(sliderStepped:), slider);
+        UIButton *plus = YTKACESliderStepButton(@"plus", 2, self,
+                                                @selector(sliderStepped:), slider);
+        [container addSubview:minus];
+        [container addSubview:plus];
+
+        UILayoutGuide *guide = cell.contentView.layoutMarginsGuide;
+        [NSLayoutConstraint activateConstraints:@[
+            [container.leadingAnchor constraintEqualToAnchor:guide.leadingAnchor],
+            [container.trailingAnchor constraintEqualToAnchor:guide.trailingAnchor],
+            [container.topAnchor constraintEqualToAnchor:cell.contentView.topAnchor
+                                                constant:8.0],
+            [container.bottomAnchor constraintEqualToAnchor:cell.contentView.bottomAnchor
+                                                   constant:-8.0],
+
+            [caption.leadingAnchor constraintEqualToAnchor:container.leadingAnchor],
+            [caption.topAnchor constraintEqualToAnchor:container.topAnchor],
+            [valueLabel.trailingAnchor constraintEqualToAnchor:container.trailingAnchor],
+            [valueLabel.firstBaselineAnchor constraintEqualToAnchor:caption.firstBaselineAnchor],
+            [valueLabel.leadingAnchor constraintGreaterThanOrEqualToAnchor:caption.trailingAnchor
+                                                                  constant:8.0],
+
+            [minus.leadingAnchor constraintEqualToAnchor:container.leadingAnchor],
+            [minus.centerYAnchor constraintEqualToAnchor:slider.centerYAnchor],
+            [minus.widthAnchor constraintEqualToConstant:30.0],
+            [minus.heightAnchor constraintEqualToConstant:30.0],
+
+            [plus.trailingAnchor constraintEqualToAnchor:container.trailingAnchor],
+            [plus.centerYAnchor constraintEqualToAnchor:slider.centerYAnchor],
+            [plus.widthAnchor constraintEqualToConstant:30.0],
+            [plus.heightAnchor constraintEqualToConstant:30.0],
+
+            [slider.leadingAnchor constraintEqualToAnchor:minus.trailingAnchor constant:10.0],
+            [slider.trailingAnchor constraintEqualToAnchor:plus.leadingAnchor constant:-10.0],
+            [slider.topAnchor constraintEqualToAnchor:caption.bottomAnchor constant:6.0],
+            [slider.bottomAnchor constraintEqualToAnchor:container.bottomAnchor]
+        ]];
+        cell.textLabel.text = nil;
+        cell.accessoryView = nil;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else if ([type isEqualToString:@"slider"]) {
         double stored = [YTKACEPreferenceObject(item[@"key"]) doubleValue];
         double value = stored > 0.0 ? stored : [item[@"fallback"] doubleValue];
@@ -670,7 +801,7 @@ willDisplayHeaderView:(UIView *)view
         valueLabel.font = [UIFont systemFontOfSize:10.0];
         valueLabel.textColor = UIColor.tertiaryLabelColor;
         valueLabel.textAlignment = NSTextAlignmentRight;
-        valueLabel.text = [NSString stringWithFormat:YTKACELocalized(@"%@ seconds"), [NSString stringWithFormat:@"%.0f", value]];
+        valueLabel.text = YTKACESliderValueText(item, value);
         objc_setAssociatedObject(slider, YTKACEItemAssociation, item, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         objc_setAssociatedObject(slider, YTKACEValueLabelAssociation, valueLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [slider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
@@ -749,13 +880,26 @@ willDisplayHeaderView:(UIView *)view
     cell.textLabel.text = [NSString stringWithFormat:YTKACELocalized(@"Seconds: %@"), [NSString stringWithFormat:@"%.0f", sender.value]];
 }
 
+- (void)sliderStepped:(UIButton *)sender {
+    UISlider *slider = objc_getAssociatedObject(sender, YTKACESliderAssociation);
+    NSDictionary *item = objc_getAssociatedObject(slider, YTKACEItemAssociation);
+    if (slider == nil || item == nil) {
+        return;
+    }
+    double step = MAX(0.01, [item[@"step"] doubleValue]);
+    double value = slider.value + (sender.tag == 2 ? step : -step);
+    slider.value = (float)MIN([item[@"maximum"] doubleValue],
+                              MAX([item[@"minimum"] doubleValue], value));
+    [self sliderChanged:slider];
+}
+
 - (void)sliderChanged:(UISlider *)sender {
     NSDictionary *item = objc_getAssociatedObject(sender, YTKACEItemAssociation);
     UILabel *label = objc_getAssociatedObject(sender, YTKACEValueLabelAssociation);
-    double step = MAX(0.1, [item[@"step"] doubleValue]);
-    double value = round(sender.value / step) * step;
+    double step = MAX(0.01, [item[@"step"] doubleValue]);
+    double value = round(round(sender.value / step) * step * 100.0) / 100.0;
     YTKACESetPreferenceObject(item[@"key"], @(value));
-    label.text = [NSString stringWithFormat:YTKACELocalized(@"%@ seconds"), [NSString stringWithFormat:@"%.0f", value]];
+    label.text = YTKACESliderValueText(item, value);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -1180,6 +1324,13 @@ static NSDictionary *YTKACEPlayerControlsDefinition(void) {
         ],
         @[
             YTKACEToggle(@"Speed Buttons", YTKACESpeedKey, @"", @""),
+            YTKACESegmentedStacked(@"Default playback speed",
+                                   @"YTKACE.Preference.Player.DefaultRateMode",
+                                   @[@"1x", @"Last Used", @"Custom"], @[@0, @1, @2], 0),
+            YTKACESpeedSlider(@"Custom speed", @"YTKACE.Preference.Player.DefaultRate",
+                              0.25, 5.0, 0.05, 1.0)
+        ],
+        @[
             YTKACEToggle(@"Remove Ads", YTKACENoAdsKey, @"", @""),
             YTKACEToggleDetail(@"Playback Fix",
                 @"Helps recover playback in sideloaded builds.",
@@ -1195,7 +1346,7 @@ static NSDictionary *YTKACEPlayerControlsDefinition(void) {
             YTKACEPicker(@"Clear Cache at Launch", @"YTKACE.Preference.Downloads.ClearOnStartup", @[@"Off", @"On"], @[@NO, @YES], 0, @"", @""),
             YTKACEActionDetail(@"Clear Cache Now", @"Delete temporary download files.", clearCache)
         ]
-    ], @[YTKACELocalized(@"BUTTONS"), YTKACELocalized(@"PLAYBACK"), YTKACELocalized(@"PROGRESS BAR"), YTKACELocalized(@"FILES"), YTKACELocalized(@"STORAGE")]);
+    ], @[YTKACELocalized(@"BUTTONS"), YTKACELocalized(@"SPEED"), YTKACELocalized(@"PLAYBACK"), YTKACELocalized(@"PROGRESS BAR"), YTKACELocalized(@"FILES"), YTKACELocalized(@"STORAGE")]);
 }
 
 UIViewController *YTKACEMakeTabBarOptionsController(void) {

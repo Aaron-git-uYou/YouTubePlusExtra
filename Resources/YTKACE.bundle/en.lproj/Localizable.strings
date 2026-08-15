@@ -45,10 +45,13 @@
 "Clear Cache at Launch" = "Clear Cache at Launch";
 "Close" = "Close";
 "Confirm Before Casting" = "Confirm Before Casting";
+"Custom" = "Custom";
 "Custom Double-Tap Time" = "Custom Double-Tap Time";
+"Custom speed" = "Custom speed";
 "DOUBLE TAP" = "DOUBLE TAP";
 "Default" = "Default";
 "Default Startup Tab" = "Default Startup Tab";
+"Default playback speed" = "Default playback speed";
 "Delete temporary download files." = "Delete temporary download files.";
 "Developer" = "Developer";
 "Disabled" = "Disabled";
@@ -81,6 +84,7 @@
 "Keep Play Button Visible" = "Keep Play Button Visible";
 "Keep Timeline Visible" = "Keep Timeline Visible";
 "LAYOUT" = "LAYOUT";
+"Last Used" = "Last Used";
 "Layout" = "Layout";
 "Leave blank to restore the default name." = "Leave blank to restore the default name.";
 "Left" = "Left";
@@ -164,6 +168,7 @@
 "Restore" = "Restore";
 "Right" = "Right";
 "SEEK" = "SEEK";
+"SPEED" = "SPEED";
 "STORAGE" = "STORAGE";
 "SYSTEM" = "SYSTEM";
 "Save" = "Save";
