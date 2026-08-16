@@ -343,6 +343,7 @@ static void YTKACEDisplayViewDidMove(UIView *receiver, SEL selector) {
         ((void (*)(id, SEL))OriginalDisplayViewDidMove)(receiver, selector);
     }
     YTKACEApplyContentVisibility(receiver);
+    YTKACEHandleAdDisplayView(receiver);
 }
 
 static void YTKACEDisplayViewSetIdentifier(UIView *receiver,
@@ -356,6 +357,7 @@ static void YTKACEDisplayViewSetIdentifier(UIView *receiver,
         );
     }
     YTKACEApplyContentVisibility(receiver);
+    YTKACEHandleAdDisplayView(receiver);
 }
 
 static BOOL YTKACEHideTopics(void) {
