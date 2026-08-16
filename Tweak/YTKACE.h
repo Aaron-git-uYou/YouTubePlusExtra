@@ -9,6 +9,9 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXPORT NSString * const YTKACEVersion;
 
 void YTKACEInstallAdsHooks(void);
+void YTKACEHandleAdDisplayView(UIView *view);
+void YTKACEHandleAdCellLayout(UIView *cell);
+void YTKACEHandleAdCellReuse(UIView *cell);
 NSArray *YTKACEFilterAdSections(NSArray *sections);
 void YTKACEInstallPromoHooks(void);
 void YTKACEInstallSponsorBlockHooks(void);

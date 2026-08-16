@@ -132,6 +132,8 @@ void YTKACEApplyAppearance(UIViewController *controller) {
     self.navigationItem.rightBarButtonItems = @[
         [[UIBarButtonItem alloc] initWithTitle:YTKACELocalized(@"Clear") style:UIBarButtonItemStylePlain
             target:self action:@selector(clearLog)],
+        [[UIBarButtonItem alloc] initWithTitle:YTKACELocalized(@"Share") style:UIBarButtonItemStylePlain
+            target:self action:@selector(shareLog)],
         [[UIBarButtonItem alloc] initWithTitle:YTKACELocalized(@"Copy") style:UIBarButtonItemStylePlain
             target:self action:@selector(copyLog)]
     ];
@@ -145,6 +147,24 @@ void YTKACEApplyAppearance(UIViewController *controller) {
     self.textView.text = YTKACEDownloadLogContents();
     NSRange end = NSMakeRange(self.textView.text.length, 0);
     [self.textView scrollRangeToVisible:end];
+}
+
+- (void)shareLog {
+    NSURL *url = [NSURL fileURLWithPath:[NSTemporaryDirectory()
+        stringByAppendingPathComponent:@"ytkace-download.log"]];
+    NSError *error = nil;
+    if (![self.textView.text writeToURL:url atomically:YES
+                               encoding:NSUTF8StringEncoding error:&error]) {
+        YTKACEShowNotice(YTKACELocalized(@"Could not prepare the log"));
+        return;
+    }
+    UIActivityViewController *share = [[UIActivityViewController alloc]
+        initWithActivityItems:@[url] applicationActivities:nil];
+    share.popoverPresentationController.barButtonItem =
+        self.navigationItem.rightBarButtonItems.count > 1
+            ? self.navigationItem.rightBarButtonItems[1]
+            : self.navigationItem.rightBarButtonItems.firstObject;
+    [self presentViewController:share animated:YES completion:nil];
 }
 
 - (void)copyLog {
