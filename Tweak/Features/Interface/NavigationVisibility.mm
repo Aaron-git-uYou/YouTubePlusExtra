@@ -84,15 +84,35 @@ static void YTKACESetNavigationHidden(UIView *view, BOOL hidden) {
     }
 }
 
-static id YTKACENotificationButton(id receiver, SEL selector) {
+static BOOL YTKACEIsMessagesToken(NSString *token) {
+    return [token containsString:@"id.connections.inbox.button"] ||
+        [token containsString:@"connectionsinboxbutton"] ||
+        [token containsString:@"connections_inbox"] ||
+        [token containsString:@"messages_inbox"] ||
+        [token containsString:@"messagebutton"] ||
+        [token containsString:@"messages button"] ||
+        [token containsString:@"chatbutton"] ||
+        [token containsString:@"inboxbutton"];
+}
+
+static id YTKACENavigationButton(id receiver, SEL selector) {
     IMP original = YTKACENavigationOriginal(receiver, selector);
     id value = original == NULL
         ? nil
         : ((id (*)(id, SEL))original)(receiver, selector);
     if ([value isKindOfClass:UIView.class]) {
+        NSString *selectorName = NSStringFromSelector(selector).lowercaseString;
+        BOOL messages = YTKACEIsMessagesToken(selectorName) ||
+            [selectorName isEqualToString:@"connectionsbutton"] ||
+            [selectorName isEqualToString:@"messagesbutton"] ||
+            [selectorName isEqualToString:@"messagebutton"] ||
+            [selectorName isEqualToString:@"chatbutton"] ||
+            [selectorName isEqualToString:@"inboxbutton"];
         YTKACESetNavigationHidden(
             value,
-            YTKACEFeatureEnabled(@"YTKACE.Preference.Navigation.NotificationsHidden")
+            YTKACEFeatureEnabled(messages
+                ? @"YTKACE.Preference.Navigation.MessagesHidden"
+                : @"YTKACE.Preference.Navigation.NotificationsHidden")
         );
     }
     return value;
@@ -108,9 +128,19 @@ static void YTKACEInstallNavigationMethodHooks(void) {
         [@"YTKACENavigationHookTargets." stringByAppendingString:version];
     NSDictionary<NSString *, NSValue *> *replacements = @{
         @"notificationButton":
-            YTKACENavigationIMPValue((IMP)YTKACENotificationButton),
+            YTKACENavigationIMPValue((IMP)YTKACENavigationButton),
         @"newNotificationButton":
-            YTKACENavigationIMPValue((IMP)YTKACENotificationButton)
+            YTKACENavigationIMPValue((IMP)YTKACENavigationButton),
+        @"connectionsButton":
+            YTKACENavigationIMPValue((IMP)YTKACENavigationButton),
+        @"messagesButton":
+            YTKACENavigationIMPValue((IMP)YTKACENavigationButton),
+        @"messageButton":
+            YTKACENavigationIMPValue((IMP)YTKACENavigationButton),
+        @"chatButton":
+            YTKACENavigationIMPValue((IMP)YTKACENavigationButton),
+        @"inboxButton":
+            YTKACENavigationIMPValue((IMP)YTKACENavigationButton)
     };
     void (^applyTargets)(NSArray<NSString *> *) =
         ^(NSArray<NSString *> *targets) {
@@ -138,7 +168,12 @@ static void YTKACEInstallNavigationMethodHooks(void) {
 static void YTKACEDiscoverNavigationMethodHooks(void) {
     NSSet<NSString *> *selectors = [NSSet setWithArray:@[
         @"notificationButton",
-        @"newNotificationButton"
+        @"newNotificationButton",
+        @"connectionsButton",
+        @"messagesButton",
+        @"messageButton",
+        @"chatButton",
+        @"inboxButton"
     ]];
     int count = objc_getClassList(NULL, 0);
     if (count <= 0) return;
@@ -212,6 +247,10 @@ static BOOL YTKACENavigationShouldHide(UIView *view) {
          [token containsString:@"bell"])) {
         return YES;
     }
+    if (YTKACEFeatureEnabled(@"YTKACE.Preference.Navigation.MessagesHidden") &&
+        YTKACEInsideRightNavigation(view) && YTKACEIsMessagesToken(token)) {
+        return YES;
+    }
     return NO;
 }
 
@@ -229,7 +268,10 @@ static BOOL YTKACEIsNavigationIcon(UIView *view) {
         [token containsString:@"search"] ||
         [token containsString:@"cast"] ||
         [token containsString:@"airplay"] ||
-        [token containsString:@"routebutton"]) return YES;
+        [token containsString:@"routebutton"] ||
+        (YTKACEInsideRightNavigation(view) && YTKACEIsMessagesToken(token))) {
+        return YES;
+    }
     if (![view isKindOfClass:UIButton.class] &&
         ![view isKindOfClass:UIImageView.class]) return NO;
     for (UIView *ancestor = view.superview; ancestor != nil;
@@ -355,6 +397,10 @@ static void YTKACEApplyNavigationSelectors(id owner) {
             @"notificationButton", @"newNotificationButton",
             @"notificationBellButton", @"notificationBellView"
         ],
+        @"YTKACE.Preference.Navigation.MessagesHidden": @[
+            @"connectionsButton", @"messagesButton", @"messageButton",
+            @"chatButton", @"inboxButton"
+        ],
         @"YTKACE.Preference.Navigation.SearchHidden": @[@"searchButton"],
         @"YTKACE.Preference.Navigation.CastHidden": @[@"castButton", @"MDXButton"],
         @"YTKACE.Preference.Navigation.AccountHidden": @[@"accountButton", @"avatarButton"]
@@ -467,6 +513,16 @@ static void YTKACEQTMButtonLayout(UIView *receiver, SEL selector) {
         YTKACESetNavigationHidden(
             receiver,
             YTKACEFeatureEnabled(@"YTKACE.Preference.Navigation.NotificationsHidden")
+        );
+    } else if ([label isEqualToString:@"messages"] ||
+               [label isEqualToString:@"message"] ||
+               [label isEqualToString:@"chat"] ||
+               [label isEqualToString:@"inbox"] ||
+               [receiver.accessibilityIdentifier.lowercaseString
+                   isEqualToString:@"id.connections.inbox.button"]) {
+        YTKACESetNavigationHidden(
+            receiver,
+            YTKACEFeatureEnabled(@"YTKACE.Preference.Navigation.MessagesHidden")
         );
     } else if ([label isEqualToString:@"search"] ||
                [receiver.accessibilityIdentifier

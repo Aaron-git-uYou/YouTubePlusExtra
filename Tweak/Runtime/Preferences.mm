@@ -39,6 +39,14 @@ static void YTKACEAnnouncePreferenceChange(NSString *key) {
 }
 
 void YTKACERegisterDefaults(void) {
+    id legacyBrightnessSide = [YTKACEDefaults()
+        objectForKey:@"YTKACE.Preference.Gestures.BrightnessSide"];
+    id legacyVolumeSide = [YTKACEDefaults()
+        objectForKey:@"YTKACE.Preference.Gestures.VolumeSide"];
+    BOOL hasLeftAction = [YTKACEDefaults()
+        objectForKey:@"YTKACE.Preference.Gestures.LeftAction"] != nil;
+    BOOL hasRightAction = [YTKACEDefaults()
+        objectForKey:@"YTKACE.Preference.Gestures.RightAction"] != nil;
     [YTKACEDefaults() registerDefaults:@{
         YTKACEMasterEnabledKey: @YES,
         YTKACENoAdsKey: @YES,
@@ -58,6 +66,21 @@ void YTKACERegisterDefaults(void) {
         @"YTKACE.Preference.Shorts.SoundHidden": @NO,
         @"YTKACE.Preference.Shorts.DownloadPosition": @0,
         @"YTKACE.Preference.Overlay.ProductsHidden": @NO,
+        @"YTKACE.Preference.Feed.CommunityPostsHidden": @NO,
+        @"YTKACE.Preference.Feed.MixesHidden": @NO,
+        @"YTKACE.Preference.Feed.PlayablesHidden": @NO,
+        @"YTKACE.Preference.Navigation.MessagesHidden": @NO,
+        @"YTKACE.Preference.ActionBar.LikeHidden": @NO,
+        @"YTKACE.Preference.ActionBar.DislikeHidden": @NO,
+        @"YTKACE.Preference.ActionBar.ShareHidden": @NO,
+        @"YTKACE.Preference.ActionBar.DownloadHidden": @NO,
+        @"YTKACE.Preference.ActionBar.SaveHidden": @NO,
+        @"YTKACE.Preference.ActionBar.ClipHidden": @NO,
+        @"YTKACE.Preference.ActionBar.RemixHidden": @NO,
+        @"YTKACE.Preference.ActionBar.ThanksHidden": @NO,
+        @"YTKACE.Preference.ActionBar.HypeHidden": @NO,
+        @"YTKACE.Preference.ActionBar.ReportHidden": @NO,
+        @"YTKACE.Preference.ActionBar.AskHidden": @NO,
         @"YTKACE.Preference.Profiles.Preview": @YES,
         @"YTKACE.Preference.Appearance.LaunchAnimationDisabled": @NO,
         @"YTKACE.Preference.Player.DefaultRateMode": @0,
@@ -66,6 +89,13 @@ void YTKACERegisterDefaults(void) {
         @"YTKACE.Preference.Gestures.HoldSeekSeconds": @10.0,
         @"YTKACE.Preference.Gestures.VolumeSide": @2,
         @"YTKACE.Preference.Gestures.BrightnessSide": @2,
+        @"YTKACE.Preference.Gestures.Enabled": @NO,
+        @"YTKACE.Preference.Gestures.ActivationArea": @20.0,
+        @"YTKACE.Preference.Gestures.LeftAction": @0,
+        @"YTKACE.Preference.Gestures.RightAction": @0,
+        @"YTKACE.Preference.Gestures.HUDEnabled": @YES,
+        @"YTKACE.Preference.Gestures.HUDSize": @1,
+        @"YTKACE.Preference.Gestures.HUDPosition": @0,
         @"YTKACE.Preference.Tabs.Startup": @0,
         @"YTKACE.Preference.Tabs.FrostedHidden": @NO,
         @"YTKACE.Preference.Playback.WiFiQuality": @0,
@@ -88,6 +118,29 @@ void YTKACERegisterDefaults(void) {
         @"YTKACE.Preference.Tabs.Hidden.WatchLater": @YES,
         @"YTKACE.Preference.Tabs.Order": @[@"home", @"shorts", @"subscriptions", @"library", @"ytkace"]
     }];
+    if ((!hasLeftAction || !hasRightAction) &&
+        (legacyBrightnessSide != nil || legacyVolumeSide != nil)) {
+        NSInteger brightness = legacyBrightnessSide != nil
+            ? [legacyBrightnessSide integerValue] : 2;
+        NSInteger volume = legacyVolumeSide != nil
+            ? [legacyVolumeSide integerValue] : 2;
+        BOOL leftBrightness = brightness == 1;
+        BOOL rightBrightness = brightness == 0;
+        BOOL leftVolume = volume == 1 || volume == 3;
+        BOOL rightVolume = volume == 0 || volume == 3;
+        NSInteger leftAction = leftBrightness && leftVolume
+            ? 3 : (leftVolume ? 2 : (leftBrightness ? 1 : 0));
+        NSInteger rightAction = rightBrightness && rightVolume
+            ? 3 : (rightVolume ? 2 : (rightBrightness ? 1 : 0));
+        if (!hasLeftAction) {
+            [YTKACEDefaults() setInteger:leftAction
+                                  forKey:@"YTKACE.Preference.Gestures.LeftAction"];
+        }
+        if (!hasRightAction) {
+            [YTKACEDefaults() setInteger:rightAction
+                                   forKey:@"YTKACE.Preference.Gestures.RightAction"];
+        }
+    }
     [YTKACEDefaults() setBool:YES forKey:YTKACEMasterEnabledKey];
     if ([YTKACEDefaults() objectForKey:@"YTKACE.Preference.Shorts.ProductsHidden"] != nil) {
         if ([YTKACEDefaults() boolForKey:@"YTKACE.Preference.Shorts.ProductsHidden"]) {

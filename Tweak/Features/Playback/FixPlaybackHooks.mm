@@ -6,6 +6,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/message.h>
 #import <objc/runtime.h>
+#import <math.h>
 #import <stdlib.h>
 #import <string.h>
 #import "../Downloads/DownloadLog.h"
@@ -75,6 +76,22 @@ static long gTotalItemFails = 0;
 static long gRawMediaState = -1;
 static BOOL gReloadPending = NO;
 static NSUInteger gPlaybackGeneration = 0;
+static double gLastPlaybackPosition = NAN;
+static NSTimeInterval gLastPlaybackObservationAt = 0.0;
+static NSUInteger gPlaybackProgressSerial = 0;
+
+static BOOL PlaybackAdvancedSince(double position,
+                                  NSUInteger serial,
+                                  NSTimeInterval observedAt,
+                                  double minimumAdvance) {
+    if (gPlaybackProgressSerial == serial ||
+        gLastPlaybackObservationAt <= observedAt ||
+        !isfinite(position) || !isfinite(gLastPlaybackPosition)) {
+        return NO;
+    }
+    double delta = gLastPlaybackPosition - position;
+    return delta >= minimumAdvance || fabs(delta) >= 2.0;
+}
 
 static void ClearRecentItemFailures(void) {
     memset(gItemFailureTimes, 0, sizeof(gItemFailureTimes));
@@ -387,6 +404,9 @@ static void H_HAMQPPlayerItemFail(id r, SEL s, id item, NSError *err) {
                 gReloadPending = YES;
                 long failsAtBurst = gTotalItemFails;
                 NSUInteger generation = gPlaybackGeneration;
+                double positionAtBurst = gLastPlaybackPosition;
+                NSTimeInterval observationAtBurst = gLastPlaybackObservationAt;
+                NSUInteger progressSerialAtBurst = gPlaybackProgressSerial;
                 FPLog(@"itemFail(%ld) recovery threshold (%lu in %.0fs) -- probing 3s",
                       (long)code, (unsigned long)recentFailures, kItemFailureWindow);
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
@@ -396,6 +416,17 @@ static void H_HAMQPPlayerItemFail(id r, SEL s, id item, NSError *err) {
                     gReloadPending = NO;
                     long since = gTotalItemFails - failsAtBurst;
                     BOOL playing = (gRawMediaState == 3);
+                    BOOL advanced = PlaybackAdvancedSince(positionAtBurst,
+                                                          progressSerialAtBurst,
+                                                          observationAtBurst,
+                                                          0.75);
+                    if (playing && advanced) {
+                        FPLog(@"background item failures ignored: playback advanced "
+                              @"%.2fs during probe (state=3)",
+                              gLastPlaybackPosition - positionAtBurst);
+                        ClearRecentItemFailures();
+                        return;
+                    }
                     if (since == 0 && playing) {
                         FPLog(@"recovered on its own (no new failures, state=3) "
                               @"-- reload skipped");
@@ -443,6 +474,9 @@ static void H_LPCRawMedia(id self, SEL sel, id sv, long from, long to, BOOL mp) 
         __weak id weakSelf = self;
         long failuresAtStall = gTotalItemFails;
         NSUInteger generation = gPlaybackGeneration;
+        double positionAtStall = gLastPlaybackPosition;
+        NSTimeInterval observationAtStall = gLastPlaybackObservationAt;
+        NSUInteger progressSerialAtStall = gPlaybackProgressSerial;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8.0 * NSEC_PER_SEC)),
                        dispatch_get_main_queue(), ^{
             if (generation != gPlaybackGeneration) return;
@@ -458,9 +492,18 @@ static void H_LPCRawMedia(id self, SEL sel, id sv, long from, long to, BOOL mp) 
                 rms = ((long (*)(id, SEL))objc_msgSend)(active, rmsSel);
             }
             long newFailures = gTotalItemFails - failuresAtStall;
+            BOOL advanced = PlaybackAdvancedSince(positionAtStall,
+                                                  progressSerialAtStall,
+                                                  observationAtStall,
+                                                  1.0);
             FPLog(@"stall re-check after 8s: rawMediaState=%ld newItemFails=%ld",
                   rms, newFailures);
-            if (rms == 6 || newFailures >= 3) {
+            if (advanced) {
+                FPLog(@"stall recovery skipped: playback advanced %.2fs",
+                      gLastPlaybackPosition - positionAtStall);
+                ClearRecentItemFailures();
+                gReloadPending = NO;
+            } else if (rms == 6 || newFailures >= 3) {
                 NSString *reason = rms == 6 ? @"stalled8s" : @"stalled8s-itemFailures";
                 NoteFailure(reason);
                 ClearRecentItemFailures();
@@ -485,6 +528,9 @@ static void FinishLPCLoad(id self) {
     gTotalItemFails = 0;
     gReloadPending = NO;
     gPlaybackGeneration++;
+    gLastPlaybackPosition = NAN;
+    gLastPlaybackObservationAt = 0.0;
+    gPlaybackProgressSerial = 0;
     gLoadedAt = FPNow();
     if (gSessionStart <= 0.0) gSessionStart = gLoadedAt;
     gCurrentController = self;
@@ -562,10 +608,23 @@ static void H_ACERegisterNotifications(id self, SEL _cmd) {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self name:kNeedsRefetch object:nil];
     [nc removeObserver:self name:kScrubBegan  object:nil];
+    [nc removeObserver:self name:@"YTKACEPlaybackTimeDidChange" object:nil];
     [nc addObserver:self selector:NSSelectorFromString(@"ace_handleRefetch:")
                name:kNeedsRefetch object:nil];
     [nc addObserver:self selector:NSSelectorFromString(@"ace_handleScrubBegan:")
                name:kScrubBegan  object:nil];
+    [nc addObserver:self selector:NSSelectorFromString(@"ace_handlePlaybackTime:")
+               name:@"YTKACEPlaybackTimeDidChange" object:nil];
+}
+
+static void H_ACEHandlePlaybackTime(id self, SEL _cmd, NSNotification *note) {
+    (void)self;
+    (void)_cmd;
+    double position = [note.userInfo[@"time"] doubleValue];
+    if (!isfinite(position) || position < 0.0) return;
+    gLastPlaybackPosition = position;
+    gLastPlaybackObservationAt = FPNow();
+    gPlaybackProgressSerial++;
 }
 
 static void H_ACEStartProactiveTimer(id self, SEL _cmd) {
@@ -872,6 +931,7 @@ void YTKACEInstallFixPlaybackHooks(void) {
     YTKACEAddInstanceMethod(@"YTLocalPlaybackController", @"ace_startProactiveTimer",   (IMP)H_ACEStartProactiveTimer,   "v@:");
     YTKACEAddInstanceMethod(@"YTLocalPlaybackController", @"ace_handleRefetch:",        (IMP)H_ACEHandleRefetch,         "v@:@");
     YTKACEAddInstanceMethod(@"YTLocalPlaybackController", @"ace_handleScrubBegan:",     (IMP)H_ACEHandleScrubBegan,      "v@:@");
+    YTKACEAddInstanceMethod(@"YTLocalPlaybackController", @"ace_handlePlaybackTime:",  (IMP)H_ACEHandlePlaybackTime,   "v@:@");
 
     InstallBool(@"YTUserDefaults", @"isWebMEnabled", (IMP)H_IsWebMEnabled, &OrigIsWebMEnabled);
     YTKACEInstallInstanceHook(@"HAMDefaultABRPolicy",

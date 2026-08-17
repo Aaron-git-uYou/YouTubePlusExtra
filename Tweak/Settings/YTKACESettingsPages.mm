@@ -139,6 +139,19 @@ static NSDictionary *YTKACESpeedSlider(NSString *title,
     return item;
 }
 
+static NSDictionary *YTKACEPercentSlider(NSString *title,
+                                         NSString *key,
+                                         double minimum,
+                                         double maximum,
+                                         double step,
+                                         double fallback) {
+    NSMutableDictionary *item =
+        [YTKACESlider(title, key, minimum, maximum, step, fallback) mutableCopy];
+    item[@"unit"] = @"percent";
+    item[@"stacked"] = @YES;
+    return item;
+}
+
 static UIButton *YTKACESliderStepButton(NSString *symbol,
                                         NSInteger tag,
                                         id target,
@@ -160,6 +173,9 @@ static UIButton *YTKACESliderStepButton(NSString *symbol,
 }
 
 static NSString *YTKACESliderValueText(NSDictionary *item, double value) {
+    if ([item[@"unit"] isEqualToString:@"percent"]) {
+        return [NSString stringWithFormat:@"%.0f%%", value];
+    }
     if (![item[@"unit"] isEqualToString:@"speed"]) {
         return [NSString stringWithFormat:YTKACELocalized(@"%@ seconds"),
                 [NSString stringWithFormat:@"%.0f", value]];
@@ -202,13 +218,6 @@ static UIColor *YTKACEColorFromHex(NSString *hex) {
                            green:((rgb >> 8) & 0xFF) / 255.0
                             blue:(rgb & 0xFF) / 255.0
                            alpha:1.0];
-}
-
-static NSDictionary *YTKACEText(NSString *text) {
-    return @{
-        @"type": @"text",
-        @"title": YTKACELocalized(text)
-    };
 }
 
 static NSDictionary *YTKACEActionDetail(NSString *title,
@@ -1391,8 +1400,21 @@ static NSDictionary *YTKACEOverlayOptionsDefinition(void) {
             YTKACEToggle(@"Remove Cast Button", @"YTKACE.Preference.Overlay.CastHidden", @"", @""),
             YTKACEToggle(@"Remove End Screen", @"YTKACE.Preference.Overlay.EndScreenHidden", @"", @""),
             YTKACEToggle(@"Remove Related Videos", @"YTKACE.Preference.Overlay.RelatedVideosHidden", @"", @"")
+        ],
+        @[
+            YTKACEToggle(@"Remove Like", @"YTKACE.Preference.ActionBar.LikeHidden", @"", @""),
+            YTKACEToggle(@"Remove Dislike", @"YTKACE.Preference.ActionBar.DislikeHidden", @"", @""),
+            YTKACEToggle(@"Remove Share", @"YTKACE.Preference.ActionBar.ShareHidden", @"", @""),
+            YTKACEToggle(@"Remove Download", @"YTKACE.Preference.ActionBar.DownloadHidden", @"", @""),
+            YTKACEToggle(@"Remove Save", @"YTKACE.Preference.ActionBar.SaveHidden", @"", @""),
+            YTKACEToggle(@"Remove Clip", @"YTKACE.Preference.ActionBar.ClipHidden", @"", @""),
+            YTKACEToggle(@"Remove Remix", @"YTKACE.Preference.ActionBar.RemixHidden", @"", @""),
+            YTKACEToggle(@"Remove Thanks", @"YTKACE.Preference.ActionBar.ThanksHidden", @"", @""),
+            YTKACEToggle(@"Remove Hype", @"YTKACE.Preference.ActionBar.HypeHidden", @"", @""),
+            YTKACEToggle(@"Remove Report", @"YTKACE.Preference.ActionBar.ReportHidden", @"", @""),
+            YTKACEToggle(@"Remove Ask", @"YTKACE.Preference.ActionBar.AskHidden", @"", @"")
         ]
-    ], @[YTKACELocalized(@"WATCH PAGE"), YTKACELocalized(@"GESTURES"), YTKACELocalized(@"ALWAYS VISIBLE"), YTKACELocalized(@"PREVIOUS & NEXT"), YTKACELocalized(@"HIDE FROM PLAYER")]);
+    ], @[YTKACELocalized(@"WATCH PAGE"), YTKACELocalized(@"GESTURES"), YTKACELocalized(@"ALWAYS VISIBLE"), YTKACELocalized(@"PREVIOUS & NEXT"), YTKACELocalized(@"HIDE FROM PLAYER"), YTKACELocalized(@"ACTION BAR")]);
 }
 
 static NSDictionary *YTKACEStreamingOptionsDefinition(void) {
@@ -1418,6 +1440,8 @@ static NSDictionary *YTKACENavigationOptionsDefinition(void) {
         @[
             YTKACEToggle(@"Remove YouTube Logo", @"YTKACE.Preference.Navigation.LogoHidden", @"", @""),
             YTKACEToggle(@"Remove Notifications", @"YTKACE.Preference.Navigation.NotificationsHidden", @"", @""),
+            YTKACEToggle(@"Remove Messages", @"YTKACE.Preference.Navigation.MessagesHidden",
+                         @"Removes the Messages button.", @""),
             YTKACEToggle(@"Remove Account Button", @"YTKACE.Preference.Navigation.AccountHidden", @"", @""),
             YTKACEToggle(@"Remove Search", @"YTKACE.Preference.Navigation.SearchHidden", @"", @""),
             YTKACEToggle(@"Remove Cast", @"YTKACE.Preference.Navigation.CastHidden", @"", @"")
@@ -1456,6 +1480,17 @@ static NSDictionary *YTKACEShortsOptionsDefinition(void) {
 static NSDictionary *YTKACEMiscOptionsDefinition(void) {
     return YTKACEPageDefinition(@"other", @"Other", @[
         @[
+            YTKACEToggle(@"Remove Community Posts",
+                         @"YTKACE.Preference.Feed.CommunityPostsHidden",
+                         @"Removes community posts from the feed.", @""),
+            YTKACEToggle(@"Remove Mixes",
+                         @"YTKACE.Preference.Feed.MixesHidden",
+                         @"Removes YouTube Mix playlists from the feed.", @""),
+            YTKACEToggle(@"Remove Playables",
+                         @"YTKACE.Preference.Feed.PlayablesHidden",
+                         @"Removes playable games from the feed.", @"")
+        ],
+        @[
             YTKACEToggle(@"OLED Black", YTKACEOLEDKey, @"", @""),
             YTKACEToggle(@"Skip Launch Animation", @"YTKACE.Preference.Appearance.LaunchAnimationDisabled",
                          @"Starts YouTube faster", @"")
@@ -1478,26 +1513,40 @@ static NSDictionary *YTKACEMiscOptionsDefinition(void) {
             YTKACEToggle(@"Skip Age Gate", @"YTKACE.Preference.Content.AgeGateBypass", @"", @""),
             YTKACEToggle(@"Captions Off", @"YTKACE.Preference.Playback.CaptionsDisabled", @"", @"")
         ]
-    ], @[YTKACELocalized(@"APPEARANCE"), YTKACELocalized(@"LAYOUT"), YTKACELocalized(@"SYSTEM"), YTKACELocalized(@"PRIVACY & PROMPTS")]);
+    ], @[YTKACELocalized(@"FEED"), YTKACELocalized(@"APPEARANCE"), YTKACELocalized(@"LAYOUT"), YTKACELocalized(@"SYSTEM"), YTKACELocalized(@"PRIVACY & PROMPTS")]);
 }
 
 static NSDictionary *YTKACEGestureOptionsDefinition(void) {
-    NSArray *sideTitles = @[@"Right", @"Left", @"Disabled"];
-    NSArray *sideValues = @[@0, @1, @2];
-    NSArray *volumeSideTitles = @[@"Right", @"Left", @"Both", @"Disabled"];
-    NSArray *volumeSideValues = @[@0, @1, @3, @2];
+    NSArray *actionTitles = @[@"None", @"Brightness", @"Volume", @"Brightness + Volume"];
+    NSArray *actionValues = @[@0, @1, @2, @3];
     return YTKACEPageDefinition(@"gestures", @"Gestures", @[
         @[
-            YTKACEPicker(@"Brightness", @"YTKACE.Preference.Gestures.BrightnessSide", sideTitles, sideValues, 1, @"", @""),
-            YTKACEPicker(@"Volume", @"YTKACE.Preference.Gestures.VolumeSide", volumeSideTitles, volumeSideValues, 0, @"", @""),
-            YTKACEText(@"Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off.")
+            YTKACEPercentSlider(@"Activation Area",
+                                @"YTKACE.Preference.Gestures.ActivationArea",
+                                10.0, 50.0, 5.0, 20.0),
+            YTKACEPicker(@"Left Side", @"YTKACE.Preference.Gestures.LeftAction",
+                         actionTitles, actionValues, 0, @"", @""),
+            YTKACEPicker(@"Right Side", @"YTKACE.Preference.Gestures.RightAction",
+                         actionTitles, actionValues, 0, @"", @"")
+        ],
+        @[
+            YTKACEToggleDetail(@"Gesture HUD",
+                               @"Show the current brightness or volume level.",
+                               @"YTKACE.Preference.Gestures.HUDEnabled"),
+            YTKACEPicker(@"HUD Size", @"YTKACE.Preference.Gestures.HUDSize",
+                         @[@"Compact", @"Standard", @"Large"], @[@0, @1, @2],
+                         1, @"", @""),
+            YTKACEPicker(@"HUD Position", @"YTKACE.Preference.Gestures.HUDPosition",
+                         @[@"Top", @"Center", @"Bottom"], @[@0, @1, @2],
+                         0, @"", @"")
         ],
         @[
             YTKACEToggle(@"Hold to Seek", @"YTKACE.Preference.Gestures.HoldToSeek", @"", @""),
             YTKACESlider(@"Seek Speed", @"YTKACE.Preference.Gestures.HoldSeekSeconds", 1.0, 60.0, 1.0, 10.0),
             YTKACEToggle(@"Tap to Seek", @"YTKACE.Preference.Playback.TapToSeek", @"", @"")
         ]
-    ], @[YTKACELocalized(@"BRIGHTNESS & VOLUME"), YTKACELocalized(@"SEEK")]);
+    ], @[YTKACELocalized(@"EDGE CONTROLS"), YTKACELocalized(@"HUD"),
+          YTKACELocalized(@"SEEK")]);
 }
 
 UIViewController *YTKACEMakeSponsorBlockController(void) {

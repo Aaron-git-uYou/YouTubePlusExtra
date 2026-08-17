@@ -30,6 +30,12 @@ void YTKACESABRSetCurrentVideoID(NSString *videoID) {
     }
 }
 
+NSString *YTKACESABRCurrentVideoIDValue(void) {
+    @synchronized (YTKACESABRDownloader.class) {
+        return [YTKACESABRCurrentVideoID copy];
+    }
+}
+
 void YTKACESABRSetNativeHeaders(NSDictionary<NSString *, NSString *> *headers) {
     if (headers.count == 0) return;
     @synchronized (YTKACESABRDownloader.class) {
