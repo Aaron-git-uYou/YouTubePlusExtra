@@ -213,8 +213,9 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
 
 - (id)findPlayerResponseFromObject:(id)object
                            visited:(NSHashTable *)visited
-                             depth:(NSUInteger)depth {
-    if (object == nil || depth > 9 || [visited containsObject:object]) {
+                             depth:(NSUInteger)depth
+                             trace:(BOOL)trace {
+    if (object == nil || depth > 14 || [visited containsObject:object]) {
         return nil;
     }
     [visited addObject:object];
@@ -236,14 +237,17 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         id related = ((id (*)(id, SEL))objc_msgSend)(object, selector);
         id response = [self findPlayerResponseFromObject:related
                                                  visited:visited
-                                                   depth:depth + 1];
+                                                   depth:depth + 1
+                                                   trace:trace];
         if (response != nil) {
             return response;
         }
     }
     if ([object isKindOfClass:UIResponder.class]) {
         return [self findPlayerResponseFromObject:
-            ((UIResponder *)object).nextResponder visited:visited depth:depth + 1];
+            ((UIResponder *)object).nextResponder visited:visited
+                                                   depth:depth + 1
+                                                   trace:trace];
     }
     return nil;
 }
@@ -251,7 +255,13 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
 - (id)playerResponseFromView:(UIView *)view {
     NSHashTable *visited = [NSHashTable hashTableWithOptions:
         NSPointerFunctionsObjectPointerPersonality];
-    return [self findPlayerResponseFromObject:view visited:visited depth:0];
+    return [self findPlayerResponseFromObject:view visited:visited depth:0 trace:NO];
+}
+
+- (id)tracedPlayerResponseFromView:(UIView *)view {
+    NSHashTable *visited = [NSHashTable hashTableWithOptions:
+        NSPointerFunctionsObjectPointerPersonality];
+    return [self findPlayerResponseFromObject:view visited:visited depth:0 trace:NO];
 }
 
 - (id)videoOverlayControllerFromView:(UIView *)view {
@@ -697,15 +707,13 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
     }
 }
 
-- (void)showShortsDownloadMenuFromView:(UIView *)sourceView {
-    id currentResponse = [self playerResponseFromView:sourceView];
-    if (currentResponse != nil) {
-        self.playerResponse = currentResponse;
-    }
-    if (!YTKACEFeatureEnabled(YTKACEDownloadKey) || self.playerResponse == nil) {
+- (void)presentShortsDownloadMenuFromView:(UIView *)sourceView
+                                  response:(id)response {
+    if (!YTKACEFeatureEnabled(YTKACEDownloadKey) || response == nil) {
         [self showAlertWithTitle:@"YTKACE" message:YTKACELocalized(@"No active Short was found.")];
         return;
     }
+    self.playerResponse = response;
     self.downloadSourceView = sourceView;
     __weak YTKACEDownloadCoordinator *weakSelf = self;
     UIImage *chevron = [self menuIcon:@"chevron.right"];
@@ -734,6 +742,37 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         [YTKACEStreamResolver authorFromPlayerResponse:self.playerResponse]
         subtitle:[YTKACEStreamResolver titleFromPlayerResponse:self.playerResponse]
         sourceView:sourceView actions:actions];
+}
+
+- (void)showShortsDownloadMenuFromView:(UIView *)sourceView {
+    id currentResponse = [self tracedPlayerResponseFromView:sourceView];
+    if (currentResponse != nil) {
+        [self presentShortsDownloadMenuFromView:sourceView response:currentResponse];
+        return;
+    }
+
+    NSString *videoID = YTKACESABRCurrentVideoIDValue();
+    if (videoID.length == 0) {
+        [self presentShortsDownloadMenuFromView:sourceView response:nil];
+        return;
+    }
+
+    __weak YTKACEDownloadCoordinator *weakSelf = self;
+    __weak UIView *weakSource = sourceView;
+    YTKACEPreparePlayer(videoID, ^(id playerResponse,
+                                   __unused NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            YTKACEDownloadCoordinator *strongSelf = weakSelf;
+            UIView *strongSource = weakSource;
+            NSString *resolvedID = [YTKACEStreamResolver
+                videoIDFromPlayerResponse:playerResponse];
+            BOOL matched = playerResponse != nil &&
+                (resolvedID.length == 0 || [resolvedID isEqualToString:videoID]);
+            if (strongSelf == nil || strongSource == nil) return;
+            [strongSelf presentShortsDownloadMenuFromView:strongSource
+                response:matched ? playerResponse : nil];
+        });
+    });
 }
 
 - (void)startVideoDownloadForCategory:(NSString *)category {

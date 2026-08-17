@@ -8,19 +8,38 @@
 #import <objc/runtime.h>
 
 static IMP OriginalOverlayDidMoveToWindow;
-static const void *YTKACEVolumePanAssociation = &YTKACEVolumePanAssociation;
-static const void *YTKACEBrightnessPanAssociation = &YTKACEBrightnessPanAssociation;
+static const void *YTKACEEdgePanAssociation = &YTKACEEdgePanAssociation;
+static const void *YTKACEGestureSurfaceAssociation =
+    &YTKACEGestureSurfaceAssociation;
 static const void *YTKACELongPressAssociation = &YTKACELongPressAssociation;
-static const void *YTKACEGestureStartYAssociation = &YTKACEGestureStartYAssociation;
 static const void *YTKACEGestureInitialAssociation = &YTKACEGestureInitialAssociation;
+static const void *YTKACEGestureSecondaryInitialAssociation =
+    &YTKACEGestureSecondaryInitialAssociation;
+static const void *YTKACEGestureActionAssociation = &YTKACEGestureActionAssociation;
 static const void *YTKACEIndicatorAssociation = &YTKACEIndicatorAssociation;
 static const void *YTKACEIndicatorIconAssociation = &YTKACEIndicatorIconAssociation;
+static const void *YTKACEIndicatorTrackAssociation = &YTKACEIndicatorTrackAssociation;
 static const void *YTKACEIndicatorFillAssociation = &YTKACEIndicatorFillAssociation;
 static const void *YTKACEIndicatorLabelAssociation = &YTKACEIndicatorLabelAssociation;
 static const void *YTKACEVolumeViewAssociation = &YTKACEVolumeViewAssociation;
 static const void *YTKACESeekIndicatorAssociation = &YTKACESeekIndicatorAssociation;
 static const void *YTKACESeekIconAssociation = &YTKACESeekIconAssociation;
 static const void *YTKACESeekLabelAssociation = &YTKACESeekLabelAssociation;
+
+@interface YTKACEPriorityPanGestureRecognizer : UIPanGestureRecognizer
+@end
+
+@implementation YTKACEPriorityPanGestureRecognizer
+
+- (BOOL)canPreventGestureRecognizer:(UIGestureRecognizer *)preventedGestureRecognizer {
+    return YES;
+}
+
+- (BOOL)canBePreventedByGestureRecognizer:(UIGestureRecognizer *)preventingGestureRecognizer {
+    return NO;
+}
+
+@end
 
 @interface YTKACEGestureCoordinator : NSObject <UIGestureRecognizerDelegate>
 + (instancetype)sharedCoordinator;
@@ -29,8 +48,7 @@ static const void *YTKACESeekLabelAssociation = &YTKACESeekLabelAssociation;
 @property(nonatomic, weak) UIView *seekView;
 @property(nonatomic, assign) double seekTime;
 @property(nonatomic, assign) NSInteger seekDirection;
-- (void)handleVolume:(UIPanGestureRecognizer *)recognizer;
-- (void)handleBrightness:(UIPanGestureRecognizer *)recognizer;
+- (void)handleEdgePan:(UIPanGestureRecognizer *)recognizer;
 - (void)handleHold:(UILongPressGestureRecognizer *)recognizer;
 @end
 
@@ -107,6 +125,8 @@ static const void *YTKACESeekLabelAssociation = &YTKACESeekLabelAssociation;
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(view, YTKACEIndicatorIconAssociation, icon,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(view, YTKACEIndicatorTrackAssociation, track,
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(view, YTKACEIndicatorFillAssociation, fill,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(view, YTKACEIndicatorLabelAssociation, label,
@@ -142,18 +162,50 @@ static const void *YTKACESeekLabelAssociation = &YTKACESeekLabelAssociation;
     return indicator;
 }
 
-- (BOOL)isVolumePan:(UIGestureRecognizer *)recognizer {
+- (BOOL)isEdgePan:(UIGestureRecognizer *)recognizer {
     return recognizer == objc_getAssociatedObject(recognizer.view,
-                                                   YTKACEVolumePanAssociation);
+                                                   YTKACEEdgePanAssociation);
 }
 
-- (BOOL)isBrightnessPan:(UIGestureRecognizer *)recognizer {
-    return recognizer == objc_getAssociatedObject(recognizer.view,
-                                                   YTKACEBrightnessPanAssociation);
+- (UIViewController *)playerControllerForView:(UIView *)view {
+    UIResponder *responder = view;
+    while (responder != nil) {
+        if ([NSStringFromClass(responder.class)
+                isEqualToString:@"YTPlayerViewController"] &&
+            [responder isKindOfClass:UIViewController.class]) {
+            return (UIViewController *)responder;
+        }
+        responder = responder.nextResponder;
+    }
+    return nil;
 }
 
-- (BOOL)isCustomPan:(UIGestureRecognizer *)recognizer {
-    return [self isVolumePan:recognizer] || [self isBrightnessPan:recognizer];
+- (BOOL)isFullscreenPlayerSurface:(UIView *)view {
+    UIViewController *controller = [self playerControllerForView:view];
+    for (NSString *name in @[
+        @"isFullscreen",
+        @"isFullScreen",
+        @"isFullscreenPlayer",
+        @"isFullScreenPresented",
+        @"isFullScreenMode",
+        @"fullscreenMode",
+        @"fullScreenMode"
+    ]) {
+        SEL selector = NSSelectorFromString(name);
+        if (controller != nil && [controller respondsToSelector:selector] &&
+            ((BOOL (*)(id, SEL))objc_msgSend)(controller, selector)) {
+            return YES;
+        }
+    }
+
+    UIWindow *window = view.window;
+    if (window == nil || CGRectIsEmpty(view.bounds)) return NO;
+    CGRect frame = [view convertRect:view.bounds toView:window];
+    CGRect bounds = window.bounds;
+    if (CGRectIsEmpty(bounds)) return NO;
+    CGFloat widthRatio = CGRectGetWidth(frame) / CGRectGetWidth(bounds);
+    CGFloat heightRatio = CGRectGetHeight(frame) / CGRectGetHeight(bounds);
+    return widthRatio >= 0.82 && heightRatio >= 0.82;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
@@ -162,38 +214,48 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)other 
                                                        YTKACELongPressAssociation)) {
         return NO;
     }
-    if ([self isCustomPan:gestureRecognizer]) {
-        return NO;
+    UIGestureRecognizer *edgePan = nil;
+    if ([self isEdgePan:gestureRecognizer]) {
+        edgePan = gestureRecognizer;
+    } else if ([self isEdgePan:other]) {
+        edgePan = other;
     }
-    return !([self isCustomPan:other] &&
-             [gestureRecognizer isKindOfClass:UIPanGestureRecognizer.class]);
+    if (edgePan != nil) return NO;
+    return YES;
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    if ([self isCustomPan:gestureRecognizer]) {
-        if (!YTKACEMasterEnabled()) {
-            return NO;
-        }
+    if ([self isEdgePan:gestureRecognizer]) {
+        if (!YTKACEMasterEnabled()) return NO;
         UIView *view = gestureRecognizer.view;
+        NSInteger surface = [objc_getAssociatedObject(
+            gestureRecognizer, YTKACEGestureSurfaceAssociation) integerValue];
         CGPoint location = [gestureRecognizer locationInView:view];
         CGPoint velocity = [(UIPanGestureRecognizer *)gestureRecognizer
             velocityInView:view];
-        if (fabs(velocity.y) <= fabs(velocity.x) * 1.5) {
-            return NO;
-        }
-        NSString *key = [self isVolumePan:gestureRecognizer]
-            ? @"YTKACE.Preference.Gestures.VolumeSide" : @"YTKACE.Preference.Gestures.BrightnessSide";
-        id value = YTKACEPreferenceObject(key);
-        NSInteger side = value == nil
-            ? ([key isEqualToString:@"YTKACE.Preference.Gestures.VolumeSide"] ? 0 : 1)
-            : [value integerValue];
-        CGFloat edge = CGRectGetWidth(view.bounds) * 0.15;
-        BOOL nearRight = location.x > CGRectGetWidth(view.bounds) - edge;
-        BOOL nearLeft = location.x < edge;
-        BOOL inEdge = side == 3
-            ? (nearLeft || nearRight)
-            : (side == 0 ? nearRight : nearLeft);
-        return side != 2 && inEdge;
+        if (surface != 1) return NO;
+        CGRect activeBounds = view.bounds;
+        if (CGRectIsEmpty(activeBounds) || CGRectIsNull(activeBounds)) return NO;
+        if (fabs(velocity.y) <= fabs(velocity.x)) return NO;
+        double storedArea = [YTKACEPreferenceObject(
+            @"YTKACE.Preference.Gestures.ActivationArea") doubleValue];
+        double areaPercent = storedArea > 0.0 ? storedArea : 20.0;
+        CGFloat edge = CGRectGetWidth(activeBounds) *
+            MIN(0.5, MAX(0.1, areaPercent / 100.0));
+        BOOL left = location.x >= CGRectGetMinX(activeBounds) &&
+            location.x <= CGRectGetMinX(activeBounds) + edge;
+        BOOL right = location.x <= CGRectGetMaxX(activeBounds) &&
+            location.x >= CGRectGetMaxX(activeBounds) - edge;
+        if (!left && !right) return NO;
+        NSString *key = left
+            ? @"YTKACE.Preference.Gestures.LeftAction"
+            : @"YTKACE.Preference.Gestures.RightAction";
+        NSInteger action = [YTKACEPreferenceObject(key) integerValue];
+        objc_setAssociatedObject(gestureRecognizer,
+                                 YTKACEGestureActionAssociation,
+                                 @(action),
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return action >= 1 && action <= 3;
     }
     if (![gestureRecognizer isKindOfClass:UILongPressGestureRecognizer.class]) {
         return YES;
@@ -210,7 +272,48 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)other 
         location.y < CGRectGetHeight(bounds) * 0.85;
 }
 
+- (void)layoutIndicator:(UIView *)indicator inView:(UIView *)view {
+    NSInteger size = [YTKACEPreferenceObject(
+        @"YTKACE.Preference.Gestures.HUDSize") integerValue];
+    CGSize dimensions = CGSizeMake(200.0, 50.0);
+    if (size == 0) dimensions = CGSizeMake(164.0, 44.0);
+    if (size == 2) dimensions = CGSizeMake(236.0, 58.0);
+    indicator.bounds = (CGRect){CGPointZero, dimensions};
+
+    UIEdgeInsets safe = view.safeAreaInsets;
+    NSInteger position = [YTKACEPreferenceObject(
+        @"YTKACE.Preference.Gestures.HUDPosition") integerValue];
+    CGFloat centerY = safe.top + dimensions.height * 0.5 + 18.0;
+    if (position == 1) {
+        centerY = CGRectGetMidY(view.bounds);
+    } else if (position == 2) {
+        centerY = CGRectGetHeight(view.bounds) - safe.bottom -
+            dimensions.height * 0.5 - 24.0;
+    }
+    centerY = MIN(CGRectGetHeight(view.bounds) - dimensions.height * 0.5,
+                  MAX(dimensions.height * 0.5, centerY));
+    indicator.center = CGPointMake(CGRectGetMidX(view.bounds), centerY);
+
+    UIImageView *icon = objc_getAssociatedObject(view, YTKACEIndicatorIconAssociation);
+    UIView *track = objc_getAssociatedObject(view, YTKACEIndicatorTrackAssociation);
+    UIView *fill = objc_getAssociatedObject(view, YTKACEIndicatorFillAssociation);
+    UILabel *label = objc_getAssociatedObject(view, YTKACEIndicatorLabelAssociation);
+    CGFloat scale = dimensions.height / 50.0;
+    icon.frame = CGRectMake(15.0 * scale, 12.0 * scale,
+                            26.0 * scale, 26.0 * scale);
+    CGFloat trackX = 50.0 * scale;
+    CGFloat trackWidth = dimensions.width - trackX - 20.0 * scale;
+    track.frame = CGRectMake(trackX, 18.0 * scale, trackWidth, 3.0);
+    CGRect fillFrame = fill.frame;
+    fillFrame.origin = CGPointMake(trackX, 18.0 * scale);
+    fillFrame.size.height = 3.0;
+    fill.frame = fillFrame;
+    label.frame = CGRectMake(trackX, 25.0 * scale, trackWidth, 20.0 * scale);
+    label.font = [UIFont systemFontOfSize:12.0 * scale weight:UIFontWeightMedium];
+}
+
 - (void)updateIndicatorInView:(UIView *)view value:(double)value volume:(BOOL)volume {
+    if (!YTKACEFeatureEnabled(@"YTKACE.Preference.Gestures.HUDEnabled")) return;
     UIView *indicator = [self indicatorInView:view];
     UIImageView *icon = objc_getAssociatedObject(view, YTKACEIndicatorIconAssociation);
     UIView *fill = objc_getAssociatedObject(view, YTKACEIndicatorFillAssociation);
@@ -226,66 +329,84 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)other 
     }
     icon.image = [[UIImage systemImageNamed:symbol]
         imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self layoutIndicator:indicator inView:view];
     CGRect frame = fill.frame;
-    frame.size.width = 130.0 * value;
+    frame.size.width = (indicator.bounds.size.width - frame.origin.x -
+                        20.0 * (indicator.bounds.size.height / 50.0)) * value;
     fill.frame = frame;
     label.text = [NSString stringWithFormat:@"%d%%", (int)lround(value * 100.0)];
-    indicator.center = CGPointMake(CGRectGetMidX(view.bounds), 50.0);
     [view bringSubviewToFront:indicator];
 }
 
-- (void)handlePan:(UIPanGestureRecognizer *)recognizer volume:(BOOL)volume {
+- (void)handleEdgePan:(UIPanGestureRecognizer *)recognizer {
     UIView *view = recognizer.view;
+    NSInteger action = [objc_getAssociatedObject(
+        recognizer, YTKACEGestureActionAssociation) integerValue];
+    BOOL volume = action == 2;
+    BOOL both = action == 3;
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        CGPoint location = [recognizer locationInView:view];
         double start = volume
             ? AVAudioSession.sharedInstance.outputVolume
             : UIScreen.mainScreen.brightness;
         objc_setAssociatedObject(recognizer,
-                                 YTKACEGestureStartYAssociation,
-                                 @(location.y),
-                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        objc_setAssociatedObject(recognizer,
                                  YTKACEGestureInitialAssociation,
                                  @(start),
                                  OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [self updateIndicatorInView:view value:start volume:volume];
-        UIView *indicator = [self indicatorInView:view];
-        [UIView animateWithDuration:0.2 animations:^{ indicator.alpha = 1.0; }];
+        if (both) {
+            objc_setAssociatedObject(
+                recognizer, YTKACEGestureSecondaryInitialAssociation,
+                @(AVAudioSession.sharedInstance.outputVolume),
+                OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
+        if (YTKACEFeatureEnabled(@"YTKACE.Preference.Gestures.HUDEnabled")) {
+            [self updateIndicatorInView:view value:start volume:volume];
+            UIView *indicator = [self indicatorInView:view];
+            [UIView animateWithDuration:0.15 animations:^{ indicator.alpha = 1.0; }];
+        }
     }
     if (recognizer.state == UIGestureRecognizerStateChanged) {
-        CGPoint location = [recognizer locationInView:view];
-        double startY = [objc_getAssociatedObject(recognizer,
-            YTKACEGestureStartYAssociation) doubleValue];
         double start = [objc_getAssociatedObject(recognizer,
             YTKACEGestureInitialAssociation) doubleValue];
-        double value = MIN(1.0, MAX(0.0, start + (startY - location.y) * 0.0015));
+        CGFloat height = MAX(180.0, CGRectGetHeight(view.bounds) * 0.72);
+        CGFloat translation = [recognizer translationInView:view].y;
+        double value = MIN(1.0, MAX(0.0, start - translation / height));
         if (volume) {
             UISlider *slider = [self volumeSliderInView:view];
             [slider setValue:(float)value animated:NO];
             [slider sendActionsForControlEvents:UIControlEventValueChanged];
         } else {
             UIScreen.mainScreen.brightness = value;
+            if (both) {
+                double volumeStart = [objc_getAssociatedObject(
+                    recognizer, YTKACEGestureSecondaryInitialAssociation)
+                    doubleValue];
+                double volumeValue = MIN(1.0, MAX(
+                    0.0, volumeStart - translation / height));
+                UISlider *slider = [self volumeSliderInView:view];
+                [slider setValue:(float)volumeValue animated:NO];
+                [slider sendActionsForControlEvents:UIControlEventValueChanged];
+            }
         }
-        [self updateIndicatorInView:view value:value volume:volume];
+        if (YTKACEFeatureEnabled(@"YTKACE.Preference.Gestures.HUDEnabled")) {
+            [self updateIndicatorInView:view value:value volume:volume];
+        }
     }
     if (recognizer.state == UIGestureRecognizerStateEnded ||
         recognizer.state == UIGestureRecognizerStateCancelled) {
-        UIView *indicator = [self indicatorInView:view];
-        [UIView animateWithDuration:0.3
-                              delay:0.5
-                            options:UIViewAnimationOptionBeginFromCurrentState
-                         animations:^{ indicator.alpha = 0.0; }
-                         completion:nil];
+        if (YTKACEFeatureEnabled(@"YTKACE.Preference.Gestures.HUDEnabled")) {
+            UIView *indicator = [self indicatorInView:view];
+            [UIView animateWithDuration:0.22
+                                  delay:0.45
+                                options:UIViewAnimationOptionBeginFromCurrentState
+                             animations:^{ indicator.alpha = 0.0; }
+                             completion:nil];
+        }
+        objc_setAssociatedObject(recognizer, YTKACEGestureActionAssociation,
+                                 nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(
+            recognizer, YTKACEGestureSecondaryInitialAssociation,
+            nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-}
-
-- (void)handleVolume:(UIPanGestureRecognizer *)recognizer {
-    [self handlePan:recognizer volume:YES];
-}
-
-- (void)handleBrightness:(UIPanGestureRecognizer *)recognizer {
-    [self handlePan:recognizer volume:NO];
 }
 
 - (double)seekStep {
@@ -416,62 +537,38 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)other 
 
 @end
 
-static void YTKACEOverlayDidMoveToWindow(UIView *receiver, SEL selector) {
-    if (OriginalOverlayDidMoveToWindow != NULL) {
-        ((void (*)(id, SEL))OriginalOverlayDidMoveToWindow)(receiver, selector);
-    }
-    if (objc_getAssociatedObject(receiver, YTKACEVolumePanAssociation) != nil) {
-        return;
-    }
+static void YTKACEAttachPlayerGestures(UIView *playerView,
+                                       NSInteger surface) {
+    if (![playerView isKindOfClass:UIView.class]) return;
+    UIGestureRecognizer *existing = objc_getAssociatedObject(
+        playerView, YTKACEEdgePanAssociation);
+    if (existing != nil) return;
 
-    UIPanGestureRecognizer *volume =
-        [[UIPanGestureRecognizer alloc] initWithTarget:YTKACEGestureCoordinator.sharedCoordinator
-                                                action:@selector(handleVolume:)];
-    volume.maximumNumberOfTouches = 1;
-    volume.cancelsTouchesInView = YES;
-    volume.delegate = YTKACEGestureCoordinator.sharedCoordinator;
-
-    UIPanGestureRecognizer *brightness =
-        [[UIPanGestureRecognizer alloc] initWithTarget:YTKACEGestureCoordinator.sharedCoordinator
-                                                action:@selector(handleBrightness:)];
-    brightness.maximumNumberOfTouches = 1;
-    brightness.cancelsTouchesInView = YES;
-    brightness.delegate = YTKACEGestureCoordinator.sharedCoordinator;
-
-    [receiver addGestureRecognizer:volume];
-    [receiver addGestureRecognizer:brightness];
-    objc_setAssociatedObject(receiver,
-                             YTKACEVolumePanAssociation,
-                             volume,
+    UIPanGestureRecognizer *edgePan =
+        [[YTKACEPriorityPanGestureRecognizer alloc]
+            initWithTarget:YTKACEGestureCoordinator.sharedCoordinator
+                    action:@selector(handleEdgePan:)];
+    edgePan.maximumNumberOfTouches = 1;
+    edgePan.cancelsTouchesInView = YES;
+    edgePan.delaysTouchesBegan = NO;
+    edgePan.delaysTouchesEnded = NO;
+    edgePan.delegate = YTKACEGestureCoordinator.sharedCoordinator;
+    objc_setAssociatedObject(edgePan,
+                             YTKACEGestureSurfaceAssociation,
+                             @(surface),
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(receiver,
-                             YTKACEBrightnessPanAssociation,
-                             brightness,
+
+    [playerView addGestureRecognizer:edgePan];
+    objc_setAssociatedObject(playerView,
+                             YTKACEEdgePanAssociation,
+                             edgePan,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)),
-                   dispatch_get_main_queue(), ^{
-        NSArray<NSString *> *selectors = @[
-            @"fullscreenExitGestureRecognizer",
-            @"fullscreenEnterGestureRecognizer",
-            @"verticalPanGestureRecognizer"
-        ];
-        for (NSString *name in selectors) {
-            SEL selector = NSSelectorFromString(name);
-            if (![receiver respondsToSelector:selector]) continue;
-            UIGestureRecognizer *native =
-                ((id (*)(id, SEL))objc_msgSend)(receiver, selector);
-            if (![native isKindOfClass:UIGestureRecognizer.class]) continue;
-            [native requireGestureRecognizerToFail:volume];
-            [native requireGestureRecognizerToFail:brightness];
+    for (UIGestureRecognizer *native in [playerView.gestureRecognizers copy]) {
+        if (native != edgePan &&
+            [native isKindOfClass:UIPanGestureRecognizer.class]) {
+            [native requireGestureRecognizerToFail:edgePan];
         }
-        for (UIGestureRecognizer *native in [receiver.gestureRecognizers copy]) {
-            if (native != volume && native != brightness &&
-                [native isKindOfClass:UIPanGestureRecognizer.class]) {
-                [native requireGestureRecognizerToFail:volume];
-                [native requireGestureRecognizerToFail:brightness];
-            }
-        }
-    });
+    }
 
     UILongPressGestureRecognizer *hold =
         [[UILongPressGestureRecognizer alloc]
@@ -480,16 +577,25 @@ static void YTKACEOverlayDidMoveToWindow(UIView *receiver, SEL selector) {
     hold.minimumPressDuration = 0.5;
     hold.cancelsTouchesInView = YES;
     hold.delegate = YTKACEGestureCoordinator.sharedCoordinator;
-    [receiver addGestureRecognizer:hold];
-    objc_setAssociatedObject(receiver,
+    [playerView addGestureRecognizer:hold];
+    objc_setAssociatedObject(playerView,
                              YTKACELongPressAssociation,
                              hold,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+static void YTKACEOverlayDidMoveToWindow(UIView *receiver, SEL selector) {
+    if (OriginalOverlayDidMoveToWindow != NULL) {
+        ((void (*)(id, SEL))OriginalOverlayDidMoveToWindow)(receiver, selector);
+    }
+    YTKACEAttachPlayerGestures(receiver, 1);
+}
+
 void YTKACEInstallPlayerGestureHooks(void) {
-    YTKACEInstallInstanceHook(@"YTMainAppVideoPlayerOverlayView",
-                              @"didMoveToWindow",
-                              (IMP)YTKACEOverlayDidMoveToWindow,
-                              &OriginalOverlayDidMoveToWindow);
+    YTKACEInstallInstanceHook(
+        @"YTMainAppVideoPlayerOverlayView",
+        @"didMoveToWindow",
+        (IMP)YTKACEOverlayDidMoveToWindow,
+        &OriginalOverlayDidMoveToWindow
+    );
 }

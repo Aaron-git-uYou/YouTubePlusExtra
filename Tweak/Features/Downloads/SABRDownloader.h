@@ -24,6 +24,7 @@ FOUNDATION_EXPORT void YTKACESABRSetNativeHeaders(
     NSDictionary<NSString *, NSString *> *headers);
 FOUNDATION_EXPORT void YTKACESABRSetNativeRequest(NSURLRequest *request);
 FOUNDATION_EXPORT void YTKACESABRSetCurrentVideoID(NSString * _Nullable videoID);
+FOUNDATION_EXPORT NSString * _Nullable YTKACESABRCurrentVideoIDValue(void);
 FOUNDATION_EXPORT void YTKACEPreparePlayer(NSString *videoID,
                                            YTKACEPlayerReloadCompletion completion);
 FOUNDATION_EXPORT void YTKACEReloadPlayer(NSString * _Nullable videoID,
