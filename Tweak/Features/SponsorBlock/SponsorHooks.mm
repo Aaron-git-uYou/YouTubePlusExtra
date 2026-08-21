@@ -449,6 +449,38 @@ static void YTKACEMutatedVideoTimeChanged(id receiver,
     YTKACEPublishPlaybackTime(receiver, resolved);
 }
 
+static BOOL YTKACETrackGeometry(UIView *target, CGFloat *thickness,
+                                CGFloat *offset) {
+    CGFloat width = CGRectGetWidth(target.bounds);
+    if (width <= 0.0) return NO;
+    CGFloat bestHeight = 0.0;
+    CGFloat bestY = 0.0;
+    BOOL found = NO;
+    NSMutableArray<UIView *> *pending = [NSMutableArray arrayWithObject:target];
+    NSUInteger visited = 0;
+    while (pending.count != 0 && visited < 60) {
+        UIView *node = pending.firstObject;
+        [pending removeObjectAtIndex:0];
+        visited++;
+        if (node != target && !node.hidden && node.alpha > 0.05) {
+            CGRect frame = [node convertRect:node.bounds toView:target];
+            CGFloat nodeHeight = CGRectGetHeight(frame);
+            if (CGRectGetWidth(frame) >= width * 0.55 &&
+                nodeHeight > 0.5 && nodeHeight <= 16.0 &&
+                nodeHeight >= bestHeight) {
+                bestHeight = nodeHeight;
+                bestY = CGRectGetMinY(frame);
+                found = YES;
+            }
+        }
+        [pending addObjectsFromArray:node.subviews];
+    }
+    if (!found) return NO;
+    *thickness = bestHeight;
+    *offset = bestY;
+    return YES;
+}
+
 static void YTKACERenderSponsorMarkers(UIView *receiver, UIView *target,
                                        BOOL fullHeight) {
     CAShapeLayer *container =
@@ -501,15 +533,28 @@ static void YTKACERenderSponsorMarkers(UIView *receiver, UIView *target,
                                  OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 
+    CGFloat trackThickness = 2.0;
+    CGFloat trackOffset = MAX(0.0, height - 2.0);
+    if (!fullHeight) {
+        CGFloat measured = 0.0;
+        CGFloat measuredOffset = 0.0;
+        if (YTKACETrackGeometry(target, &measured, &measuredOffset)) {
+            trackThickness = measured;
+            trackOffset = measuredOffset;
+        }
+    }
     CGRect previousBounds = [objc_getAssociatedObject(
         receiver, YTKACESponsorMarkerBoundsAssociation) CGRectValue];
     double previousDuration = [objc_getAssociatedObject(
         receiver, YTKACESponsorMarkerDurationAssociation) doubleValue];
-    if (!rebuild && CGRectEqualToRect(previousBounds, target.bounds) &&
+    CGRect signature = CGRectMake(CGRectGetWidth(target.bounds),
+                                  CGRectGetHeight(target.bounds),
+                                  trackThickness, trackOffset);
+    if (!rebuild && CGRectEqualToRect(previousBounds, signature) &&
         fabs(previousDuration - duration) < 0.001) return;
     objc_setAssociatedObject(receiver,
                              YTKACESponsorMarkerBoundsAssociation,
-                             [NSValue valueWithCGRect:target.bounds],
+                             [NSValue valueWithCGRect:signature],
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(receiver,
                              YTKACESponsorMarkerDurationAssociation,
@@ -525,9 +570,9 @@ static void YTKACERenderSponsorMarkers(UIView *receiver, UIView *target,
         CALayer *marker = container.sublayers[index];
         marker.hidden = end <= start;
         if (marker.hidden) return;
-        CGFloat markerHeight = fullHeight ? MAX(height, 1.0) : 2.0;
+        CGFloat markerHeight = fullHeight ? MAX(height, 1.0) : trackThickness;
         marker.frame = CGRectMake((CGFloat)(start / duration) * width,
-                                  fullHeight ? 0.0 : MAX(0.0, height - 2.0),
+                                  fullHeight ? 0.0 : trackOffset,
                                   MAX(1.0, (CGFloat)((end - start) / duration) * width),
                                   markerHeight);
     }];

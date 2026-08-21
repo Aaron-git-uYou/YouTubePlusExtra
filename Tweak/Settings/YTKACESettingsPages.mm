@@ -1,4 +1,5 @@
 #import "YTKACESettingsPages.h"
+#import "../Features/Downloads/SABRDownloader.h"
 #import "YTKACERootOptionsController.h"
 #import "YTKACETabEditorController.h"
 #import "../Runtime/Preferences.h"
@@ -1310,11 +1311,29 @@ static NSDictionary *YTKACEPlayerControlsDefinition(void) {
         [(YTKACEOptionsController *)controller chooseImportCategory];
     };
     YTKACEAction clearCache = ^(UIViewController *controller) {
+        NSFileManager *manager = NSFileManager.defaultManager;
         NSURL *cache = [YTKACEApplicationSupportDirectory()
             URLByAppendingPathComponent:@"Cache"
                             isDirectory:YES];
-        [NSFileManager.defaultManager removeItemAtURL:cache error:nil];
-        [(YTKACEOptionsController *)controller showResult:YTKACELocalized(@"Cache Cleared") message:nil];
+        NSUInteger freed = 0;
+        NSDirectoryEnumerator *walker = [manager enumeratorAtURL:cache
+            includingPropertiesForKeys:@[NSURLTotalFileAllocatedSizeKey]
+                               options:0 errorHandler:nil];
+        for (NSURL *child in walker) {
+            NSNumber *size = nil;
+            [child getResourceValue:&size forKey:NSURLTotalFileAllocatedSizeKey
+                              error:nil];
+            freed += size.unsignedIntegerValue;
+        }
+        [manager removeItemAtURL:cache error:nil];
+        freed += YTKACEPurgeDownloadScratch(YES);
+        NSString *summary = freed == 0
+            ? YTKACELocalized(@"Nothing to clear.")
+            : [NSString stringWithFormat:YTKACELocalized(@"Freed %@."),
+               [NSByteCountFormatter stringFromByteCount:(long long)freed
+                   countStyle:NSByteCountFormatterCountStyleFile]];
+        [(YTKACEOptionsController *)controller
+            showResult:YTKACELocalized(@"Cache Cleared") message:summary];
     };
     NSArray *progressSection = @[
         YTKACESegmentedStacked(@"Progress bar style", @"YTKACE.Preference.Progress.Style",

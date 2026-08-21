@@ -1,5 +1,6 @@
 #import "Preferences.h"
 #import "Localization.h"
+#import "../Features/Downloads/SABRDownloader.h"
 
 #import <UIKit/UIKit.h>
 
@@ -161,6 +162,7 @@ void YTKACERegisterDefaults(void) {
                                  forKey:@"YTKACE.Preference.Downloads.LastCacheClear"];
         }
     }
+    YTKACEPurgeDownloadScratch(NO);
 }
 
 BOOL YTKACEMasterEnabled(void) {

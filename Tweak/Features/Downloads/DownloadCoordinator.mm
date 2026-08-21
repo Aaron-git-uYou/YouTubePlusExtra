@@ -744,14 +744,68 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         sourceView:sourceView actions:actions];
 }
 
+- (NSString *)activeReelVideoIDFromView:(UIView *)sourceView {
+    SEL activeSelector = NSSelectorFromString(@"activeReelPlaybackVideoID");
+    UIResponder *current = sourceView;
+    for (NSUInteger depth = 0; current != nil && depth < 16; depth++) {
+        if ([current respondsToSelector:activeSelector]) {
+            id value = ((id (*)(id, SEL))objc_msgSend)(current, activeSelector);
+            if ([value isKindOfClass:NSString.class] && [value length] != 0) {
+                return value;
+            }
+        }
+        current = current.nextResponder;
+    }
+    return nil;
+}
+
+- (id)reelModelFromView:(UIView *)sourceView {
+    SEL contentModel = NSSelectorFromString(@"contentModel");
+    UIResponder *current = sourceView;
+    for (NSUInteger depth = 0; current != nil && depth < 14; depth++) {
+        if ([current respondsToSelector:contentModel]) {
+            id model = ((id (*)(id, SEL))objc_msgSend)(current, contentModel);
+            if (model != nil) return model;
+        }
+        current = current.nextResponder;
+    }
+    return nil;
+}
+
 - (void)showShortsDownloadMenuFromView:(UIView *)sourceView {
     id currentResponse = [self tracedPlayerResponseFromView:sourceView];
     if (currentResponse != nil) {
-        [self presentShortsDownloadMenuFromView:sourceView response:currentResponse];
+        [self presentShortsDownloadMenuFromView:sourceView
+                                       response:currentResponse];
         return;
     }
 
-    NSString *videoID = YTKACESABRCurrentVideoIDValue();
+    id reel = [self reelModelFromView:sourceView];
+    NSString *reelID = nil;
+    SEL videoSelector = NSSelectorFromString(@"videoId");
+    if ([reel respondsToSelector:videoSelector]) {
+        id value = ((id (*)(id, SEL))objc_msgSend)(reel, videoSelector);
+        if ([value isKindOfClass:NSString.class]) reelID = value;
+    }
+    NSString *activeID = [self activeReelVideoIDFromView:sourceView];
+    NSString *videoID = activeID.length != 0 ? activeID : reelID;
+
+    id cached = YTKACECachedPlayerResponse(videoID);
+    if (cached != nil) {
+        [self presentShortsDownloadMenuFromView:sourceView response:cached];
+        return;
+    }
+
+    SEL overrideSelector = NSSelectorFromString(@"playerResponseOverride");
+    BOOL reelIsCurrent = reelID.length != 0 &&
+        (activeID.length == 0 || [reelID isEqualToString:activeID]);
+    if (reelIsCurrent && [reel respondsToSelector:overrideSelector]) {
+        id override = ((id (*)(id, SEL))objc_msgSend)(reel, overrideSelector);
+        if (override != nil) {
+            [self presentShortsDownloadMenuFromView:sourceView response:override];
+            return;
+        }
+    }
     if (videoID.length == 0) {
         [self presentShortsDownloadMenuFromView:sourceView response:nil];
         return;
@@ -759,18 +813,41 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
 
     __weak YTKACEDownloadCoordinator *weakSelf = self;
     __weak UIView *weakSource = sourceView;
-    YTKACEPreparePlayer(videoID, ^(id playerResponse,
-                                   __unused NSError *error) {
+    YTKACEPreparePlayerWithRoute(videoID, NO, ^(id playerResponse,
+                                                __unused NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             YTKACEDownloadCoordinator *strongSelf = weakSelf;
             UIView *strongSource = weakSource;
+            if (strongSelf == nil || strongSource == nil) return;
             NSString *resolvedID = [YTKACEStreamResolver
                 videoIDFromPlayerResponse:playerResponse];
             BOOL matched = playerResponse != nil &&
-                (resolvedID.length == 0 || [resolvedID isEqualToString:videoID]);
-            if (strongSelf == nil || strongSource == nil) return;
-            [strongSelf presentShortsDownloadMenuFromView:strongSource
-                response:matched ? playerResponse : nil];
+                (resolvedID.length == 0 ||
+                 [resolvedID isEqualToString:videoID]);
+            if (matched) {
+                YTKACEStorePlayerResponse(videoID, playerResponse);
+                [strongSelf presentShortsDownloadMenuFromView:strongSource
+                    response:playerResponse];
+                return;
+            }
+            YTKACEPreparePlayerWithRoute(videoID, YES, ^(id retryResponse,
+                                                        __unused NSError *retryError) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    YTKACEDownloadCoordinator *retrySelf = weakSelf;
+                    UIView *retrySource = weakSource;
+                    if (retrySelf == nil || retrySource == nil) return;
+                    NSString *retryID = [YTKACEStreamResolver
+                        videoIDFromPlayerResponse:retryResponse];
+                    BOOL retryMatched = retryResponse != nil &&
+                        (retryID.length == 0 ||
+                         [retryID isEqualToString:videoID]);
+                    if (retryMatched) {
+                        YTKACEStorePlayerResponse(videoID, retryResponse);
+                    }
+                    [retrySelf presentShortsDownloadMenuFromView:retrySource
+                        response:retryMatched ? retryResponse : nil];
+                });
+            });
         });
     });
 }

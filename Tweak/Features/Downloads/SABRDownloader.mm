@@ -595,6 +595,52 @@ static NSData *YTKACESABRClientInfo(void) {
     return YES;
 }
 
+NSUInteger YTKACEPurgeDownloadScratch(BOOL includeActive) {
+    NSFileManager *manager = NSFileManager.defaultManager;
+    NSURL *root = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+    NSArray<NSURL *> *entries = [manager contentsOfDirectoryAtURL:root
+        includingPropertiesForKeys:@[NSURLContentModificationDateKey,
+                                     NSURLTotalFileAllocatedSizeKey,
+                                     NSURLIsDirectoryKey]
+                           options:0 error:nil];
+    NSUInteger freed = 0;
+    NSDate *cutoff = [NSDate dateWithTimeIntervalSinceNow:-600.0];
+    for (NSURL *entry in entries) {
+        NSString *name = entry.lastPathComponent;
+        BOOL scratch = [name hasPrefix:@"YTKACE-"];
+        BOOL dump = [name hasPrefix:@"ytkace-"] && [name hasSuffix:@".pb"];
+        if (!scratch && !dump) continue;
+        if (!includeActive) {
+            NSDate *modified = nil;
+            [entry getResourceValue:&modified forKey:NSURLContentModificationDateKey
+                              error:nil];
+            if (modified != nil && [modified compare:cutoff] == NSOrderedDescending) {
+                continue;
+            }
+        }
+        NSNumber *size = nil;
+        [entry getResourceValue:&size forKey:NSURLTotalFileAllocatedSizeKey error:nil];
+        NSDirectoryEnumerator *walker = [manager enumeratorAtURL:entry
+            includingPropertiesForKeys:@[NSURLTotalFileAllocatedSizeKey]
+                               options:0 errorHandler:nil];
+        NSUInteger nested = 0;
+        for (NSURL *child in walker) {
+            NSNumber *childSize = nil;
+            [child getResourceValue:&childSize forKey:NSURLTotalFileAllocatedSizeKey
+                              error:nil];
+            nested += childSize.unsignedIntegerValue;
+        }
+        if ([manager removeItemAtURL:entry error:nil]) {
+            freed += nested + size.unsignedIntegerValue;
+        }
+    }
+    if (freed != 0) {
+        YTKACEDownloadLog(@"cache", @"purged scratch bytes=%lu",
+            (unsigned long)freed);
+    }
+    return freed;
+}
+
 - (BOOL)prepare:(NSError **)error {
     if (![self applyPlayerResponse:self.playerResponse error:error]) return NO;
     NSURL *directory = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
@@ -1465,8 +1511,13 @@ static NSData *YTKACESABRClientInfo(void) {
     [self.session invalidateAndCancel];
     YTKACEDownloadLog(self.identifier, @"SABR failed code=%ld error=%@",
         (long)error.code, error.localizedDescription);
+    NSURL *scratch = self.video.URL.URLByDeletingLastPathComponent
+        ?: self.audio.URL.URLByDeletingLastPathComponent;
     if (self.video.URL != nil) [NSFileManager.defaultManager removeItemAtURL:self.video.URL error:nil];
     if (self.audio.URL != nil) [NSFileManager.defaultManager removeItemAtURL:self.audio.URL error:nil];
+    if ([scratch.lastPathComponent hasPrefix:@"YTKACE-"]) {
+        [NSFileManager.defaultManager removeItemAtURL:scratch error:nil];
+    }
     dispatch_async(dispatch_get_main_queue(), ^{ self.completion(nil, nil, error); });
 }
 

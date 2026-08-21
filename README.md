@@ -18,8 +18,8 @@ An open-source YouTube enhancement for iOS.
 
 - **iOS:** 16.0 and newer
 - **Architecture:** arm64
-- **Latest confirmed YouTube:** 21.32.4
-- **YTKACE:** 0.8.4
+- **Latest confirmed YouTube:** 21.33.5
+- **YTKACE:** 0.8.5
 
 The same injected IPA can be installed with TrollStore or a developer-certificate sideloader.
 

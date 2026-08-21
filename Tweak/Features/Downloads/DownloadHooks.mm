@@ -1,6 +1,7 @@
 #import "DownloadCoordinator.h"
 #import "DownloadLog.h"
 #import "SABRDownloader.h"
+#import "StreamResolver.h"
 #import "../../YTKACE.h"
 #import "../../Runtime/Hooking.h"
 #import "../../Runtime/Preferences.h"
@@ -374,6 +375,75 @@ static void YTKACECaptureService(id receiver, id request) {
         videoID ?: @"unknown", NSStringFromClass([request class]));
 }
 
+static NSMutableDictionary<NSString *, id> *YTKACEPlayerResponses;
+static NSMutableArray<NSString *> *YTKACEPlayerResponseOrder;
+
+static NSString *YTKACEResponseVideoID(id response) {
+    if (response == nil) return nil;
+    id details = YTKACEGetValue(response, @[@"videoDetails"]);
+    id value = YTKACEGetValue(details != nil ? details : response,
+                              @[@"videoId", @"videoID", @"videoIdString"]);
+    return [value isKindOfClass:NSString.class] ? value : nil;
+}
+
+static void YTKACECachePlayerResponse(id response) {
+    if (response == nil) return;
+    NSString *videoID =
+        [YTKACEStreamResolver videoIDFromPlayerResponse:response];
+    if (videoID.length == 0) videoID = YTKACEResponseVideoID(response);
+    if (videoID.length == 0) return;
+    @synchronized (YTKACESABRDownloader.class) {
+        if (YTKACEPlayerResponses == nil) {
+            YTKACEPlayerResponses = [NSMutableDictionary dictionary];
+            YTKACEPlayerResponseOrder = [NSMutableArray array];
+        }
+        if (YTKACEPlayerResponses[videoID] == nil) {
+            [YTKACEPlayerResponseOrder addObject:videoID];
+        }
+        YTKACEPlayerResponses[videoID] = response;
+        while (YTKACEPlayerResponseOrder.count > 8) {
+            NSString *oldest = YTKACEPlayerResponseOrder.firstObject;
+            [YTKACEPlayerResponseOrder removeObjectAtIndex:0];
+            [YTKACEPlayerResponses removeObjectForKey:oldest];
+        }
+    }
+}
+
+void YTKACEStorePlayerResponse(NSString *videoID, id response) {
+    if (videoID.length == 0 || response == nil) return;
+    @synchronized (YTKACESABRDownloader.class) {
+        if (YTKACEPlayerResponses == nil) {
+            YTKACEPlayerResponses = [NSMutableDictionary dictionary];
+            YTKACEPlayerResponseOrder = [NSMutableArray array];
+        }
+        if (YTKACEPlayerResponses[videoID] == nil) {
+            [YTKACEPlayerResponseOrder addObject:videoID];
+        }
+        YTKACEPlayerResponses[videoID] = response;
+        while (YTKACEPlayerResponseOrder.count > 8) {
+            NSString *oldest = YTKACEPlayerResponseOrder.firstObject;
+            [YTKACEPlayerResponseOrder removeObjectAtIndex:0];
+            [YTKACEPlayerResponses removeObjectForKey:oldest];
+        }
+    }
+}
+
+id YTKACECachedPlayerResponse(NSString *videoID) {
+    if (videoID.length == 0) return nil;
+    @synchronized (YTKACESABRDownloader.class) {
+        return YTKACEPlayerResponses[videoID];
+    }
+}
+
+static id YTKACEObservedResponseBlock(id responseBlock) {
+    if (responseBlock == nil) return nil;
+    void (^original)(id, id) = responseBlock;
+    return [^(id playerResponse, id cacheContext) {
+        YTKACECachePlayerResponse(playerResponse);
+        original(playerResponse, cacheContext);
+    } copy];
+}
+
 static void YTKACEMakePlayerRequest(id receiver,
                                     SEL selector,
                                     id request,
@@ -382,7 +452,8 @@ static void YTKACEMakePlayerRequest(id receiver,
     YTKACECaptureService(receiver, request);
     if (OriginalMakePlayerRequest != NULL) {
         ((void (*)(id, SEL, id, id, id))OriginalMakePlayerRequest)(
-            receiver, selector, request, responseBlock, errorBlock
+            receiver, selector, request,
+            YTKACEObservedResponseBlock(responseBlock), errorBlock
         );
     }
 }
@@ -405,7 +476,8 @@ static id YTKACEMakePlaybackRequest(id receiver,
     }
     return OriginalMakePlaybackRequest != NULL
         ? ((id (*)(id, SEL, id, id, id))OriginalMakePlaybackRequest)(
-            receiver, selector, request, responseBlock, errorBlock)
+            receiver, selector, request,
+            YTKACEObservedResponseBlock(responseBlock), errorBlock)
         : nil;
 }
 
@@ -549,8 +621,9 @@ static void YTKACEInstallPlayerServiceHook(void) {
         dispatch_get_main_queue(), ^{ YTKACEInstallPlayerServiceHook(); });
 }
 
-void YTKACEPreparePlayer(NSString *videoID,
-                         YTKACEPlayerReloadCompletion completion) {
+void YTKACEPreparePlayerWithRoute(NSString *videoID,
+                                  BOOL forcePlayerRoute,
+                                  YTKACEPlayerReloadCompletion completion) {
     id service = nil;
     id request = nil;
     id playbackRequest = nil;
@@ -573,6 +646,7 @@ void YTKACEPreparePlayer(NSString *videoID,
         completion(nil, error);
         return;
     }
+    if (forcePlayerRoute) playbackRequest = nil;
     YTKACESABRSetCurrentVideoID(videoID);
     YTKACEDownloadLog(@"prepare", @"native request video=%@ route=%@", videoID,
         playbackRequest != nil && OriginalMakePlaybackRequest != NULL
@@ -601,6 +675,11 @@ void YTKACEPreparePlayer(NSString *videoID,
             completion(nil, error);
         }
     });
+}
+
+void YTKACEPreparePlayer(NSString *videoID,
+                         YTKACEPlayerReloadCompletion completion) {
+    YTKACEPreparePlayerWithRoute(videoID, NO, completion);
 }
 
 void YTKACEReloadPlayer(NSString * _Nullable videoID,

@@ -8,6 +8,8 @@
 #import <objc/runtime.h>
 
 static IMP OriginalDisplayViewDidMove;
+static IMP OriginalActionCellPrepareForReuse;
+static IMP OriginalFixedBarLayout;
 static IMP OriginalDisplayViewSetIdentifier;
 static IMP OriginalAddSections;
 static IMP OriginalSectionControllers;
@@ -66,7 +68,6 @@ static BOOL YTKACESectionIsMix(id section);
 static BOOL YTKACESectionIsPlayable(id section);
 static NSArray<NSString *> *YTKACEProductsMarkers(void);
 static BOOL YTKACEHideTopics(void);
-static NSString *YTKACEActionViewText(UIView *view);
 static BOOL YTKACEEnsureStructuralActionHook(void);
 static BOOL YTKACEEnsureActionCellControllerHooks(void);
 static BOOL YTKACEEnsureActionCollectionLayoutHook(void);
@@ -102,7 +103,7 @@ static NSString *YTKACEActionPreference(id item) {
         @[@"YTKACE.Preference.ActionBar.RemixHidden", @"remix"],
         @[@"YTKACE.Preference.ActionBar.ThanksHidden", @"thanks"],
         @[@"YTKACE.Preference.ActionBar.HypeHidden", @"hype"],
-        @[@"YTKACE.Preference.ActionBar.ReportHidden", @"report"],
+        @[@"YTKACE.Preference.ActionBar.ReportHidden", @"id_player_watch_flag_button", @"report"],
         @[@"YTKACE.Preference.ActionBar.AskHidden", @"ask", @"gemini"],
         @[@"YTKACE.Preference.ActionBar.LikeHidden", @"like"]
     ];
@@ -135,12 +136,23 @@ static BOOL YTKACEAnyActionPreferenceEnabled(void) {
 
 static NSString *YTKACEActionPreferenceForView(UIView *view) {
     if (view == nil || !YTKACEViewIsInsideWatchActionBar(view)) return nil;
-    NSString *identifier = view.accessibilityIdentifier ?: @"";
-    NSString *label = view.accessibilityLabel ?: @"";
-    NSString *text = YTKACEActionViewText(view) ?: @"";
-    NSString *token = [[[NSString stringWithFormat:@"%@ %@ %@ %@",
-        NSStringFromClass(view.class), identifier, label, text] lowercaseString]
+    for (NSString *name in @[@"entry", @"renderer", @"buttonRenderer",
+                             @"model", @"elementRenderer"]) {
+        SEL selector = NSSelectorFromString(name);
+        if (![view respondsToSelector:selector]) continue;
+        id related = ((id (*)(id, SEL))objc_msgSend)(view, selector);
+        if (related == nil || [related isKindOfClass:UIView.class]) continue;
+        NSString *preference = YTKACEActionPreference(related);
+        if (preference.length != 0) {
+            return preference;
+        }
+    }
+    NSString *token = [[[NSString stringWithFormat:@"%@ %@",
+        NSStringFromClass(view.class), view.accessibilityIdentifier ?: @""]
+        lowercaseString]
         stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    NSString *wide = [[NSString stringWithFormat:@"%@ %@", token,
+        view.accessibilityLabel ?: @""] lowercaseString];
     NSArray<NSArray<NSString *> *> *rules = @[
         @[@"YTKACE.Preference.ActionBar.DislikeHidden", @"id_video_dislike_button", @"dislike"],
         @[@"YTKACE.Preference.ActionBar.ShareHidden", @"id_video_share_button", @"share"],
@@ -150,13 +162,56 @@ static NSString *YTKACEActionPreferenceForView(UIView *view) {
         @[@"YTKACE.Preference.ActionBar.RemixHidden", @"remix"],
         @[@"YTKACE.Preference.ActionBar.ThanksHidden", @"thanks"],
         @[@"YTKACE.Preference.ActionBar.HypeHidden", @"hype"],
-        @[@"YTKACE.Preference.ActionBar.ReportHidden", @"report"],
+        @[@"YTKACE.Preference.ActionBar.ReportHidden", @"id_player_watch_flag_button", @"report"],
         @[@"YTKACE.Preference.ActionBar.AskHidden", @"ask", @"gemini"],
         @[@"YTKACE.Preference.ActionBar.LikeHidden", @"id_video_like_button", @"like"]
     ];
+    BOOL dislikeToken = [token containsString:@"dislike"] ||
+        [wide containsString:@"dislike"];
     for (NSArray<NSString *> *rule in rules) {
+        if (dislikeToken &&
+            [rule.firstObject isEqualToString:
+                @"YTKACE.Preference.ActionBar.LikeHidden"]) {
+            continue;
+        }
         for (NSUInteger index = 1; index < rule.count; index++) {
-            if ([token containsString:rule[index]]) return rule.firstObject;
+            if ([token containsString:rule[index]]) {
+                return rule.firstObject;
+            }
+        }
+    }
+    for (NSArray<NSString *> *rule in rules) {
+        if (dislikeToken &&
+            [rule.firstObject isEqualToString:
+                @"YTKACE.Preference.ActionBar.LikeHidden"]) {
+            continue;
+        }
+        for (NSUInteger index = 1; index < rule.count; index++) {
+            if ([wide containsString:rule[index]]) {
+                NSMutableArray<NSString *> *shape = [NSMutableArray array];
+                NSMutableArray<UIView *> *pending =
+                    [NSMutableArray arrayWithObject:view];
+                NSUInteger seen = 0;
+                while (pending.count != 0 && seen < 40) {
+                    UIView *node = pending.firstObject;
+                    [pending removeObjectAtIndex:0];
+                    seen++;
+                    NSMutableString *entry = [NSMutableString stringWithString:
+                        NSStringFromClass([node class])];
+                    if (node.accessibilityIdentifier.length != 0) {
+                        [entry appendFormat:@"#%@", node.accessibilityIdentifier];
+                    }
+                    for (NSString *probe in @[@"iconType", @"icon", @"image",
+                                              @"renderer", @"entry", @"model"]) {
+                        SEL selector = NSSelectorFromString(probe);
+                        if (![node respondsToSelector:selector]) continue;
+                        [entry appendFormat:@" %@?", probe];
+                    }
+                    [shape addObject:entry];
+                    [pending addObjectsFromArray:node.subviews];
+                }
+                return rule.firstObject;
+            }
         }
     }
     return nil;
@@ -165,6 +220,32 @@ static NSString *YTKACEActionPreferenceForView(UIView *view) {
 static void YTKACECreateActionViews(id receiver, SEL selector,
                                     NSArray *renderers) {
     NSArray *filtered = renderers;
+    if ([renderers isKindOfClass:NSArray.class]) {
+        static NSUInteger rendererLogged = 0;
+        if (rendererLogged < 3) {
+            rendererLogged++;
+            NSMutableArray<NSString *> *shape = [NSMutableArray array];
+            for (id renderer in renderers) {
+                NSString *match = YTKACEActionPreference(renderer);
+                NSMutableString *entry = [NSMutableString stringWithString:
+                    NSStringFromClass([renderer class])];
+                for (NSString *probe in @[@"likeButton", @"dislikeButton",
+                                          @"segmentedLikeDislikeButton",
+                                          @"buttonRenderer", @"targetId",
+                                          @"trackingParams"]) {
+                    SEL selector = NSSelectorFromString(probe);
+                    if ([renderer respondsToSelector:selector]) {
+                        [entry appendFormat:@" %@?", probe];
+                    }
+                }
+                if (match.length != 0) {
+                    [entry appendFormat:@" ->%@",
+                        [match componentsSeparatedByString:@"."].lastObject];
+                }
+                [shape addObject:entry];
+            }
+        }
+    }
     if ([renderers isKindOfClass:NSArray.class] &&
         renderers.count != 0 && YTKACEAnyActionPreferenceEnabled()) {
         NSMutableArray *kept = [NSMutableArray arrayWithCapacity:renderers.count];
@@ -183,7 +264,10 @@ static void YTKACECreateActionViews(id receiver, SEL selector,
     }
 }
 
+static void YTKACEEnsureActionCellReuseHook(void);
+
 static BOOL YTKACEEnsureStructuralActionHook(void) {
+    YTKACEEnsureActionCellReuseHook();
     if (OriginalCreateActionViews != NULL) return YES;
 
     BOOL installed = YTKACEInstallInstanceHook(
@@ -248,12 +332,88 @@ static id YTKACEActionCellControllerInit(id receiver, SEL selector,
     return result;
 }
 
+static NSArray<NSString *> *YTKACEActionButtonIdentifiers(UIView *view);
+static BOOL YTKACEIsActionButtonIdentifier(NSString *identifier);
+
+static NSString *YTKACEPreferenceForButtonIdentifier(NSString *identifier) {
+    NSString *token = [[identifier lowercaseString]
+        stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    if (token.length == 0) return nil;
+    if ([token containsString:@"dislike"]) {
+        return @"YTKACE.Preference.ActionBar.DislikeHidden";
+    }
+    if ([token containsString:@"like"]) {
+        return @"YTKACE.Preference.ActionBar.LikeHidden";
+    }
+    if ([token containsString:@"share"]) {
+        return @"YTKACE.Preference.ActionBar.ShareHidden";
+    }
+    if ([token containsString:@"offline"] || [token containsString:@"download"]) {
+        return @"YTKACE.Preference.ActionBar.DownloadHidden";
+    }
+    if ([token containsString:@"add_to"] || [token containsString:@"save"]) {
+        return @"YTKACE.Preference.ActionBar.SaveHidden";
+    }
+    if ([token containsString:@"clip"]) {
+        return @"YTKACE.Preference.ActionBar.ClipHidden";
+    }
+    if ([token containsString:@"remix"]) {
+        return @"YTKACE.Preference.ActionBar.RemixHidden";
+    }
+    if ([token containsString:@"thanks"]) {
+        return @"YTKACE.Preference.ActionBar.ThanksHidden";
+    }
+    if ([token containsString:@"hype"]) {
+        return @"YTKACE.Preference.ActionBar.HypeHidden";
+    }
+    return nil;
+}
+
+static NSArray<NSString *> *YTKACEControllerButtonIdentifiers(id controller) {
+    NSMutableOrderedSet<NSString *> *found = [NSMutableOrderedSet orderedSet];
+    for (Class cls = [controller class]; cls != Nil;
+         cls = class_getSuperclass(cls)) {
+        unsigned int count = 0;
+        Ivar *ivars = class_copyIvarList(cls, &count);
+        for (unsigned int index = 0; index < count; index++) {
+            const char *type = ivar_getTypeEncoding(ivars[index]);
+            if (type == NULL || type[0] != '@') continue;
+            id value = object_getIvar(controller, ivars[index]);
+            if (![value isKindOfClass:UIView.class]) continue;
+            [found addObjectsFromArray:
+                YTKACEActionButtonIdentifiers((UIView *)value)];
+        }
+        free(ivars);
+    }
+    return found.array;
+}
+
+static BOOL YTKACEControllerCellCollapsed(id receiver) {
+    static NSUInteger logged = 0;
+    NSString *preference = YTKACEActionPreferenceForController(receiver);
+    NSArray<NSString *> *identifiers = YTKACEControllerButtonIdentifiers(receiver);
+    BOOL collapsed = preference.length != 0 && YTKACEFeatureEnabled(preference);
+    if (identifiers.count > 1) {
+        collapsed = YES;
+        for (NSString *identifier in identifiers) {
+            NSString *key = YTKACEPreferenceForButtonIdentifier(identifier);
+            if (key.length == 0 || !YTKACEFeatureEnabled(key)) {
+                collapsed = NO;
+                break;
+            }
+        }
+    }
+    if (logged < 60) {
+        logged++;
+    }
+    return collapsed;
+}
+
 static CGSize YTKACEActionCellSize(id receiver, SEL selector, CGSize size) {
     CGSize result = OriginalActionCellSize == NULL ? size :
         ((CGSize (*)(id, SEL, CGSize))OriginalActionCellSize)(
             receiver, selector, size);
-    NSString *preference = YTKACEActionPreferenceForController(receiver);
-    if (preference.length != 0 && YTKACEFeatureEnabled(preference)) {
+    if (YTKACEControllerCellCollapsed(receiver)) {
         result.width = 0.0;
     }
     return result;
@@ -265,8 +425,7 @@ static CGSize YTKACEActionCellSizeWithInsets(id receiver, SEL selector,
     CGSize result = OriginalActionCellSizeWithInsets == NULL ? size :
         ((CGSize (*)(id, SEL, CGSize, UIEdgeInsets))
             OriginalActionCellSizeWithInsets)(receiver, selector, size, insets);
-    NSString *preference = YTKACEActionPreferenceForController(receiver);
-    if (preference.length != 0 && YTKACEFeatureEnabled(preference)) {
+    if (YTKACEControllerCellCollapsed(receiver)) {
         result.width = 0.0;
     }
     return result;
@@ -315,6 +474,77 @@ static NSSet<NSString *> *YTKACEActionPreferencesInCell(UIView *cell) {
     return preferences;
 }
 
+static void YTKACEHiddenActionWidths(UIView *cell,
+                                     CGFloat *outTotal,
+                                     CGFloat *outLeading,
+                                     NSUInteger *outVisible,
+                                     CGFloat *outVisibleRight,
+                                     CGFloat *outInset) {
+    NSMutableArray<UIView *> *buttons = [NSMutableArray array];
+    NSMutableArray<UIView *> *pending = [NSMutableArray arrayWithObject:cell];
+    NSUInteger visited = 0;
+    while (pending.count != 0 && visited < 160) {
+        UIView *node = pending.firstObject;
+        [pending removeObjectAtIndex:0];
+        visited++;
+        if (YTKACEIsActionButtonIdentifier(node.accessibilityIdentifier)) {
+            [buttons addObject:node];
+        }
+        [pending addObjectsFromArray:node.subviews];
+    }
+    buttons = [[buttons sortedArrayUsingComparator:
+        ^NSComparisonResult(UIView *left, UIView *right) {
+            CGFloat leftX = [left convertPoint:CGPointZero toView:cell].x;
+            CGFloat rightX = [right convertPoint:CGPointZero toView:cell].x;
+            if (leftX < rightX) return NSOrderedAscending;
+            if (leftX > rightX) return NSOrderedDescending;
+            return NSOrderedSame;
+        }] mutableCopy];
+
+    CGFloat separators = 0.0;
+    UIView *group = buttons.firstObject.superview;
+    for (UIView *child in group.subviews) {
+        CGFloat width = CGRectGetWidth(child.bounds);
+        if (width > 0.0 && width <= 3.0 &&
+            CGRectGetHeight(child.bounds) >= 6.0) {
+            separators += width;
+        }
+    }
+
+    CGFloat total = 0.0;
+    CGFloat leading = 0.0;
+    NSUInteger visible = 0;
+    CGFloat visibleRight = 0.0;
+    BOOL seenVisible = NO;
+    for (UIView *button in buttons) {
+        NSString *key = YTKACEPreferenceForButtonIdentifier(
+            button.accessibilityIdentifier);
+        BOOL hidden = key.length != 0 && YTKACEFeatureEnabled(key);
+        CGFloat width = CGRectGetWidth(button.bounds);
+        if (!hidden) {
+            visible++;
+            seenVisible = YES;
+            CGRect inCell = [button convertRect:button.bounds toView:cell];
+            visibleRight = MAX(visibleRight, CGRectGetMaxX(inCell));
+            continue;
+        }
+        total += width;
+        if (!seenVisible) leading += width;
+    }
+    CGFloat inset = 0.0;
+    if (group != nil) {
+        inset = MAX(0.0, CGRectGetMinX([group convertRect:group.bounds
+                                                  toView:cell]));
+    }
+    if (outVisibleRight != NULL) *outVisibleRight = visibleRight;
+    if (outInset != NULL) *outInset = inset;
+    if (total > 0.0) total += separators;
+    if (leading > 0.0) leading += separators;
+    if (outTotal != NULL) *outTotal = total;
+    if (outLeading != NULL) *outLeading = leading;
+    if (outVisible != NULL) *outVisible = visible;
+}
+
 static void YTKACEASCollectionViewLayout(UICollectionView *receiver,
                                           SEL selector) {
     if (OriginalASCollectionViewLayout != NULL) {
@@ -327,6 +557,11 @@ static void YTKACEASCollectionViewLayout(UICollectionView *receiver,
     NSArray<UICollectionViewCell *> *visible = [receiver.visibleCells
         sortedArrayUsingComparator:^NSComparisonResult(UICollectionViewCell *left,
                                                        UICollectionViewCell *right) {
+            NSIndexPath *leftPath = [receiver indexPathForCell:left];
+            NSIndexPath *rightPath = [receiver indexPathForCell:right];
+            if (leftPath != nil && rightPath != nil) {
+                return [leftPath compare:rightPath];
+            }
             CGFloat leftX = CGRectGetMinX(left.frame);
             CGFloat rightX = CGRectGetMinX(right.frame);
             if (leftX < rightX) return NSOrderedAscending;
@@ -335,10 +570,19 @@ static void YTKACEASCollectionViewLayout(UICollectionView *receiver,
         }];
     if (visible.count == 0) return;
 
+    static NSUInteger layoutLogged = 0;
     CGFloat removedWidth = 0.0;
     NSUInteger matchedCells = 0;
+    UICollectionViewLayout *layout = receiver.collectionViewLayout;
     for (UICollectionViewCell *cell in visible) {
-        CGRect frame = cell.frame;
+        NSIndexPath *path = [receiver indexPathForCell:cell];
+        UICollectionViewLayoutAttributes *attributes = path != nil
+            ? [layout layoutAttributesForItemAtIndexPath:path] : nil;
+        CGRect frame = attributes != nil ? attributes.frame : cell.frame;
+        NSArray<NSString *> *cellButtons = YTKACEActionButtonIdentifiers(cell);
+        if (layoutLogged < 80 && cellButtons.count != 0) {
+            layoutLogged++;
+        }
         frame.origin.x -= removedWidth;
         NSSet<NSString *> *preferences = YTKACEActionPreferencesInCell(cell);
         if (preferences.count != 0) {
@@ -349,31 +593,31 @@ static void YTKACEASCollectionViewLayout(UICollectionView *receiver,
             }
             if (hiddenCount != 0) {
                 CGFloat oldWidth = CGRectGetWidth(frame);
-                CGFloat visibleFraction =
-                    (CGFloat)(preferences.count - hiddenCount) /
-                    (CGFloat)preferences.count;
-                CGFloat newWidth = floor(oldWidth * visibleFraction);
-                BOOL combinedReactions =
-                    [preferences containsObject:
-                        @"YTKACE.Preference.ActionBar.LikeHidden"] &&
-                    [preferences containsObject:
-                        @"YTKACE.Preference.ActionBar.DislikeHidden"];
+                CGFloat measuredTotal = 0.0;
+                CGFloat measuredLeading = 0.0;
+                NSUInteger visibleButtons = 0;
+                YTKACEHiddenActionWidths(cell, &measuredTotal,
+                                         &measuredLeading, &visibleButtons,
+                                         NULL, NULL);
+                CGFloat newWidth = oldWidth;
+                BOOL collapse = visibleButtons == 0;
+                BOOL trailingOnly = measuredLeading <= 0.5 &&
+                    measuredTotal > 0.5;
+                if (collapse) {
+                    newWidth = 0.0;
+                } else if (trailingOnly) {
+                    newWidth = floor(MAX(0.0, oldWidth - measuredTotal));
+                }
+                if (layoutLogged < 80) {
+                    layoutLogged++;
+                }
                 removedWidth += oldWidth - newWidth;
                 frame.size.width = newWidth;
-                cell.hidden = newWidth <= 0.5;
-                cell.userInteractionEnabled = !cell.hidden;
-                cell.clipsToBounds = combinedReactions && !cell.hidden;
+                cell.hidden = collapse;
+                cell.userInteractionEnabled = !collapse;
+                cell.clipsToBounds = trailingOnly && !collapse;
                 cell.contentView.clipsToBounds = cell.clipsToBounds;
-                if (combinedReactions && !cell.hidden &&
-                    YTKACEFeatureEnabled(
-                        @"YTKACE.Preference.ActionBar.LikeHidden") &&
-                    !YTKACEFeatureEnabled(
-                        @"YTKACE.Preference.ActionBar.DislikeHidden")) {
-                    cell.contentView.transform =
-                        CGAffineTransformMakeTranslation(-newWidth, 0.0);
-                } else {
-                    cell.contentView.transform = CGAffineTransformIdentity;
-                }
+                cell.contentView.transform = CGAffineTransformIdentity;
             } else {
                 cell.hidden = NO;
                 cell.userInteractionEnabled = YES;
@@ -446,20 +690,212 @@ static void YTKACERefreshActionCollection(UIView *view) {
     });
 }
 
+static BOOL YTKACEIsActionButtonIdentifier(NSString *identifier) {
+    if (identifier.length == 0) return NO;
+    NSString *lower = identifier.lowercaseString;
+    if (![lower hasPrefix:@"id."]) return NO;
+    return [lower containsString:@"button"];
+}
+
+static NSArray<NSString *> *YTKACEActionButtonIdentifiers(UIView *view) {
+    NSMutableOrderedSet<NSString *> *found = [NSMutableOrderedSet orderedSet];
+    NSMutableArray<UIView *> *pending = [NSMutableArray arrayWithObject:view];
+    NSUInteger visited = 0;
+    while (pending.count != 0 && visited < 160) {
+        UIView *node = pending.firstObject;
+        [pending removeObjectAtIndex:0];
+        visited++;
+        if (YTKACEIsActionButtonIdentifier(node.accessibilityIdentifier)) {
+            [found addObject:node.accessibilityIdentifier];
+        }
+        [pending addObjectsFromArray:node.subviews];
+    }
+    return found.array;
+}
+
+static void YTKACERestoreHiddenView(UIView *view) {
+    NSNumber *baseline = objc_getAssociatedObject(
+        view, YTKACEContentHiddenAssociation);
+    if (baseline == nil) return;
+    view.hidden = baseline.boolValue;
+    view.userInteractionEnabled = YES;
+    objc_setAssociatedObject(view,
+                             YTKACEContentHiddenAssociation,
+                             nil,
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+static NSUInteger YTKACESizableChildCount(UIView *view) {
+    NSUInteger count = 0;
+    for (UIView *child in view.subviews) {
+        if (child.hidden) continue;
+        if (CGRectGetWidth(child.bounds) >= 40.0 &&
+            CGRectGetHeight(child.bounds) >= 28.0) {
+            count++;
+        }
+    }
+    return count;
+}
+
+static void YTKACEActionCellPrepareForReuse(UIView *receiver, SEL selector) {
+    NSNumber *baseline = objc_getAssociatedObject(
+        receiver, YTKACEContentHiddenAssociation);
+    if (baseline != nil) {
+        receiver.hidden = baseline.boolValue;
+        receiver.userInteractionEnabled = YES;
+        objc_setAssociatedObject(receiver,
+                                 YTKACEContentHiddenAssociation,
+                                 nil,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    if (OriginalActionCellPrepareForReuse != NULL) {
+        ((void (*)(id, SEL))OriginalActionCellPrepareForReuse)(receiver, selector);
+    }
+}
+
+static NSString *YTKACEBarSlotPreference(UIView *slot) {
+    NSMutableArray<UIView *> *pending = [NSMutableArray arrayWithObject:slot];
+    NSMutableArray<NSString *> *labels = [NSMutableArray array];
+    NSUInteger visited = 0;
+    while (pending.count != 0 && visited < 40) {
+        UIView *node = pending.firstObject;
+        [pending removeObjectAtIndex:0];
+        visited++;
+        NSString *identifier = node.accessibilityIdentifier;
+        if (YTKACEIsActionButtonIdentifier(identifier)) {
+            NSString *preference =
+                YTKACEPreferenceForButtonIdentifier(identifier);
+            if (preference.length != 0) return preference;
+        }
+        if (node.accessibilityLabel.length != 0) {
+            [labels addObject:node.accessibilityLabel.lowercaseString];
+        }
+        [pending addObjectsFromArray:node.subviews];
+    }
+    NSString *joined = [labels componentsJoinedByString:@" "];
+    if (joined.length == 0) return nil;
+    NSArray<NSArray<NSString *> *> *rules = @[
+        @[@"YTKACE.Preference.ActionBar.DislikeHidden", @"dislike"],
+        @[@"YTKACE.Preference.ActionBar.ShareHidden", @"share"],
+        @[@"YTKACE.Preference.ActionBar.DownloadHidden", @"download"],
+        @[@"YTKACE.Preference.ActionBar.SaveHidden", @"save"],
+        @[@"YTKACE.Preference.ActionBar.ClipHidden", @"clip"],
+        @[@"YTKACE.Preference.ActionBar.RemixHidden", @"remix"],
+        @[@"YTKACE.Preference.ActionBar.ThanksHidden", @"thanks"],
+        @[@"YTKACE.Preference.ActionBar.HypeHidden", @"hype"],
+        @[@"YTKACE.Preference.ActionBar.ReportHidden", @"report"],
+        @[@"YTKACE.Preference.ActionBar.AskHidden", @"ask"],
+        @[@"YTKACE.Preference.ActionBar.LikeHidden", @"like"]
+    ];
+    for (NSArray<NSString *> *rule in rules) {
+        for (NSUInteger index = 1; index < rule.count; index++) {
+            if ([joined containsString:rule[index]]) return rule.firstObject;
+        }
+    }
+    return nil;
+}
+
+static void YTKACEFixedBarLayoutSubviews(UIView *receiver, SEL selector) {
+    if (OriginalFixedBarLayout != NULL) {
+        ((void (*)(id, SEL))OriginalFixedBarLayout)(receiver, selector);
+    }
+    CGFloat height = CGRectGetHeight(receiver.bounds);
+    if (height < 36.0 || height > 68.0) return;
+    NSArray<UIView *> *slots = receiver.subviews;
+    if (slots.count < 3 || slots.count > 10) return;
+    NSString *identifier = receiver.accessibilityIdentifier;
+    if (![identifier containsString:@"non_scrollable_action_bar"]) return;
+    if (!YTKACEAnyActionPreferenceEnabled()) return;
+
+    CGFloat barWidth = CGRectGetWidth(receiver.bounds);
+    if (barWidth <= 0.0) return;
+    CGFloat naturalSlot = barWidth / (CGFloat)slots.count;
+    NSMutableArray<UIView *> *keep = [NSMutableArray array];
+    NSMutableArray<NSString *> *trace = [NSMutableArray array];
+    for (UIView *slot in slots) {
+        NSString *preference = YTKACEBarSlotPreference(slot);
+        BOOL hidden = preference.length != 0 &&
+            YTKACEFeatureEnabled(preference);
+        [trace addObject:[NSString stringWithFormat:@"%@%@",
+            preference.length == 0 ? @"-"
+                : [preference componentsSeparatedByString:@"."].lastObject,
+            hidden ? @"!" : @""]];
+        if (!hidden) [keep addObject:slot];
+    }
+    if (keep.count == 0 || keep.count == slots.count) return;
+
+    CGFloat share = barWidth / (CGFloat)keep.count;
+    NSUInteger position = 0;
+    for (UIView *slot in keep) {
+        CGRect frame = slot.frame;
+        frame.size.width = naturalSlot;
+        frame.origin.x = (CGFloat)position * share +
+            (share - naturalSlot) / 2.0;
+        slot.frame = frame;
+        position++;
+    }
+
+    static NSTimeInterval lastLog = 0.0;
+    NSTimeInterval now = NSDate.timeIntervalSinceReferenceDate;
+    if (now - lastLog > 2.0) {
+        lastLog = now;
+    }
+}
+
+static void YTKACEEnsureFixedBarHook(void) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        YTKACEInstallInstanceHook(
+            @"_ASDisplayView",
+            @"layoutSubviews",
+            (IMP)YTKACEFixedBarLayoutSubviews,
+            &OriginalFixedBarLayout
+        );
+    });
+}
+
+static void YTKACEEnsureActionCellReuseHook(void) {
+    YTKACEEnsureFixedBarHook();
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        YTKACEInstallInstanceHook(
+            @"_ASCollectionViewCell",
+            @"prepareForReuse",
+            (IMP)YTKACEActionCellPrepareForReuse,
+            &OriginalActionCellPrepareForReuse
+        );
+    });
+}
+
 static UIView *YTKACEActionContainer(UIView *view) {
+    if (YTKACEIsActionButtonIdentifier(view.accessibilityIdentifier)) {
+        return view;
+    }
     UIView *candidate = view;
     UIView *best = view;
     for (NSUInteger index = 0; candidate.superview != nil && index < 7; index++) {
         UIView *parent = candidate.superview;
-        if ([parent isKindOfClass:UIStackView.class]) return candidate;
+        NSArray<NSString *> *buttons = YTKACEActionButtonIdentifiers(parent);
+        NSUInteger sizable = YTKACESizableChildCount(parent);
+        if ([parent isKindOfClass:UIStackView.class]) {
+            YTKACERestoreHiddenView(parent);
+            best = candidate;
+            break;
+        }
         CGFloat width = CGRectGetWidth(parent.bounds);
         CGFloat height = CGRectGetHeight(parent.bounds);
-        if (width > 0.0 && height > 0.0 && width <= 180.0 && height <= 130.0) {
-            best = parent;
-            candidate = parent;
-            continue;
+        if (width <= 0.0 || height <= 0.0) {
+            break;
         }
-        break;
+        if (width > 180.0 || height > 130.0) {
+            break;
+        }
+        if (buttons.count > 1 || sizable > 1) {
+            YTKACERestoreHiddenView(parent);
+            break;
+        }
+        best = parent;
+        candidate = parent;
     }
     return best;
 }
@@ -536,27 +972,6 @@ static NSArray *YTKACEFilterActionButtons(id receiver, SEL selector,
     }
     return filtered.count == items.count ? items : filtered;
 }
-
-static NSString *YTKACEActionViewText(UIView *view) {
-    NSMutableArray<NSString *> *parts = [NSMutableArray array];
-    NSMutableArray<UIView *> *pending = [NSMutableArray arrayWithObject:view];
-    NSUInteger visited = 0;
-    while (pending.count != 0 && visited < 80) {
-        UIView *candidate = pending.firstObject;
-        [pending removeObjectAtIndex:0];
-        visited++;
-        NSString *identifier = candidate.accessibilityIdentifier;
-        NSString *label = candidate.accessibilityLabel;
-        NSString *text = [candidate isKindOfClass:UILabel.class]
-            ? ((UILabel *)candidate).text : nil;
-        if (identifier.length != 0) [parts addObject:[@"id=" stringByAppendingString:identifier]];
-        if (label.length != 0) [parts addObject:[@"label=" stringByAppendingString:label]];
-        if (text.length != 0) [parts addObject:[@"text=" stringByAppendingString:text]];
-        [pending addObjectsFromArray:candidate.subviews];
-    }
-    return [parts componentsJoinedByString:@" | "];
-}
-
 
 static void YTKACEActionViewDidMove(UIView *receiver, SEL selector) {
     if (OriginalActionViewDidMove != NULL) {
@@ -920,6 +1335,7 @@ static BOOL YTKACEContentShouldHide(UIView *view, BOOL *hideSuperview) {
     if (YTKACEFeatureEnabled(
             @"YTKACE.Preference.Feed.CommunityPostsHidden") &&
         [identifier isEqualToString:@"id_ui_backstage_original_post"]) {
+        YTKACECollapseHostCell(view);
         return YES;
     }
     if (YTKACEFeatureEnabled(@"YTKACE.Preference.Feed.MixesHidden") &&
@@ -927,6 +1343,27 @@ static BOOL YTKACEContentShouldHide(UIView *view, BOOL *hideSuperview) {
         return YES;
     }
     return NO;
+}
+
+static void YTKACEScheduleFixedBarLayout(UIView *view) {
+    UIView *bar = nil;
+    UIView *walk = view;
+    for (NSUInteger depth = 0; walk != nil && depth < 8; depth++) {
+        if ([walk.accessibilityIdentifier
+                containsString:@"non_scrollable_action_bar"]) {
+            bar = walk;
+            break;
+        }
+        walk = walk.superview;
+    }
+    if (bar == nil) return;
+    __weak UIView *weakBar = bar;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIView *strongBar = weakBar;
+        if (strongBar == nil) return;
+        [strongBar setNeedsLayout];
+        [strongBar layoutIfNeeded];
+    });
 }
 
 static void YTKACEApplyContentVisibility(UIView *view) {
@@ -959,6 +1396,7 @@ static void YTKACEApplyContentVisibility(UIView *view) {
                                      OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
         YTKACECompactFixedActionGroup(target);
+        YTKACEScheduleFixedBarLayout(view);
         return;
     }
 

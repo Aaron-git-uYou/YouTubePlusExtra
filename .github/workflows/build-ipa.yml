@@ -6,7 +6,7 @@ on:
       ipa_url:
         description: YouTube IPA URL
         required: true
-        default: "https://files.catbox.moe/ru0l7i.ipa"
+        default: "https://www.dropbox.com/scl/fi/1m0z7ane01vbkdixp1b4d/com.google.ios.youtube-21.33.5-eeveedecrypter.ipa?rlkey=l4w0ivaw4hxf0eb8yori0ky6k&st=k69xcjpr&dl=1"
         type: string
 
 permissions:

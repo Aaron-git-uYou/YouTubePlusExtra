@@ -24,7 +24,13 @@ FOUNDATION_EXPORT void YTKACESABRSetNativeHeaders(
     NSDictionary<NSString *, NSString *> *headers);
 FOUNDATION_EXPORT void YTKACESABRSetNativeRequest(NSURLRequest *request);
 FOUNDATION_EXPORT void YTKACESABRSetCurrentVideoID(NSString * _Nullable videoID);
+FOUNDATION_EXPORT id _Nullable YTKACECachedPlayerResponse(NSString *videoID);
+FOUNDATION_EXPORT void YTKACEStorePlayerResponse(NSString *videoID, id response);
 FOUNDATION_EXPORT NSString * _Nullable YTKACESABRCurrentVideoIDValue(void);
+FOUNDATION_EXPORT NSUInteger YTKACEPurgeDownloadScratch(BOOL includeActive);
+FOUNDATION_EXPORT void YTKACEPreparePlayerWithRoute(NSString *videoID,
+                                                    BOOL forcePlayerRoute,
+                                                    YTKACEPlayerReloadCompletion completion);
 FOUNDATION_EXPORT void YTKACEPreparePlayer(NSString *videoID,
                                            YTKACEPlayerReloadCompletion completion);
 FOUNDATION_EXPORT void YTKACEReloadPlayer(NSString * _Nullable videoID,

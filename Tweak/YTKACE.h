@@ -10,6 +10,7 @@ FOUNDATION_EXPORT NSString * const YTKACEVersion;
 
 void YTKACEInstallAdsHooks(void);
 void YTKACEHandleAdDisplayView(UIView *view);
+void YTKACECollapseHostCell(UIView *view);
 void YTKACEHandleAdCellLayout(UIView *cell);
 void YTKACEHandleAdCellReuse(UIView *cell);
 NSArray *YTKACEFilterAdSections(NSArray *sections);

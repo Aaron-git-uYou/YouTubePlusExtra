@@ -483,10 +483,8 @@ void YTKACEHandleAdCellReuse(UIView *cell) {
     cell.userInteractionEnabled = YES;
 }
 
-void YTKACEHandleAdDisplayView(UIView *view) {
-    if (!YTKACEFeatureEnabled(YTKACENoAdsKey) || view.window == nil) return;
-    NSString *identifier = view.accessibilityIdentifier;
-    if (!YTKACEIsAdLayoutIdentifier(identifier)) return;
+void YTKACECollapseHostCell(UIView *view) {
+    if (view == nil) return;
     UIView *cell = nil;
     for (UIView *ancestor = view; ancestor != nil;
          ancestor = ancestor.superview) {
@@ -515,6 +513,12 @@ void YTKACEHandleAdDisplayView(UIView *view) {
             YTKACECollapseCellNode(node);
         }
     }
+}
+
+void YTKACEHandleAdDisplayView(UIView *view) {
+    if (!YTKACEFeatureEnabled(YTKACENoAdsKey) || view.window == nil) return;
+    if (!YTKACEIsAdLayoutIdentifier(view.accessibilityIdentifier)) return;
+    YTKACECollapseHostCell(view);
 }
 
 static id YTKACEElementRenderer(id object) {
