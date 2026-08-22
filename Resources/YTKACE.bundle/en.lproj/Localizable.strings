@@ -38,7 +38,7 @@
 "Captions On" = "Captions On";
 "Cards" = "Cards";
 "Cellular Quality" = "Cellular Quality";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off." = "Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off.";
 "Choose and reorder bottom tabs" = "Choose and reorder bottom tabs";
 "Choose, reorder, and rename tabs" = "Choose, reorder, and rename tabs";
 "Clear Cache Now" = "Clear Cache Now";
@@ -162,9 +162,10 @@
 "Remove YouTube Logo" = "Remove YouTube Logo";
 "Rename" = "Rename";
 "Rename Tab" = "Rename Tab";
-"Replace clickbait thumbnails with community-picked frames from DeArrow. Videos without a submission are left untouched." = "Replace clickbait thumbnails with community-picked frames from DeArrow. Videos without a submission are left untouched.";
-"Replace clickbait titles with community-written ones from DeArrow. Videos without a submission keep their original title." = "Replace clickbait titles with community-written ones from DeArrow. Videos without a submission keep their original title.";
-"Restart YouTube to apply changes." = "Restart YouTube to apply changes.";
+"Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides.";
+"Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title.";
+"Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you.";
+"Your changes take effect once YouTube restarts." = "Your changes take effect once YouTube restarts.";
 "Restore" = "Restore";
 "Right" = "Right";
 "SEEK" = "SEEK";
@@ -261,7 +262,7 @@
 "Cache Cleared" = "Cache Cleared";
 "Cancelled" = "Cancelled";
 "Cast Confirmation" = "Cast Confirmation";
-"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "Choose Video, Audio, or Shorts, then select media, artwork, and subtitles.";
+"Pick a destination — Video, Audio, or Shorts — then choose the media file, its artwork, and any subtitles." = "Pick a destination — Video, Audio, or Shorts — then choose the media file, its artwork, and any subtitles.";
 "Choose a YTKACE ZIP backup from Files." = "Choose a YTKACE ZIP backup from Files.";
 "Choose and reorder the bottom tabs" = "Choose and reorder the bottom tabs";
 "Clear" = "Clear";
@@ -328,7 +329,7 @@
 "File Size" = "File Size";
 "Filler" = "Filler";
 "Finalizing" = "Finalizing";
-"Fix Playback & Account Recovery" = "Fix Playback & Account Recovery";
+"Playback Recovery" = "Playback Recovery";
 "Format" = "Format";
 "Frame Rate" = "Frame Rate";
 "Fullscreen" = "Fullscreen";
@@ -412,7 +413,7 @@
 "OVERLAY" = "OVERLAY";
 "OVERLAY CONTROLLER" = "OVERLAY CONTROLLER";
 "OVERLAY PLAYER" = "OVERLAY PLAYER";
-"Open the YTKACE tab and tap the gear icon." = "Open the YTKACE tab and tap the gear icon.";
+"Settings live in the YTKACE tab, behind the gear icon." = "Settings live in the YTKACE tab, behind the gear icon.";
 "Original audio" = "Original audio";
 "PREVIOUS & NEXT BUTTONS" = "PREVIOUS & NEXT BUTTONS";
 "PiP failed to start." = "PiP failed to start.";
@@ -426,7 +427,7 @@
 "Playback Speed" = "Playback Speed";
 "Playback Speed toggles" = "Playback Speed toggles";
 "Playback failed." = "Playback failed.";
-"Playback recovery guidance unavailable" = "Playback recovery guidance unavailable";
+"Could not open the recovery details." = "Could not open the recovery details.";
 "Player Controls" = "Player Controls";
 "Playlists" = "Playlists";
 "Please Wait..." = "Please Wait...";
@@ -457,7 +458,7 @@
 "Seconds: 10" = "Seconds: 10";
 "Seek Duration" = "Seek Duration";
 "Self Promotion" = "Self Promotion";
-"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling.";
+"Assign brightness and volume to the left or right half of the player.\n\nIn portrait, slide up or down anywhere on the half you chose. In fullscreen, begin the slide nearer the bottom of the screen — YouTube reserves the upper area for its own gestures." = "Assign brightness and volume to the left or right half of the player.\n\nIn portrait, slide up or down anywhere on the half you chose. In fullscreen, begin the slide nearer the bottom of the screen — YouTube reserves the upper area for its own gestures.";
 "Settings & Backup" = "Settings & Backup";
 "Settings could not be saved" = "Settings could not be saved";
 "Share" = "Share";
@@ -477,7 +478,7 @@
 "System" = "System";
 "System Player" = "System Player";
 "Tab Bar" = "Tab Bar";
-"Tap the top-right button to apply changes." = "Tap the top-right button to apply changes.";
+"Save your changes with the button in the top-right corner." = "Save your changes with the button in the top-right corner.";
 "The backup contains an unsafe path" = "The backup contains an unsafe path";
 "The backup could not be created." = "The backup could not be created.";
 "The backup file could not be written" = "The backup file could not be written";
@@ -493,10 +494,10 @@
 "The image could not be saved." = "The image could not be saved.";
 "The network connection is offline. Reconnect and retry." = "The network connection is offline. Reconnect and retry.";
 "The selected formats are unavailable." = "The selected formats are unavailable.";
-"The stream stopped before it was complete. Retry once, or choose a lower quality." = "The stream stopped before it was complete. Retry once, or choose a lower quality.";
+"The transfer ended early. Try once more, or drop to a lower quality." = "The transfer ended early. Try once more, or drop to a lower quality.";
 "This is not a YTKACE backup" = "This is not a YTKACE backup";
 "Title copied" = "Title copied";
-"To modify settings, open the YTKACE tab and tap the gear icon above." = "To modify settings, open the YTKACE tab and tap the gear icon above.";
+"To change these, open the YTKACE tab and use the gear icon above." = "To change these, open the YTKACE tab and use the gear icon above.";
 "Unknown" = "Unknown";
 "Unknown error" = "Unknown error";
 "Unknown size" = "Unknown size";
@@ -524,13 +525,13 @@
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic";
 "YouTube Download" = "YouTube Download";
 "YouTube Video" = "YouTube Video";
-"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube could not refresh this high-resolution stream. Play the video briefly, then retry.";
-"YouTube did not authorize this format for the current device. Choose another quality." = "YouTube did not authorize this format for the current device. Choose another quality.";
-"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTube did not provide a usable download session. Play the video briefly, then retry.";
-"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTube has not prepared this video yet. Tap Play for a moment, then retry.";
+"The high-resolution stream could not be refreshed. Give the video a moment of playback and try again." = "The high-resolution stream could not be refreshed. Give the video a moment of playback and try again.";
+"This format is not permitted on this device. Pick a different quality." = "This format is not permitted on this device. Pick a different quality.";
+"No usable download session came back. Start the video briefly so a fresh one is issued, then try again." = "No usable download session came back. Start the video briefly so a fresh one is issued, then try again.";
+"This video has not been set up for streaming yet. Start playing it for a second or two, then try the download again." = "This video has not been set up for streaming yet. Start playing it for a second or two, then try the download again.";
 "YouTube is about to open the Cast menu." = "YouTube is about to open the Cast menu.";
 "YouTube menu unavailable" = "YouTube menu unavailable";
-"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTube rejected the stream request. Reopen the video, play it briefly, and retry.";
+"The stream request was turned down. Close and reopen the video, let it play for a moment, then try again." = "The stream request was turned down. Close and reopen the video, let it play for a moment, then try again.";
 "active" = "active";
 "empty response" = "empty response";
 "iOS Device" = "iOS Device";
@@ -540,10 +541,6 @@
 "selected quality" = "selected quality";
 "v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@" = "v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@";
 "· On" = "· On";
-"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues.";
-"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ Playback recovery hooks will install on next launch.\n\n";
-"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n";
-"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n";
 "🔧 Fix Playback & Account Recovery" = "🔧 Fix Playback & Account Recovery";
 "🧰 Fixes playback guidance for sideloaded apps." = "🧰 Fixes playback guidance for sideloaded apps.";
 "No results" = "No results";
@@ -565,7 +562,7 @@
 
 "Enabled" = "Enabled";
 "ACTIVE" = "ACTIVE";
-"Tap the checkmark to apply changes." = "Tap the checkmark to apply changes.";
+"Save your changes with the checkmark above." = "Save your changes with the checkmark above.";
 "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
@@ -574,7 +571,7 @@
 "Seconds: %@" = "Seconds: %@";
 "%@ seconds" = "%@ seconds";
 "%lu items added to %@." = "%lu items added to %@.";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Choose a side for brightness and volume. Swipe vertically on that side of the player.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half." = "Pick which half of the player changes brightness and which changes volume, then slide up or down on that half.";
 "YTKACE
 Clean-room implementation
 MIT licensed code

@@ -38,17 +38,20 @@
 "Captions On" = "Untertitel an";
 "Cards" = "Karten";
 "Cellular Quality" = "Mobilfunk-Qualität";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off." = "Wähle eine Seite für Helligkeit und Lautstärke. Wische auf dieser Seite des Players vertikal. Lautstärke auf beiden Seiten deaktiviert die Helligkeit.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "Lege fest, welche Hälfte des Players die Helligkeit und welche die Lautstärke regelt, und wische dort nach oben oder unten. Wenn beide Hälften die Lautstärke steuern, bleibt für die Helligkeit nichts übrig und sie wird abgeschaltet.";
 "Choose and reorder bottom tabs" = "Untere Tabs auswählen und sortieren";
 "Choose, reorder, and rename tabs" = "Tabs auswählen, sortieren und umbenennen";
 "Clear Cache Now" = "Cache jetzt leeren";
 "Clear Cache at Launch" = "Cache beim Start leeren";
 "Close" = "Schließen";
 "Confirm Before Casting" = "Vor dem Streamen bestätigen";
+"Custom" = "Benutzerdefiniert";
 "Custom Double-Tap Time" = "Doppeltipp-Dauer";
+"Custom speed" = "Eigene Geschwindigkeit";
 "DOUBLE TAP" = "DOPPELTIPPEN";
 "Default" = "Standard";
 "Default Startup Tab" = "Standard-Starttab";
+"Default playback speed" = "Standard-Wiedergabegeschwindigkeit";
 "Delete temporary download files." = "Temporäre Download-Dateien löschen.";
 "Developer" = "Entwickler";
 "Disabled" = "Deaktiviert";
@@ -81,6 +84,7 @@
 "Keep Play Button Visible" = "Wiedergabetaste eingeblendet lassen";
 "Keep Timeline Visible" = "Zeitleiste eingeblendet lassen";
 "LAYOUT" = "LAYOUT";
+"Last Used" = "Zuletzt verwendet";
 "Layout" = "Layout";
 "Leave blank to restore the default name." = "Leer lassen, um den Standardnamen wiederherzustellen.";
 "Left" = "Links";
@@ -158,12 +162,14 @@
 "Remove YouTube Logo" = "YouTube-Logo entfernen";
 "Rename" = "Umbenennen";
 "Rename Tab" = "Tab umbenennen";
-"Replace clickbait thumbnails with community-picked frames from DeArrow. Videos without a submission are left untouched." = "Ersetzt Clickbait-Vorschaubilder durch von der Community gewählte Bilder aus DeArrow. Videos ohne Einsendung bleiben unverändert.";
-"Replace clickbait titles with community-written ones from DeArrow. Videos without a submission keep their original title." = "Ersetzt Clickbait-Titel durch von der Community verfasste Titel aus DeArrow. Videos ohne Einsendung behalten ihren Originaltitel.";
-"Restart YouTube to apply changes." = "Starte YouTube neu, um die Änderungen zu übernehmen.";
+"Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "Ersetzt Clickbait-Vorschaubilder durch Einzelbilder, die von DeArrow-Mitwirkenden ausgewählt wurden. Videos ohne Einreichung behalten das Vorschaubild von YouTube.";
+"Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "Ersetzt Clickbait-Titel durch Formulierungen von DeArrow-Mitwirkenden. Videos ohne Einreichung behalten ihren ursprünglichen Titel.";
+"Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "Wird beim nächsten Start von YouTube aktiv.\n\nWenn ein Video unerwartet stoppt, wartet YTKACE etwa eine Sekunde ab, um sicherzugehen, dass es wirklich hängt und nicht nur puffert. Danach folgen bis zu drei Versuche: fortsetzen, neu puffern und schließlich den Stream neu laden. Hilft nichts davon, hält sich YTKACE heraus und überlässt YouTube die gewohnte Fehlermeldung.\n\nSpulen, Pausieren oder ein Videowechsel bricht einen laufenden Versuch sofort ab. Livestreams werden neu geladen statt gespult. Lass die Option aus, wenn die Wiedergabe ohnehin zuverlässig läuft.";
+"Your changes take effect once YouTube restarts." = "Deine Änderungen gelten nach einem Neustart von YouTube.";
 "Restore" = "Wiederherstellen";
 "Right" = "Rechts";
 "SEEK" = "SPULEN";
+"SPEED" = "TEMPO";
 "STORAGE" = "SPEICHER";
 "SYSTEM" = "SYSTEM";
 "Save" = "Sichern";
@@ -256,7 +262,7 @@
 "Cache Cleared" = "Cache gelöscht";
 "Cancelled" = "Abgebrochen";
 "Cast Confirmation" = "Cast-Bestätigung";
-"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "Wählen Sie Video, Audio oder Shorts, dann wählen Sie Medien, Artwork und Untertitel aus.";
+"Pick a destination — Video, Audio, or Shorts — then choose the media file, its artwork, and any subtitles." = "Wähle ein Ziel — Video, Audio oder Shorts — und dann die Mediendatei, das Titelbild und etwaige Untertitel.";
 "Choose a YTKACE ZIP backup from Files." = "Wählen Sie ein YTKACE-ZIP-Backup aus der Dateien-App.";
 "Choose and reorder the bottom tabs" = "Unterste Tabs auswählen und neu anordnen";
 "Clear" = "Löschen";
@@ -323,7 +329,7 @@
 "File Size" = "Dateigröße";
 "Filler" = "Füllmaterial";
 "Finalizing" = "Abschließen";
-"Fix Playback & Account Recovery" = "Wiedergabe & Kontowiederherstellung reparieren";
+"Playback Recovery" = "Wiedergabe-Wiederherstellung";
 "Format" = "Format";
 "Frame Rate" = "Bildrate";
 "Fullscreen" = "Vollbild";
@@ -407,7 +413,7 @@
 "OVERLAY" = "OVERLAY";
 "OVERLAY CONTROLLER" = "OVERLAY-STEUERUNG";
 "OVERLAY PLAYER" = "OVERLAY-PLAYER";
-"Open the YTKACE tab and tap the gear icon." = "Öffnen Sie den YTKACE-Tab und tippen Sie auf das Zahnrad-Symbol.";
+"Settings live in the YTKACE tab, behind the gear icon." = "Die Einstellungen findest du im YTKACE-Tab hinter dem Zahnrad.";
 "Original audio" = "Original-Audio";
 "PREVIOUS & NEXT BUTTONS" = "VORHERIGE & NÄCHSTE TASTEN";
 "PiP failed to start." = "PiP konnte nicht gestartet werden.";
@@ -421,7 +427,7 @@
 "Playback Speed" = "Wiedergabegeschwindigkeit";
 "Playback Speed toggles" = "Wiedergabegeschwindigkeits-Schalter";
 "Playback failed." = "Wiedergabe fehlgeschlagen.";
-"Playback recovery guidance unavailable" = "Anleitung zur Wiedergabewiederherstellung nicht verfügbar";
+"Could not open the recovery details." = "Die Details zur Wiederherstellung konnten nicht geöffnet werden.";
 "Player Controls" = "Player-Steuerung";
 "Playlists" = "Playlists";
 "Please Wait..." = "Bitte warten...";
@@ -452,7 +458,7 @@
 "Seconds: 10" = "Sekunden: 10";
 "Seek Duration" = "Spul-Dauer";
 "Self Promotion" = "Eigenwerbung";
-"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "Legen Sie fest, welche Seite Helligkeit und Lautstärke steuert.\n\nTipps:\n1. Im Hochformat wischen Sie auf einer beliebigen Seite des Players nach unten.\n2. Im Vollbildmodus wischen Sie vom unteren Bereich aufgrund der YouTube-Gestensteuerung.";
+"Assign brightness and volume to the left or right half of the player.\n\nIn portrait, slide up or down anywhere on the half you chose. In fullscreen, begin the slide nearer the bottom of the screen — YouTube reserves the upper area for its own gestures." = "Weise Helligkeit und Lautstärke der linken oder rechten Hälfte des Players zu.\n\nIm Hochformat wischst du irgendwo auf der gewählten Hälfte nach oben oder unten. Im Vollbild beginnst du die Wischgeste weiter unten — den oberen Bereich beansprucht YouTube für eigene Gesten.";
 "Settings & Backup" = "Einstellungen & Backup";
 "Settings could not be saved" = "Einstellungen konnten nicht gespeichert werden";
 "Share" = "Teilen";
@@ -472,7 +478,7 @@
 "System" = "System";
 "System Player" = "System-Player";
 "Tab Bar" = "Registerleiste";
-"Tap the top-right button to apply changes." = "Tippen Sie auf die Schaltfläche oben rechts, um Änderungen zu übernehmen.";
+"Save your changes with the button in the top-right corner." = "Speichere deine Änderungen mit der Schaltfläche oben rechts.";
 "The backup contains an unsafe path" = "Das Backup enthält einen unsicheren Pfad";
 "The backup could not be created." = "Das Backup konnte nicht erstellt werden.";
 "The backup file could not be written" = "Die Backup-Datei konnte nicht geschrieben werden";
@@ -488,10 +494,10 @@
 "The image could not be saved." = "Das Bild konnte nicht gespeichert werden.";
 "The network connection is offline. Reconnect and retry." = "Die Netzwerkverbindung ist offline. Verbinden Sie sich erneut und versuchen Sie es nochmal.";
 "The selected formats are unavailable." = "Die ausgewählten Formate sind nicht verfügbar.";
-"The stream stopped before it was complete. Retry once, or choose a lower quality." = "Der Stream stoppte vor dem Abschluss. Versuchen Sie es nochmal oder wählen Sie eine niedrigere Qualität.";
+"The transfer ended early. Try once more, or drop to a lower quality." = "Die Übertragung endete vorzeitig. Versuche es noch einmal oder wähle eine niedrigere Qualität.";
 "This is not a YTKACE backup" = "Dies ist kein YTKACE-Backup";
 "Title copied" = "Titel kopiert";
-"To modify settings, open the YTKACE tab and tap the gear icon above." = "Um Einstellungen zu ändern, öffnen Sie den YTKACE-Tab und tippen Sie auf das Zahnrad-Symbol oben.";
+"To change these, open the YTKACE tab and use the gear icon above." = "Zum Ändern öffne den YTKACE-Tab und nutze das Zahnrad oben.";
 "Unknown" = "Unbekannt";
 "Unknown error" = "Unbekannter Fehler";
 "Unknown size" = "Unbekannte Größe";
@@ -519,13 +525,13 @@
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nClean-Room-Implementierung\nMIT-lizenzierter Code\nErstellt von Epic";
 "YouTube Download" = "YouTube-Download";
 "YouTube Video" = "YouTube-Video";
-"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube konnte diesen hochauflösenden Stream nicht aktualisieren. Spielen Sie das Video kurz ab und versuchen Sie es nochmal.";
-"YouTube did not authorize this format for the current device. Choose another quality." = "YouTube hat dieses Format für das aktuelle Gerät nicht autorisiert. Wählen Sie eine andere Qualität.";
-"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTube hat keine verwendbare Download-Sitzung bereitgestellt. Spielen Sie das Video kurz ab und versuchen Sie es nochmal.";
-"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTube hat dieses Video noch nicht vorbereitet. Tippen Sie kurz auf Play und versuchen Sie es nochmal.";
+"The high-resolution stream could not be refreshed. Give the video a moment of playback and try again." = "Der hochauflösende Stream ließ sich nicht aktualisieren. Lass das Video einen Moment laufen und versuche es erneut.";
+"This format is not permitted on this device. Pick a different quality." = "Dieses Format ist auf diesem Gerät nicht zulässig. Wähle eine andere Qualität.";
+"No usable download session came back. Start the video briefly so a fresh one is issued, then try again." = "Es kam keine brauchbare Download-Sitzung zurück. Starte das Video kurz, damit eine neue erzeugt wird, und versuche es noch einmal.";
+"This video has not been set up for streaming yet. Start playing it for a second or two, then try the download again." = "Dieses Video wurde noch nicht fürs Streaming vorbereitet. Spiele es ein bis zwei Sekunden ab und versuche den Download erneut.";
 "YouTube is about to open the Cast menu." = "YouTube öffnet gleich das Cast-Menü.";
 "YouTube menu unavailable" = "YouTube-Menü nicht verfügbar";
-"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTube hat die Stream-Anfrage abgelehnt. Öffnen Sie das Video erneut, spielen Sie es kurz ab und versuchen Sie es nochmal.";
+"The stream request was turned down. Close and reopen the video, let it play for a moment, then try again." = "Die Stream-Anfrage wurde abgelehnt. Schließe das Video, öffne es erneut, lass es kurz laufen und versuche es noch einmal.";
 "active" = "aktiv";
 "empty response" = "leere Antwort";
 "iOS Device" = "iOS-Gerät";
@@ -535,10 +541,6 @@
 "selected quality" = "ausgewählte Qualität";
 "v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@" = "v%@ - v%@ ✓ (Kompatibel)\n%@\n%@ - iOS %@";
 "· On" = "· Ein";
-"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ Starten Sie YouTube neu, damit die Hooks wirksam werden. Lassen Sie es aus, wenn die Wiedergabe bereits funktioniert — es umgeht serverseitige Stoppsignale und kann echte Probleme verbergen.";
-"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ Hooks zur Wiedergabewiederherstellung werden beim nächsten Start installiert.\n\n";
-"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 Was dies tut:\n• Schaltet iOS-Guard-Attestierung aus\n• Markiert Heartbeat-Richtlinienfehler als nicht fatal\n• Schluckt Halt-/Cannot-Play-/Error-Overlay-Pfade\n• Erzwingt Skip-on-Playability-Error\n\n";
-"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 Wann zu verwenden:\nAktivieren, wenn Videos während der Wiedergabe fehlschlagen, \"ein Fehler ist aufgetreten\" anzeigen oder durch Heartbeat-/Attestierungsfehler beendet werden.\n\n";
 "🔧 Fix Playback & Account Recovery" = "🔧 Wiedergabe & Kontowiederherstellung reparieren";
 "🧰 Fixes playback guidance for sideloaded apps." = "🧰 Repariert die Wiedergabeanleitung für Sideloading-Apps.";
 "No results" = "Keine Ergebnisse";
@@ -560,7 +562,7 @@
 
 "Enabled" = "Aktiviert";
 "ACTIVE" = "AKTIV";
-"Tap the checkmark to apply changes." = "Tippen Sie auf das Häkchen, um die Änderungen zu übernehmen.";
+"Save your changes with the checkmark above." = "Speichere deine Änderungen mit dem Häkchen oben.";
 "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
@@ -569,7 +571,7 @@
 "Seconds: %@" = "Sekunden: %@";
 "%@ seconds" = "%@ Sekunden";
 "%lu items added to %@." = "%lu Elemente zu %@ hinzugefügt.";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Wählen Sie eine Seite für Helligkeit und Lautstärke. Wischen Sie vertikal auf dieser Seite des Players.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half." = "Lege fest, welche Hälfte des Players die Helligkeit und welche die Lautstärke regelt, und wische dort nach oben oder unten.";
 "YTKACE
 Clean-room implementation
 MIT licensed code

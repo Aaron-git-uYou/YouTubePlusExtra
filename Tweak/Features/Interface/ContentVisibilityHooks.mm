@@ -52,6 +52,7 @@ static IMP OriginalActionCellSize;
 static IMP OriginalActionCellSizeWithInsets;
 static IMP OriginalASCollectionViewLayout;
 static const void *YTKACEContentHiddenAssociation = &YTKACEContentHiddenAssociation;
+static NSString *YTKACENormalizedDescription(id object);
 static const void *YTKACEActionCellPreferenceAssociation =
     &YTKACEActionCellPreferenceAssociation;
 static const void *YTKACEActionLayoutRefreshAssociation =
@@ -92,7 +93,7 @@ static BOOL YTKACEViewIsInsideWatchActionBar(UIView *view) {
 
 static NSString *YTKACEActionPreference(id item) {
     NSString *token = [[[NSString stringWithFormat:@"%@ %@",
-        NSStringFromClass([item class]), [item description] ?: @""] lowercaseString]
+        NSStringFromClass([item class]), YTKACENormalizedDescription(item)] lowercaseString]
         stringByReplacingOccurrencesOfString:@"." withString:@"_"];
     NSArray<NSArray<NSString *> *> *rules = @[
         @[@"YTKACE.Preference.ActionBar.DislikeHidden", @"dislike"],
@@ -1021,14 +1022,31 @@ static id YTKACEContentValue(id object, NSString *key) {
 }
 
 static BOOL YTKACEItemIsShorts(id item) {
-    NSString *description = [[[item description] lowercaseString]
-        stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    NSString *description = YTKACENormalizedDescription(item);
     return YTKACEContentContains(description, @[
         @"shorts_shelf_eml", @"shorts_shelf", @"reel_shelf",
         @"shorts_lockup_shelf", @"shortsshelfrenderer", @"reelshelfrenderer",
         @"shortslockupviewmodel", @"shorts_video_cell", @"reelitemrenderer",
         @"shortslockup"
     ]);
+}
+
+static const void *YTKACENormalizedDescriptionAssociation =
+    &YTKACENormalizedDescriptionAssociation;
+static const void *YTKACESectionTokenAssociation = &YTKACESectionTokenAssociation;
+static const NSUInteger YTKACERecursiveDescriptionFloor = 160;
+
+static NSString *YTKACENormalizedDescription(id object) {
+    if (object == nil) return @"";
+    NSString *cached = objc_getAssociatedObject(
+        object, YTKACENormalizedDescriptionAssociation);
+    if (cached != nil) return cached;
+    NSString *value = [[[object description] lowercaseString]
+        stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    if (value == nil) value = @"";
+    objc_setAssociatedObject(object, YTKACENormalizedDescriptionAssociation, value,
+                             OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return value;
 }
 
 static BOOL YTKACESectionIsShortsShelf(id section) {
@@ -1046,8 +1064,7 @@ static BOOL YTKACESectionIsShortsShelf(id section) {
         return YES;
     }
 
-    NSString *description = [[[section description] lowercaseString]
-        stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    NSString *description = YTKACENormalizedDescription(section);
     if (YTKACEContentContains(description, @[
         @"shorts_shelf_eml", @"shorts_shelf", @"reel_shelf",
         @"shorts_lockup_shelf", @"shortsshelfrenderer",
@@ -1067,7 +1084,7 @@ static BOOL YTKACESectionIsShortsShelf(id section) {
     NSArray *items = YTKACEContentValue(list, @"itemsArray") ?:
         YTKACEContentValue(list, @"contentsArray");
     for (id item in items) {
-        NSString *itemDescription = [[item description] lowercaseString];
+        NSString *itemDescription = YTKACENormalizedDescription(item);
         if (YTKACEContentContains(itemDescription, @[
             @"shorts_video_cell", @"reelitemrenderer", @"shortslockup"
         ])) {
@@ -1095,8 +1112,7 @@ static BOOL YTKACESectionIsProductsShelf(id section) {
     NSArray *entries = YTKACEContentValue(section, @"contentsArray");
     if ([entries isKindOfClass:NSArray.class] && entries.count != 0) {
         for (id entry in entries) {
-            NSString *entryDescription = [[[entry description] lowercaseString]
-                stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+            NSString *entryDescription = YTKACENormalizedDescription(entry);
             if (YTKACEContentContains(entryDescription, markers)) {
                 return YES;
             }
@@ -1104,8 +1120,7 @@ static BOOL YTKACESectionIsProductsShelf(id section) {
         return NO;
     }
 
-    NSString *description = [[[section description] lowercaseString]
-        stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    NSString *description = YTKACENormalizedDescription(section);
     if (YTKACEContentContains(description, markers)) {
         return YES;
     }
@@ -1122,8 +1137,7 @@ static BOOL YTKACESectionIsProductsShelf(id section) {
     NSArray *items = YTKACEContentValue(list, @"itemsArray") ?:
         YTKACEContentValue(list, @"contentsArray");
     for (id item in items) {
-        NSString *itemDescription = [[[item description] lowercaseString]
-            stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+        NSString *itemDescription = YTKACENormalizedDescription(item);
         if (YTKACEContentContains(itemDescription, markers)) {
             return YES;
         }
@@ -1133,30 +1147,38 @@ static BOOL YTKACESectionIsProductsShelf(id section) {
 
 static NSString *YTKACESectionToken(id section) {
     if (section == nil) return @"";
+    NSString *memo = objc_getAssociatedObject(section, YTKACESectionTokenAssociation);
+    if (memo != nil) return memo;
+    NSString *own = YTKACENormalizedDescription(section);
     NSMutableString *token = [NSMutableString stringWithFormat:@"%@ %@",
-        NSStringFromClass([section class]), [section description] ?: @""];
-    NSArray *entries = YTKACEContentValue(section, @"contentsArray");
-    if ([entries isKindOfClass:NSArray.class]) {
-        for (id entry in entries) {
-            [token appendFormat:@" %@ %@", NSStringFromClass([entry class]),
-                                                [entry description] ?: @""];
+        NSStringFromClass([section class]), own];
+    if (own.length < YTKACERecursiveDescriptionFloor) {
+        NSArray *entries = YTKACEContentValue(section, @"contentsArray");
+        if ([entries isKindOfClass:NSArray.class]) {
+            for (id entry in entries) {
+                [token appendFormat:@" %@ %@", NSStringFromClass([entry class]),
+                                                    YTKACENormalizedDescription(entry)];
+            }
+        }
+        id content = YTKACEContentValue(section, @"content");
+        id list = YTKACEContentValue(content, @"horizontalListRenderer") ?:
+            YTKACEContentValue(content, @"richShelfRenderer") ?:
+            YTKACEContentValue(content, @"shelfRenderer") ?:
+            content;
+        NSArray *items = YTKACEContentValue(list, @"itemsArray") ?:
+            YTKACEContentValue(list, @"contentsArray");
+        if ([items isKindOfClass:NSArray.class]) {
+            for (id item in items) {
+                [token appendFormat:@" %@ %@", NSStringFromClass([item class]),
+                                                   YTKACENormalizedDescription(item)];
+            }
         }
     }
-    id content = YTKACEContentValue(section, @"content");
-    id list = YTKACEContentValue(content, @"horizontalListRenderer") ?:
-        YTKACEContentValue(content, @"richShelfRenderer") ?:
-        YTKACEContentValue(content, @"shelfRenderer") ?:
-        content;
-    NSArray *items = YTKACEContentValue(list, @"itemsArray") ?:
-        YTKACEContentValue(list, @"contentsArray");
-    if ([items isKindOfClass:NSArray.class]) {
-        for (id item in items) {
-            [token appendFormat:@" %@ %@", NSStringFromClass([item class]),
-                                               [item description] ?: @""];
-        }
-    }
-    return [[token lowercaseString]
+    NSString *value = [[token lowercaseString]
         stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    objc_setAssociatedObject(section, YTKACESectionTokenAssociation, value,
+                             OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return value;
 }
 
 static BOOL YTKACESectionIsCommunityPosts(id section) {

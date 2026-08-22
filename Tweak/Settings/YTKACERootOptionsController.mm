@@ -372,7 +372,7 @@ UIViewController *YTKACEMakeDownloadLogController(void) {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(24.0, 0.0,
         MAX(0.0, CGRectGetWidth(tableView.bounds) - 48.0), 18.0)];
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    label.text = YTKACELocalized(@"Tap the checkmark to apply changes.");
+    label.text = YTKACELocalized(@"Save your changes with the checkmark above.");
     label.font = [UIFont systemFontOfSize:13.0];
     label.textColor = UIColor.secondaryLabelColor;
     [footer addSubview:label];

@@ -38,17 +38,20 @@
 "Captions On" = "자막 켬";
 "Cards" = "카드";
 "Cellular Quality" = "셀룰러 화질";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off." = "밝기와 음량에 사용할 쪽을 선택하세요. 플레이어의 해당 쪽에서 세로로 스와이프합니다. 음량을 양쪽으로 설정하면 밝기가 꺼집니다.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "플레이어의 어느 쪽이 밝기를 조절하고 어느 쪽이 음량을 조절할지 정한 뒤, 그 절반에서 위아래로 밀어 보세요. 양쪽 모두 음량으로 지정하면 밝기에 쓸 영역이 남지 않아 밝기 조절은 꺼집니다.";
 "Choose and reorder bottom tabs" = "하단 탭 선택 및 순서 변경";
 "Choose, reorder, and rename tabs" = "탭 선택, 순서 변경 및 이름 바꾸기";
 "Clear Cache Now" = "지금 캐시 지우기";
 "Clear Cache at Launch" = "실행 시 캐시 지우기";
 "Close" = "닫기";
 "Confirm Before Casting" = "전송 전 확인";
+"Custom" = "사용자 지정";
 "Custom Double-Tap Time" = "두 번 탭 시간";
+"Custom speed" = "사용자 지정 속도";
 "DOUBLE TAP" = "두 번 탭";
 "Default" = "기본값";
 "Default Startup Tab" = "기본 시작 탭";
+"Default playback speed" = "기본 재생 속도";
 "Delete temporary download files." = "임시 다운로드 파일을 삭제합니다.";
 "Developer" = "개발자";
 "Disabled" = "사용 안 함";
@@ -81,6 +84,7 @@
 "Keep Play Button Visible" = "재생 버튼 항상 표시";
 "Keep Timeline Visible" = "재생 바 항상 표시";
 "LAYOUT" = "레이아웃";
+"Last Used" = "최근 사용";
 "Layout" = "레이아웃";
 "Leave blank to restore the default name." = "기본 이름으로 되돌리려면 비워 두세요.";
 "Left" = "왼쪽";
@@ -158,12 +162,14 @@
 "Remove YouTube Logo" = "YouTube 로고 제거";
 "Rename" = "이름 변경";
 "Rename Tab" = "탭 이름 변경";
-"Replace clickbait thumbnails with community-picked frames from DeArrow. Videos without a submission are left untouched." = "낚시성 미리보기 이미지를 DeArrow 커뮤니티가 고른 장면으로 바꿉니다. 제출된 내용이 없는 동영상은 그대로 둡니다.";
-"Replace clickbait titles with community-written ones from DeArrow. Videos without a submission keep their original title." = "낚시성 제목을 DeArrow 커뮤니티가 작성한 제목으로 바꿉니다. 제출된 내용이 없는 동영상은 원래 제목을 유지합니다.";
-"Restart YouTube to apply changes." = "변경사항을 적용하려면 YouTube를 다시 시작하세요.";
+"Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "낚시성 썸네일을 DeArrow 기여자가 고른 장면으로 바꿉니다. 제출된 항목이 없는 영상은 YouTube 썸네일을 그대로 사용합니다.";
+"Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "낚시성 제목을 DeArrow 기여자가 작성한 문구로 바꿉니다. 제출된 항목이 없는 영상은 원래 제목을 유지합니다.";
+"Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "다음에 YouTube를 실행할 때부터 적용됩니다.\n\n영상이 예기치 않게 멈추면 YTKACE는 버퍼링이 아니라 실제로 멈춘 것인지 약 1초 동안 확인한 뒤, 최대 세 번까지 복구를 시도합니다. 재생 재개, 버퍼 다시 채우기, 마지막으로 스트림 다시 불러오기 순입니다. 모두 실패하면 개입을 멈추고 YouTube가 평소대로 오류를 표시하도록 둡니다.\n\n탐색하거나 일시정지하거나 다른 영상으로 넘어가면 진행 중인 시도가 즉시 취소됩니다. 실시간 스트림은 탐색 대신 다시 불러옵니다. 재생이 이미 안정적이라면 꺼 두세요.";
+"Your changes take effect once YouTube restarts." = "변경 사항은 YouTube를 다시 시작하면 적용됩니다.";
 "Restore" = "복원";
 "Right" = "오른쪽";
 "SEEK" = "탐색";
+"SPEED" = "속도";
 "STORAGE" = "저장 공간";
 "SYSTEM" = "시스템";
 "Save" = "저장";
@@ -225,7 +231,7 @@
 " thumb" = " 썸네일";
 " thumbnail" = " 썸네일";
 "%.0f seconds" = "%.0f 초";
-"%lu item%@ added to %@." = "%lu개 항목이 %@에 추가되었습니다.";
+"%lu item%@ added to %@." = "%1$lu개 항목이 %3$@에 추가되었습니다.";
 "15 Minutes" = "15분";
 "30 Minutes" = "30분";
 "45 Minutes" = "45분";
@@ -256,7 +262,7 @@
 "Cache Cleared" = "캐시 삭제됨";
 "Cancelled" = "취소됨";
 "Cast Confirmation" = "캐스트 확인";
-"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "비디오, 오디오 또는 Shorts를 선택한 다음 미디어, 아트워크 및 자막을 선택하세요.";
+"Pick a destination — Video, Audio, or Shorts — then choose the media file, its artwork, and any subtitles." = "저장 위치(동영상, 오디오, Shorts)를 고른 뒤 미디어 파일과 아트워크, 자막을 선택하세요.";
 "Choose a YTKACE ZIP backup from Files." = "파일 앱에서 YTKACE ZIP 백업을 선택하세요.";
 "Choose and reorder the bottom tabs" = "하단 탭 선택 및 재정렬";
 "Clear" = "지우기";
@@ -323,7 +329,7 @@
 "File Size" = "파일 크기";
 "Filler" = "채우기";
 "Finalizing" = "마무리 중";
-"Fix Playback & Account Recovery" = "재생 및 계정 복구 수정";
+"Playback Recovery" = "재생 복구";
 "Format" = "형식";
 "Frame Rate" = "프레임 속도";
 "Fullscreen" = "전체 화면";
@@ -407,7 +413,7 @@
 "OVERLAY" = "오버레이";
 "OVERLAY CONTROLLER" = "오버레이 컨트롤러";
 "OVERLAY PLAYER" = "오버레이 플레이어";
-"Open the YTKACE tab and tap the gear icon." = "YTKACE 탭을 열고 톱니바퀴 아이콘을 탭하세요.";
+"Settings live in the YTKACE tab, behind the gear icon." = "설정은 YTKACE 탭의 톱니바퀴 아이콘 안에 있습니다.";
 "Original audio" = "원본 오디오";
 "PREVIOUS & NEXT BUTTONS" = "이전/다음 버튼";
 "PiP failed to start." = "PIP 시작에 실패했습니다.";
@@ -421,7 +427,7 @@
 "Playback Speed" = "재생 속도";
 "Playback Speed toggles" = "재생 속도 토글";
 "Playback failed." = "재생 실패.";
-"Playback recovery guidance unavailable" = "재생 복구 안내를 사용할 수 없습니다";
+"Could not open the recovery details." = "복구 세부 정보를 열지 못했습니다.";
 "Player Controls" = "재생 컨트롤";
 "Playlists" = "재생목록";
 "Please Wait..." = "잠시만 기다려 주세요...";
@@ -452,7 +458,7 @@
 "Seconds: 10" = "초: 10";
 "Seek Duration" = "탐색 시간";
 "Self Promotion" = "자체 홍보";
-"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "어느 쪽이 밝기와 볼륨을 제어할지 설정하세요.\n\n팁:\n1. 세로 모드에서는 플레이어 양쪽 어느 곳이든 아래로 스와이프하세요.\n2. 전체 화면에서는 YouTube의 제스처 처리로 인해 하단 영역에서 스와이프하세요.";
+"Assign brightness and volume to the left or right half of the player.\n\nIn portrait, slide up or down anywhere on the half you chose. In fullscreen, begin the slide nearer the bottom of the screen — YouTube reserves the upper area for its own gestures." = "밝기와 음량을 플레이어의 왼쪽 또는 오른쪽 절반에 지정합니다.\n\n세로 모드에서는 지정한 쪽 아무 곳에서나 위아래로 밀면 됩니다. 전체 화면에서는 화면 아래쪽에서 시작하세요. 위쪽 영역은 YouTube가 자체 제스처에 사용합니다.";
 "Settings & Backup" = "설정 및 백업";
 "Settings could not be saved" = "설정을 저장할 수 없습니다";
 "Share" = "공유";
@@ -472,7 +478,7 @@
 "System" = "시스템";
 "System Player" = "시스템 플레이어";
 "Tab Bar" = "탭 바";
-"Tap the top-right button to apply changes." = "변경사항을 적용하려면 오른쪽 상단 버튼을 탭하세요.";
+"Save your changes with the button in the top-right corner." = "오른쪽 위 버튼으로 변경 사항을 저장하세요.";
 "The backup contains an unsafe path" = "백업에 안전하지 않은 경로가 포함되어 있습니다";
 "The backup could not be created." = "백업을 만들 수 없습니다.";
 "The backup file could not be written" = "백업 파일을 쓸 수 없습니다";
@@ -488,10 +494,10 @@
 "The image could not be saved." = "이미지를 저장할 수 없습니다.";
 "The network connection is offline. Reconnect and retry." = "네트워크 연결이 오프라인입니다. 다시 연결하고 재시도하세요.";
 "The selected formats are unavailable." = "선택한 형식을 사용할 수 없습니다.";
-"The stream stopped before it was complete. Retry once, or choose a lower quality." = "스트림이 완료되기 전에 중지되었습니다. 한 번 재시도하거나 더 낮은 화질을 선택하세요.";
+"The transfer ended early. Try once more, or drop to a lower quality." = "전송이 도중에 끝났습니다. 한 번 더 시도하거나 화질을 낮춰 보세요.";
 "This is not a YTKACE backup" = "YTKACE 백업이 아닙니다";
 "Title copied" = "제목 복사됨";
-"To modify settings, open the YTKACE tab and tap the gear icon above." = "설정을 수정하려면 YTKACE 탭을 열고 위의 톱니바퀴 아이콘을 탭하세요.";
+"To change these, open the YTKACE tab and use the gear icon above." = "변경하려면 YTKACE 탭을 열고 위의 톱니바퀴 아이콘을 사용하세요.";
 "Unknown" = "알 수 없음";
 "Unknown error" = "알 수 없는 오류";
 "Unknown size" = "알 수 없는 크기";
@@ -519,13 +525,13 @@
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\n클린룸 구현\nMIT 라이선스 코드\nEpic 제작";
 "YouTube Download" = "YouTube 다운로드";
 "YouTube Video" = "YouTube 비디오";
-"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube가 이 고해상도 스트림을 새로고침할 수 없습니다. 비디오를 잠시 재생한 후 재시도하세요.";
-"YouTube did not authorize this format for the current device. Choose another quality." = "YouTube가 현재 기기에 이 형식을 승인하지 않습니다. 다른 화질을 선택하세요.";
-"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTube가 사용 가능한 다운로드 세션을 제공하지 않았습니다. 비디오를 잠시 재생한 후 재시도하세요.";
-"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTube가 아직 이 비디오를 준비하지 않았습니다. 잠시 재생한 후 재시도하세요.";
+"The high-resolution stream could not be refreshed. Give the video a moment of playback and try again." = "고해상도 스트림을 새로 고치지 못했습니다. 영상을 잠시 재생한 뒤 다시 시도하세요.";
+"This format is not permitted on this device. Pick a different quality." = "이 형식은 이 기기에서 허용되지 않습니다. 다른 화질을 선택하세요.";
+"No usable download session came back. Start the video briefly so a fresh one is issued, then try again." = "사용할 수 있는 다운로드 세션을 받지 못했습니다. 영상을 잠시 재생해 새 세션을 발급받은 뒤 다시 시도하세요.";
+"This video has not been set up for streaming yet. Start playing it for a second or two, then try the download again." = "이 영상은 아직 스트리밍 준비가 되지 않았습니다. 1~2초 재생한 뒤 다시 내려받아 보세요.";
 "YouTube is about to open the Cast menu." = "YouTube가 캐스트 메뉴를 열려고 합니다.";
 "YouTube menu unavailable" = "YouTube 메뉴를 사용할 수 없음";
-"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTube가 스트림 요청을 거부했습니다. 비디오를 다시 열고 잠시 재생한 후 재시도하세요.";
+"The stream request was turned down. Close and reopen the video, let it play for a moment, then try again." = "스트림 요청이 거부되었습니다. 영상을 닫았다 다시 열고 잠시 재생한 뒤 다시 시도하세요.";
 "active" = "진행 중";
 "empty response" = "빈 응답";
 "iOS Device" = "iOS 기기";
@@ -535,10 +541,6 @@
 "selected quality" = "선택된 화질";
 "v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@" = "v%@ - v%@ ✓ (호환됨)\n%@\n%@ - iOS %@";
 "· On" = "· 켜짐";
-"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ 훅이 적용되려면 YouTube를 재시작하세요. 이미 재생이 작동한다면 꺼두세요 — 서버 측 중지 신호를 우회하여 실제 문제를 가릴 수 있습니다.";
-"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ 재생 복구 훅이 다음 실행 시 설치됩니다.\n\n";
-"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 기능:\n• iOS 가드 증명 강제 비활성화\n• 하트비트 정책 오류를 비치명으로 표시\n• 중지/재생 불가/오류 오버레이 경로 삼키기\n• 재생 가능 오류 시 강제 건너뛰기\n\n";
-"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 사용 시기:\n비디오가 재생 중 오류가 발생하거나, \"오류가 발생했습니다\"가 표시되거나, 하트비트/인증 실패로 종료되는 경우 활성화하세요.\n\n";
 "🔧 Fix Playback & Account Recovery" = "🔧 재생 및 계정 복구 수정";
 "🧰 Fixes playback guidance for sideloaded apps." = "🧰 사이드로드된 앱의 재생 안내를 수정합니다.";
 "No results" = "결과 없음";
@@ -560,7 +562,7 @@
 
 "Enabled" = "활성화됨";
 "ACTIVE" = "활성";
-"Tap the checkmark to apply changes." = "체크 표시를 탭하여 변경사항을 적용하세요.";
+"Save your changes with the checkmark above." = "위의 체크 표시로 변경 사항을 저장하세요.";
 "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
@@ -569,7 +571,7 @@
 "Seconds: %@" = "초: %@";
 "%@ seconds" = "%@ 초";
 "%lu items added to %@." = "%lu개 항목이 %@에 추가되었습니다.";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "밝기와 볼륨의 측면을 선택하세요. 재생기의 해당 측면을 세로로 스와이프하세요.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half." = "플레이어의 어느 쪽이 밝기를 조절하고 어느 쪽이 음량을 조절할지 정한 뒤, 그 절반에서 위아래로 밀어 보세요.";
 "YTKACE
 Clean-room implementation
 MIT licensed code

@@ -38,17 +38,20 @@
 "Captions On" = "ژێرنووس چالاک";
 "Cards" = "کارتەکان";
 "Cellular Quality" = "کوالیتی داتای مۆبایل";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off." = "لایەکی هەڵبژێرە بۆ ڕووناکی و دەنگ. بە ئەستوونی لەو لایەی لێدەرەکە بیجوڵێنە. دانانی دەنگ بۆ هەردوو لا ڕووناکی دەکوژێنێتەوە.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "هەڵبژێرە کام نیوەی لێدەر ڕووناکی بگۆڕێت و کامیان دەنگ، پاشان لەو نیوەیەدا بۆ سەرەوە یان خوارەوە بخزێنە. ئەگەر دەنگ بۆ هەردوو نیوە دابنێت، شوێن بۆ ڕووناکی نامێنێت و کوژاوە دەبێت.";
 "Choose and reorder bottom tabs" = "تابەکانی خوارەوە هەڵبژێرە و ڕێکیان بخەوە";
 "Choose, reorder, and rename tabs" = "تابەکان ھەڵبژێرە، ڕێکیان بخەرەوە و ناویان بگۆڕە";
 "Clear Cache Now" = "ئێستا کاش پاک بکەرەوە";
 "Clear Cache at Launch" = "لە کاتی کردنەوەدا کاش پاک بکەرەوە";
 "Close" = "داخستن";
 "Confirm Before Casting" = "پێش بڵاوکردنەوە دڵنیابەرەوە";
+"Custom" = "دڵخواز";
 "Custom Double-Tap Time" = "ماوەی دوو جار دەستلێدان";
+"Custom speed" = "خێرایی دڵخواز";
 "DOUBLE TAP" = "دووجار دەستلێدان";
 "Default" = "بنەڕەت";
 "Default Startup Tab" = "تابی بنەڕەتی دەستپێک";
+"Default playback speed" = "خێرایی لێدانی بنەڕەت";
 "Delete temporary download files." = "فایلە کاتییەکانی داگرتن بسڕەوە.";
 "Developer" = "گەشەپێدەر";
 "Disabled" = "ناچالاک";
@@ -81,6 +84,7 @@
 "Keep Play Button Visible" = "دوگمەی لێدان دیار بهێڵەرەوە";
 "Keep Timeline Visible" = "هێڵی کات دیار بهێڵەرەوە";
 "LAYOUT" = "شێوە";
+"Last Used" = "دوایین بەکارهێنراو";
 "Layout" = "ڕووکار";
 "Leave blank to restore the default name." = "بەتاڵی بەجێبهێڵە بۆ گەڕاندنەوەی ناوی بنەڕەتی.";
 "Left" = "چەپ";
@@ -158,12 +162,14 @@
 "Remove YouTube Logo" = "لابردنی لۆگۆی YouTube";
 "Rename" = "ناولێنانەوە";
 "Rename Tab" = "ناولێنانەوەی تاب";
-"Replace clickbait thumbnails with community-picked frames from DeArrow. Videos without a submission are left untouched." = "وێنۆچکە هەڵخەڵەتێنەرەکان بگۆڕە بە وێنەی هەڵبژێردراوی کۆمەڵگا لە DeArrow. ئەو ڤیدیۆیانەی پێشنیاریان نییە وەک خۆیان دەمێننەوە.";
-"Replace clickbait titles with community-written ones from DeArrow. Videos without a submission keep their original title." = "ناونیشانە هەڵخەڵەتێنەرەکان بگۆڕە بە ناونیشانی نووسراوی کۆمەڵگا لە DeArrow. ئەو ڤیدیۆیانەی پێشنیاریان نییە ناونیشانی ڕەسەنیان دەمێنێتەوە.";
-"Restart YouTube to apply changes." = "YouTube دووبارە بکەرەوە بۆ جێبەجێکردنی گۆڕانکارییەکان.";
+"Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "وێنۆچکە سەرنجڕاکێشەکان دەگۆڕێت بە وێنەی هەڵبژێردراوی بەشداربووانی DeArrow. ئەو ڤیدیۆانەی پێشنیاریان بۆ نەنێردراوە، وێنۆچکەی YouTube دەپارێزن.";
+"Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "ناونیشانە سەرنجڕاکێشەکان دەگۆڕێت بە دەقی نێردراوی بەشداربووانی DeArrow. ئەو ڤیدیۆانەی پێشنیاریان بۆ نەنێردراوە، ناونیشانی ڕەسەنیان دەمێنێتەوە.";
+"Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "لە کاتی داهاتووی کردنەوەی YouTube کاردەکات.\n\nئەگەر ڤیدیۆیەک بەشێوەیەکی چاوەڕواننەکراو ڕاوەستا، YTKACE نزیکەی چرکەیەک چاوەڕێ دەکات بۆ دڵنیابوون لەوەی بەڕاستی ڕاوەستاوە نەک لە بارکردندایە، پاشان تا سێ هەوڵ دەدات: بەردەوامبوون، دووبارە بارکردن، و لە کۆتاییدا دووبارە بارکردنی ستریم. ئەگەر هیچیان کاری نەکرد، دەست هەڵدەگرێت و ڕێگە دەدات YouTube هەڵەکەی خۆی پیشان بدات.\n\nگۆڕینی شوێن، وەستان، یان چوون بۆ ڤیدیۆیەکی تر هەوڵەکە ڕادەگرێت. ستریمی ڕاستەوخۆ دووبارە بار دەکرێت. ئەگەر لێدان باشە، بیهێڵەرەوە کوژاوە.";
+"Your changes take effect once YouTube restarts." = "گۆڕانکانت پاش دەستپێکردنەوەی YouTube کار دەکەن.";
 "Restore" = "گەڕاندنەوە";
 "Right" = "ڕاست";
 "SEEK" = "گەڕان";
+"SPEED" = "خێرایی";
 "STORAGE" = "پاشەکەوتکردن";
 "SYSTEM" = "سیستەم";
 "Save" = "پاشەکەوتکردن";
@@ -256,7 +262,7 @@
 "Cache Cleared" = "کاش سڕایەوە";
 "Cancelled" = "هەڵوەشایەوە";
 "Cast Confirmation" = "پشتڕاستکردنەوەی Cast";
-"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "ڤیدیۆ، دەنگ، یان Shorts هەڵبژێرە، پاشان میدیا، کاری هونەری و ژێرنووس هەڵبژێرە.";
+"Pick a destination — Video, Audio, or Shorts — then choose the media file, its artwork, and any subtitles." = "شوێنێک هەڵبژێرە — ڤیدیۆ، دەنگ یان Shorts — پاشان فایلی میدیا، وێنەکەی و هەر ژێرنووسێک هەڵبژێرە.";
 "Choose a YTKACE ZIP backup from Files." = "پاڵپشتی ZIP ی YTKACE لە فایلەکان هەڵبژێرە.";
 "Choose and reorder the bottom tabs" = "هەڵبژاردن و دووبارە ڕیزکردنی تابەکانی خوارەوە";
 "Clear" = "سڕینەوە";
@@ -323,7 +329,7 @@
 "File Size" = "قەبارەی فایل";
 "Filler" = "پڕکەر";
 "Finalizing" = "تەواوکردن";
-"Fix Playback & Account Recovery" = "چاککردنەوەی لێدان و گەڕاندنەوەی هەژمار";
+"Playback Recovery" = "چاککردنەوەی لێدان";
 "Format" = "فۆرمات";
 "Frame Rate" = "ڕێژەی چوارچێوە";
 "Fullscreen" = "پڕی شاشە";
@@ -407,7 +413,7 @@
 "OVERLAY" = "Overlay";
 "OVERLAY CONTROLLER" = "کۆنترۆڵکاری Overlay";
 "OVERLAY PLAYER" = "لێدەری Overlay";
-"Open the YTKACE tab and tap the gear icon." = "تابی YTKACE بکەرەوە و دوگمەی گێر دابگرە.";
+"Settings live in the YTKACE tab, behind the gear icon." = "ڕێکخستنەکان لە تابی YTKACE دان لە پشت ئیکۆنی دەندە.";
 "Original audio" = "دەنگی ڕەسەن";
 "PREVIOUS & NEXT BUTTONS" = "دوگمەکانی پێشوو و دواتر";
 "PiP failed to start." = "دەستپێکردنی PiP سەرکەوتوو نەبوو.";
@@ -421,7 +427,7 @@
 "Playback Speed" = "خێرایی لێدان";
 "Playback Speed toggles" = "دوگمەکانی خێرایی";
 "Playback failed." = "لێدان سەرکەوتوو نەبوو.";
-"Playback recovery guidance unavailable" = "ڕێنمایی گەڕاندنەوەی لێدان بەردەست نییە";
+"Could not open the recovery details." = "نەتوانرا وردەکارییەکانی چاککردنەوە بکرێتەوە.";
 "Player Controls" = "کۆنترۆڵی لێدەر";
 "Playlists" = "لیستی لێدان";
 "Please Wait..." = "تکایە چاوەڕێ بکە...";
@@ -452,7 +458,7 @@
 "Seconds: 10" = "چرکە: ١٠";
 "Seek Duration" = "ماوەی پێشبردن";
 "Self Promotion" = "بانگەشەی خۆی";
-"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "دیاریبکە کام لا ڕووناکی و دەنگ کۆنترۆڵ دەکات.\n\nئامۆژگاری:\n١. لە دۆخی ستوون، لە هەر لایەکی لێدەرەوە بخەوارەوە.\n٢. لە پڕی شاشە، لە ناوچەی خوارەوەوە بخەوارەوە بەهۆی مامەڵەی YouTube.";
+"Assign brightness and volume to the left or right half of the player.\n\nIn portrait, slide up or down anywhere on the half you chose. In fullscreen, begin the slide nearer the bottom of the screen — YouTube reserves the upper area for its own gestures." = "ڕووناکی و دەنگ بدە بە نیوەی چەپ یان ڕاستی لێدەر.\n\nلە دۆخی بەرزدا، لە هەر شوێنێکی ئەو نیوەیە بۆ سەرەوە یان خوارەوە بخزێنە. لە پڕ بە شاشەدا، خزاندنەکە لە نزیک خوارەوەی شاشە دەست پێ بکە — YouTube ناوچەی سەرەوە بۆ ئیمایەکانی خۆی دەبات.";
 "Settings & Backup" = "ڕێکخستن و پاڵپشت";
 "Settings could not be saved" = "ڕێکخستن نەتوانرا پاشەکەوت بکرێت";
 "Share" = "هاوبەشکردن";
@@ -472,7 +478,7 @@
 "System" = "سیستەم";
 "System Player" = "لێدەری سیستەم";
 "Tab Bar" = "شریتی تاب";
-"Tap the top-right button to apply changes." = "بۆ جێبەجێکردنی گۆڕانکارییەکان، دوگمەی سەرەوەی ڕاست دابگرە.";
+"Save your changes with the button in the top-right corner." = "گۆڕانکانت بە دوگمەی سەرەوەی ڕاست پاشەکەوت بکە.";
 "The backup contains an unsafe path" = "پاڵپشت ڕێگەیەکی ناسەلامەتی تێدایە";
 "The backup could not be created." = "پاڵپشت نەتوانرا دروست بکرێت.";
 "The backup file could not be written" = "نەتوانرا فایلی پاڵپشت بنووسرێت";
@@ -488,10 +494,10 @@
 "The image could not be saved." = "وێنە نەتوانرا پاشەکەوت بکرێت.";
 "The network connection is offline. Reconnect and retry." = "بەستنی ئینتەرنێت ناچالاکە. دووبارە ببەستەوە و هەوڵ بدەوە.";
 "The selected formats are unavailable." = "فۆرماتە هەڵبژێردراوەکان بەردەست نین.";
-"The stream stopped before it was complete. Retry once, or choose a lower quality." = "ستریم وەستا پێش تەواوبوون. یەک جار دووبارە هەوڵ بدە، یان کوالێتی نزمتر هەڵبژێرە.";
+"The transfer ended early. Try once more, or drop to a lower quality." = "گواستنەوەکە پێش کات کۆتایی هات. جارێکی تر هەوڵ بدە یان جۆریەکی نزمتر هەڵبژێرە.";
 "This is not a YTKACE backup" = "ئەمە پاڵپشتی YTKACE نییە";
 "Title copied" = "ناونیشان کۆپی کر";
-"To modify settings, open the YTKACE tab and tap the gear icon above." = "بۆ گۆڕینی ڕێکخستن، تابی YTKACE بکەرەوە و دوگمەی گێری سەرەوە دابگرە.";
+"To change these, open the YTKACE tab and use the gear icon above." = "بۆ گۆڕینیان، تابی YTKACE بکەرەوە و ئیکۆنی دەندەی سەرەوە بەکاربهێنە.";
 "Unknown" = "نەزانراو";
 "Unknown error" = "هەڵەی نەزانراو";
 "Unknown size" = "قەبارەی نەزانراو";
@@ -519,13 +525,13 @@
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nجێبەجێکردنی ژووری پاک\nکۆدی مۆڵەتدراوی MIT\nدروستکراو لەلایەن Epic";
 "YouTube Download" = "داگرتنی YouTube";
 "YouTube Video" = "ڤیدیۆی YouTube";
-"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube نەتوانی ئەم ستریمە بەرزی ڕێکخستنەوە بکات. ڤیدیۆکە بۆ ماوەیەکی کورت لێبدە، پاشان دووبارە هەوڵ بدە.";
-"YouTube did not authorize this format for the current device. Choose another quality." = "YouTube ئەم فۆرماتەی بۆ ئامێری ئێستا مۆڵەت نەدا. کوالێتییەکی تر هەڵبژێرە.";
-"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTube دانیشتنی داگرتنی بەکارنەهاتنی پێشکەش نەکرد. ڤیدیۆکە بۆ ماوەیەکی کورت لێبدە، پاشان دووبارە هەوڵ بدە.";
-"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTube هێشتا ئەم ڤیدیۆیە ئاماده نەکردووە. بۆ ماوەیەکی کورت دوگمەی لێدان دابگرە، پاشان دووبارە هەوڵ بدە.";
+"The high-resolution stream could not be refreshed. Give the video a moment of playback and try again." = "نەتوانرا ستریمی وێنەبەرز نوێ بکرێتەوە. کەمێک ڤیدیۆکە لێبدە و دووبارە هەوڵ بدە.";
+"This format is not permitted on this device. Pick a different quality." = "ئەم فۆرماتە لەم ئامێرەدا رێگەپێدراو نییە. جۆریەکی تر هەڵبژێرە.";
+"No usable download session came back. Start the video briefly so a fresh one is issued, then try again." = "هیچ دانیشتنێکی دابەزاندنی بەکارهاتوو نەگەڕایەوە. کەمێک ڤیدیۆکە لێبدە تا دانیشتنێکی نوێ دروست ببێت، پاشان دووبارە هەوڵ بدە.";
+"This video has not been set up for streaming yet. Start playing it for a second or two, then try the download again." = "ئەم ڤیدیۆیە هێشتا بۆ بڵاوکردنەوە ئامادە نەکراوە. چەند چرکەیەک لێی بدە، پاشان دووبارە هەوڵی دابەزاندن بدە.";
 "YouTube is about to open the Cast menu." = "YouTube ئامادەیە مێنیوی Cast بکاتەوە.";
 "YouTube menu unavailable" = "مێنیوی YouTube بەردەست نییە";
-"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTube داواکاری ستریمی ڕەتکردەوە. ڤیدیۆکە دووبارە بکەرەوە، بۆ ماوەیەکی کورت لێبدە، و دووبارە هەوڵ بدە.";
+"The stream request was turned down. Close and reopen the video, let it play for a moment, then try again." = "داواکاری ستریم ڕەتکرایەوە. ڤیدیۆکە دابخە و دووبارە بیکەرەوە، کەمێک لێی بدە، پاشان دووبارە هەوڵ بدە.";
 "active" = "چالاک";
 "empty response" = "وەڵامی بەتاڵ";
 "iOS Device" = "ئامێری iOS";
@@ -535,10 +541,6 @@
 "selected quality" = "کوالێتی هەڵبژێردراو";
 "v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@" = "v%@ - v%@ ✓ (گونجاو)\n%@\n%@ - iOS %@";
 "· On" = "· کراوە";
-"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ YouTube دووبارە بکەرەوە بۆ ئەوەی هووکەکان کاریگەر بن. ناچالاک بهێڵەوە ئەگەر لێدان پێشتر کاردەکات — ئەوە نیشانەکانی وەستانی سێرڤەر تێدەپەڕێنێت و لەوانەیە کێشە ڕاستەقینەکان بشارێتەوە.";
-"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ هووکەکانی گەڕاندنەوەی لێدان لە دەستپێکی داهاتوودا دەمەزرێن.\n\n";
-"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 ئەمە چی دەکات:\n• پشتڕاستکردنەوەی پاسەوانی iOS ناچالاک دەکات\n• هەڵەکانی سیاسەتی هارت بیلی وەک نا-مەترسیدار نیشان دەکات\n• ڕێگاکانی وەستان / ناتوانرێت-لێبدرێت / پۆشە-هەڵە دەسڕێتەوە\n• تێپەڕاندنی لەسەر-هەڵەی-لێدەران جێبەجێ دەکات\n\n";
-"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 کاتی بەکارهێنان:\nچالاک بکە ئەگەر ڤیدیۆکان لەناو لێداندا هەڵە دەربکەون، \"هەڵەیەک ڕوویدا،\" پیشان بدەن، یان بە هۆی شکستهێنانی هارت بیلی / پشتڕاستکردنەوە بکوژرێن.\n\n";
 "🔧 Fix Playback & Account Recovery" = "🔧 چاککردنەوەی لێدان و گەڕاندنەوەی هەژمار";
 "🧰 Fixes playback guidance for sideloaded apps." = "🧰 ڕێنمایی لێدان بۆ بەرنامە سایدلۆدکراوەکان چاک دەکات.";
 "No results" = "هیچ ئەنجامێک نییە";
@@ -560,7 +562,7 @@
 
 "Enabled" = "چالاککراو";
 "ACTIVE" = "چالاک";
-"Tap the checkmark to apply changes." = "بۆ جێبەجێکردنی گۆڕانکارییەکان، لە نیشانەی ✓ دابگرە.";
+"Save your changes with the checkmark above." = "گۆڕانکانت بە نیشانەی سەرەوە پاشەکەوت بکە.";
 "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
@@ -569,7 +571,7 @@
 "Seconds: %@" = "Seconds: %@";
 "%@ seconds" = "%@ seconds";
 "%lu items added to %@." = "%lu items added to %@.";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Choose a side for brightness and volume. Swipe vertically on that side of the player.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half." = "هەڵبژێرە کام نیوەی لێدەر ڕووناکی بگۆڕێت و کامیان دەنگ، پاشان لەو نیوەیەدا بۆ سەرەوە یان خوارەوە بخزێنە.";
 "YTKACE
 Clean-room implementation
 MIT licensed code

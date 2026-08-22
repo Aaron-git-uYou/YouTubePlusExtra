@@ -38,17 +38,20 @@
 "Captions On" = "Bật phụ đề";
 "Cards" = "Thẻ";
 "Cellular Quality" = "Chất lượng khi dùng dữ liệu di động";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off." = "Chọn một bên cho độ sáng và âm lượng. Vuốt dọc ở bên đó của trình phát. Đặt âm lượng cho cả hai bên sẽ tắt độ sáng.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "Chọn nửa nào của trình phát điều chỉnh độ sáng và nửa nào điều chỉnh âm lượng, rồi vuốt lên hoặc xuống trên nửa đó. Nếu gán âm lượng cho cả hai nửa thì không còn chỗ cho độ sáng, nên độ sáng sẽ bị tắt.";
 "Choose and reorder bottom tabs" = "Chọn và sắp xếp các tab dưới";
 "Choose, reorder, and rename tabs" = "Chọn, sắp xếp và đổi tên tab";
 "Clear Cache Now" = "Xóa bộ nhớ đệm ngay";
 "Clear Cache at Launch" = "Xóa bộ nhớ đệm khi khởi động";
 "Close" = "Đóng";
 "Confirm Before Casting" = "Xác nhận trước khi truyền";
+"Custom" = "Tùy chỉnh";
 "Custom Double-Tap Time" = "Thời gian chạm đúp";
+"Custom speed" = "Tốc độ tùy chỉnh";
 "DOUBLE TAP" = "CHẠM HAI LẦN";
 "Default" = "Mặc định";
 "Default Startup Tab" = "Tab khởi động mặc định";
+"Default playback speed" = "Tốc độ phát mặc định";
 "Delete temporary download files." = "Xóa các tệp tải xuống tạm thời.";
 "Developer" = "Nhà phát triển";
 "Disabled" = "Đã tắt";
@@ -81,6 +84,7 @@
 "Keep Play Button Visible" = "Luôn hiện nút phát";
 "Keep Timeline Visible" = "Luôn hiện thanh thời gian";
 "LAYOUT" = "BỐ CỤC";
+"Last Used" = "Dùng gần nhất";
 "Layout" = "Bố cục";
 "Leave blank to restore the default name." = "Để trống để khôi phục tên mặc định.";
 "Left" = "Trái";
@@ -158,12 +162,14 @@
 "Remove YouTube Logo" = "Xóa logo YouTube";
 "Rename" = "Đổi tên";
 "Rename Tab" = "Đổi tên tab";
-"Replace clickbait thumbnails with community-picked frames from DeArrow. Videos without a submission are left untouched." = "Thay hình thu nhỏ giật tít bằng khung hình do cộng đồng DeArrow chọn. Video chưa có đề xuất sẽ giữ nguyên.";
-"Replace clickbait titles with community-written ones from DeArrow. Videos without a submission keep their original title." = "Thay tiêu đề giật tít bằng tiêu đề do cộng đồng DeArrow viết. Video chưa có đề xuất giữ nguyên tiêu đề gốc.";
-"Restart YouTube to apply changes." = "Khởi động lại YouTube để áp dụng thay đổi.";
+"Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "Thay hình thu nhỏ giật tít bằng khung hình do cộng tác viên DeArrow chọn. Video chưa có đề xuất vẫn giữ hình thu nhỏ của YouTube.";
+"Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "Thay tiêu đề giật tít bằng nội dung do cộng tác viên DeArrow gửi. Video chưa có đề xuất vẫn giữ tiêu đề gốc.";
+"Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "Có hiệu lực trong lần mở YouTube kế tiếp.\n\nNếu video dừng đột ngột, YTKACE chờ khoảng một giây để chắc chắn rằng video thật sự bị kẹt chứ không phải đang tải, rồi thực hiện tối đa ba lần thử: tiếp tục phát, buộc tải lại bộ đệm và cuối cùng tải lại luồng. Nếu đều không hiệu quả, tính năng sẽ ngừng can thiệp và để YouTube hiển thị lỗi như bình thường.\n\nTua, tạm dừng hoặc chuyển sang video khác sẽ hủy ngay lần thử đang chạy. Luồng trực tiếp sẽ được tải lại thay vì tua. Hãy tắt nếu việc phát video vốn đã ổn định.";
+"Your changes take effect once YouTube restarts." = "Thay đổi có hiệu lực sau khi khởi động lại YouTube.";
 "Restore" = "Khôi phục";
 "Right" = "Phải";
 "SEEK" = "TUA";
+"SPEED" = "TỐC ĐỘ";
 "STORAGE" = "BỘ NHỚ";
 "SYSTEM" = "HỆ THỐNG";
 "Save" = "Lưu";
@@ -256,7 +262,7 @@
 "Cache Cleared" = "Đã xóa bộ nhớ đệm";
 "Cancelled" = "Đã hủy";
 "Cast Confirmation" = "Xác nhận Cast";
-"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "Chọn Video, Âm thanh hoặc Shorts, sau đó chọn phương tiện, ảnh bìa và phụ đề.";
+"Pick a destination — Video, Audio, or Shorts — then choose the media file, its artwork, and any subtitles." = "Chọn đích đến — Video, Âm thanh hoặc Shorts — rồi chọn tệp phương tiện, ảnh bìa và phụ đề nếu có.";
 "Choose a YTKACE ZIP backup from Files." = "Chọn sao lưu ZIP YTKACE từ Tệp.";
 "Choose and reorder the bottom tabs" = "Chọn và sắp xếp lại các tab dưới cùng";
 "Clear" = "Xóa";
@@ -323,7 +329,7 @@
 "File Size" = "Kích thước tệp";
 "Filler" = "Nội dung phụ";
 "Finalizing" = "Đang hoàn tất";
-"Fix Playback & Account Recovery" = "Sửa phát lại và khôi phục tài khoản";
+"Playback Recovery" = "Khôi phục phát lại";
 "Format" = "Định dạng";
 "Frame Rate" = "Tốc độ khung hình";
 "Fullscreen" = "Toàn màn hình";
@@ -407,7 +413,7 @@
 "OVERLAY" = "LỚP PHỦ";
 "OVERLAY CONTROLLER" = "BỘ ĐIỀU KHIỂN LỚP PHỦ";
 "OVERLAY PLAYER" = "TRÌNH PHÁT LỚP PHỦ";
-"Open the YTKACE tab and tap the gear icon." = "Mở tab YTKACE và nhấn biểu tượng bánh răng.";
+"Settings live in the YTKACE tab, behind the gear icon." = "Cài đặt nằm trong tab YTKACE, sau biểu tượng bánh răng.";
 "Original audio" = "Âm thanh gốc";
 "PREVIOUS & NEXT BUTTONS" = "NÚT TRƯỚC & SAU";
 "PiP failed to start." = "Không thể bắt đầu PiP.";
@@ -421,7 +427,7 @@
 "Playback Speed" = "Tốc độ phát";
 "Playback Speed toggles" = "Nút tốc độ phát";
 "Playback failed." = "Phát lại thất bại.";
-"Playback recovery guidance unavailable" = "Không có hướng dẫn khôi phục phát lại";
+"Could not open the recovery details." = "Không thể mở chi tiết khôi phục.";
 "Player Controls" = "Điều khiển trình phát";
 "Playlists" = "Danh sách phát";
 "Please Wait..." = "Vui lòng đợi...";
@@ -452,7 +458,7 @@
 "Seconds: 10" = "Giây: 10";
 "Seek Duration" = "Thời lượng tua";
 "Self Promotion" = "Tự quảng cáo";
-"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "Đặt bên nào điều khiển độ sáng và âm lượng.\n\nMẹo:\n1. ở chế độ dọc, vuốt xuống ở bất kỳ bên nào của trình phát.\n2. ở toàn màn hình, vuốt từ vùng dưới do cách xử lý cử chỉ của YouTube.";
+"Assign brightness and volume to the left or right half of the player.\n\nIn portrait, slide up or down anywhere on the half you chose. In fullscreen, begin the slide nearer the bottom of the screen — YouTube reserves the upper area for its own gestures." = "Gán độ sáng và âm lượng cho nửa trái hoặc nửa phải của trình phát.\n\nỞ chế độ dọc, vuốt lên hoặc xuống ở bất kỳ đâu trên nửa bạn đã chọn. Ở chế độ toàn màn hình, hãy bắt đầu vuốt gần phía dưới màn hình — YouTube dành vùng phía trên cho thao tác của riêng nó.";
 "Settings & Backup" = "Cài đặt & sao lưu";
 "Settings could not be saved" = "Không thể lưu cài đặt";
 "Share" = "Chia sẻ";
@@ -472,7 +478,7 @@
 "System" = "Hệ thống";
 "System Player" = "Trình phát hệ thống";
 "Tab Bar" = "Thanh tab";
-"Tap the top-right button to apply changes." = "Nhấn nút trên cùng bên phải để áp dụng thay đổi.";
+"Save your changes with the button in the top-right corner." = "Lưu thay đổi bằng nút ở góc trên bên phải.";
 "The backup contains an unsafe path" = "Sao lưu chứa đường dẫn không an toàn";
 "The backup could not be created." = "Không thể tạo sao lưu.";
 "The backup file could not be written" = "Không thể ghi tệp sao lưu";
@@ -488,10 +494,10 @@
 "The image could not be saved." = "Không thể lưu hình ảnh.";
 "The network connection is offline. Reconnect and retry." = "Kết nối mạng đang ngoại tuyến. Kết nối lại và thử lại.";
 "The selected formats are unavailable." = "Các định dạng đã chọn không khả dụng.";
-"The stream stopped before it was complete. Retry once, or choose a lower quality." = "Luồng đã dừng trước khi hoàn tất. Thử lại một lần, hoặc chọn chất lượng thấp hơn.";
+"The transfer ended early. Try once more, or drop to a lower quality." = "Quá trình truyền kết thúc sớm. Hãy thử lại hoặc giảm chất lượng.";
 "This is not a YTKACE backup" = "Đây không phải là sao lưu YTKACE";
 "Title copied" = "Đã sao chép tiêu đề";
-"To modify settings, open the YTKACE tab and tap the gear icon above." = "Để chỉnh sửa cài đặt, mở tab YTKACE và nhấn biểu tượng bánh răng ở trên.";
+"To change these, open the YTKACE tab and use the gear icon above." = "Để thay đổi, hãy mở tab YTKACE và dùng biểu tượng bánh răng ở trên.";
 "Unknown" = "Không xác định";
 "Unknown error" = "Lỗi không xác định";
 "Unknown size" = "Kích thước không xác định";
@@ -519,13 +525,13 @@
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nTriển khai clean-room\nMã được cấp phép MIT\nXây dựng bởi Epic";
 "YouTube Download" = "Tải xuống YouTube";
 "YouTube Video" = "Video YouTube";
-"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube không thể làm mới luồng độ phân giải cao này. Phát video một lát, rồi thử lại.";
-"YouTube did not authorize this format for the current device. Choose another quality." = "YouTube không cấp phép định dạng này cho thiết bị hiện tại. Chọn chất lượng khác.";
-"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTube không cung cấp phiên tải xuống có thể sử dụng. Phát video một lát, rồi thử lại.";
-"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTube chưa chuẩn bị video này. Nhấn Phát trong một lúc, rồi thử lại.";
+"The high-resolution stream could not be refreshed. Give the video a moment of playback and try again." = "Không thể làm mới luồng độ phân giải cao. Hãy để video chạy một lát rồi thử lại.";
+"This format is not permitted on this device. Pick a different quality." = "Định dạng này không được phép trên thiết bị này. Hãy chọn chất lượng khác.";
+"No usable download session came back. Start the video briefly so a fresh one is issued, then try again." = "Không nhận được phiên tải xuống hợp lệ. Hãy phát video một chút để tạo phiên mới rồi thử lại.";
+"This video has not been set up for streaming yet. Start playing it for a second or two, then try the download again." = "Video này chưa được chuẩn bị để phát trực tuyến. Hãy phát một hai giây rồi thử tải lại.";
 "YouTube is about to open the Cast menu." = "YouTube sắp mở menu Cast.";
 "YouTube menu unavailable" = "Menu YouTube không khả dụng";
-"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTube đã từ chối yêu cầu luồng. Mở lại video, phát một lát, rồi thử lại.";
+"The stream request was turned down. Close and reopen the video, let it play for a moment, then try again." = "Yêu cầu luồng đã bị từ chối. Hãy đóng và mở lại video, phát một lát rồi thử lại.";
 "active" = "đang hoạt động";
 "empty response" = "phản hồi trống";
 "iOS Device" = "Thiết bị iOS";
@@ -535,10 +541,6 @@
 "selected quality" = "chất lượng đã chọn";
 "v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@" = "v%@ - v%@ ✓ (Tương thích)\n%@\n%@ - iOS %@";
 "· On" = "· Bật";
-"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ Khởi động lại YouTube để các hook có hiệu lực. Để tắt nếu phát lại đã hoạt động — nó bỏ qua tín hiệu dừng phía máy chủ và có thể che giấu các vấn đề thực sự.";
-"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ Các hook khôi phục phát lại sẽ được cài đặt ở lần khởi động tiếp theo.\n\n";
-"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 Việc này làm gì:\n• Buộc tắt xác thực iOS guard\n• Đánh dấu lỗi chính sách heartbeat là không nghiêm trọng\n• Bỏ qua các đường dẫn halt / cannot-play / error-overlay\n• Buộc bỏ qua khi có lỗi phát lại\n\n";
-"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 Khi nào sử dụng:\nBật nếu video bị lỗi giữa quá trình phát, hiển thị \"đã xảy ra lỗi,\" hoặc bị dừng do lỗi heartbeat / xác thực.\n\n";
 "🔧 Fix Playback & Account Recovery" = "🔧 Sửa phát lại và khôi phục tài khoản";
 "🧰 Fixes playback guidance for sideloaded apps." = "🧰 Sửa hướng dẫn phát lại cho các ứng dụng sideload.";
 "No results" = "Không có kết quả";
@@ -560,7 +562,7 @@
 
 "Enabled" = "Đã bật";
 "ACTIVE" = "HOẠT ĐỘNG";
-"Tap the checkmark to apply changes." = "Nhấn vào dấu kiểm để áp dụng các thay đổi.";
+"Save your changes with the checkmark above." = "Lưu thay đổi bằng dấu tích ở trên.";
 "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
@@ -569,7 +571,7 @@
 "Seconds: %@" = "Giây: %@";
 "%@ seconds" = "%@ giây";
 "%lu items added to %@." = "Đã thêm %lu mục vào %@.";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Chọn một bên cho độ sáng và âm lượng. Trượt dọc trên phía đó của trình phát.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half." = "Chọn nửa nào của trình phát điều chỉnh độ sáng và nửa nào điều chỉnh âm lượng, rồi vuốt lên hoặc xuống trên nửa đó.";
 "YTKACE
 Clean-room implementation
 MIT licensed code

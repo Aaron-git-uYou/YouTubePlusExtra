@@ -38,17 +38,20 @@
 "Captions On" = "Altyazı açık";
 "Cards" = "Kartlar";
 "Cellular Quality" = "Hücresel kalite";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off." = "Parlaklık ve ses için bir taraf seç. Oynatıcının o tarafında dikey olarak kaydır. Sesi her iki tarafa ayarlamak parlaklığı kapatır.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "Oynatıcının hangi yarısının parlaklığı, hangisinin sesi ayarlayacağını seçin ve o yarıda yukarı ya da aşağı kaydırın. Ses her iki yarıya da atanırsa parlaklığa yer kalmaz ve parlaklık kapatılır.";
 "Choose and reorder bottom tabs" = "Alt sekmeleri seç ve sırala";
 "Choose, reorder, and rename tabs" = "Sekmeleri seç, sırala ve yeniden adlandır";
 "Clear Cache Now" = "Önbelleği şimdi temizle";
 "Clear Cache at Launch" = "Başlangıçta önbelleği temizle";
 "Close" = "Kapat";
 "Confirm Before Casting" = "Yayınlamadan önce onayla";
+"Custom" = "Özel";
 "Custom Double-Tap Time" = "Çift dokunma süresi";
+"Custom speed" = "Özel hız";
 "DOUBLE TAP" = "ÇİFT DOKUNMA";
 "Default" = "Varsayılan";
 "Default Startup Tab" = "Varsayılan başlangıç sekmesi";
+"Default playback speed" = "Varsayılan oynatma hızı";
 "Delete temporary download files." = "Geçici indirme dosyalarını sil.";
 "Developer" = "Geliştirici";
 "Disabled" = "Devre dışı";
@@ -81,6 +84,7 @@
 "Keep Play Button Visible" = "Oynat düğmesini görünür tut";
 "Keep Timeline Visible" = "Zaman çizelgesini görünür tut";
 "LAYOUT" = "DÜZEN";
+"Last Used" = "Son kullanılan";
 "Layout" = "Düzen";
 "Leave blank to restore the default name." = "Varsayılan adı geri yüklemek için boş bırakın.";
 "Left" = "Sol";
@@ -158,12 +162,14 @@
 "Remove YouTube Logo" = "YouTube logosunu kaldır";
 "Rename" = "Yeniden adlandır";
 "Rename Tab" = "Sekmeyi yeniden adlandır";
-"Replace clickbait thumbnails with community-picked frames from DeArrow. Videos without a submission are left untouched." = "Tıklama tuzağı küçük resimleri DeArrow topluluğunun seçtiği karelerle değiştirir. Gönderimi olmayan videolara dokunulmaz.";
-"Replace clickbait titles with community-written ones from DeArrow. Videos without a submission keep their original title." = "Tıklama tuzağı başlıkları DeArrow topluluğunun yazdıklarıyla değiştirir. Gönderimi olmayan videolar özgün başlığını korur.";
-"Restart YouTube to apply changes." = "Değişiklikleri uygulamak için YouTube'u yeniden başlat.";
+"Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "Tıklama tuzağı küçük resimleri DeArrow katkıda bulunanlarının seçtiği karelerle değiştirir. Öneri gönderilmemiş videolar YouTube küçük resmini korur.";
+"Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "Tıklama tuzağı başlıkları DeArrow katkıda bulunanlarının yazdığı metinlerle değiştirir. Öneri gönderilmemiş videolar özgün başlığını korur.";
+"Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "YouTube'u bir sonraki açışınızda etkin olur.\n\nBir video beklenmedik şekilde durursa YTKACE, gerçekten takılıp takılmadığını anlamak için yaklaşık bir saniye bekler ve ardından en fazla üç deneme yapar: devam ettirme, yeniden arabelleğe alma ve son olarak yayını yeniden yükleme. Hiçbiri işe yaramazsa müdahaleyi bırakır ve hatayı YouTube'un kendi biçiminde göstermesine izin verir.\n\nİleri sarma, duraklatma veya başka bir videoya geçme, süren denemeyi anında iptal eder. Canlı yayınlar sarılmak yerine yeniden yüklenir. Oynatma zaten sorunsuzsa kapalı bırakın.";
+"Your changes take effect once YouTube restarts." = "Değişiklikleriniz YouTube yeniden başlatıldığında geçerli olur.";
 "Restore" = "Geri yükle";
 "Right" = "Sağ";
 "SEEK" = "SARMA";
+"SPEED" = "HIZ";
 "STORAGE" = "DEPOLAMA";
 "SYSTEM" = "SİSTEM";
 "Save" = "Kaydet";
@@ -256,7 +262,7 @@
 "Cache Cleared" = "Önbellek Temizlendi";
 "Cancelled" = "İptal edildi";
 "Cast Confirmation" = "Cast onayı";
-"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "Video, Ses veya Shorts seçin, ardından medya, görsel ve altyazıları seçin.";
+"Pick a destination — Video, Audio, or Shorts — then choose the media file, its artwork, and any subtitles." = "Bir hedef seçin — Video, Ses veya Shorts — ardından medya dosyasını, kapak görselini ve varsa altyazıları seçin.";
 "Choose a YTKACE ZIP backup from Files." = "Dosyalar'dan bir YTKACE ZIP yedeği seçin.";
 "Choose and reorder the bottom tabs" = "Alt sekmeleri seçin ve yeniden sıralayın";
 "Clear" = "Temizle";
@@ -323,7 +329,7 @@
 "File Size" = "Dosya Boyutu";
 "Filler" = "Doldurma";
 "Finalizing" = "Tamamlanıyor";
-"Fix Playback & Account Recovery" = "Oynatmayı ve Hesap Kurtarmayı Düzelt";
+"Playback Recovery" = "Oynatma Kurtarma";
 "Format" = "Biçim";
 "Frame Rate" = "Kare Hızı";
 "Fullscreen" = "Tam Ekran";
@@ -407,7 +413,7 @@
 "OVERLAY" = "KAPLAMA";
 "OVERLAY CONTROLLER" = "KAPLAMA KONTROLCÜSÜ";
 "OVERLAY PLAYER" = "KAPLAMA OYNATICI";
-"Open the YTKACE tab and tap the gear icon." = "YTKACE sekmesini açın ve dişli simgesine dokunun.";
+"Settings live in the YTKACE tab, behind the gear icon." = "Ayarlar, YTKACE sekmesinde dişli simgesinin altındadır.";
 "Original audio" = "Orijinal ses";
 "PREVIOUS & NEXT BUTTONS" = "ÖNCEKİ & SONRAKİ DÜĞMELERİ";
 "PiP failed to start." = "PiP başlatılamadı.";
@@ -421,7 +427,7 @@
 "Playback Speed" = "Oynatma Hızı";
 "Playback Speed toggles" = "Oynatma hızı düğmeleri";
 "Playback failed." = "Oynatma başarısız.";
-"Playback recovery guidance unavailable" = "Oynatma kurtarma kılavuzu kullanılamıyor";
+"Could not open the recovery details." = "Kurtarma ayrıntıları açılamadı.";
 "Player Controls" = "Oynatıcı kontrolleri";
 "Playlists" = "Çalma Listeleri";
 "Please Wait..." = "Lütfen Bekleyin...";
@@ -452,7 +458,7 @@
 "Seconds: 10" = "Saniye: 10";
 "Seek Duration" = "Atlama süresi";
 "Self Promotion" = "Kendi Reklamı";
-"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "Parlaklık ve ses seviyesini hangi tarafın kontrol edeceğini ayarlayın.\n\nİpuçları:\n1. Dikey modda, oynatıcının her iki tarafından aşağı kaydırın.\n2. Tam ekranda, YouTube'un hareket yönetimi nedeniyle alt alandan kaydırın.";
+"Assign brightness and volume to the left or right half of the player.\n\nIn portrait, slide up or down anywhere on the half you chose. In fullscreen, begin the slide nearer the bottom of the screen — YouTube reserves the upper area for its own gestures." = "Parlaklık ve sesi oynatıcının sol veya sağ yarısına atayın.\n\nDikey modda seçtiğiniz yarının herhangi bir yerinde yukarı ya da aşağı kaydırın. Tam ekranda kaydırmaya ekranın alt tarafına yakın başlayın; üst bölgeyi YouTube kendi hareketleri için ayırır.";
 "Settings & Backup" = "Ayarlar ve Yedek";
 "Settings could not be saved" = "Ayarlar kaydedilemedi";
 "Share" = "Paylaş";
@@ -472,7 +478,7 @@
 "System" = "Sistem";
 "System Player" = "Sistem Oynatıcı";
 "Tab Bar" = "Sekme çubuğu";
-"Tap the top-right button to apply changes." = "Değişiklikleri uygulamak için sağ üstteki düğmeye dokunun.";
+"Save your changes with the button in the top-right corner." = "Değişikliklerinizi sağ üstteki düğmeyle kaydedin.";
 "The backup contains an unsafe path" = "Yedek güvenli olmayan bir yol içeriyor";
 "The backup could not be created." = "Yedek oluşturulamadı.";
 "The backup file could not be written" = "Yedek dosyası yazılamadı";
@@ -488,10 +494,10 @@
 "The image could not be saved." = "Görüntü kaydedilemedi.";
 "The network connection is offline. Reconnect and retry." = "Ağ bağlantısı çevrimdışı. Yeniden bağlanın ve tekrar deneyin.";
 "The selected formats are unavailable." = "Seçilen biçimler kullanılamıyor.";
-"The stream stopped before it was complete. Retry once, or choose a lower quality." = "Akış tamamlanmadan durdu. Bir kez tekrar deneyin veya daha düşük bir kalite seçin.";
+"The transfer ended early. Try once more, or drop to a lower quality." = "Aktarım erken sona erdi. Bir kez daha deneyin ya da daha düşük bir kaliteye geçin.";
 "This is not a YTKACE backup" = "Bu bir YTKACE yedeği değil";
 "Title copied" = "Başlık kopyalandı";
-"To modify settings, open the YTKACE tab and tap the gear icon above." = "Ayarları değiştirmek için YTKACE sekmesini açın ve yukarıdaki dişli simgesine dokunun.";
+"To change these, open the YTKACE tab and use the gear icon above." = "Bunları değiştirmek için YTKACE sekmesini açın ve yukarıdaki dişli simgesini kullanın.";
 "Unknown" = "Bilinmiyor";
 "Unknown error" = "Bilinmeyen hata";
 "Unknown size" = "Bilinmeyen boyut";
@@ -519,13 +525,13 @@
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nTemiz-oda uygulaması\nMIT lisanslı kod\nEpic tarafından yapıldı";
 "YouTube Download" = "YouTube İndirme";
 "YouTube Video" = "YouTube Videosu";
-"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube bu yüksek çözünürlüklü akışı yenileyemedi. Videoyu kısa süre oynatın ve tekrar deneyin.";
-"YouTube did not authorize this format for the current device. Choose another quality." = "YouTube bu biçimi geçerli cihaz için yetkilendirmedi. Başka bir kalite seçin.";
-"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTube kullanılabilir bir indirme oturumu sağlamadı. Videoyu kısa süre oynatın ve tekrar deneyin.";
-"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTube bu videoyu henüz hazırlamadı. Oynat'a bir an dokunun ve tekrar deneyin.";
+"The high-resolution stream could not be refreshed. Give the video a moment of playback and try again." = "Yüksek çözünürlüklü yayın yenilenemedi. Videoyu bir an oynatıp tekrar deneyin.";
+"This format is not permitted on this device. Pick a different quality." = "Bu biçim bu cihazda kullanılamıyor. Farklı bir kalite seçin.";
+"No usable download session came back. Start the video briefly so a fresh one is issued, then try again." = "Kullanılabilir bir indirme oturumu dönmedi. Yenisinin oluşması için videoyu kısaca oynatın ve tekrar deneyin.";
+"This video has not been set up for streaming yet. Start playing it for a second or two, then try the download again." = "Bu video henüz yayına hazırlanmadı. Bir iki saniye oynatın, ardından indirmeyi yeniden deneyin.";
 "YouTube is about to open the Cast menu." = "YouTube Cast menüsünü açmak üzere.";
 "YouTube menu unavailable" = "YouTube menüsü kullanılamıyor";
-"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTube akış isteğini reddetti. Videoyu yeniden açın, kısa süre oynatın ve tekrar deneyin.";
+"The stream request was turned down. Close and reopen the video, let it play for a moment, then try again." = "Yayın isteği reddedildi. Videoyu kapatıp yeniden açın, biraz oynatın ve tekrar deneyin.";
 "active" = "aktif";
 "empty response" = "boş yanıt";
 "iOS Device" = "iOS Cihazı";
@@ -535,10 +541,6 @@
 "selected quality" = "seçilen kalite";
 "v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@" = "v%@ - v%@ ✓ (Uyumlu)\n%@\n%@ - iOS %@";
 "· On" = "· Açık";
-"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ Kancaların etkili olması için YouTube'u yeniden başlatın. Oynatma zaten çalışıyorsa kapalı bırakın — bu, sunucu tarafı durdurma sinyallerini atlar ve gerçek sorunları maskeleyebilir.";
-"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ Oynatma kurtarma kancaları bir sonraki başlatmada yüklenecek.\n\n";
-"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 Bu ne yapar:\n• iOS koruma doğrulamasını zorla kapatır\n• Heartbeat politika hatalarını ölümcül olmayan olarak işaretler\n• Halt / cannot-play / error-overlay yollarını bastırır\n• Oynatılabilirlik hatasında atlamayı zorlar\n\n";
-"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 Ne zaman kullanılır:\nVideolar oynatma sırasında hata verirse, \"bir hata oluştu,\" gösterirse veya heartbeat / doğrulama hataları tarafından sonlandırılırsa etkinleştirin.\n\n";
 "🔧 Fix Playback & Account Recovery" = "🔧 Oynatmayı ve Hesap Kurtarmayı Düzelt";
 "🧰 Fixes playback guidance for sideloaded apps." = "🧰 Sideloaded uygulamalar için oynatma kılavuzunu düzeltir.";
 "No results" = "Sonuç yok";
@@ -560,7 +562,7 @@
 
 "Enabled" = "Etkin";
 "ACTIVE" = "AKTİF";
-"Tap the checkmark to apply changes." = "Değişiklikleri uygulamak için onay işaretine dokunun.";
+"Save your changes with the checkmark above." = "Değişikliklerinizi yukarıdaki onay işaretiyle kaydedin.";
 "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
@@ -569,7 +571,7 @@
 "Seconds: %@" = "Saniye: %@";
 "%@ seconds" = "%@ saniye";
 "%lu items added to %@." = "%lu öğe %@ öğesine eklendi.";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "Parlaklık ve ses için bir taraf seçin. Oynatıcının o tarafında dikey olarak kaydırın.";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half." = "Oynatıcının hangi yarısının parlaklığı, hangisinin sesi ayarlayacağını seçin ve o yarıda yukarı ya da aşağı kaydırın.";
 "YTKACE
 Clean-room implementation
 MIT licensed code

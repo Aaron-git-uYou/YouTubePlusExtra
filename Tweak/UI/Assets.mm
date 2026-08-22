@@ -2,41 +2,43 @@
 
 #import <dlfcn.h>
 
-static NSBundle *YTKACEBundleNextToDylib(void) {
-    Dl_info info;
-    if (dladdr((const void *)&YTKACEAssetsBundle, &info) == 0 || info.dli_fname == NULL) {
-        return nil;
-    }
-    NSString *dylibDir = [@(info.dli_fname) stringByDeletingLastPathComponent];
+static NSString *YTKACELoadedImagePath(void) {
+    Dl_info image;
+    memset(&image, 0, sizeof(image));
+    if (dladdr((const void *)&YTKACEAssetsBundle, &image) == 0) return nil;
+    if (image.dli_fname == NULL) return nil;
+    return [NSString stringWithUTF8String:image.dli_fname];
+}
 
-    // New MobileSubstrate/ElleKit layout: bundle installed alongside the dylib
-    // (e.g. .../DynamicLibraries/YTKACE.bundle next to .../DynamicLibraries/YTKACE.dylib).
-    NSString *siblingPath = [dylibDir stringByAppendingPathComponent:@"YTKACE.bundle"];
-    if ([NSFileManager.defaultManager fileExistsAtPath:siblingPath]) {
-        return [NSBundle bundleWithPath:siblingPath];
+static NSArray<NSString *> *YTKACECandidateBundlePaths(void) {
+    NSMutableArray<NSString *> *candidates = [NSMutableArray array];
+    NSString *loaded = YTKACELoadedImagePath();
+    if (loaded.length != 0) {
+        NSString *directory = loaded.stringByDeletingLastPathComponent;
+        while (directory.length > 1) {
+            [candidates addObject:
+                [directory stringByAppendingPathComponent:@"YTKACE.bundle"]];
+            if (candidates.count >= 2) break;
+            directory = directory.stringByDeletingLastPathComponent;
+        }
     }
-
-    // Repacked-IPA layout: dylib lives in APP/Frameworks/, bundle lives in APP/.
-    NSString *parentPath = [[dylibDir stringByDeletingLastPathComponent]
-        stringByAppendingPathComponent:@"YTKACE.bundle"];
-    if ([NSFileManager.defaultManager fileExistsAtPath:parentPath]) {
-        return [NSBundle bundleWithPath:parentPath];
-    }
-
-    return nil;
+    NSString *packaged = [NSBundle.mainBundle pathForResource:@"YTKACE"
+                                                       ofType:@"bundle"];
+    if (packaged.length != 0) [candidates addObject:packaged];
+    return candidates;
 }
 
 NSBundle *YTKACEAssetsBundle(void) {
     static NSBundle *bundle;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        bundle = YTKACEBundleNextToDylib();
-        if (bundle == nil) {
-            NSString *path = [NSBundle.mainBundle pathForResource:@"YTKACE"
-                                                           ofType:@"bundle"];
-            if (path.length != 0) {
-                bundle = [NSBundle bundleWithPath:path];
-            }
+        NSFileManager *manager = NSFileManager.defaultManager;
+        for (NSString *path in YTKACECandidateBundlePaths()) {
+            BOOL directory = NO;
+            if (![manager fileExistsAtPath:path isDirectory:&directory]) continue;
+            if (!directory) continue;
+            bundle = [NSBundle bundleWithPath:path];
+            if (bundle != nil) break;
         }
     });
     return bundle;

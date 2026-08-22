@@ -140,7 +140,7 @@ static NSArray<YTKACESubtitleCue *> *YTKACEReadSubtitles(NSURL *mediaURL) {
     self.autoplayEnabled = YES;
     self.gesturesEnabled = NO;
     self.repeatEnabled = NO;
-    double defaultRate = YTKACEDefaultPlaybackRate();
+    double defaultRate = YTKACEStartPlaybackRate();
     self.playbackRate = defaultRate >= 0.25 ? (float)defaultRate : 1.0f;
     self.player.allowsExternalPlayback = YES;
     if (@available(iOS 15.0, *)) {

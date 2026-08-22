@@ -177,18 +177,18 @@ static void YTKACESetShortsOverlayFullscreen(UIView *overlay,
         switch (error.code) {
             case 1:
             case 2:
-                return YTKACELocalized(@"YouTube did not provide a usable download session. Play the video briefly, then retry.");
+                return YTKACELocalized(@"No usable download session came back. Start the video briefly so a fresh one is issued, then try again.");
             case 4:
-                return YTKACELocalized(@"YouTube rejected the stream request. Reopen the video, play it briefly, and retry.");
+                return YTKACELocalized(@"The stream request was turned down. Close and reopen the video, let it play for a moment, then try again.");
             case 5:
             case 8:
-                return YTKACELocalized(@"The stream stopped before it was complete. Retry once, or choose a lower quality.");
+                return YTKACELocalized(@"The transfer ended early. Try once more, or drop to a lower quality.");
             case 6:
-                return YTKACELocalized(@"YouTube did not authorize this format for the current device. Choose another quality.");
+                return YTKACELocalized(@"This format is not permitted on this device. Pick a different quality.");
             case 9:
-                return YTKACELocalized(@"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry.");
+                return YTKACELocalized(@"The high-resolution stream could not be refreshed. Give the video a moment of playback and try again.");
             case 10:
-                return YTKACELocalized(@"YouTube has not prepared this video yet. Tap Play for a moment, then retry.");
+                return YTKACELocalized(@"This video has not been set up for streaming yet. Start playing it for a second or two, then try the download again.");
             default:
                 break;
         }

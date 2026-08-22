@@ -125,19 +125,20 @@ static NSDictionary *YTKACESlider(NSString *title,
     };
 }
 
-static const void *YTKACESliderAssociation = &YTKACESliderAssociation;
+static const void *YTKACEStepTargetAssociation = &YTKACEStepTargetAssociation;
 
-static NSDictionary *YTKACESpeedSlider(NSString *title,
-                                       NSString *key,
-                                       double minimum,
-                                       double maximum,
-                                       double step,
-                                       double fallback) {
-    NSMutableDictionary *item =
+static NSDictionary *YTKACEStackedSlider(NSString *title,
+                                         NSString *key,
+                                         double minimum,
+                                         double maximum,
+                                         double step,
+                                         double fallback,
+                                         NSString *unit) {
+    NSMutableDictionary *row =
         [YTKACESlider(title, key, minimum, maximum, step, fallback) mutableCopy];
-    item[@"unit"] = @"speed";
-    item[@"stacked"] = @YES;
-    return item;
+    row[@"unit"] = unit ?: @"";
+    row[@"stacked"] = @YES;
+    return row;
 }
 
 static NSDictionary *YTKACEPercentSlider(NSString *title,
@@ -153,41 +154,45 @@ static NSDictionary *YTKACEPercentSlider(NSString *title,
     return item;
 }
 
-static UIButton *YTKACESliderStepButton(NSString *symbol,
-                                        NSInteger tag,
-                                        id target,
-                                        SEL action,
-                                        UISlider *slider) {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.tag = tag;
-    button.tintColor = YTKACEAccentColor();
-    UIImageSymbolConfiguration *configuration =
+static UIButton *YTKACEStepControl(BOOL increment,
+                                   UISlider *slider,
+                                   id target,
+                                   SEL action) {
+    UIImageSymbolConfiguration *glyph =
         [UIImageSymbolConfiguration configurationWithPointSize:14.0
                                                         weight:UIImageSymbolWeightSemibold];
-    [button setImage:[UIImage systemImageNamed:symbol withConfiguration:configuration]
-            forState:UIControlStateNormal];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    objc_setAssociatedObject(button, YTKACESliderAssociation, slider,
+    UIButton *control = [UIButton buttonWithType:UIButtonTypeSystem];
+    control.tag = increment ? 1 : -1;
+    control.tintColor = YTKACEAccentColor();
+    [control setImage:[UIImage systemImageNamed:increment ? @"plus" : @"minus"
+                              withConfiguration:glyph]
+             forState:UIControlStateNormal];
+    [control.widthAnchor constraintEqualToConstant:30.0].active = YES;
+    objc_setAssociatedObject(control, YTKACEStepTargetAssociation, slider,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    return button;
+    [control addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    return control;
+}
+
+static NSString *YTKACETrimmedNumber(double value) {
+    NSString *text = [NSString stringWithFormat:@"%.2f", value];
+    while ([text containsString:@"."] && [text hasSuffix:@"0"]) {
+        text = [text substringToIndex:text.length - 1];
+    }
+    if ([text hasSuffix:@"."]) text = [text substringToIndex:text.length - 1];
+    return text;
 }
 
 static NSString *YTKACESliderValueText(NSDictionary *item, double value) {
-    if ([item[@"unit"] isEqualToString:@"percent"]) {
+    NSString *unit = item[@"unit"];
+    if ([unit isEqualToString:@"percent"]) {
         return [NSString stringWithFormat:@"%.0f%%", value];
     }
-    if (![item[@"unit"] isEqualToString:@"speed"]) {
-        return [NSString stringWithFormat:YTKACELocalized(@"%@ seconds"),
-                [NSString stringWithFormat:@"%.0f", value]];
+    if ([unit isEqualToString:@"speed"]) {
+        return [YTKACETrimmedNumber(value) stringByAppendingString:@"x"];
     }
-    if (fabs(value - round(value)) < 0.001) {
-        return [NSString stringWithFormat:@"%.0fx", value];
-    }
-    if (fabs(value * 10.0 - round(value * 10.0)) < 0.001) {
-        return [NSString stringWithFormat:@"%.1fx", value];
-    }
-    return [NSString stringWithFormat:@"%.2fx", value];
+    return [NSString stringWithFormat:YTKACELocalized(@"%@ seconds"),
+            [NSString stringWithFormat:@"%.0f", value]];
 }
 
 static NSDictionary *YTKACEColor(NSString *title,
@@ -268,7 +273,7 @@ void YTKACEShowRestartNotice(UIViewController *controller) {
     [old removeFromSuperview];
     UILabel *notice = [UILabel new];
     notice.tag = 0x594B524E;
-    notice.text = YTKACELocalized(@"Restart YouTube to apply changes.");
+    notice.text = YTKACELocalized(@"Your changes take effect once YouTube restarts.");
     notice.textColor = UIColor.labelColor;
     notice.backgroundColor = [UIColor colorWithWhite:0.72 alpha:0.96];
     notice.font = [UIFont systemFontOfSize:13.0];
@@ -618,7 +623,7 @@ willDisplayHeaderView:(UIView *)view
 
     [[cell.contentView viewWithTag:8801] removeFromSuperview];
     [[cell.contentView viewWithTag:8802] removeFromSuperview];
-    [[cell.contentView viewWithTag:8803] removeFromSuperview];
+    [[cell.contentView viewWithTag:4271] removeFromSuperview];
 
     cell.textLabel.text = item[@"title"];
     cell.detailTextLabel.text = item[@"subtitle"];
@@ -721,48 +726,52 @@ willDisplayHeaderView:(UIView *)view
         double stored = [YTKACEPreferenceObject(item[@"key"]) doubleValue];
         double value = stored > 0.0 ? stored : [item[@"fallback"] doubleValue];
 
-        UIView *container = [UIView new];
-        container.tag = 8803;
-        container.translatesAutoresizingMaskIntoConstraints = NO;
-        [cell.contentView addSubview:container];
-
         UILabel *caption = [UILabel new];
         caption.text = item[@"title"];
         caption.font = [UIFont systemFontOfSize:16.0];
         caption.textColor = UIColor.labelColor;
-        caption.translatesAutoresizingMaskIntoConstraints = NO;
-        [container addSubview:caption];
 
-        UILabel *valueLabel = [UILabel new];
-        valueLabel.font = [UIFont monospacedDigitSystemFontOfSize:15.0
-                                                           weight:UIFontWeightSemibold];
-        valueLabel.textColor = YTKACEAccentColor();
-        valueLabel.textAlignment = NSTextAlignmentRight;
-        valueLabel.text = YTKACESliderValueText(item, value);
-        valueLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [container addSubview:valueLabel];
+        UILabel *readout = [UILabel new];
+        readout.font = [UIFont monospacedDigitSystemFontOfSize:15.0
+                                                        weight:UIFontWeightSemibold];
+        readout.textColor = YTKACEAccentColor();
+        readout.textAlignment = NSTextAlignmentRight;
+        readout.text = YTKACESliderValueText(item, value);
+        [readout setContentCompressionResistancePriority:UILayoutPriorityRequired
+                                                 forAxis:UILayoutConstraintAxisHorizontal];
 
         UISlider *slider = [UISlider new];
         slider.minimumTrackTintColor = YTKACEAccentColor();
         slider.minimumValue = [item[@"minimum"] floatValue];
         slider.maximumValue = [item[@"maximum"] floatValue];
         slider.value = (float)value;
-        slider.translatesAutoresizingMaskIntoConstraints = NO;
         objc_setAssociatedObject(slider, YTKACEItemAssociation, item,
                                  OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        objc_setAssociatedObject(slider, YTKACEValueLabelAssociation, valueLabel,
+        objc_setAssociatedObject(slider, YTKACEValueLabelAssociation, readout,
                                  OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [slider addTarget:self
                    action:@selector(sliderChanged:)
          forControlEvents:UIControlEventValueChanged];
-        [container addSubview:slider];
 
-        UIButton *minus = YTKACESliderStepButton(@"minus", 1, self,
-                                                 @selector(sliderStepped:), slider);
-        UIButton *plus = YTKACESliderStepButton(@"plus", 2, self,
-                                                @selector(sliderStepped:), slider);
-        [container addSubview:minus];
-        [container addSubview:plus];
+        UIStackView *heading = [[UIStackView alloc] initWithArrangedSubviews:@[caption, readout]];
+        heading.axis = UILayoutConstraintAxisHorizontal;
+        heading.spacing = 8.0;
+
+        UIStackView *track = [[UIStackView alloc] initWithArrangedSubviews:@[
+            YTKACEStepControl(NO, slider, self, @selector(sliderStepped:)),
+            slider,
+            YTKACEStepControl(YES, slider, self, @selector(sliderStepped:))
+        ]];
+        track.axis = UILayoutConstraintAxisHorizontal;
+        track.alignment = UIStackViewAlignmentCenter;
+        track.spacing = 10.0;
+
+        UIStackView *container = [[UIStackView alloc] initWithArrangedSubviews:@[heading, track]];
+        container.tag = 4271;
+        container.axis = UILayoutConstraintAxisVertical;
+        container.spacing = 6.0;
+        container.translatesAutoresizingMaskIntoConstraints = NO;
+        [cell.contentView addSubview:container];
 
         UILayoutGuide *guide = cell.contentView.layoutMarginsGuide;
         [NSLayoutConstraint activateConstraints:@[
@@ -771,29 +780,7 @@ willDisplayHeaderView:(UIView *)view
             [container.topAnchor constraintEqualToAnchor:cell.contentView.topAnchor
                                                 constant:8.0],
             [container.bottomAnchor constraintEqualToAnchor:cell.contentView.bottomAnchor
-                                                   constant:-8.0],
-
-            [caption.leadingAnchor constraintEqualToAnchor:container.leadingAnchor],
-            [caption.topAnchor constraintEqualToAnchor:container.topAnchor],
-            [valueLabel.trailingAnchor constraintEqualToAnchor:container.trailingAnchor],
-            [valueLabel.firstBaselineAnchor constraintEqualToAnchor:caption.firstBaselineAnchor],
-            [valueLabel.leadingAnchor constraintGreaterThanOrEqualToAnchor:caption.trailingAnchor
-                                                                  constant:8.0],
-
-            [minus.leadingAnchor constraintEqualToAnchor:container.leadingAnchor],
-            [minus.centerYAnchor constraintEqualToAnchor:slider.centerYAnchor],
-            [minus.widthAnchor constraintEqualToConstant:30.0],
-            [minus.heightAnchor constraintEqualToConstant:30.0],
-
-            [plus.trailingAnchor constraintEqualToAnchor:container.trailingAnchor],
-            [plus.centerYAnchor constraintEqualToAnchor:slider.centerYAnchor],
-            [plus.widthAnchor constraintEqualToConstant:30.0],
-            [plus.heightAnchor constraintEqualToConstant:30.0],
-
-            [slider.leadingAnchor constraintEqualToAnchor:minus.trailingAnchor constant:10.0],
-            [slider.trailingAnchor constraintEqualToAnchor:plus.leadingAnchor constant:-10.0],
-            [slider.topAnchor constraintEqualToAnchor:caption.bottomAnchor constant:6.0],
-            [slider.bottomAnchor constraintEqualToAnchor:container.bottomAnchor]
+                                                   constant:-8.0]
         ]];
         cell.textLabel.text = nil;
         cell.accessoryView = nil;
@@ -865,12 +852,9 @@ willDisplayHeaderView:(UIView *)view
     NSString *key = item[@"key"];
     YTKACESetPreference(key, sender.isOn);
     if ([key isEqualToString:@"YTKACE.Preference.Playback.Recovery"] && sender.isOn) {
-        NSString *message = YTKACELocalized(@"✅ Playback recovery hooks will install on next launch.\n\n"
-            @"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n"
-            @"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n"
-            @"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues.");
-        if (!YTKACEShowYouTubeDialog(YTKACELocalized(@"Fix Playback & Account Recovery"), message)) {
-            YTKACEShowNotice(YTKACELocalized(@"Playback recovery guidance unavailable"));
+        NSString *message = YTKACELocalized(@"Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you.");
+        if (!YTKACEShowYouTubeDialog(YTKACELocalized(@"Playback Recovery"), message)) {
+            YTKACEShowNotice(YTKACELocalized(@"Could not open the recovery details."));
         }
     }
     if ([key isEqualToString:YTKACEOLEDKey]) {
@@ -891,15 +875,15 @@ willDisplayHeaderView:(UIView *)view
 }
 
 - (void)sliderStepped:(UIButton *)sender {
-    UISlider *slider = objc_getAssociatedObject(sender, YTKACESliderAssociation);
+    UISlider *slider = objc_getAssociatedObject(sender, YTKACEStepTargetAssociation);
     NSDictionary *item = objc_getAssociatedObject(slider, YTKACEItemAssociation);
-    if (slider == nil || item == nil) {
-        return;
-    }
-    double step = MAX(0.01, [item[@"step"] doubleValue]);
-    double value = slider.value + (sender.tag == 2 ? step : -step);
-    slider.value = (float)MIN([item[@"maximum"] doubleValue],
-                              MAX([item[@"minimum"] doubleValue], value));
+    if (slider == nil || item == nil) return;
+    const double step = MAX(0.01, [item[@"step"] doubleValue]);
+    const double lower = [item[@"minimum"] doubleValue];
+    const double upper = [item[@"maximum"] doubleValue];
+    double shifted = slider.value + step * (double)sender.tag;
+    shifted = MIN(upper, MAX(lower, shifted));
+    slider.value = (float)shifted;
     [self sliderChanged:slider];
 }
 
@@ -1352,11 +1336,13 @@ static NSDictionary *YTKACEPlayerControlsDefinition(void) {
         ],
         @[
             YTKACEToggle(@"Speed Buttons", YTKACESpeedKey, @"", @""),
-            YTKACESegmentedStacked(@"Default playback speed",
-                                   @"YTKACE.Preference.Player.DefaultRateMode",
-                                   @[@"1x", @"Last Used", @"Custom"], @[@0, @1, @2], 0),
-            YTKACESpeedSlider(@"Custom speed", @"YTKACE.Preference.Player.DefaultRate",
-                              0.25, 5.0, 0.05, 1.0)
+            YTKACEPicker(@"Default playback speed",
+                         @"YTKACE.Preference.Player.StartRate",
+                         @[@"Follow YouTube", @"Match last used", @"Custom"],
+                         @[@0, @(-1), @(-2)], 0, @"", @""),
+            YTKACEStackedSlider(@"Custom speed",
+                                @"YTKACE.Preference.Player.CustomRate",
+                                0.25, 5.0, 0.05, 1.0, @"speed")
         ],
         @[
             YTKACEToggle(@"Remove Ads", YTKACENoAdsKey, @"", @""),

@@ -38,17 +38,20 @@
 "Captions On" = "字幕已开启";
 "Cards" = "卡片";
 "Cellular Quality" = "移动数据画质";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off." = "为亮度和音量选择一侧。在播放器的该侧垂直滑动。将音量设为两侧会关闭亮度。";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "选择播放器的哪一半调节亮度、哪一半调节音量，然后在该侧上下滑动。如果两侧都设为音量，就没有位置留给亮度，亮度调节会被关闭。";
 "Choose and reorder bottom tabs" = "选择并排序底部标签";
 "Choose, reorder, and rename tabs" = "选择、排序并重命名标签";
 "Clear Cache Now" = "立即清除缓存";
 "Clear Cache at Launch" = "启动时清除缓存";
 "Close" = "关闭";
 "Confirm Before Casting" = "投屏前确认";
+"Custom" = "自定义";
 "Custom Double-Tap Time" = "双击时长";
+"Custom speed" = "自定义速度";
 "DOUBLE TAP" = "双击";
 "Default" = "默认";
 "Default Startup Tab" = "默认启动标签页";
+"Default playback speed" = "默认播放速度";
 "Delete temporary download files." = "删除临时下载文件。";
 "Developer" = "开发者";
 "Disabled" = "已禁用";
@@ -81,6 +84,7 @@
 "Keep Play Button Visible" = "始终显示播放按钮";
 "Keep Timeline Visible" = "始终显示进度条";
 "LAYOUT" = "布局";
+"Last Used" = "上次使用";
 "Layout" = "布局";
 "Leave blank to restore the default name." = "留空以恢复默认名称。";
 "Left" = "左侧";
@@ -158,12 +162,14 @@
 "Remove YouTube Logo" = "移除 YouTube 标志";
 "Rename" = "重命名";
 "Rename Tab" = "重命名标签页";
-"Replace clickbait thumbnails with community-picked frames from DeArrow. Videos without a submission are left untouched." = "用 DeArrow 社区挑选的画面替换标题党缩略图。没有投稿的视频保持不变。";
-"Replace clickbait titles with community-written ones from DeArrow. Videos without a submission keep their original title." = "用 DeArrow 社区撰写的标题替换标题党标题。没有投稿的视频保留原标题。";
-"Restart YouTube to apply changes." = "重启 YouTube 以应用更改。";
+"Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "把标题党缩略图换成 DeArrow 贡献者挑选的画面。没有人提交的视频仍使用 YouTube 提供的缩略图。";
+"Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "把标题党标题换成 DeArrow 贡献者提交的文字。没有人提交的视频保留原标题。";
+"Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "将在下次启动 YouTube 时生效。\n\n如果视频意外停止，YTKACE 会先等待约一秒，确认它确实卡住而不是在缓冲，然后最多尝试三次恢复：继续播放、强制重新缓冲，最后重新加载视频流。如果都无效，就不再干预，交由 YouTube 显示原本的错误提示。\n\n拖动进度、暂停或切换到其他视频都会立即取消正在进行的尝试。直播会重新加载而不是跳转。如果播放本来就稳定，保持关闭即可。";
+"Your changes take effect once YouTube restarts." = "重启 YouTube 后更改才会生效。";
 "Restore" = "恢复";
 "Right" = "右侧";
 "SEEK" = "拖动";
+"SPEED" = "速度";
 "STORAGE" = "存储";
 "SYSTEM" = "系统";
 "Save" = "保存";
@@ -225,7 +231,7 @@
 " thumb" = " 缩略图";
 " thumbnail" = " 缩略图";
 "%.0f seconds" = "%.0f 秒";
-"%lu item%@ added to %@." = "%lu 个项目已添加到 %@。";
+"%lu item%@ added to %@." = "已将 %1$lu 个项目添加到 %3$@。";
 "15 Minutes" = "15 分钟";
 "30 Minutes" = "30 分钟";
 "45 Minutes" = "45 分钟";
@@ -256,7 +262,7 @@
 "Cache Cleared" = "缓存已清除";
 "Cancelled" = "已取消";
 "Cast Confirmation" = "投屏确认";
-"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "选择视频、音频或短视频，然后选取媒体、封面和字幕。";
+"Pick a destination — Video, Audio, or Shorts — then choose the media file, its artwork, and any subtitles." = "先选择目标——视频、音频或 Shorts——再选择媒体文件、封面和字幕。";
 "Choose a YTKACE ZIP backup from Files." = "从\"文件\"中选择一个 YTKACE 备份 ZIP。";
 "Choose and reorder the bottom tabs" = "选择并重新排列底部标签";
 "Clear" = "清空";
@@ -323,7 +329,7 @@
 "File Size" = "文件大小";
 "Filler" = "填充内容";
 "Finalizing" = "正在完成";
-"Fix Playback & Account Recovery" = "修复播放与账号恢复";
+"Playback Recovery" = "播放恢复";
 "Format" = "格式";
 "Frame Rate" = "帧率";
 "Fullscreen" = "全屏";
@@ -408,7 +414,7 @@
 "OVERLAY" = "播放界面";
 "OVERLAY CONTROLLER" = "播放界面控件";
 "OVERLAY PLAYER" = "悬浮播放器";
-"Open the YTKACE tab and tap the gear icon." = "打开 YTKACE 标签并点击齿轮图标。";
+"Settings live in the YTKACE tab, behind the gear icon." = "设置位于 YTKACE 标签页的齿轮图标中。";
 "Original audio" = "原始音轨";
 "PREVIOUS & NEXT BUTTONS" = "上/下集按钮";
 "PiP failed to start." = "画中画启动失败。";
@@ -423,7 +429,7 @@
 "Playback Speed" = "播放速度";
 "Playback Speed toggles" = "播放速度开关";
 "Playback failed." = "播放失败。";
-"Playback recovery guidance unavailable" = "播放恢复提示不可用";
+"Could not open the recovery details." = "无法打开恢复详情。";
 "Player Controls" = "播放控制";
 "Playlists" = "播放列表";
 "Please Wait..." = "请稍候...";
@@ -464,7 +470,7 @@
 "Seconds: 10" = "秒数：10";
 "Seek Duration" = "快进时长";
 "Self Promotion" = "自推广";
-"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "设置亮度和音量由哪一侧控制。\n\n提示：\n1. 竖屏时在播放器任意一侧下滑。\n2. 全屏时由于 YouTube 手势原因，请从底部区域上滑。";
+"Assign brightness and volume to the left or right half of the player.\n\nIn portrait, slide up or down anywhere on the half you chose. In fullscreen, begin the slide nearer the bottom of the screen — YouTube reserves the upper area for its own gestures." = "将亮度和音量分配给播放器的左半侧或右半侧。\n\n竖屏时，在所选一侧的任意位置上下滑动即可。全屏时请从靠近屏幕底部的位置开始滑动——上方区域由 YouTube 用于自身手势。";
 "Settings & Backup" = "设置与备份";
 "Settings could not be saved" = "设置无法保存";
 "Share" = "分享";
@@ -484,7 +490,7 @@
 "System" = "跟随系统";
 "System Player" = "系统播放器";
 "Tab Bar" = "底部标签";
-"Tap the top-right button to apply changes." = "点击右上角按钮以应用更改。";
+"Save your changes with the button in the top-right corner." = "用右上角的按钮保存更改。";
 "The backup contains an unsafe path" = "备份包含不安全的路径";
 "The backup could not be created." = "无法创建备份。";
 "The backup file could not be written" = "备份文件无法写入";
@@ -500,10 +506,10 @@
 "The image could not be saved." = "无法保存图片。";
 "The network connection is offline. Reconnect and retry." = "网络连接已断开，请重新连接后重试。";
 "The selected formats are unavailable." = "所选格式不可用。";
-"The stream stopped before it was complete. Retry once, or choose a lower quality." = "流在完成前中断，请重试一次或选择较低画质。";
+"The transfer ended early. Try once more, or drop to a lower quality." = "传输提前结束。请再试一次，或改用较低画质。";
 "This is not a YTKACE backup" = "这不是 YTKACE 备份文件";
 "Title copied" = "标题已复制";
-"To modify settings, open the YTKACE tab and tap the gear icon above." = "要修改设置，请打开 YTKACE 标签并点击上方的齿轮图标。";
+"To change these, open the YTKACE tab and use the gear icon above." = "如需更改，请打开 YTKACE 标签页并点按上方的齿轮图标。";
 "Unknown" = "未知";
 "Unknown error" = "未知错误";
 "Unknown size" = "未知大小";
@@ -531,13 +537,13 @@
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nClean-room 实现\nMIT 许可代码\n由 Epic 构建";
 "YouTube Download" = "YouTube 下载";
 "YouTube Video" = "YouTube 视频";
-"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTube 无法刷新此高清流，请先播放几秒再重试。";
-"YouTube did not authorize this format for the current device. Choose another quality." = "YouTube 未授权当前设备使用此格式，请选择其他画质。";
-"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTube 未提供可用的下载会话，请先播放几秒再重试。";
-"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTube 尚未准备好此视频，请先播放几秒再重试。";
+"The high-resolution stream could not be refreshed. Give the video a moment of playback and try again." = "无法刷新高分辨率视频流。让视频播放片刻后再试。";
+"This format is not permitted on this device. Pick a different quality." = "此设备不允许使用该格式。请选择其他画质。";
+"No usable download session came back. Start the video briefly so a fresh one is issued, then try again." = "未返回可用的下载会话。先播放一下视频以生成新的会话，然后重试。";
+"This video has not been set up for streaming yet. Start playing it for a second or two, then try the download again." = "此视频尚未准备好推流。先播放一两秒，然后重新尝试下载。";
 "YouTube is about to open the Cast menu." = "YouTube 即将打开投屏菜单。";
 "YouTube menu unavailable" = "YouTube 菜单不可用";
-"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTube 拒绝了本次流请求，请重新打开视频并播放几秒后重试。";
+"The stream request was turned down. Close and reopen the video, let it play for a moment, then try again." = "视频流请求被拒绝。请关闭并重新打开视频，播放片刻后再试。";
 "active" = "进行中";
 "audio remux complete" = "音频混流完成";
 "audio remux start" = "音频混流开始";
@@ -551,16 +557,12 @@
 "thumbnail embedded" = "缩略图已嵌入";
 "v%@ - v%@ ✓ (Compatible)\n%@\n%@ - iOS %@" = "v%@ - v%@ ✓ (兼容)\n%@\n%@ - iOS %@";
 "· On" = "· 开启";
-"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ 请重启 YouTube 使钩子生效。如果播放本身正常，请保持关闭——它会绕过服务端的停止信号，可能掩盖真实问题。";
-"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ 播放恢复钩子将在下次启动时安装。\n\n";
-"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 作用：\n• 关闭 iOS 守卫认证\n• 将心跳策略错误标记为非致命\n• 吞掉无法播放 / 错误遮罩等路径\n• 在可播放性错误时强制跳过\n\n";
-"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 何时启用：\n当视频播放中报错、显示\"发生错误\"或被心跳 / 认证失败中断时启用。\n\n";
 "🔧 Fix Playback & Account Recovery" = "🔧 修复播放与账号恢复";
 "🧰 Fixes playback guidance for sideloaded apps." = "🧰 修复自签应用中的播放引导。";
 
 "Enabled" = "已启用";
 "ACTIVE" = "运行中";
-"Tap the checkmark to apply changes." = "点击对勾以应用更改。";
+"Save your changes with the checkmark above." = "用上方的对勾保存更改。";
 "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
@@ -569,7 +571,7 @@
 "Seconds: %@" = "秒数：%@";
 "%@ seconds" = "%@ 秒";
 "%lu items added to %@." = "已添加 %lu 个项目到 %@。";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "选择亮度和音量所在的一侧。在播放器的该侧垂直滑动。";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half." = "选择播放器的哪一半调节亮度、哪一半调节音量，然后在该侧上下滑动。";
 "YTKACE
 Clean-room implementation
 MIT licensed code

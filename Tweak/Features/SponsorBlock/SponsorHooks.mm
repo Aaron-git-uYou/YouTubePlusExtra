@@ -453,6 +453,7 @@ static BOOL YTKACETrackGeometry(UIView *target, CGFloat *thickness,
                                 CGFloat *offset) {
     CGFloat width = CGRectGetWidth(target.bounds);
     if (width <= 0.0) return NO;
+    CGFloat bestWidth = 0.0;
     CGFloat bestHeight = 0.0;
     CGFloat bestY = 0.0;
     BOOL found = NO;
@@ -464,13 +465,22 @@ static BOOL YTKACETrackGeometry(UIView *target, CGFloat *thickness,
         visited++;
         if (node != target && !node.hidden && node.alpha > 0.05) {
             CGRect frame = [node convertRect:node.bounds toView:target];
+            CGFloat nodeWidth = CGRectGetWidth(frame);
             CGFloat nodeHeight = CGRectGetHeight(frame);
-            if (CGRectGetWidth(frame) >= width * 0.55 &&
-                nodeHeight > 0.5 && nodeHeight <= 16.0 &&
-                nodeHeight >= bestHeight) {
-                bestHeight = nodeHeight;
-                bestY = CGRectGetMinY(frame);
-                found = YES;
+            if (nodeWidth >= width * 0.55 && nodeHeight > 0.5 && nodeHeight <= 16.0) {
+                BOOL better = !found;
+                if (!better && nodeWidth > bestWidth + 2.0) better = YES;
+                else if (!better && nodeWidth >= bestWidth - 2.0) {
+                    if (CGRectGetMinY(frame) > bestY + 0.5) better = YES;
+                    else if (fabs(CGRectGetMinY(frame) - bestY) <= 0.5 &&
+                             nodeHeight > bestHeight) better = YES;
+                }
+                if (better) {
+                    bestWidth = nodeWidth;
+                    bestHeight = nodeHeight;
+                    bestY = CGRectGetMinY(frame);
+                    found = YES;
+                }
             }
         }
         [pending addObjectsFromArray:node.subviews];
@@ -493,9 +503,11 @@ static void YTKACERenderSponsorMarkers(UIView *receiver, UIView *target,
                                  container,
                                  OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+    BOOL reattached = NO;
     if (container.superlayer != target.layer) {
         [container removeFromSuperlayer];
         [target.layer addSublayer:container];
+        reattached = YES;
     }
     container.frame = target.bounds;
     container.zPosition = 10000.0;
@@ -550,7 +562,7 @@ static void YTKACERenderSponsorMarkers(UIView *receiver, UIView *target,
     CGRect signature = CGRectMake(CGRectGetWidth(target.bounds),
                                   CGRectGetHeight(target.bounds),
                                   trackThickness, trackOffset);
-    if (!rebuild && CGRectEqualToRect(previousBounds, signature) &&
+    if (!rebuild && !reattached && CGRectEqualToRect(previousBounds, signature) &&
         fabs(previousDuration - duration) < 0.001) return;
     objc_setAssociatedObject(receiver,
                              YTKACESponsorMarkerBoundsAssociation,

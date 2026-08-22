@@ -1,4 +1,10 @@
 /* YTKACE localisation - ja */
+"Custom" = "カスタム";
+"Custom speed" = "カスタム速度";
+"Default playback speed" = "デフォルトの再生速度";
+"Last Used" = "前回の設定";
+"SPEED" = "速度";
+"Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "次回 YouTube を起動したときから有効になります。\n\n再生が突然止まった場合、YTKACE は読み込み中ではなく本当に停止しているかを約1秒かけて確認し、その後で最大3回まで復帰を試みます。再開、バッファーのやり直し、最後にストリームの再読み込みの順です。いずれも効果がなければ介入をやめ、YouTube 本来のエラー表示に任せます。\n\nシーク、一時停止、別の動画への移動を行うと、進行中の試行は直ちに取り消されます。ライブ配信ではシークではなく再読み込みを行います。再生が安定している場合はオフのままで構いません。";
 "YTKACE" = "YTKACE";
 "Player Controls" = "プレーヤーコントロール";
 "Downloads" = "ダウンロード";
@@ -69,7 +75,7 @@
 "Hide YouTube Update Popup" = "YouTubeのアップデートポップアップを非表示";
 "Restore Backup" = "バックアップを復元";
 "45 Minutes" = "45分";
-"Open the YTKACE tab and tap the gear icon." = "YTKACEタブを開き、歯車アイコンをタップします。";
+"Settings live in the YTKACE tab, behind the gear icon." = "設定は YTKACE タブの歯車アイコンの中にあります。";
 "Audio Notification" = "オーディオ通知";
 "Enable" = "有効化";
 "Audio" = "オーディオ";
@@ -97,7 +103,7 @@
 "Bypass Age Restriction" = "年齢制限をバイパス";
 "30 Minutes" = "30分";
 "YTKACE follows your YouTube language." = "YTKACEはYouTubeの言語設定に従います。";
-"YouTube did not authorize this format for the current device. Choose another quality." = "YouTubeはこのデバイスに対してこのフォーマットを認証していません。別の品質を選択してください。";
+"This format is not permitted on this device. Pick a different quality." = "この形式はこの端末では許可されていません。別の画質を選んでください。";
 "Download complete" = "ダウンロード完了";
 "Playback Speed" = "再生速度";
 "The network connection is offline. Reconnect and retry." = "ネットワーク接続がオフラインです。再接続して再試行してください。";
@@ -118,13 +124,13 @@
 "Skip" = "スキップ";
 "Settings could not be saved" = "設定を保存できませんでした";
 "The backup contains an unsafe path" = "バックアップに安全でないパスが含まれています";
-"Playback recovery guidance unavailable" = "再生回復のガイダンスを利用できません";
+"Could not open the recovery details." = "復帰の詳細を開けませんでした。";
 "Hide Cast Button" = "キャストボタンを非表示";
 "Merging" = "マージ中";
 "Disable Drag & Drop" = "ドラッグ&ドロップを無効化";
 "Play HD Videos over 3G/4G/5G" = "3G/4G/5GでHD動画を再生";
 "Hide Notifications" = "通知を非表示";
-"YouTube rejected the stream request. Reopen the video, play it briefly, and retry." = "YouTubeがストリームリクエストを拒否しました。動画を再度開き、少し再生してから再試行してください。";
+"The stream request was turned down. Close and reopen the video, let it play for a moment, then try again." = "ストリームの要求が拒否されました。動画を閉じて開き直し、少し再生してから、もう一度お試しください。";
 "Hide Pause Card" = "一時停止カードを非表示";
 "Delete confirmation unavailable" = "削除の確認を利用できません";
 "Hide Status Bar" = "ステータスバーを非表示";
@@ -138,14 +144,13 @@
 "Preview / Recap" = "予告/あらすじ";
 "Cellular Quality" = "モバイルデータ通信の品質";
 "Compact Previous & Next" = "前へ/次へをコンパクト化";
-"📍 When to use it:\nEnable if videos error out mid-playback, show \"an error occurred,\" or get killed by heartbeat / attestation failures.\n\n" = "📍 使用するタイミング:\n動画の再生中にエラーが発生したり、「エラーが発生しました」と表示されたり、ハートビート/構成証明の失敗で強制終了される場合に有効にします。\n\n";
 "Custom Skip Duration" = "カスタムスキップ時間";
 "Hide HUD Alerts" = "HUDアラートを非表示";
 "Delete every item in this section?" = "このセクションのすべての項目を削除しますか？";
-"Fix Playback & Account Recovery" = "再生とアカウント回復を修正";
+"Playback Recovery" = "再生の復帰";
 "Play in Background" = "バックグラウンドで再生";
 "OLED Dark Mode" = "OLEDダークモード";
-"YouTube has not prepared this video yet. Tap Play for a moment, then retry." = "YouTubeはまだこの動画の準備を完了していません。少しの間再生をタップしてから再試行してください。";
+"This video has not been set up for streaming yet. Start playing it for a second or two, then try the download again." = "この動画はまだ配信用に準備されていません。1〜2秒ほど再生してから、もう一度ダウンロードをお試しください。";
 "No active video was found." = "アクティブな動画が見つかりませんでした。";
 "Unknown error" = "不明なエラー";
 "Seek Duration" = "シーク時間";
@@ -164,26 +169,25 @@
 "Imported Media" = "インポートしたメディア";
 "Connect to a device?" = "デバイスに接続しますか？";
 "Create Backup" = "バックアップを作成";
-"Choose Video, Audio, or Shorts, then select media, artwork, and subtitles." = "ビデオ、オーディオ、またはShortsを選択してから、メディア、アートワーク、字幕を選択します。";
+"Pick a destination — Video, Audio, or Shorts — then choose the media file, its artwork, and any subtitles." = "保存先（動画・音声・ショート）を選び、続いてメディアファイル、アートワーク、字幕を選択します。";
 "Hide Suggested Videos" = "おすすめ動画を非表示";
 "Copy Information" = "情報をコピー";
-"Tap the top-right button to apply changes." = "変更を適用するには右上のボタンをタップします。";
+"Save your changes with the button in the top-right corner." = "右上のボタンで変更を保存します。";
 "Description copied" = "説明をコピーしました";
 "PiP is not available for this video." = "この動画ではPiPを利用できません。";
-"✅ Playback recovery hooks will install on next launch.\n\n" = "✅ 再生回復フックは次回起動時にインストールされます。\n\n";
 "Image saved" = "画像を保存しました";
 "Download Log" = "ダウンロードログ";
 "Skip Alert Duration" = "スキップアラートの時間";
 "Save" = "保存";
 "Wi-Fi Quality" = "Wi-Fiの品質";
 "Downloads, background play, and more" = "ダウンロード、バックグラウンド再生など";
-"The stream stopped before it was complete. Retry once, or choose a lower quality." = "ストリームが完了する前に停止しました。一度再試行するか、より低い品質を選択してください。";
+"The transfer ended early. Try once more, or drop to a lower quality." = "転送が途中で終了しました。もう一度試すか、画質を下げてください。";
 "The image could not be loaded." = "画像を読み込めませんでした。";
 "Hide Quick Actions" = "クイックアクションを非表示";
 "Hide Related Videos" = "関連動画を非表示";
 "Unskip Alert Duration" = "スキップ解除アラートの時間";
 "Clear on Startup" = "起動時にクリア";
-"Restart YouTube to apply changes." = "変更を適用するにはYouTubeを再起動します。";
+"Your changes take effect once YouTube restarts." = "変更は YouTube を再起動すると反映されます。";
 "Hide Comment Previews" = "コメントのプレビューを非表示";
 "Hide Endscreen Videos" = "エンドスクリーンの動画を非表示";
 "No playable video stream is available." = "再生可能な動画ストリームがありません。";
@@ -211,7 +215,7 @@
 "Play Next" = "次を再生";
 " thumb" = " サムネイル";
 "Disable Double Tap" = "ダブルタップを無効化";
-"To modify settings, open the YTKACE tab and tap the gear icon above." = "設定を変更するには、YTKACEタブを開き、上の歯車アイコンをタップします。";
+"To change these, open the YTKACE tab and use the gear icon above." = "変更するには YTKACE タブを開き、上の歯車アイコンを使用してください。";
 "· End of track" = "· トラックの終わり";
 "Infuse" = "Infuse";
 "Segment Color" = "セグメントの色";
@@ -220,7 +224,7 @@
 "YTKACE uses SponsorBlock data.\nLicensed under CC BY-NC-SA 4.0." = "YTKACEはSponsorBlockデータを使用します。\nCC BY-NC-SA 4.0 ライセンスの下で提供されています。";
 "YouTube is about to open the Cast menu." = "YouTubeがキャストメニューを開こうとしています。";
 "YTKACE\nClean-room implementation\nMIT licensed code\nBuilt by Epic" = "YTKACE\nクリーンルーム実装\nMITライセンスコード\nEpicによって構築";
-"YouTube could not refresh this high-resolution stream. Play the video briefly, then retry." = "YouTubeがこの高解像度ストリームを更新できませんでした。動画を少し再生してから再試行してください。";
+"The high-resolution stream could not be refreshed. Give the video a moment of playback and try again." = "高解像度ストリームを更新できませんでした。動画を少し再生してから、もう一度お試しください。";
 "Unknown size" = "サイズ不明";
 "The backup is incomplete" = "バックアップが不完全です";
 "Your Queue" = "キュー";
@@ -241,10 +245,9 @@
 "Shrink Tabs (Bottom)" = "タブを縮小 (下)";
 "Enable iPadOS Mode" = "iPadOSモードを有効化";
 "iOS Device" = "iOSデバイス";
-"Set which side controls brightness and volume.\n\nTips:\n1. In portrait mode, swipe down on either side of the player.\n2. In fullscreen, swipe from the bottom area due to YouTube’s gesture handling." = "明るさと音量を制御する側を設定します。\n\nヒント:\n1. 縦向きモードでは、プレーヤーのどちらかの側を下にスワイプします。\n2. フルスクリーンでは、YouTubeのジェスチャー処理の都合上、下の領域からスワイプします。";
+"Assign brightness and volume to the left or right half of the player.\n\nIn portrait, slide up or down anywhere on the half you chose. In fullscreen, begin the slide nearer the bottom of the screen — YouTube reserves the upper area for its own gestures." = "明るさと音量をプレーヤーの左半分と右半分に割り当てます。\n\n縦向きでは、選んだ側のどこでも上下にスライドできます。全画面では画面下寄りからスライドを始めてください。上部は YouTube が独自のジェスチャーに使用しています。";
 "The download timed out. Retry on a stable connection." = "ダウンロードがタイムアウトしました。安定した接続で再試行してください。";
 "Sponsor" = "スポンサー";
-"📍 What this does:\n• Forces iOS guard attestation off\n• Marks heartbeat policy errors non-fatal\n• Swallows halt / cannot-play / error-overlay paths\n• Forces skip-on-playability-error\n\n" = "📍 これが行うこと:\n• iOSガード構成証明を強制的にオフにします\n• ハートビートポリシーエラーを非致命としてマークします\n• 停止/再生不可/エラーオーバーレイのパスを飲み込みます\n• 再生可能性エラー時のスキップを強制します\n\n";
 "Hide More/Gear Icon" = "その他/歯車アイコンを非表示";
 "Choose a YTKACE ZIP backup from Files." = "ファイルアプリからYTKACEのZIPバックアップを選択します。";
 "Hold to Seek" = "長押しでシーク";
@@ -268,7 +271,7 @@
 "Backup failed" = "バックアップ失敗";
 "Exit Fullscreen" = "フルスクリーンを終了";
 "Continue" = "続ける";
-"YouTube did not provide a usable download session. Play the video briefly, then retry." = "YouTubeが使用可能なダウンロードセッションを提供しませんでした。動画を少し再生してから再試行してください。";
+"No usable download session came back. Start the video briefly so a fresh one is issued, then try again." = "有効なダウンロードセッションが返されませんでした。動画を少し再生して新しいセッションを発行させてから、もう一度お試しください。";
 "YTKACE PiP" = "YTKACE PiP";
 "Overlay" = "オーバーレイ";
 "Import failed" = "インポート失敗";
@@ -306,7 +309,6 @@
 "No compatible audio formats were found." = "互換性のあるオーディオフォーマットが見つかりませんでした。";
 "Always Show Play/Pause Button" = "再生/一時停止ボタンを常に表示";
 "Download Audio" = "オーディオをダウンロード";
-"⚠️ Restart YouTube for the hooks to take effect. Leave off if playback already works — it bypasses server-side stop signals and can mask real issues." = "⚠️ フックを有効にするにはYouTubeを再起動してください。再生がすでに機能している場合はオフのままにしてください — サーバー側の停止シグナルをバイパスし、実際の問題を隠す可能性があります。";
 "Seconds: 10" = "秒: 10";
 "System Player" = "システムプレーヤー";
 "YTKACE Faster" = "YTKACE 速く";
@@ -383,9 +385,9 @@
 "Double tap, hold to seek and pinch" = "ダブルタップ、長押しシーク、ピンチ操作";
 "Developer" = "開発者";
 "Thumbnails" = "サムネイル";
-"Replace clickbait thumbnails with community-picked frames from DeArrow. Videos without a submission are left untouched." = "DeArrow のコミュニティ選択フレームでクリックベイトのサムネイルを差し替えます。投稿がない動画はそのまま残ります。";
+"Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "釣りサムネイルを DeArrow の投稿者が選んだ場面に差し替えます。投稿のない動画は YouTube のサムネイルのままです。";
 "Titles" = "タイトル";
-"Replace clickbait titles with community-written ones from DeArrow. Videos without a submission keep their original title." = "DeArrow のコミュニティ作成タイトルでクリックベイトのタイトルを差し替えます。投稿がない動画は元のタイトルのままです。";
+"Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "釣りタイトルを DeArrow の投稿者が書いた文言に差し替えます。投稿のない動画は元のタイトルのままです。";
 "DEARROW" = "DEARROW";
 "Copy Comment" = "コメントをコピー";
 "Skip Alerts" = "スキップ通知";
@@ -508,7 +510,7 @@
 "ABOUT" = "概要";
 "Enabled" = "有効";
 "ACTIVE" = "アクティブ";
-"Tap the checkmark to apply changes." = "チェックマークをタップして変更を適用します。";
+"Save your changes with the checkmark above." = "上のチェックマークで変更を保存します。";
 "YTKACE %@  •  YouTube %@
 %@
 %@  •  iOS %@" = "YTKACE %@  •  YouTube %@
@@ -546,7 +548,7 @@
 "LAYOUT" = "レイアウト";
 "SYSTEM" = "システム";
 "PRIVACY & PROMPTS" = "プライバシーとプロンプト";
-"Choose a side for brightness and volume. Swipe vertically on that side of the player." = "明るさと音量のサイドを選択。プレーヤーのその側を縦方向にスワイプしてください。";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half." = "プレーヤーのどちら側で明るさを変え、どちら側で音量を変えるかを選び、その半分を上下にスライドします。";
 "BRIGHTNESS & VOLUME" = "明るさと音量";
 "SEEK" = "シーク";
 "YTKACE
@@ -628,7 +630,7 @@ CC BY-NC-SA 4.0 ライセンス。";
 "Both" = "両方";
 
 /* Gesture description with both-sides volume */
-"Choose a side for brightness and volume. Swipe vertically on that side of the player. Setting volume to both sides turns brightness off." = "明るさと音量のサイドを選択してください。プレーヤーのそのサイドで垂直にスワイプします。音量を両サイドに設定すると明るさがオフになります。";
+"Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "プレーヤーのどちら側で明るさを変え、どちら側で音量を変えるかを選び、その半分を上下にスライドします。両側を音量に割り当てると明るさの領域がなくなるため、明るさ調整はオフになります。";
 
 /* Skip time stepper */
 "Skip Time" = "スキップ時間";

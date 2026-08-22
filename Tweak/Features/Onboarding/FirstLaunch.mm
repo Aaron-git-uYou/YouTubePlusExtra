@@ -73,7 +73,7 @@ static UIViewController *YTKACEFirstLaunchPresenter(void) {
     [NSUserDefaults.standardUserDefaults setBool:YES forKey:YTKACEOnboardingKey];
     if (YTKACEShowYouTubeDialog(
         @"YTKACE",
-        YTKACELocalized(@"To modify settings, open the YTKACE tab and tap the gear icon above."))) {
+        YTKACELocalized(@"To change these, open the YTKACE tab and use the gear icon above."))) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC),
             dispatch_get_main_queue(), ^{
                 UIViewController *nextPresenter = YTKACEFirstLaunchPresenter();
@@ -81,7 +81,7 @@ static UIViewController *YTKACEFirstLaunchPresenter(void) {
             });
         return;
     }
-    YTKACEShowNotice(YTKACELocalized(@"Open the YTKACE tab and tap the gear icon."));
+    YTKACEShowNotice(YTKACELocalized(@"Settings live in the YTKACE tab, behind the gear icon."));
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 300 * NSEC_PER_MSEC),
         dispatch_get_main_queue(), ^{
             UIViewController *nextPresenter = YTKACEFirstLaunchPresenter();
