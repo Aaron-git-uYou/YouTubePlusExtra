@@ -161,6 +161,23 @@ void YTKACESABRSetPoToken(id token) {
         (unsigned long)data.length, encoding);
 }
 
+NSString *YTKACESABRPoTokenString(void) {
+    NSData *token = nil;
+    @synchronized (YTKACESABRDownloader.class) {
+        token = [YTKACESABRPoToken copy];
+    }
+    if (token.length == 0) return nil;
+    NSMutableString *text = [[token base64EncodedStringWithOptions:0] mutableCopy];
+    [text replaceOccurrencesOfString:@"+" withString:@"-"
+                             options:0 range:NSMakeRange(0, text.length)];
+    [text replaceOccurrencesOfString:@"/" withString:@"_"
+                             options:0 range:NSMakeRange(0, text.length)];
+    while ([text hasSuffix:@"="]) {
+        [text deleteCharactersInRange:NSMakeRange(text.length - 1, 1)];
+    }
+    return text;
+}
+
 static NSData *YTKACESABRCurrentPoToken(void) {
     @synchronized (YTKACESABRDownloader.class) {
         return [YTKACESABRPoToken copy];

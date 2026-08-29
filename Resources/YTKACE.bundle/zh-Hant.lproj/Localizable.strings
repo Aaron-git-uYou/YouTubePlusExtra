@@ -38,6 +38,8 @@
 "Captions On" = "字幕已開啟";
 "Cards" = "資訊卡";
 "Cellular Quality" = "行動數據畫質";
+"Limit" = "上限";
+"Limit Shorts" = "限制 Shorts";
 "Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "選擇播放器的哪一半調整亮度、哪一半調整音量，然後在該側上下滑動。如果兩側都設為音量，就沒有位置留給亮度，亮度調整會被關閉。";
 "Choose and reorder bottom tabs" = "選擇並排序底部標籤";
 "Choose, reorder, and rename tabs" = "選擇、排序並重新命名標籤";
@@ -162,6 +164,9 @@
 "Remove YouTube Logo" = "移除 YouTube 標誌";
 "Rename" = "重新命名";
 "Rename Tab" = "重新命名分頁";
+"Shorts limit" = "Shorts 上限";
+"Shorts limit reached (%ld). Restart YouTube to reset." = "已達到 Shorts 上限（%ld 個）。重新啟動 YouTube 即可重設。";
+"Stop scrolling after a set number of Shorts. Resets when YouTube restarts." = "看完設定數量的 Shorts 後停止滑動。重新啟動 YouTube 後重設。";
 "Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "把標題黨縮圖換成 DeArrow 貢獻者挑選的畫面。沒有人提交的影片仍使用 YouTube 提供的縮圖。";
 "Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "把標題黨標題換成 DeArrow 貢獻者提交的文字。沒有人提交的影片保留原標題。";
 "Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "將在下次啟動 YouTube 時生效。\n\n如果影片意外停止，YTKACE 會先等待約一秒，確認它確實卡住而不是正在緩衝，接著最多嘗試三次恢復：繼續播放、強制重新緩衝，最後重新載入串流。若都無效，就不再介入，交由 YouTube 顯示原本的錯誤訊息。\n\n拖曳進度、暫停或切換到其他影片都會立即取消進行中的嘗試。直播會重新載入而不是跳轉。如果播放本來就穩定，保持關閉即可。";

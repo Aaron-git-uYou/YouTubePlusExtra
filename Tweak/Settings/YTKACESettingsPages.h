@@ -11,6 +11,9 @@ FOUNDATION_EXPORT UIViewController *YTKACEMakeNavigationOptionsController(void);
 FOUNDATION_EXPORT UIViewController *YTKACEMakeShortsOptionsController(void);
 FOUNDATION_EXPORT UIViewController *YTKACEMakeMiscOptionsController(void);
 FOUNDATION_EXPORT UIViewController *YTKACEMakeGestureOptionsController(void);
+FOUNDATION_EXPORT void YTKACEStartupDestinations(
+    NSArray<NSString *> * _Nullable * _Nullable titles,
+    NSArray<NSString *> * _Nullable * _Nullable values);
 FOUNDATION_EXPORT UIViewController *YTKACEMakeStartupPickerController(void);
 FOUNDATION_EXPORT UIViewController *YTKACEMakeWiFiQualityController(void);
 FOUNDATION_EXPORT UIViewController *YTKACEMakeCellularQualityController(void);

@@ -43,10 +43,10 @@ YTKACE_FILES = \
 	Tweak/Features/Playback/SleepTimerControls.mm \
 	Tweak/Features/Playback/DoubleTapHooks.mm \
 	Tweak/Features/Playback/PlaybackWatchdog.cpp \
-	Tweak/Features/Playback/PlaybackRecoveryHooks.mm \
 	Tweak/Features/Playback/ProgressBarStyle.mm \
 	Tweak/Features/Streaming/StreamingHooks.mm \
 	Tweak/Features/Shorts/ShortsHooks.mm \
+	Tweak/Features/Shorts/ShortsSessionLimit.mm \
 	Tweak/Features/Compatibility/SideloadCompatibility.mm \
 	Tweak/Features/Compatibility/CastCompatibility.mm \
 	Tweak/Features/Onboarding/FirstLaunch.mm \

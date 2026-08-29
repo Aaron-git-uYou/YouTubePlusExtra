@@ -8,6 +8,7 @@
 #import "../../UI/OverlayButtonHost.h"
 #import "../../UI/Assets.h"
 #import <objc/message.h>
+#import <objc/runtime.h>
 
 UIImage *YTKACEDownloadGlyphImage(void) {
     UIImageSymbolConfiguration *configuration =
@@ -267,9 +268,6 @@ static void YTKACEOnesieRequestCompletion(id receiver,
                                           SEL selector,
                                           id request,
                                           id error) {
-    YTKACEDownloadLog(@"native", @"completion request=%@ error=%@",
-        request ? NSStringFromClass([request class]) : @"nil",
-        error ? NSStringFromClass([error class]) : @"nil");
     NSURLRequest *builtRequest = YTKACEURLRequestFromObject(request);
     if (builtRequest != nil) {
         NSURLRequest *URLRequest = builtRequest;
@@ -384,6 +382,39 @@ static NSString *YTKACEResponseVideoID(id response) {
     id value = YTKACEGetValue(details != nil ? details : response,
                               @[@"videoId", @"videoID", @"videoIdString"]);
     return [value isKindOfClass:NSString.class] ? value : nil;
+}
+
+__attribute__((unused))
+static void YTKACEReportStreamingData(id response) {
+    static NSUInteger logged = 0;
+    if (response == nil || logged >= 2) return;
+    SEL selector = NSSelectorFromString(@"streamingData");
+    if (![response respondsToSelector:selector]) {
+        YTKACEDownloadLog(@"spoof", @"player response has no streamingData (%@)",
+                          NSStringFromClass([response class]));
+        logged++;
+        return;
+    }
+    id streaming = ((id (*)(id, SEL))objc_msgSend)(response, selector);
+    if (streaming == nil) {
+        YTKACEDownloadLog(@"spoof", @"player response streamingData nil");
+        logged++;
+        return;
+    }
+    logged++;
+    NSString *text = [[streaming description]
+        stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+    while ([text containsString:@"  "]) {
+        text = [text stringByReplacingOccurrencesOfString:@"  " withString:@" "];
+    }
+    const NSUInteger limit = 1500;
+    for (NSUInteger offset = 0; offset < text.length && offset < limit * 3;
+         offset += limit) {
+        const NSUInteger length = MIN(limit, text.length - offset);
+        YTKACEDownloadLog(@"spoof", @"streaming[%lu] %@",
+                          (unsigned long)(offset / limit),
+                          [text substringWithRange:NSMakeRange(offset, length)]);
+    }
 }
 
 static void YTKACECachePlayerResponse(id response) {
@@ -521,6 +552,29 @@ static void YTKACECaptureFactory(id receiver, id request, id properties, id resu
     YTKACEDownloadLog(@"reload", @"factory request video=%@ request=%@ result=%@",
         videoID ?: @"unknown", NSStringFromClass([request class]),
         NSStringFromClass([result class]));
+    static BOOL dumped = YES;
+    if (!dumped) {
+        dumped = YES;
+        for (NSArray *pair in @[@[@"request", request ?: [NSNull null]],
+                                @[@"result", result ?: [NSNull null]]]) {
+            id value = pair[1];
+            if (value == [NSNull null]) continue;
+            NSString *text = [[value description]
+                stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+            while ([text containsString:@"  "]) {
+                text = [text stringByReplacingOccurrencesOfString:@"  "
+                                                       withString:@" "];
+            }
+            const NSUInteger limit = 1800;
+            for (NSUInteger offset = 0; offset < text.length && offset < limit * 3;
+                 offset += limit) {
+                const NSUInteger length = MIN(limit, text.length - offset);
+                YTKACEDownloadLog(@"spoof", @"%@[%lu] %@", pair[0],
+                                  (unsigned long)(offset / limit),
+                                  [text substringWithRange:NSMakeRange(offset, length)]);
+            }
+        }
+    }
 }
 
 static id YTKACEFactoryRequest(id receiver, SEL selector, id request, id properties) {
@@ -819,6 +873,7 @@ void YTKACEInstallDownloadHooks(void) {
                               @"setPlayerResponse:CPN:",
                               (IMP)YTKACESetPlayerResponse,
                               &OriginalSetPlayerResponse);
+
 
     YTKACERegisterOverlayConfigurator(@"downloads", ^(UIView *overlay, UIStackView *stack) {
         (void)overlay;

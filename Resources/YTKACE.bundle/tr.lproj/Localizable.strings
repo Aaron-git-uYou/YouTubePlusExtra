@@ -38,6 +38,8 @@
 "Captions On" = "Altyazı açık";
 "Cards" = "Kartlar";
 "Cellular Quality" = "Hücresel kalite";
+"Limit" = "Sınır";
+"Limit Shorts" = "Shorts sınırla";
 "Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "Oynatıcının hangi yarısının parlaklığı, hangisinin sesi ayarlayacağını seçin ve o yarıda yukarı ya da aşağı kaydırın. Ses her iki yarıya da atanırsa parlaklığa yer kalmaz ve parlaklık kapatılır.";
 "Choose and reorder bottom tabs" = "Alt sekmeleri seç ve sırala";
 "Choose, reorder, and rename tabs" = "Sekmeleri seç, sırala ve yeniden adlandır";
@@ -162,6 +164,9 @@
 "Remove YouTube Logo" = "YouTube logosunu kaldır";
 "Rename" = "Yeniden adlandır";
 "Rename Tab" = "Sekmeyi yeniden adlandır";
+"Shorts limit" = "Shorts sınırı";
+"Shorts limit reached (%ld). Restart YouTube to reset." = "Shorts sınırına ulaşıldı (%ld). Sıfırlamak için YouTube'u yeniden başlatın.";
+"Stop scrolling after a set number of Shorts. Resets when YouTube restarts." = "Belirlenen sayıda Shorts sonrası kaydırmayı durdurur. YouTube yeniden başlatılınca sıfırlanır.";
 "Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "Tıklama tuzağı küçük resimleri DeArrow katkıda bulunanlarının seçtiği karelerle değiştirir. Öneri gönderilmemiş videolar YouTube küçük resmini korur.";
 "Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "Tıklama tuzağı başlıkları DeArrow katkıda bulunanlarının yazdığı metinlerle değiştirir. Öneri gönderilmemiş videolar özgün başlığını korur.";
 "Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "YouTube'u bir sonraki açışınızda etkin olur.\n\nBir video beklenmedik şekilde durursa YTKACE, gerçekten takılıp takılmadığını anlamak için yaklaşık bir saniye bekler ve ardından en fazla üç deneme yapar: devam ettirme, yeniden arabelleğe alma ve son olarak yayını yeniden yükleme. Hiçbiri işe yaramazsa müdahaleyi bırakır ve hatayı YouTube'un kendi biçiminde göstermesine izin verir.\n\nİleri sarma, duraklatma veya başka bir videoya geçme, süren denemeyi anında iptal eder. Canlı yayınlar sarılmak yerine yeniden yüklenir. Oynatma zaten sorunsuzsa kapalı bırakın.";

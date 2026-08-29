@@ -38,6 +38,8 @@
 "Captions On" = "Captions On";
 "Cards" = "Cards";
 "Cellular Quality" = "Cellular Quality";
+"Limit" = "Limit";
+"Limit Shorts" = "Limit Shorts";
 "Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off.";
 "Choose and reorder bottom tabs" = "Choose and reorder bottom tabs";
 "Choose, reorder, and rename tabs" = "Choose, reorder, and rename tabs";
@@ -162,6 +164,9 @@
 "Remove YouTube Logo" = "Remove YouTube Logo";
 "Rename" = "Rename";
 "Rename Tab" = "Rename Tab";
+"Shorts limit" = "Shorts limit";
+"Shorts limit reached (%ld). Restart YouTube to reset." = "Shorts limit reached (%ld). Restart YouTube to reset.";
+"Stop scrolling after a set number of Shorts. Resets when YouTube restarts." = "Stop scrolling after a set number of Shorts. Resets when YouTube restarts.";
 "Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides.";
 "Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title.";
 "Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you.";

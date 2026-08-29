@@ -40,8 +40,7 @@ static void YTKACERefreshPlaybackTimePreferenceState(void) {
         YTKACEFeatureEnabled(@"shortsProgress") ||
         YTKACEFeatureEnabled(@"autoSkipShorts") ||
         YTKACEFeatureEnabled(YTKACESpeedKey) ||
-        YTKACEFeatureEnabled(YTKACESleepTimerKey) ||
-        YTKACEFeatureEnabled(@"YTKACE.Preference.Playback.Recovery");
+        YTKACEFeatureEnabled(YTKACESleepTimerKey);
 }
 
 static void YTKACEPublishPlaybackTime(id receiver, double time) {

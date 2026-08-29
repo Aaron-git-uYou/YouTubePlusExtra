@@ -62,6 +62,8 @@ static const void *YTKACEActionGroupCompactAssociation =
 static BOOL YTKACEContentContains(NSString *token,
                                   NSArray<NSString *> *needles);
 static id YTKACEContentValue(id object, NSString *key);
+static NSData *YTKACESectionBytes(id section);
+static BOOL YTKACEBytesContain(NSData *haystack, NSArray<NSString *> *needles);
 static BOOL YTKACESectionIsShortsShelf(id section);
 static BOOL YTKACESectionIsProductsShelf(id section);
 static BOOL YTKACESectionIsCommunityPosts(id section);
@@ -1021,6 +1023,80 @@ static id YTKACEContentValue(id object, NSString *key) {
     }
 }
 
+static BOOL YTKACESectionIsShortsShelfUncached(id section);
+static BOOL YTKACESectionIsProductsShelfUncached(id section);
+
+static BOOL YTKACEClassContains(id object, NSArray<NSString *> *needles);
+
+
+/// Field names on `cls` whose name matches something we filter, paired with the
+/// generated -has<Field> selector. Computed once per class.
+
+
+
+static const void *YTKACEStructuralTokenAssociation =
+    &YTKACEStructuralTokenAssociation;
+
+
+
+
+static const void *YTKACEClassTokenAssociation = &YTKACEClassTokenAssociation;
+
+static NSString *YTKACEClassToken(id object) {
+    if (object == nil) return @"";
+    NSString *cached = objc_getAssociatedObject(object,
+                                                YTKACEClassTokenAssociation);
+    if (cached != nil) return cached;
+    NSString *value = NSStringFromClass([object class]).lowercaseString;
+    if (value == nil) value = @"";
+    objc_setAssociatedObject(object, YTKACEClassTokenAssociation, value,
+                             OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return value;
+}
+
+__attribute__((unused))
+static BOOL YTKACEClassLooksLikeContainer(id object) {
+    NSString *token = YTKACEClassToken(object);
+    return [token containsString:@"shelfrenderer"] ||
+           [token containsString:@"richsectionrenderer"] ||
+           [token containsString:@"itemsectionrenderer"] ||
+           [token containsString:@"richshelfrenderer"] ||
+           [token containsString:@"sectionrenderer"] ||
+           [token containsString:@"elementrenderer"];
+}
+
+static BOOL YTKACEClassContains(id object, NSArray<NSString *> *needles) {
+    NSString *token = YTKACEClassToken(object);
+    if (token.length == 0) return NO;
+    for (NSString *needle in needles) {
+        if ([token containsString:needle]) return YES;
+    }
+    return NO;
+}
+
+__attribute__((unused))
+static BOOL YTKACEChildClassContains(id section, NSArray<NSString *> *needles) {
+    NSArray *entries = YTKACEContentValue(section, @"contentsArray");
+    if ([entries isKindOfClass:NSArray.class]) {
+        for (id entry in entries) {
+            if (YTKACEClassContains(entry, needles)) return YES;
+        }
+    }
+    return NO;
+}
+
+static BOOL YTKACECachedVerdict(id section, const void *key, BOOL (^compute)(void)) {
+    if (section == nil) return NO;
+    NSNumber *memo = objc_getAssociatedObject(section, key);
+    if (memo != nil) return memo.boolValue;
+    const BOOL verdict = compute();
+    objc_setAssociatedObject(section, key, @(verdict),
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    return verdict;
+}
+
+
+__attribute__((unused))
 static BOOL YTKACEItemIsShorts(id item) {
     NSString *description = YTKACENormalizedDescription(item);
     return YTKACEContentContains(description, @[
@@ -1049,7 +1125,160 @@ static NSString *YTKACENormalizedDescription(id object) {
     return value;
 }
 
+static const void *YTKACEShortsVerdictKey = &YTKACEShortsVerdictKey;
+
 static BOOL YTKACESectionIsShortsShelf(id section) {
+    return YTKACECachedVerdict(section, YTKACEShortsVerdictKey, ^BOOL{
+        NSArray<NSString *> *markers = @[
+            @"shortsshelfrenderer",
+            @"reelshelfrenderer",
+            @"shortslockupviewmodel",
+            @"reelitemrenderer",
+            @"shortsshelfeml",
+            @"reelwatchendpoint"
+        ];
+        if (YTKACEClassContains(section, markers)) return YES;
+        if (YTKACEBytesContain(YTKACESectionBytes(section), markers)) return YES;
+        if (YTKACESectionIsShortsShelfUncached(section)) return YES;
+        return NO;
+    });
+}
+
+
+static NSArray<NSString *> *YTKACEProductsMarkers(void) {
+    return @[
+        @"merchandise_shelf", @"merchandise_item",
+        @"product_shelf", @"products_shelf", @"shopping_shelf",
+        @"promoted_sparkles_text_product_watch",
+        @"product_in_video", @"products_in_video"
+    ];
+}
+
+static const void *YTKACEProductsVerdictKey = &YTKACEProductsVerdictKey;
+
+static BOOL YTKACESectionIsProductsShelf(id section) {
+    return YTKACECachedVerdict(section, YTKACEProductsVerdictKey, ^BOOL{
+        NSArray<NSString *> *markers = @[
+            @"merchandiseshelfrenderer",
+            @"productshelfrenderer",
+            @"shoppingshelfrenderer",
+            @"productlistrenderer",
+            @"productlistitemrenderer",
+            @"promotedsparklestextrenderer"
+        ];
+        if (YTKACEClassContains(section, markers)) return YES;
+        if (YTKACEBytesContain(YTKACESectionBytes(section), markers)) return YES;
+        if (YTKACESectionIsProductsShelfUncached(section)) return YES;
+        return NO;
+    });
+}
+
+
+static NSString *YTKACESectionToken(id section) {
+    if (section == nil) return @"";
+    NSString *memo = objc_getAssociatedObject(section, YTKACESectionTokenAssociation);
+    if (memo != nil) return memo;
+    NSString *own = YTKACENormalizedDescription(section);
+    NSMutableString *token = [NSMutableString stringWithFormat:@"%@ %@",
+        NSStringFromClass([section class]), own];
+    if (own.length < YTKACERecursiveDescriptionFloor) {
+        NSArray *entries = YTKACEContentValue(section, @"contentsArray");
+        if ([entries isKindOfClass:NSArray.class]) {
+            for (id entry in entries) {
+                [token appendFormat:@" %@ %@", NSStringFromClass([entry class]),
+                                                    YTKACENormalizedDescription(entry)];
+            }
+        }
+        id content = YTKACEContentValue(section, @"content");
+        id list = YTKACEContentValue(content, @"horizontalListRenderer") ?:
+            YTKACEContentValue(content, @"richShelfRenderer") ?:
+            YTKACEContentValue(content, @"shelfRenderer") ?:
+            content;
+        NSArray *items = YTKACEContentValue(list, @"itemsArray") ?:
+            YTKACEContentValue(list, @"contentsArray");
+        if ([items isKindOfClass:NSArray.class]) {
+            for (id item in items) {
+                [token appendFormat:@" %@ %@", NSStringFromClass([item class]),
+                                                   YTKACENormalizedDescription(item)];
+            }
+        }
+    }
+    NSString *value = [[token lowercaseString]
+        stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    objc_setAssociatedObject(section, YTKACESectionTokenAssociation, value,
+                             OBJC_ASSOCIATION_COPY_NONATOMIC);
+    return value;
+}
+
+static const void *YTKACECommunityVerdictKey = &YTKACECommunityVerdictKey;
+
+static BOOL YTKACESectionIsCommunityPosts(id section) {
+    return YTKACECachedVerdict(section, YTKACECommunityVerdictKey, ^BOOL{
+        NSArray<NSString *> *markers = @[
+            @"communitypostsectionrenderer",
+            @"postscontainerrenderer",
+            @"communitypostrenderer",
+            @"backstagepostrenderer",
+            @"backstageimagerenderer",
+            @"sharedpostrenderer"
+        ];
+        if (YTKACEClassContains(section, markers)) return YES;
+        if (YTKACEBytesContain(YTKACESectionBytes(section), markers)) return YES;
+        if (YTKACEContentContains(YTKACESectionToken(section), @[
+            @"id_ui_backstage_original_post", @"community_post_section",
+            @"community_post"
+        ])) {
+            return YES;
+        }
+        return NO;
+    });
+}
+
+static const void *YTKACEMixVerdictKey = &YTKACEMixVerdictKey;
+
+static BOOL YTKACESectionIsMix(id section) {
+    return YTKACECachedVerdict(section, YTKACEMixVerdictKey, ^BOOL{
+        NSArray<NSString *> *markers = @[
+            @"automixpreviewvideorenderer",
+            @"automixplaylistvideorenderer",
+            @"mixradiorenderer",
+            @"radiorenderer",
+            @"feednudgerenderer"
+        ];
+        if (YTKACEClassContains(section, markers)) return YES;
+        if (YTKACEBytesContain(YTKACESectionBytes(section), markers)) return YES;
+        if (YTKACEContentContains(YTKACESectionToken(section), @[
+            @"feed_nudge_view", @"radioautomixplaylistid",
+            @"radioplaylistmixplaylistid", @"radio_playlist_mix"
+        ])) {
+            return YES;
+        }
+        return NO;
+    });
+}
+
+static const void *YTKACEPlayableVerdictKey = &YTKACEPlayableVerdictKey;
+
+static BOOL YTKACESectionIsPlayable(id section) {
+    return YTKACECachedVerdict(section, YTKACEPlayableVerdictKey, ^BOOL{
+        NSArray<NSString *> *markers = @[
+            @"playablesshelfrenderer",
+            @"playableitemrenderer",
+            @"compactboxgamerenderer",
+            @"playablegamerenderer"
+        ];
+        if (YTKACEClassContains(section, markers)) return YES;
+        if (YTKACEBytesContain(YTKACESectionBytes(section), markers)) return YES;
+        if (YTKACEContentContains(YTKACESectionToken(section), @[
+            @"playables_shelf", @"playable_game"
+        ])) {
+            return YES;
+        }
+        return NO;
+    });
+}
+
+static BOOL YTKACESectionIsShortsShelfUncached(id section) {
     if (section == nil) {
         return NO;
     }
@@ -1094,16 +1323,7 @@ static BOOL YTKACESectionIsShortsShelf(id section) {
     return NO;
 }
 
-static NSArray<NSString *> *YTKACEProductsMarkers(void) {
-    return @[
-        @"merchandise_shelf", @"merchandise_item",
-        @"product_shelf", @"products_shelf", @"shopping_shelf",
-        @"promoted_sparkles_text_product_watch",
-        @"product_in_video", @"products_in_video"
-    ];
-}
-
-static BOOL YTKACESectionIsProductsShelf(id section) {
+static BOOL YTKACESectionIsProductsShelfUncached(id section) {
     if (section == nil) {
         return NO;
     }
@@ -1145,67 +1365,56 @@ static BOOL YTKACESectionIsProductsShelf(id section) {
     return NO;
 }
 
-static NSString *YTKACESectionToken(id section) {
-    if (section == nil) return @"";
-    NSString *memo = objc_getAssociatedObject(section, YTKACESectionTokenAssociation);
-    if (memo != nil) return memo;
-    NSString *own = YTKACENormalizedDescription(section);
-    NSMutableString *token = [NSMutableString stringWithFormat:@"%@ %@",
-        NSStringFromClass([section class]), own];
-    if (own.length < YTKACERecursiveDescriptionFloor) {
-        NSArray *entries = YTKACEContentValue(section, @"contentsArray");
-        if ([entries isKindOfClass:NSArray.class]) {
-            for (id entry in entries) {
-                [token appendFormat:@" %@ %@", NSStringFromClass([entry class]),
-                                                    YTKACENormalizedDescription(entry)];
-            }
-        }
-        id content = YTKACEContentValue(section, @"content");
-        id list = YTKACEContentValue(content, @"horizontalListRenderer") ?:
-            YTKACEContentValue(content, @"richShelfRenderer") ?:
-            YTKACEContentValue(content, @"shelfRenderer") ?:
-            content;
-        NSArray *items = YTKACEContentValue(list, @"itemsArray") ?:
-            YTKACEContentValue(list, @"contentsArray");
-        if ([items isKindOfClass:NSArray.class]) {
-            for (id item in items) {
-                [token appendFormat:@" %@ %@", NSStringFromClass([item class]),
-                                                   YTKACENormalizedDescription(item)];
-            }
+static const void *YTKACESectionBytesAssociation =
+    &YTKACESectionBytesAssociation;
+
+/// Serialised protobuf for a section, cached. Far cheaper than -description:
+/// no recursion into a formatted string, and the markers we look for are plain
+/// ASCII inside it.
+static NSData *YTKACESectionBytes(id section) {
+    if (section == nil) return nil;
+    NSData *cached = objc_getAssociatedObject(section,
+                                              YTKACESectionBytesAssociation);
+    if (cached != nil) {
+        return cached.length == 0 ? nil : cached;
+    }
+    NSData *data = nil;
+    SEL dataSelector = NSSelectorFromString(@"data");
+    if ([section respondsToSelector:dataSelector]) {
+        @try {
+            data = ((id (*)(id, SEL))objc_msgSend)(section, dataSelector);
+        } @catch (__unused NSException *exception) {
+            data = nil;
         }
     }
-    NSString *value = [[token lowercaseString]
-        stringByReplacingOccurrencesOfString:@"." withString:@"_"];
-    objc_setAssociatedObject(section, YTKACESectionTokenAssociation, value,
-                             OBJC_ASSOCIATION_COPY_NONATOMIC);
-    return value;
+    if (![data isKindOfClass:NSData.class]) data = nil;
+    objc_setAssociatedObject(section, YTKACESectionBytesAssociation,
+                             data ?: [NSData data],
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    return data;
 }
 
-static BOOL YTKACESectionIsCommunityPosts(id section) {
-    return YTKACEContentContains(YTKACESectionToken(section), @[
-        @"id_ui_backstage_original_post",
-        @"communitypostsectionrenderer", @"community_post_section",
-        @"postscontainerrenderer", @"communitypostrenderer",
-        @"backstagepostrenderer", @"community_post"
-    ]);
+static BOOL YTKACEBytesContain(NSData *haystack, NSArray<NSString *> *needles) {
+    if (haystack.length == 0) return NO;
+    for (NSString *needle in needles) {
+        if ([needle containsString:@"renderer"] &&
+            ![needle containsString:@"_"]) {
+            continue;  // class-name style marker, never present in the wire form
+        }
+        NSData *pattern = [needle dataUsingEncoding:NSASCIIStringEncoding];
+        if (pattern.length == 0) continue;
+        if ([haystack rangeOfData:pattern
+                          options:0
+                            range:NSMakeRange(0, haystack.length)].location
+                != NSNotFound) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
-static BOOL YTKACESectionIsMix(id section) {
-    return YTKACEContentContains(YTKACESectionToken(section), @[
-        @"feed_nudge_view",
-        @"automixpreviewvideorenderer", @"automixplaylistvideorenderer",
-        @"mixradiorenderer", @"radioautomixplaylistid",
-        @"radioplaylistmixplaylistid", @"radio_playlist_mix"
-    ]);
-}
 
-static BOOL YTKACESectionIsPlayable(id section) {
-    return YTKACEContentContains(YTKACESectionToken(section), @[
-        @"playables_shelf", @"playablesshelfrenderer",
-        @"playableitemrenderer", @"playable_game",
-        @"compactboxgamerenderer"
-    ]);
-}
+
 
 static NSArray *YTKACEFilteredFeedSections(NSArray *sections) {
     NSArray *adFiltered = YTKACEFilterAdSections(sections);
@@ -1224,11 +1433,15 @@ static NSArray *YTKACEFilteredFeedSections(NSArray *sections) {
     }
     NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:adFiltered.count];
     for (id section in adFiltered) {
-        if (hideShorts && YTKACESectionIsShortsShelf(section)) continue;
-        if (hideProducts && YTKACESectionIsProductsShelf(section)) continue;
-        if (hideCommunity && YTKACESectionIsCommunityPosts(section)) continue;
-        if (hideMixes && YTKACESectionIsMix(section)) continue;
-        if (hidePlayables && YTKACESectionIsPlayable(section)) continue;
+        NSString *cut = nil;
+        if (hideShorts && YTKACESectionIsShortsShelf(section)) cut = @"shorts";
+        else if (hideProducts && YTKACESectionIsProductsShelf(section)) cut = @"products";
+        else if (hideCommunity && YTKACESectionIsCommunityPosts(section)) cut = @"community";
+        else if (hideMixes && YTKACESectionIsMix(section)) cut = @"mixes";
+        else if (hidePlayables && YTKACESectionIsPlayable(section)) cut = @"playables";
+        if (cut != nil) {
+            continue;
+        }
         [filtered addObject:section];
     }
     return filtered;

@@ -38,6 +38,8 @@
 "Captions On" = "Sous-titres activés";
 "Cards" = "Cartes";
 "Cellular Quality" = "Qualité en données mobiles";
+"Limit" = "Limite";
+"Limit Shorts" = "Limiter les Shorts";
 "Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "Choisissez quelle moitié du lecteur règle la luminosité et laquelle règle le volume, puis faites glisser vers le haut ou le bas sur cette moitié. Si le volume occupe les deux moitiés, il ne reste plus de place pour la luminosité et elle est désactivée.";
 "Choose and reorder bottom tabs" = "Choisis et réorganise les onglets du bas";
 "Choose, reorder, and rename tabs" = "Choisis, réorganise et renomme les onglets";
@@ -162,6 +164,9 @@
 "Remove YouTube Logo" = "Supprimer le logo YouTube";
 "Rename" = "Renommer";
 "Rename Tab" = "Renommer l'onglet";
+"Shorts limit" = "Limite de Shorts";
+"Shorts limit reached (%ld). Restart YouTube to reset." = "Limite de Shorts atteinte (%ld). Redémarrez YouTube pour la réinitialiser.";
+"Stop scrolling after a set number of Shorts. Resets when YouTube restarts." = "Arrête le défilement après un nombre défini de Shorts. Réinitialisé au redémarrage de YouTube.";
 "Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "Remplace les miniatures putaclic par des images choisies par les contributeurs DeArrow. Les vidéos sans proposition gardent la miniature fournie par YouTube.";
 "Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "Remplace les titres putaclic par des formulations proposées par les contributeurs DeArrow. Les vidéos sans proposition gardent leur titre d'origine.";
 "Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "Prend effet au prochain démarrage de YouTube.\n\nSi une vidéo s'arrête sans raison, YTKACE attend environ une seconde pour confirmer qu'elle est réellement bloquée et non en train de charger, puis effectue jusqu'à trois tentatives : reprendre, forcer une remise en mémoire tampon, puis recharger le flux. Si rien ne fonctionne, il cesse d'intervenir et laisse YouTube afficher son erreur habituelle.\n\nDéplacer la lecture, mettre en pause ou changer de vidéo annule immédiatement la tentative. Les directs sont rechargés plutôt que déplacés. Laissez l'option désactivée si la lecture est déjà fiable.";

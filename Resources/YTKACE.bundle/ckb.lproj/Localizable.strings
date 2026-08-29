@@ -38,6 +38,8 @@
 "Captions On" = "ژێرنووس چالاک";
 "Cards" = "کارتەکان";
 "Cellular Quality" = "کوالیتی داتای مۆبایل";
+"Limit" = "سنوور";
+"Limit Shorts" = "سنووردانانی Shorts";
 "Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "هەڵبژێرە کام نیوەی لێدەر ڕووناکی بگۆڕێت و کامیان دەنگ، پاشان لەو نیوەیەدا بۆ سەرەوە یان خوارەوە بخزێنە. ئەگەر دەنگ بۆ هەردوو نیوە دابنێت، شوێن بۆ ڕووناکی نامێنێت و کوژاوە دەبێت.";
 "Choose and reorder bottom tabs" = "تابەکانی خوارەوە هەڵبژێرە و ڕێکیان بخەوە";
 "Choose, reorder, and rename tabs" = "تابەکان ھەڵبژێرە، ڕێکیان بخەرەوە و ناویان بگۆڕە";
@@ -162,6 +164,9 @@
 "Remove YouTube Logo" = "لابردنی لۆگۆی YouTube";
 "Rename" = "ناولێنانەوە";
 "Rename Tab" = "ناولێنانەوەی تاب";
+"Shorts limit" = "سنووری Shorts";
+"Shorts limit reached (%ld). Restart YouTube to reset." = "سنووری Shorts پڕبووەوە (%ld). بۆ ڕێکخستنەوە YouTube دووبارە بکەرەوە.";
+"Stop scrolling after a set number of Shorts. Resets when YouTube restarts." = "دوای ژمارەیەکی دیاریکراو لە Shorts خشاندن ڕادەگرێت. بە کردنەوەی دووبارەی YouTube ڕێک دەخرێتەوە.";
 "Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "وێنۆچکە سەرنجڕاکێشەکان دەگۆڕێت بە وێنەی هەڵبژێردراوی بەشداربووانی DeArrow. ئەو ڤیدیۆانەی پێشنیاریان بۆ نەنێردراوە، وێنۆچکەی YouTube دەپارێزن.";
 "Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "ناونیشانە سەرنجڕاکێشەکان دەگۆڕێت بە دەقی نێردراوی بەشداربووانی DeArrow. ئەو ڤیدیۆانەی پێشنیاریان بۆ نەنێردراوە، ناونیشانی ڕەسەنیان دەمێنێتەوە.";
 "Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "لە کاتی داهاتووی کردنەوەی YouTube کاردەکات.\n\nئەگەر ڤیدیۆیەک بەشێوەیەکی چاوەڕواننەکراو ڕاوەستا، YTKACE نزیکەی چرکەیەک چاوەڕێ دەکات بۆ دڵنیابوون لەوەی بەڕاستی ڕاوەستاوە نەک لە بارکردندایە، پاشان تا سێ هەوڵ دەدات: بەردەوامبوون، دووبارە بارکردن، و لە کۆتاییدا دووبارە بارکردنی ستریم. ئەگەر هیچیان کاری نەکرد، دەست هەڵدەگرێت و ڕێگە دەدات YouTube هەڵەکەی خۆی پیشان بدات.\n\nگۆڕینی شوێن، وەستان، یان چوون بۆ ڤیدیۆیەکی تر هەوڵەکە ڕادەگرێت. ستریمی ڕاستەوخۆ دووبارە بار دەکرێت. ئەگەر لێدان باشە، بیهێڵەرەوە کوژاوە.";

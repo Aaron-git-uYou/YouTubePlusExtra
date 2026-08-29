@@ -3,7 +3,12 @@
 "Custom speed" = "カスタム速度";
 "Default playback speed" = "デフォルトの再生速度";
 "Last Used" = "前回の設定";
+"Limit" = "上限";
+"Limit Shorts" = "ショートを制限";
 "SPEED" = "速度";
+"Shorts limit" = "ショートの上限";
+"Shorts limit reached (%ld). Restart YouTube to reset." = "ショートの上限（%ld本）に達しました。YouTube を再起動するとリセットされます。";
+"Stop scrolling after a set number of Shorts. Resets when YouTube restarts." = "指定した本数のショートを見たらスクロールを停止します。YouTube の再起動でリセットされます。";
 "Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "次回 YouTube を起動したときから有効になります。\n\n再生が突然止まった場合、YTKACE は読み込み中ではなく本当に停止しているかを約1秒かけて確認し、その後で最大3回まで復帰を試みます。再開、バッファーのやり直し、最後にストリームの再読み込みの順です。いずれも効果がなければ介入をやめ、YouTube 本来のエラー表示に任せます。\n\nシーク、一時停止、別の動画への移動を行うと、進行中の試行は直ちに取り消されます。ライブ配信ではシークではなく再読み込みを行います。再生が安定している場合はオフのままで構いません。";
 "YTKACE" = "YTKACE";
 "Player Controls" = "プレーヤーコントロール";

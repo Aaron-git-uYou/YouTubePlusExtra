@@ -736,6 +736,9 @@ static void YTKACEShortsTimeChanged(NSNotification *notification) {
     YTKACELastShortsDuration = duration;
     YTKACEUpdateShortsProgress();
 
+    if (YTKACEShortsLimitReached()) {
+        return;
+    }
     if (!YTKACEFeatureEnabled(@"autoSkipShorts") || duration <= 1.0) {
         return;
     }

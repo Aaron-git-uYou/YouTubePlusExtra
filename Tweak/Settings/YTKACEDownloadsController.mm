@@ -1,4 +1,6 @@
 #import "YTKACEDownloadsController.h"
+#import <Photos/Photos.h>
+#import "../Features/Downloads/DownloadLog.h"
 #import "YTKACERootOptionsController.h"
 #import "../YTKACE.h"
 #import "../Runtime/Preferences.h"
@@ -10,6 +12,7 @@
 #import "../Features/Downloads/MediaArtwork.h"
 
 #import <AVFoundation/AVFoundation.h>
+#import <CoreMedia/CoreMedia.h>
 #import <AVKit/AVKit.h>
 #import <math.h>
 #import <objc/message.h>
@@ -83,6 +86,77 @@ static UIAlertAction *YTKACEMenuAction(
 @interface YTKACEMiniPlayerView : UIView
 @property(nonatomic, strong) AVPlayer *player;
 @end
+
+static void YTKACESaveVideoToPhotos(NSURL *url) {
+    if (url == nil) return;
+
+    // No UIVideoAtPathIsCompatibleWithSavedPhotosAlbum gate here: that check
+    // belongs to the legacy UIKit save path and is stricter than PhotoKit, which
+    // accepts files it rejects. Attempt the save and report the real error.
+    NSNumber *size = nil;
+    [url getResourceValue:&size forKey:NSURLFileSizeKey error:NULL];
+    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:nil];
+    NSMutableString *codecs = [NSMutableString string];
+    for (AVAssetTrack *track in asset.tracks) {
+        for (id description in track.formatDescriptions) {
+            const FourCharCode subtype = CMFormatDescriptionGetMediaSubType(
+                (CMFormatDescriptionRef)description);
+            [codecs appendFormat:@"%c%c%c%c ",
+             (char)((subtype >> 24) & 0xFF), (char)((subtype >> 16) & 0xFF),
+             (char)((subtype >> 8) & 0xFF), (char)(subtype & 0xFF)];
+        }
+    }
+    YTKACEDownloadLog(@"photos", @"codecs=[%@]", codecs);
+    YTKACEDownloadLog(@"photos", @"save %@ ext=%@ bytes=%@ playable=%d tracks=%lu "
+                      @"video=%lu audio=%lu legacyCompatible=%d",
+                      url.lastPathComponent, url.pathExtension, size,
+                      asset.isPlayable, (unsigned long)asset.tracks.count,
+                      (unsigned long)[asset tracksWithMediaType:AVMediaTypeVideo].count,
+                      (unsigned long)[asset tracksWithMediaType:AVMediaTypeAudio].count,
+                      UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.path));
+
+    void (^save)(void) = ^{
+        [PHPhotoLibrary.sharedPhotoLibrary performChanges:^{
+            [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:url];
+        } completionHandler:^(BOOL success, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    YTKACEShowNotice(YTKACELocalized(@"Saved to Photos"));
+                } else if (error.code == 3302 &&
+                           [error.domain isEqualToString:PHPhotosErrorDomain]) {
+                    // PHPhotosErrorInvalidResource: Photos will not import the
+                    // codec (VP9/AV1 for 8K and some 4K), even where the device
+                    // can play it. Sharing to Files still works.
+                    YTKACEShowNotice(YTKACELocalized(
+                        @"Photos cannot import this video's format. Use Share to "
+                        @"save it to Files instead."));
+                } else {
+                    YTKACEShowNotice(error.localizedDescription ?:
+                        YTKACELocalized(@"The video could not be saved."));
+                }
+            });
+        }];
+    };
+
+    void (^afterAuthorization)(PHAuthorizationStatus) = ^(PHAuthorizationStatus status) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (status == PHAuthorizationStatusAuthorized ||
+                status == PHAuthorizationStatusLimited) {
+                save();
+            } else {
+                YTKACEShowNotice(
+                    YTKACELocalized(@"YouTube needs permission to add to Photos."));
+            }
+        });
+    };
+
+    if (@available(iOS 14.0, *)) {
+        [PHPhotoLibrary requestAuthorizationForAccessLevel:PHAccessLevelAddOnly
+                                                   handler:afterAuthorization];
+    } else {
+        [PHPhotoLibrary requestAuthorization:afterAuthorization];
+    }
+}
 
 @implementation YTKACEMiniPlayerView
 + (Class)layerClass { return AVPlayerLayer.class; }
@@ -1101,7 +1175,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         }] ?: NSNull.null,
         [self nativeActionWithTitle:YTKACELocalized(@"Save to Photos") asset:@"ig_icon_photo_outline_24_Normal"
                              symbol:@"photo" handler:^(__unused UIAlertAction *action) {
-            UISaveVideoAtPathToSavedPhotosAlbum(url.path, nil, nil, NULL);
+            YTKACESaveVideoToPhotos(url);
         }] ?: NSNull.null,
         [self nativeActionWithTitle:YTKACELocalized(@"Save Artwork") asset:@"ig_icon_photo_gallery_outline_24_Normal"
                              symbol:@"photo.on.rectangle" handler:^(__unused UIAlertAction *action) {
@@ -1168,7 +1242,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         })];
     [menu addAction:YTKACEMenuAction(YTKACELocalized(@"Save to Photos"), @"photo", UIAlertActionStyleDefault,
         ^(__unused UIAlertAction *action) {
-            UISaveVideoAtPathToSavedPhotosAlbum(url.path, nil, nil, NULL);
+            YTKACESaveVideoToPhotos(url);
         })];
     [menu addAction:YTKACEMenuAction(YTKACELocalized(@"Save Artwork"), @"photo.on.rectangle", UIAlertActionStyleDefault,
         ^(__unused UIAlertAction *action) {

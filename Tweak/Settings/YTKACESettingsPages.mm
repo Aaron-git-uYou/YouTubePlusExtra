@@ -3,6 +3,7 @@
 #import "YTKACERootOptionsController.h"
 #import "YTKACETabEditorController.h"
 #import "../Runtime/Preferences.h"
+#import "../YTKACE.h"
 #import "../Runtime/Localization.h"
 #import "../UI/Assets.h"
 #import "../UI/Notice.h"
@@ -75,6 +76,15 @@ static NSDictionary *YTKACEPicker(NSString *title,
     };
 }
 
+static NSString *YTKACEStepperText(NSDictionary *item, double value) {
+    NSString *number = [NSString stringWithFormat:@"%.0f", value];
+    if ([item[@"unit"] isEqualToString:@"count"]) {
+        return [NSString stringWithFormat:@"%@: %@",
+                item[@"title"] ?: YTKACELocalized(@"Limit"), number];
+    }
+    return [NSString stringWithFormat:YTKACELocalized(@"Seconds: %@"), number];
+}
+
 static NSDictionary *YTKACEStepper(NSString *title,
                                     NSString *key,
                                     double minimum,
@@ -90,6 +100,18 @@ static NSDictionary *YTKACEStepper(NSString *title,
         @"step": @(step),
         @"fallback": @(fallback)
     };
+}
+
+static NSDictionary *YTKACECountStepper(NSString *title,
+                                        NSString *key,
+                                        double minimum,
+                                        double maximum,
+                                        double step,
+                                        double fallback) {
+    NSMutableDictionary *row =
+        [YTKACEStepper(title, key, minimum, maximum, step, fallback) mutableCopy];
+    row[@"unit"] = @"count";
+    return row;
 }
 
 static NSDictionary *YTKACESegmentedStacked(NSString *title,
@@ -261,7 +283,6 @@ BOOL YTKACEPreferenceNeedsRestart(NSString *key) {
         @"YTKACE.Preference.Playback.LegacyQualityMenu",
         @"YTKACE.Preference.Navigation.StatusBarHidden",
         @"YTKACE.Preference.Tabs.Startup",
-        @"YTKACE.Preference.Playback.Recovery",
         @"YTKACE.Preference.Playback.CaptionsAlwaysOn",
         @"YTKACE.Preference.Navigation.NotificationsHidden"
     ] containsObject:key];
@@ -298,15 +319,9 @@ void YTKACEShowRestartNotice(UIViewController *controller) {
     });
 }
 
-static void YTKACEStorePickerValue(NSString *key, id value, NSUInteger index) {
+static void YTKACEStorePickerValue(NSString *key, id value,
+                                   __unused NSUInteger index) {
     YTKACESetPreferenceObject(key, value);
-    if ([key isEqualToString:@"YTKACE.Preference.Tabs.Startup"]) {
-        NSArray *browseIDs = @[@"FEwhat_to_watch", @"FEexplore", @"FEsubscriptions",
-                               @"FEshorts", @"FElibrary"];
-        if (index < browseIDs.count) {
-            YTKACESetPreferenceObject(@"kStartupPageID", browseIDs[index]);
-        }
-    }
 }
 
 static UIImage *YTKACEBlankChoiceIcon(void) {
@@ -702,7 +717,7 @@ willDisplayHeaderView:(UIView *)view
     } else if ([type isEqualToString:@"stepper"]) {
         double stored = [YTKACEPreferenceObject(item[@"key"]) doubleValue];
         double value = stored > 0.0 ? stored : [item[@"fallback"] doubleValue];
-        cell.textLabel.text = [NSString stringWithFormat:YTKACELocalized(@"Seconds: %@"), [NSString stringWithFormat:@"%.0f", value]];
+        cell.textLabel.text = YTKACEStepperText(item, value);
         UIStepper *stepper = [UIStepper new];
         stepper.tintColor = YTKACEAccentColor();
         stepper.minimumValue = [item[@"minimum"] doubleValue];
@@ -851,12 +866,6 @@ willDisplayHeaderView:(UIView *)view
     NSDictionary *item = objc_getAssociatedObject(sender, YTKACEItemAssociation);
     NSString *key = item[@"key"];
     YTKACESetPreference(key, sender.isOn);
-    if ([key isEqualToString:@"YTKACE.Preference.Playback.Recovery"] && sender.isOn) {
-        NSString *message = YTKACELocalized(@"Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you.");
-        if (!YTKACEShowYouTubeDialog(YTKACELocalized(@"Playback Recovery"), message)) {
-            YTKACEShowNotice(YTKACELocalized(@"Could not open the recovery details."));
-        }
-    }
     if ([key isEqualToString:YTKACEOLEDKey]) {
         YTKACEApplyAppearance(self);
         self.tableView.backgroundColor = YTKACESettingsBackground();
@@ -871,7 +880,7 @@ willDisplayHeaderView:(UIView *)view
     NSDictionary *item = objc_getAssociatedObject(sender, YTKACEItemAssociation);
     UITableViewCell *cell = objc_getAssociatedObject(sender, YTKACEValueLabelAssociation);
     YTKACESetPreferenceObject(item[@"key"], @(sender.value));
-    cell.textLabel.text = [NSString stringWithFormat:YTKACELocalized(@"Seconds: %@"), [NSString stringWithFormat:@"%.0f", sender.value]];
+    cell.textLabel.text = YTKACEStepperText(item, sender.value);
 }
 
 - (void)sliderStepped:(UIButton *)sender {
@@ -1214,12 +1223,61 @@ static YTKACEOptionsController *YTKACEPageFromDefinition(NSDictionary *definitio
                       definition[@"headers"]);
 }
 
+void YTKACEStartupDestinations(NSArray<NSString *> * _Nullable * _Nullable outTitles,
+                               NSArray<NSString *> * _Nullable * _Nullable outValues) {
+    NSArray<NSArray<NSString *> *> *destinations = @[
+        @[@"", YTKACELocalized(@"Default"), @""],
+        @[@"home", YTKACELocalized(@"Home"), @"YTKACE.Preference.Tabs.Hidden.Home"],
+        @[@"explore", YTKACELocalized(@"Explore"), @""],
+        @[@"subscriptions", YTKACELocalized(@"Subscriptions"), @"YTKACE.Preference.Tabs.Hidden.Subscriptions"],
+        @[@"shorts", YTKACELocalized(@"Shorts"), @"YTKACE.Preference.Tabs.Hidden.Shorts"],
+        @[@"library", YTKACELocalized(@"You"), @"YTKACE.Preference.Tabs.Hidden.Library"],
+        @[@"ytkace", @"YTKACE", @"YTKACE.Preference.Tabs.Hidden.YTKACETab"],
+        @[@"create", YTKACELocalized(@"Create"), @"YTKACE.Preference.Tabs.Hidden.Create"],
+        @[@"music", YTKACELocalized(@"Music"), @"YTKACE.Preference.Tabs.Hidden.Music"],
+        @[@"live", YTKACELocalized(@"Live"), @"YTKACE.Preference.Tabs.Hidden.Live"],
+        @[@"gaming", YTKACELocalized(@"Gaming"), @"YTKACE.Preference.Tabs.Hidden.Gaming"],
+        @[@"news", YTKACELocalized(@"News"), @"YTKACE.Preference.Tabs.Hidden.News"],
+        @[@"sports", YTKACELocalized(@"Sports"), @"YTKACE.Preference.Tabs.Hidden.Sports"],
+        @[@"learning", YTKACELocalized(@"Learning"), @"YTKACE.Preference.Tabs.Hidden.Learning"],
+        @[@"fashion", YTKACELocalized(@"Fashion"), @"YTKACE.Preference.Tabs.Hidden.Fashion"],
+        @[@"playlists", YTKACELocalized(@"Playlists"), @"YTKACE.Preference.Tabs.Hidden.Playlists"],
+        @[@"history", YTKACELocalized(@"History"), @"YTKACE.Preference.Tabs.Hidden.History"],
+        @[@"notifications", YTKACELocalized(@"Notifs"), @"YTKACE.Preference.Tabs.Hidden.Notifs"],
+        @[@"watchlater", YTKACELocalized(@"WLater"), @"YTKACE.Preference.Tabs.Hidden.WatchLater"]
+    ];
+    NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
+    NSString *selected = [defaults stringForKey:@"YTKACE.Preference.Tabs.Startup"];
+    NSArray<NSString *> *known = [defaults arrayForKey:@"YTKACE.Preference.Tabs.Known"];
+    NSMutableArray<NSString *> *titles = [NSMutableArray array];
+    NSMutableArray<NSString *> *values = [NSMutableArray array];
+    for (NSArray<NSString *> *entry in destinations) {
+        NSString *token = entry[0];
+        NSString *hideKey = entry[2];
+        BOOL hidden = hideKey.length != 0 && [defaults boolForKey:hideKey];
+        NSString *canonical =
+            [token isEqualToString:@"library"] ? @"you" : token;
+        if (token.length != 0 && known.count != 0 &&
+            ![known containsObject:canonical] && ![token isEqualToString:selected]) {
+            continue;
+        }
+        if (hidden && ![token isEqualToString:selected]) continue;
+        [titles addObject:entry[1]];
+        [values addObject:token];
+    }
+    if (outTitles != NULL) *outTitles = titles;
+    if (outValues != NULL) *outValues = values;
+}
+
 UIViewController *YTKACEMakeStartupPickerController(void) {
+    NSArray<NSString *> *titles = nil;
+    NSArray<NSString *> *values = nil;
+    YTKACEStartupDestinations(&titles, &values);
     return [[YTKACEPickerController alloc]
         initWithTitle:YTKACELocalized(@"Startup Page")
                    key:@"YTKACE.Preference.Tabs.Startup"
-                titles:@[YTKACELocalized(@"Home"), YTKACELocalized(@"Explore"), YTKACELocalized(@"Subscriptions"), YTKACELocalized(@"Shorts"), YTKACELocalized(@"You")]
-                values:@[@0, @1, @2, @3, @4]
+                titles:titles
+                values:values
           defaultIndex:0];
 }
 
@@ -1346,9 +1404,7 @@ static NSDictionary *YTKACEPlayerControlsDefinition(void) {
         ],
         @[
             YTKACEToggle(@"Remove Ads", YTKACENoAdsKey, @"", @""),
-            YTKACEToggleDetail(@"Playback Fix",
-                @"Helps recover playback in sideloaded builds.",
-                @"YTKACE.Preference.Playback.Recovery")
+
         ],
         progressSection,
         @[
@@ -1465,7 +1521,12 @@ static NSDictionary *YTKACEShortsOptionsDefinition(void) {
             YTKACEToggle(@"Auto Advance", @"autoSkipShorts", @"", @""),
             YTKACEPicker(@"Download Button Position", @"YTKACE.Preference.Shorts.DownloadPosition",
                          @[YTKACELocalized(@"Top Corner"), YTKACELocalized(@"Action Buttons")],
-                         @[@0, @1], 0, @"", @"")
+                         @[@0, @1], 0, @"", @""),
+            YTKACEToggleDetail(@"Limit Shorts",
+                @"Stop scrolling after a set number of Shorts. Resets when YouTube restarts.",
+                @"YTKACE.Preference.Shorts.LimitEnabled"),
+            YTKACECountStepper(@"Shorts limit", @"YTKACE.Preference.Shorts.LimitCount",
+                               5.0, 200.0, 5.0, 20.0)
         ],
         @[
             YTKACEToggle(@"Remove Shorts Shelves", @"YTKACE.Preference.Shorts.FeedHidden", @"", @""),

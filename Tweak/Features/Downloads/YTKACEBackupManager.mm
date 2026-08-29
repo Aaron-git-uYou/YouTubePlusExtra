@@ -1,4 +1,5 @@
 #import "YTKACEBackupManager.h"
+#import "DownloadLog.h"
 #import "../../Runtime/Preferences.h"
 
 #include <zlib.h>
@@ -87,8 +88,17 @@ static NSString *YTKACERelativePath(NSURL *URL, NSURL *baseURL) {
 static NSDictionary *YTKACEBackupSettings(void) {
     NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
     NSString *bundleID = NSBundle.mainBundle.bundleIdentifier;
-    NSDictionary *domain = bundleID.length == 0 ? @{} :
-        [defaults persistentDomainForName:bundleID] ?: @{};
+    // dictionaryRepresentation is the reliable source: preferences are written
+    // through standardUserDefaults, and persistentDomainForName: returns nil for
+    // the app's own domain here, which produced an empty backup plist.
+    NSMutableDictionary *domain =
+        [[defaults dictionaryRepresentation] mutableCopy] ?: [NSMutableDictionary dictionary];
+    if (bundleID.length != 0) {
+        NSDictionary *persistent = [defaults persistentDomainForName:bundleID];
+        if ([persistent isKindOfClass:NSDictionary.class]) {
+            [domain addEntriesFromDictionary:persistent];
+        }
+    }
     NSMutableDictionary *settings = [NSMutableDictionary dictionary];
     NSSet *named = [NSSet setWithArray:@[
         @"YTKACE.Preference.Playback.WiFiQuality", @"YTKACE.Preference.Playback.CellularQuality", @"YTKACE.Preference.SponsorBlock.Mode",
@@ -97,24 +107,39 @@ static NSDictionary *YTKACEBackupSettings(void) {
     ]];
     [domain enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
         (void)stop;
-        if ([key hasPrefix:@"YTKACE.Preference."] ||
-            [named containsObject:key]) {
-            settings[key] = value;
+        if (![key isKindOfClass:NSString.class]) return;
+        if (![key hasPrefix:@"YTKACE.Preference."] &&
+            ![named containsObject:key]) {
+            return;
         }
+        if (![NSPropertyListSerialization propertyList:value
+                                     isValidForFormat:NSPropertyListXMLFormat_v1_0]) {
+            return;
+        }
+        settings[key] = value;
     }];
+    YTKACEDownloadLog(@"backup", @"captured %lu settings",
+                      (unsigned long)settings.count);
     return settings;
 }
 
 static void YTKACEApplyBackupSettings(NSDictionary *settings) {
-    if (![settings isKindOfClass:NSDictionary.class]) return;
+    if (![settings isKindOfClass:NSDictionary.class]) {
+        YTKACEDownloadLog(@"backup", @"restore skipped: no settings in backup");
+        return;
+    }
     NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
+    __block NSUInteger applied = 0;
     [settings enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
         (void)stop;
         if ([key isKindOfClass:NSString.class] && value != nil) {
             [defaults setObject:value forKey:key];
+            applied++;
         }
     }];
     [defaults synchronize];
+    YTKACEDownloadLog(@"backup", @"restored %lu of %lu settings",
+                      (unsigned long)applied, (unsigned long)settings.count);
 }
 
 static uint32_t YTKACECRCAndSize(NSURL *URL, uint64_t *size, NSError **error) {

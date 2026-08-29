@@ -38,6 +38,8 @@
 "Captions On" = "Bật phụ đề";
 "Cards" = "Thẻ";
 "Cellular Quality" = "Chất lượng khi dùng dữ liệu di động";
+"Limit" = "Giới hạn";
+"Limit Shorts" = "Giới hạn Shorts";
 "Pick which half of the player changes brightness and which changes volume, then slide up or down on that half. Assigning volume to both halves leaves no room for brightness, so brightness is switched off." = "Chọn nửa nào của trình phát điều chỉnh độ sáng và nửa nào điều chỉnh âm lượng, rồi vuốt lên hoặc xuống trên nửa đó. Nếu gán âm lượng cho cả hai nửa thì không còn chỗ cho độ sáng, nên độ sáng sẽ bị tắt.";
 "Choose and reorder bottom tabs" = "Chọn và sắp xếp các tab dưới";
 "Choose, reorder, and rename tabs" = "Chọn, sắp xếp và đổi tên tab";
@@ -162,6 +164,9 @@
 "Remove YouTube Logo" = "Xóa logo YouTube";
 "Rename" = "Đổi tên";
 "Rename Tab" = "Đổi tên tab";
+"Shorts limit" = "Giới hạn Shorts";
+"Shorts limit reached (%ld). Restart YouTube to reset." = "Đã đạt giới hạn Shorts (%ld). Khởi động lại YouTube để đặt lại.";
+"Stop scrolling after a set number of Shorts. Resets when YouTube restarts." = "Dừng cuộn sau một số lượng Shorts nhất định. Đặt lại khi khởi động lại YouTube.";
 "Swap clickbait thumbnails for frames chosen by DeArrow contributors. Videos nobody has submitted keep the thumbnail YouTube provides." = "Thay hình thu nhỏ giật tít bằng khung hình do cộng tác viên DeArrow chọn. Video chưa có đề xuất vẫn giữ hình thu nhỏ của YouTube.";
 "Swap clickbait titles for wording submitted by DeArrow contributors. Videos nobody has submitted keep the original title." = "Thay tiêu đề giật tít bằng nội dung do cộng tác viên DeArrow gửi. Video chưa có đề xuất vẫn giữ tiêu đề gốc.";
 "Takes effect the next time YouTube starts.\n\nIf a video stops unexpectedly, YTKACE waits about a second to be sure it is genuinely stuck rather than buffering, then makes up to three attempts to get it moving again: resume, force a re-buffer, and finally reload the stream. If none of those work it stops interfering and lets YouTube show its normal error, so a broken video still reports itself as broken.\n\nScrubbing, pausing, or moving to another video cancels an attempt straight away. Live streams reload rather than seek. Leave this off if playback is already reliable for you." = "Có hiệu lực trong lần mở YouTube kế tiếp.\n\nNếu video dừng đột ngột, YTKACE chờ khoảng một giây để chắc chắn rằng video thật sự bị kẹt chứ không phải đang tải, rồi thực hiện tối đa ba lần thử: tiếp tục phát, buộc tải lại bộ đệm và cuối cùng tải lại luồng. Nếu đều không hiệu quả, tính năng sẽ ngừng can thiệp và để YouTube hiển thị lỗi như bình thường.\n\nTua, tạm dừng hoặc chuyển sang video khác sẽ hủy ngay lần thử đang chạy. Luồng trực tiếp sẽ được tải lại thay vì tua. Hãy tắt nếu việc phát video vốn đã ổn định.";

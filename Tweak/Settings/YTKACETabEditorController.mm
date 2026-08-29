@@ -202,7 +202,11 @@ willDisplayHeaderView:(UIView *)view
 
     if (indexPath.section == 1) {
         cell.textLabel.text = YTKACELocalized(@"Default Startup Tab");
-        cell.detailTextLabel.text = YTKACEPickerSummary(@"YTKACE.Preference.Tabs.Startup", @[YTKACELocalized(@"Home"), YTKACELocalized(@"Explore"), YTKACELocalized(@"Subscriptions"), YTKACELocalized(@"Shorts"), YTKACELocalized(@"You")], @[@0, @1, @2, @3, @4], 0);
+        NSArray<NSString *> *startupTitles = nil;
+        NSArray<NSString *> *startupValues = nil;
+        YTKACEStartupDestinations(&startupTitles, &startupValues);
+        cell.detailTextLabel.text = YTKACEPickerSummary(
+            @"YTKACE.Preference.Tabs.Startup", startupTitles, startupValues, 0);
         cell.detailTextLabel.textColor = YTKACEAccentColor();
         return cell;
     }
@@ -210,8 +214,16 @@ willDisplayHeaderView:(UIView *)view
     NSDictionary *tab = indexPath.section == 2
         ? self.activeTabs[(NSUInteger)indexPath.row]
         : self.inactiveTabs[(NSUInteger)indexPath.row];
-    cell.textLabel.text = tab[@"title"];
     NSString *token = tab[@"token"];
+    NSDictionary *customNames = [NSUserDefaults.standardUserDefaults
+        dictionaryForKey:@"YTKACE.Preference.Tabs.Names"];
+    NSString *custom = customNames[token];
+    if (custom.length != 0 && ![custom isEqualToString:tab[@"title"]]) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)",
+                               tab[@"title"], custom];
+    } else {
+        cell.textLabel.text = tab[@"title"];
+    }
     UIImage *image = nil;
     if ([token isEqualToString:@"shorts"]) {
         image = YTKACEShortsImage(NO);
@@ -308,8 +320,9 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
-        NSArray *titles = @[YTKACELocalized(@"Home"), YTKACELocalized(@"Explore"), YTKACELocalized(@"Subscriptions"), YTKACELocalized(@"Shorts"), YTKACELocalized(@"You")];
-        NSArray *values = @[@0, @1, @2, @3, @4];
+        NSArray<NSString *> *titles = nil;
+        NSArray<NSString *> *values = nil;
+        YTKACEStartupDestinations(&titles, &values);
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         YTKACEPresentChoiceMenu(self, cell, @"Default Startup Tab", titles, values,
             @"YTKACE.Preference.Tabs.Startup", 0, ^(__unused NSUInteger position) {
