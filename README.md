@@ -24,7 +24,7 @@ YouTube 21.35.3 requires iOS 17, so two IPAs are published:
 
 | IPA | YouTube base | iOS |
 | --- | --- | --- |
-| `YTKACE_0.9.2_YouTube_21.33.6.ipa` | 21.33.6 | 16.0 and newer |
+| `YTKACE_0.9.2_YouTube_iOS16_21.33.6.ipa` | 21.33.6 | 16.0 and newer |
 | `YTKACE_0.9.2_YouTube_21.35.3.ipa` | 21.35.3 | 17.0 and newer |
 
 Pick the 21.35.3 build unless you are on iOS 16. Either one installs with TrollStore or a developer-certificate sideloader.

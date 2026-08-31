@@ -98,7 +98,11 @@ jobs:
               print(plistlib.loads(archive.read(info))['CFBundleShortVersionString'])
           PY
           )"
-          output="YTKACE_${tweak_version}_YouTube_${youtube_version}.ipa"
+          if [ "${{ matrix.target.label }}" = "ios16" ]; then
+            output="YTKACE_${tweak_version}_YouTube_iOS16_${youtube_version}.ipa"
+          else
+            output="YTKACE_${tweak_version}_YouTube_${youtube_version}.ipa"
+          fi
           bash Scripts/sideload-repack.sh YouTube.ipa deb-root/var/jb/Library/MobileSubstrate/DynamicLibraries/YTKACE.dylib "$output"
           bash Tools/verify-artifacts.sh deb-root/var/jb/Library/MobileSubstrate/DynamicLibraries/YTKACE.dylib "$output"
           echo "ipa=$output" >> "$GITHUB_OUTPUT"
