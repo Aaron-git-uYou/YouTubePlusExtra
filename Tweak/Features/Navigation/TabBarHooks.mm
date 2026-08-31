@@ -349,6 +349,11 @@ static NSString *YTKACEHideKeyForToken(NSString *token) {
         [token containsString:@"news"]) {
         return @"YTKACE.Preference.Tabs.Hidden.News";
     }
+    if ([token containsString:@"fecommunity"] ||
+        [token containsString:@"communit"] ||
+        [token containsString:@"post"]) {
+        return @"YTKACE.Preference.Tabs.Hidden.Posts";
+    }
     if ([token containsString:@"ucegdi0xixxz-qjofpf4jskw"] ||
         [token containsString:@"sports"]) {
         return @"YTKACE.Preference.Tabs.Hidden.Sports";
@@ -416,6 +421,11 @@ static NSString *YTKACECanonicalTabToken(NSString *token) {
     if ([token containsString:@"ucyfdidrxb8qhf0nx7iooyw"] ||
         [token containsString:@"news"]) {
         return @"news";
+    }
+    if ([token containsString:@"fecommunity"] ||
+        [token containsString:@"communit"] ||
+        [token containsString:@"post"]) {
+        return @"posts";
     }
     if ([token containsString:@"ucegdi0xixxz-qjofpf4jskw"] ||
         [token containsString:@"sports"]) {
@@ -606,7 +616,9 @@ static void YTKACESetPivotRenderer(id receiver, SEL selector, id renderer) {
                 @{@"token": @"notifications", @"id": @"FEnotifications_inbox",
                   @"title": @"Notifs", @"key": @"YTKACE.Preference.Tabs.Hidden.Notifs", @"icon": @1010},
                 @{@"token": @"watchlater", @"id": @"VLWL",
-                  @"title": @"WLater", @"key": @"YTKACE.Preference.Tabs.Hidden.WatchLater", @"icon": @1011}
+                  @"title": @"WLater", @"key": @"YTKACE.Preference.Tabs.Hidden.WatchLater", @"icon": @1011},
+                @{@"token": @"posts", @"id": @"FEpost_home",
+                  @"title": @"Posts", @"key": @"YTKACE.Preference.Tabs.Hidden.Posts", @"icon": @1012}
             ];
             NSMutableSet<NSString *> *present = [NSMutableSet set];
             for (id item in filtered) {
@@ -1029,7 +1041,10 @@ static NSDictionary *YTKACEExtraTabIcon(NSString *token) {
                                  @"bell", @"bell.fill"],
             @"watchlater": @[@"clock_24pt_3x_Normal",
                               @"yt_fill_clock_24pt_3x_Normal",
-                              @"clock", @"clock.fill"]
+                              @"clock", @"clock.fill"],
+            @"posts": @[@"", @"",
+                         @"bubble.left.and.bubble.right",
+                         @"bubble.left.and.bubble.right.fill"]
         };
     });
     NSArray *values = icons[token];
@@ -1074,7 +1089,8 @@ static void YTKACEApplyExtraTabIcon(UIView *view) {
             @"playlists": @[@"playlists", @"playlist"],
             @"history": @[@"history"],
             @"notifications": @[@"notifs", @"notifications"],
-            @"watchlater": @[@"wlater", @"watch later"]
+            @"watchlater": @[@"wlater", @"watch later"],
+            @"posts": @[@"posts", @"post"]
         };
         for (NSString *candidate in aliases) {
             for (NSString *alias in aliases[candidate]) {

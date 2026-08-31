@@ -95,6 +95,7 @@ void YTKACEShowNotice(NSString *message) {
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         UIView *host = YTKACENoticeController().view;
+        if (host.window == nil) return;
         UIView *old = [host viewWithTag:0x594B4E54];
         [old removeFromSuperview];
         UIView *banner = [UIView new];

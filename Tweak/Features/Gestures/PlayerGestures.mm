@@ -225,6 +225,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)other 
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if (YTKACEFeatureEnabled(@"YTKACE.Preference.Gestures.LandscapeOnly")) {
+        const CGSize screen = gestureRecognizer.view.window.bounds.size;
+        if (screen.height > 0.0 && screen.width <= screen.height) return NO;
+    }
     if ([self isEdgePan:gestureRecognizer]) {
         if (!YTKACEMasterEnabled()) return NO;
         UIView *view = gestureRecognizer.view;

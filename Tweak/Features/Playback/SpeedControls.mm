@@ -1,6 +1,7 @@
 #import "../../YTKACE.h"
 #import "../../Runtime/Hooking.h"
 #import "../../Runtime/Preferences.h"
+#import "../Downloads/DownloadLog.h"
 #import "../../UI/Assets.h"
 #import "../../UI/OverlayButtonHost.h"
 
@@ -521,7 +522,95 @@ static void YTKACEInstallMaximumRateHooks(void) {
     free(classes);
 }
 
+static NSString *const YTKACEHoldSpeedKey =
+    @"YTKACE.Preference.Player.HoldSpeedEnabled";
+static NSString *const YTKACEHoldSpeedRateKey =
+    @"YTKACE.Preference.Player.HoldSpeedRate";
+
+
+static IMP OriginalSpeedmasterActivated;
+static IMP OriginalSpeedmasterLongPress;
+
+static void YTKACEApplyHoldRate(NSString *source) {
+    const BOOL on = YTKACEFeatureEnabled(YTKACEHoldSpeedKey);
+    const double stored =
+        [YTKACEPreferenceObject(YTKACEHoldSpeedRateKey) doubleValue];
+    (void)source;
+    if (!on || stored < 0.25 || stored > 5.0) return;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[YTKACESpeedCoordinator sharedCoordinator] setRate:stored];
+    });
+}
+
+static void YTKACESpeedmasterActivated(id receiver, SEL selector, BOOL active) {
+    if (OriginalSpeedmasterActivated != NULL) {
+        ((void (*)(id, SEL, BOOL))OriginalSpeedmasterActivated)(receiver,
+                                                                selector, active);
+    }
+    if (!active) return;
+    YTKACEApplyHoldRate(@"activated");
+}
+
+static void YTKACESpeedmasterLongPress(id receiver, SEL selector,
+                                       UILongPressGestureRecognizer *recognizer) {
+    if (OriginalSpeedmasterLongPress != NULL) {
+        ((void (*)(id, SEL, id))OriginalSpeedmasterLongPress)(receiver, selector,
+                                                              recognizer);
+    }
+    if (recognizer.state != UIGestureRecognizerStateBegan) return;
+    YTKACEApplyHoldRate(@"longpress");
+}
+
+static BOOL YTKACELooksLikeSpeedPill(NSString *text) {
+    if (text.length < 2 || ![text hasSuffix:@"x"]) return NO;
+    NSString *number = [text substringToIndex:text.length - 1];
+    NSCharacterSet *allowed =
+        [NSCharacterSet characterSetWithCharactersInString:@"0123456789.,"];
+    return [number stringByTrimmingCharactersInSet:allowed].length == 0;
+}
+
+static IMP OriginalTextNodeSetAttributedText;
+
+static void YTKACETextNodeSetAttributedText(id receiver, SEL selector,
+                                            NSAttributedString *value) {
+    NSAttributedString *replacement = value;
+    NSString *text = [value isKindOfClass:NSAttributedString.class]
+        ? value.string : nil;
+    if (text.length != 0 && YTKACEFeatureEnabled(YTKACEHoldSpeedKey) &&
+        YTKACELooksLikeSpeedPill(text)) {
+        const double stored =
+            [YTKACEPreferenceObject(YTKACEHoldSpeedRateKey) doubleValue];
+        NSString *wanted = YTKACESpeedText(stored);
+        if (stored >= 0.25 && stored <= 5.0 && ![text isEqualToString:wanted]) {
+            NSDictionary *attributes = value.length != 0
+                ? [value attributesAtIndex:0 effectiveRange:NULL] : @{};
+            replacement = [[NSAttributedString alloc] initWithString:wanted
+                                                          attributes:attributes];
+        }
+    }
+    if (OriginalTextNodeSetAttributedText != NULL) {
+        ((void (*)(id, SEL, id))OriginalTextNodeSetAttributedText)(
+            receiver, selector, replacement);
+    }
+}
+
+static void YTKACEInstallHoldSpeedHooks(void) {
+    const BOOL node = YTKACEInstallInstanceHook(
+        @"ELMTextNode", @"setAttributedText:",
+        (IMP)YTKACETextNodeSetAttributedText, &OriginalTextNodeSetAttributedText);
+    const BOOL press = YTKACEInstallInstanceHook(
+        @"YTSpeedmasterController", @"speedmasterDidLongPressWithRecognizer:",
+        (IMP)YTKACESpeedmasterLongPress, &OriginalSpeedmasterLongPress);
+    const BOOL activated = YTKACEInstallInstanceHook(
+        @"YTSpeedmasterController", @"setIsSpeedmasterActivated:",
+        (IMP)YTKACESpeedmasterActivated, &OriginalSpeedmasterActivated);
+    YTKACEDownloadLog(@"speed",
+                      @"hold speed hooks node=%d activated=%d press=%d",
+                      node, activated, press);
+}
+
 void YTKACEInstallSpeedHooks(void) {
+    YTKACEInstallHoldSpeedHooks();
     if (YTKACERateCeilingRaised()) {
         YTKACEInstallMaximumRateHooks();
     }

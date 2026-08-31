@@ -108,6 +108,7 @@ static NSString *YTKACEActionPreference(id item) {
         @[@"YTKACE.Preference.ActionBar.HypeHidden", @"hype"],
         @[@"YTKACE.Preference.ActionBar.ReportHidden", @"id_player_watch_flag_button", @"report"],
         @[@"YTKACE.Preference.ActionBar.AskHidden", @"ask", @"gemini"],
+        @[@"YTKACE.Preference.ActionBar.OverflowHidden", @"overflow"],
         @[@"YTKACE.Preference.ActionBar.LikeHidden", @"like"]
     ];
     for (NSArray<NSString *> *rule in rules) {
@@ -130,7 +131,8 @@ static BOOL YTKACEAnyActionPreferenceEnabled(void) {
         @"YTKACE.Preference.ActionBar.ThanksHidden",
         @"YTKACE.Preference.ActionBar.HypeHidden",
         @"YTKACE.Preference.ActionBar.ReportHidden",
-        @"YTKACE.Preference.ActionBar.AskHidden"
+        @"YTKACE.Preference.ActionBar.AskHidden",
+        @"YTKACE.Preference.ActionBar.OverflowHidden"
     ]) {
         if (YTKACEFeatureEnabled(key)) return YES;
     }
@@ -576,12 +578,8 @@ static void YTKACEASCollectionViewLayout(UICollectionView *receiver,
     static NSUInteger layoutLogged = 0;
     CGFloat removedWidth = 0.0;
     NSUInteger matchedCells = 0;
-    UICollectionViewLayout *layout = receiver.collectionViewLayout;
     for (UICollectionViewCell *cell in visible) {
-        NSIndexPath *path = [receiver indexPathForCell:cell];
-        UICollectionViewLayoutAttributes *attributes = path != nil
-            ? [layout layoutAttributesForItemAtIndexPath:path] : nil;
-        CGRect frame = attributes != nil ? attributes.frame : cell.frame;
+        CGRect frame = cell.frame;
         NSArray<NSString *> *cellButtons = YTKACEActionButtonIdentifiers(cell);
         if (layoutLogged < 80 && cellButtons.count != 0) {
             layoutLogged++;
@@ -788,6 +786,7 @@ static NSString *YTKACEBarSlotPreference(UIView *slot) {
         @[@"YTKACE.Preference.ActionBar.HypeHidden", @"hype"],
         @[@"YTKACE.Preference.ActionBar.ReportHidden", @"report"],
         @[@"YTKACE.Preference.ActionBar.AskHidden", @"ask"],
+        @[@"YTKACE.Preference.ActionBar.OverflowHidden", @"overflow"],
         @[@"YTKACE.Preference.ActionBar.LikeHidden", @"like"]
     ];
     for (NSArray<NSString *> *rule in rules) {

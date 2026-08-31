@@ -4,6 +4,7 @@
 #import "../../UI/OverlayButtonHost.h"
 
 #import <objc/message.h>
+#import "../Downloads/DownloadLog.h"
 #import <objc/runtime.h>
 #import <math.h>
 
@@ -432,7 +433,38 @@ static BOOL YTKACERemovePreviousPaddle(id receiver, SEL selector) {
         ((BOOL (*)(id, SEL))OriginalRemovePreviousPaddle)(receiver, selector);
 }
 
+static NSString *const YTKACEFullscreenActionsKey =
+    @"YTKACE.Preference.Overlay.FullscreenActionsHidden";
+
+static IMP OriginalFullscreenActionsLayout;
+static IMP OriginalFullscreenEngagementLayout;
+static void YTKACEApplyHidden(UIView *view, NSString *key) {
+    const BOOL hidden = YTKACEFeatureEnabled(key);
+    if (view.hidden != hidden) view.hidden = hidden;
+}
+
+static void YTKACEFullscreenActionsLayout(UIView *receiver, SEL selector) {
+    if (OriginalFullscreenActionsLayout != NULL) {
+        ((void (*)(id, SEL))OriginalFullscreenActionsLayout)(receiver, selector);
+    }
+    YTKACEApplyHidden(receiver, YTKACEFullscreenActionsKey);
+}
+
+static void YTKACEFullscreenEngagementLayout(UIView *receiver, SEL selector) {
+    if (OriginalFullscreenEngagementLayout != NULL) {
+        ((void (*)(id, SEL))OriginalFullscreenEngagementLayout)(receiver, selector);
+    }
+    YTKACEApplyHidden(receiver, YTKACEFullscreenActionsKey);
+}
+
 void YTKACEInstallOverlayVisibilityHooks(void) {
+    YTKACEInstallInstanceHook(@"YTFullscreenActionsView", @"layoutSubviews",
+                              (IMP)YTKACEFullscreenActionsLayout,
+                              &OriginalFullscreenActionsLayout);
+    YTKACEInstallInstanceHook(@"YTFullscreenEngagementActionBarView",
+                              @"layoutSubviews",
+                              (IMP)YTKACEFullscreenEngagementLayout,
+                              &OriginalFullscreenEngagementLayout);
     YTKACERegisterOverlayConfigurator(@"visibility", ^(UIView *overlay,
                                                         UIStackView *stack) {
         for (UIView *subview in overlay.subviews) {

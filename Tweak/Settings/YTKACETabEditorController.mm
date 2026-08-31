@@ -89,6 +89,7 @@ static UIImage *YTKACETabEditorIcon(NSString *token, NSString *fallback) {
         [self tab:@"live" title:YTKACELocalized(@"Live") symbol:@"dot.radiowaves.left.and.right" key:@"YTKACE.Preference.Tabs.Hidden.Live"],
         [self tab:@"gaming" title:YTKACELocalized(@"Gaming") symbol:@"gamecontroller" key:@"YTKACE.Preference.Tabs.Hidden.Gaming"],
         [self tab:@"news" title:YTKACELocalized(@"News") symbol:@"newspaper" key:@"YTKACE.Preference.Tabs.Hidden.News"],
+        [self tab:@"posts" title:YTKACELocalized(@"Posts") symbol:@"bubble.left.and.bubble.right" key:@"YTKACE.Preference.Tabs.Hidden.Posts"],
         [self tab:@"sports" title:YTKACELocalized(@"Sports") symbol:@"trophy" key:@"YTKACE.Preference.Tabs.Hidden.Sports"],
         [self tab:@"learning" title:YTKACELocalized(@"Learning") symbol:@"graduationcap" key:@"YTKACE.Preference.Tabs.Hidden.Learning"],
         [self tab:@"fashion" title:YTKACELocalized(@"Fashion") symbol:@"tshirt" key:@"YTKACE.Preference.Tabs.Hidden.Fashion"],

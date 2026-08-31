@@ -53,8 +53,10 @@ void YTKACEInstallNavigationVisibilityHooks(void);
 void YTKACEInstallMiscellaneousHooks(void);
 void YTKACEInstallCopyCommentHooks(void);
 void YTKACEInstallProfilePictureHooks(void);
+void YTKACEInstallPostImageSaverHooks(void);
 void YTKACEInstallNativeShareHooks(void);
 void YTKACEProfileConsiderDisplayView(UIView *view, id node);
 void YTKACEScheduleFirstLaunch(void);
 
 NS_ASSUME_NONNULL_END
+void YTKACEInstallPlaybackFixHooks(void);

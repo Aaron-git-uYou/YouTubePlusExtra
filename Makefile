@@ -38,6 +38,7 @@ YTKACE_FILES = \
 	Tweak/Features/Appearance/PremiumLogoHooks.mm \
 	Tweak/Features/Playback/BackgroundPlaybackHooks.mm \
 	Tweak/Features/Playback/PiPControls.mm \
+	Tweak/Features/Playback/PlaybackFixHooks.mm \
 	Tweak/Features/Playback/SpeedControls.mm \
 	Tweak/Features/Playback/LoopControls.mm \
 	Tweak/Features/Playback/SleepTimerControls.mm \
@@ -58,6 +59,7 @@ YTKACE_FILES = \
 	Tweak/Features/Interface/MiscellaneousHooks.mm \
 	Tweak/Features/Interface/CopyCommentHooks.mm \
 	Tweak/Features/Interface/ProfilePictureViewer.mm \
+	Tweak/Features/Interface/PostImageSaver.mm \
 	Tweak/Features/Interface/NativeShareHooks.mm \
 	Tweak/Features/Interface/NavigationVisibility.mm \
 	Tweak/Settings/SettingsEntry.mm \

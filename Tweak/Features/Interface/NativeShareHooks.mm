@@ -291,6 +291,13 @@ static void YTKACEShowShareSheet(id receiver, SEL selector,
     if (serialized.length == 0) {
         serialized = YTKACESerializedShareEntity(receiver, onAppear, context);
     }
+    if (update == nil && serialized.length == 0) {
+        if (OriginalShowShareSheet != NULL) {
+            ((void (*)(id, SEL, id, id))OriginalShowShareSheet)(
+                receiver, selector, context, handler);
+        }
+        return;
+    }
     Class messageClass = NSClassFromString(@"GPBMessage");
     SEL deserialize = NSSelectorFromString(@"deserializeFromString:");
     id message = (serialized.length != 0 &&

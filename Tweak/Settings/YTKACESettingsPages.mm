@@ -1238,6 +1238,7 @@ void YTKACEStartupDestinations(NSArray<NSString *> * _Nullable * _Nullable outTi
         @[@"live", YTKACELocalized(@"Live"), @"YTKACE.Preference.Tabs.Hidden.Live"],
         @[@"gaming", YTKACELocalized(@"Gaming"), @"YTKACE.Preference.Tabs.Hidden.Gaming"],
         @[@"news", YTKACELocalized(@"News"), @"YTKACE.Preference.Tabs.Hidden.News"],
+        @[@"posts", YTKACELocalized(@"Posts"), @"YTKACE.Preference.Tabs.Hidden.Posts"],
         @[@"sports", YTKACELocalized(@"Sports"), @"YTKACE.Preference.Tabs.Hidden.Sports"],
         @[@"learning", YTKACELocalized(@"Learning"), @"YTKACE.Preference.Tabs.Hidden.Learning"],
         @[@"fashion", YTKACELocalized(@"Fashion"), @"YTKACE.Preference.Tabs.Hidden.Fashion"],
@@ -1387,6 +1388,10 @@ static NSDictionary *YTKACEPlayerControlsDefinition(void) {
     return YTKACEPageDefinition(@"player", @"Player", @[
         @[
             YTKACEToggle(@"Download Button", YTKACEDownloadKey, @"", @""),
+            YTKACEPicker(@"Save downloads to",
+                         @"YTKACE.Preference.Downloads.SaveLocation",
+                         @[@"YTKACE Library", @"Photos", @"Ask"],
+                         @[@0, @1, @2], 0, @"", @""),
             YTKACEToggle(@"PiP Button", YTKACEPiPKey, @"", @""),
             YTKACEToggle(@"Loop Button", YTKACELoopKey, @"", @""),
             YTKACEToggle(@"Sleep Timer Button", YTKACESleepTimerKey, @"", @""),
@@ -1400,11 +1405,20 @@ static NSDictionary *YTKACEPlayerControlsDefinition(void) {
                          @[@0, @(-1), @(-2)], 0, @"", @""),
             YTKACEStackedSlider(@"Custom speed",
                                 @"YTKACE.Preference.Player.CustomRate",
-                                0.25, 5.0, 0.05, 1.0, @"speed")
+                                0.25, 5.0, 0.05, 1.0, @"speed"),
+            YTKACEToggleDetail(@"Custom Hold Speed",
+                               @"Change the speed used when you hold to speed up. "
+                               @"Restart YouTube after changing.",
+                               @"YTKACE.Preference.Player.HoldSpeedEnabled"),
+            YTKACEStackedSlider(@"Hold speed",
+                                @"YTKACE.Preference.Player.HoldSpeedRate",
+                                0.25, 5.0, 0.25, 2.0, @"speed")
         ],
         @[
             YTKACEToggle(@"Remove Ads", YTKACENoAdsKey, @"", @""),
-
+            YTKACEToggleDetail(@"Playback Fix (test)",
+                @"Retries playback automatically when the server returns an error instead of showing the error screen. Restart YouTube after changing.",
+                @"YTKACE.Preference.Playback.Fix")
         ],
         progressSection,
         @[
@@ -1473,7 +1487,11 @@ static NSDictionary *YTKACEOverlayOptionsDefinition(void) {
             YTKACEToggle(@"Remove Thanks", @"YTKACE.Preference.ActionBar.ThanksHidden", @"", @""),
             YTKACEToggle(@"Remove Hype", @"YTKACE.Preference.ActionBar.HypeHidden", @"", @""),
             YTKACEToggle(@"Remove Report", @"YTKACE.Preference.ActionBar.ReportHidden", @"", @""),
-            YTKACEToggle(@"Remove Ask", @"YTKACE.Preference.ActionBar.AskHidden", @"", @"")
+            YTKACEToggle(@"Remove Ask", @"YTKACE.Preference.ActionBar.AskHidden", @"", @""),
+            YTKACEToggle(@"Remove More", @"YTKACE.Preference.ActionBar.OverflowHidden", @"", @""),
+            YTKACEToggleDetail(@"Remove Fullscreen Actions",
+                               @"Hide the row of buttons under the progress bar in fullscreen.",
+                               @"YTKACE.Preference.Overlay.FullscreenActionsHidden")
         ]
     ], @[YTKACELocalized(@"WATCH PAGE"), YTKACELocalized(@"GESTURES"), YTKACELocalized(@"ALWAYS VISIBLE"), YTKACELocalized(@"PREVIOUS & NEXT"), YTKACELocalized(@"HIDE FROM PLAYER"), YTKACELocalized(@"ACTION BAR")]);
 }
@@ -1569,6 +1587,9 @@ static NSDictionary *YTKACEMiscOptionsDefinition(void) {
         @[
             YTKACEToggle(@"iOS Share Sheet", @"YTKACE.Preference.Sharing.NativeSheet", @"", @""),
             YTKACEToggle(@"Avatar Preview", @"YTKACE.Preference.Profiles.Preview", @"", @""),
+            YTKACEToggleDetail(@"Save Post Images",
+                @"Adds a save button when you open an image from a community post.",
+                @"YTKACE.Preference.Posts.SaveImage"),
             YTKACEToggle(@"Mini Player for Kids Videos", @"YTKACE.Preference.Playback.KidsMiniPlayer", @"", @"")
         ],
         @[
@@ -1593,7 +1614,10 @@ static NSDictionary *YTKACEGestureOptionsDefinition(void) {
             YTKACEPicker(@"Left Side", @"YTKACE.Preference.Gestures.LeftAction",
                          actionTitles, actionValues, 0, @"", @""),
             YTKACEPicker(@"Right Side", @"YTKACE.Preference.Gestures.RightAction",
-                         actionTitles, actionValues, 0, @"", @"")
+                         actionTitles, actionValues, 0, @"", @""),
+            YTKACEToggleDetail(@"Landscape Only",
+                               @"Disable gestures while the player is in portrait.",
+                               @"YTKACE.Preference.Gestures.LandscapeOnly")
         ],
         @[
             YTKACEToggleDetail(@"Gesture HUD",

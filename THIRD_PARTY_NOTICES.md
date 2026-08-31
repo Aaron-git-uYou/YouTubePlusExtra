@@ -16,7 +16,7 @@ The download path implements YouTube's SABR streaming protocol. It was written f
 
 ## YTPlaybackFix
 
-The InnerTube client spoofing in `Tweak/Features/Playback/PlaybackClientSpoof.mm` is adapted from [YTPlaybackFix](https://github.com/Mark02-2012/YTPlaybackFix) by Mark02, used under the MIT licence. The implementation was reworked for YTKACE: it is ported off Logos to the runtime hooking used elsewhere here, gated behind the Playback Fix preference, restricted to the `/player`, `/initplayback` and `/videoplayback` endpoints, and rewrites the request body from `setHTTPBody:` rather than the initialiser. The full licence text is reproduced in the header of that file.
+The playback error recovery in `Tweak/Features/Playback/PlaybackFixHooks.mm` is adapted from [YTPlaybackFix](https://github.com/Mark02-2012/YTPlaybackFix) by Mark02, used under the MIT licence. It is his `Refresh.xm` method: intercept `handleError:` for playback error codes 14 and 0, send a `YTPlayerTapToRetryResponderEvent`, seek back to the last known position, and re-check after a second. The control flow and timings are his. The port off Logos to the runtime hooking used elsewhere here, the preference gate, and the logging are the only changes. The full licence text is reproduced in the header of that file.
 
 MIT License, Copyright (c) 2026 Mark02.
 
